@@ -1,0 +1,83 @@
+/* Header */
+.header{
+    padding-top: 18px;
+    padding-bottom: 18px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(144, 144, 144, 0.1);
+}
+
+.header__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header left */
+.header__left{
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    font-family: "Gilroy-ExtraBold", sans-serif;
+    font-size: 24px;
+
+    color: #3B4256;
+
+    margin-right: 30px;
+}
+
+.header__logo-location {
+    font-family: "Gilroy-SemiBold", sans-serif;
+    font-size: 16px;
+
+    color: #007AFF;
+}
+
+/* Header Right */
+/*Nav*/
+.nav {
+    display: flex;
+    align-items: center;
+
+    font-family: "Gilroy-SemiBold", sans-serif;
+}
+
+.nav a{
+    text-decoration: none;
+}
+
+.nav__link-lang {
+    font-size: 14px;
+
+    color: #000000;
+    text-transform: uppercase;
+}
+
+.nav__link-signIn {
+    font-size: 16px;
+
+    padding: 8px 12px;
+    margin-left: 16px;
+
+    color: #007AFF;
+    background: #E5F2FF;
+    border-radius: 4px;
+}
+
+.nav__link-placeAd {
+    font-size: 16px;
+
+    padding: 8px 12px;
+    margin-left: 12px;
+
+    color: #FFFFFF;
+    background: #007AFF;
+    border-radius: 4px;
+}
