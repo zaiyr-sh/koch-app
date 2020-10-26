@@ -1,117 +1,138 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
+import TransportSection from "./components/TransportSection/TransportSection";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
       <>
         <Navbar />
-        <section className="section-card">
+        <div className="main-menu">
+          <div className="container">
+            <h2 className="menu-name">Грузоперевозки по всей стране</h2>
+          </div>
+        </div>
+
+        <section className="section-filteredTransport">
           <div className="container">
 
-            <div className="card">
-              <div className="card_item">
-                <div className="card_inner">
+            <div className="filter">
+              <div className="filter-item">
 
-                  <div className="card_name">
-                    Цемент в мешках
+                <div className="filter-chooser">
+                  <p className="filter-search">Искать</p>
+                  <div className="filter-searchFields">
+                    <a className="filter-goods active" href="/">Груз</a>
+                    <a className="filter-transport" href="/">Транспорт</a>
                   </div>
-                  <div className="card-direction">
-                    <div className="card-direction-from">Бишкек, Арча-Бешик</div>
-                    <div className="card-direction-to">Талас, Шекер</div>
+                </div>
+
+                <div className="filter-direction">
+                <p className="filter-direction-title">Откуда</p>
+                <div className="filter-direction-from">
+                  <div className="filter-direction-area">
+                    <select className="filter-direction-selection" name="area">
+                      <option value="area">Область</option>
+                      <option value="osh">Ошская</option>
+                      <option value="naryn">Нарынская</option>
+                      <option value="issyk_kul">Иссык-Кульская</option>
+                    </select>
                   </div>
-                  <div className="card-main-information">
-                    <div className="card-details">
-                      <div className="card-date">25.09.2020 - 01.01.2021</div>
-                      <div className="card-volume">4.0т / 41м³</div>
-                    </div>
-                    <div className="card-price">13 500 c</div>
+                  <div className="filter-direction-city">
+                    <select className="filter-direction-selection" name="area">
+                      <option value="area">Город, район</option>
+                      <option value="osh">Ошская</option>
+                      <option value="naryn">Нарынская</option>
+                      <option value="issyk_kul">Иссык-Кульская</option>
+                    </select>
                   </div>
-                  <div className="card-line"></div>
-                  <div className="card-addition-information">
-                    <div className="card-period">6 часов назад</div>
-                    <a className="card_addition_btn" href="/">Подробнее</a>
+                  <div className="filter-date">25 сен 2020</div>
+                </div>
+
+                <p className="filter-direction-title">Куда</p>
+                <div className="filter-direction-to">
+                  <div className="filter-direction-area">
+                    <select className="filter-direction-selection" name="area">
+                      <option value="area">Область</option>
+                      <option value="osh">Ошская</option>
+                      <option value="naryn">Нарынская</option>
+                      <option value="issyk_kul">Иссык-Кульская</option>
+                    </select>
                   </div>
+                  <div className="filter-direction-city">
+                    <select className="filter-direction-selection" name="area">
+                      <option value="area">Город, район</option>
+                      <option value="osh">Ошская</option>
+                      <option value="naryn">Нарынская</option>
+                      <option value="issyk_kul">Иссык-Кульская</option>
+                    </select>
+                  </div>
+                  <div className="filter-date">25 сен 2020</div>
                 </div>
               </div>
+                {/*Filter Direction*/}
 
-              <div className="card_item">
-                <div className="card_inner">
-
-                  <div className="card_name">
-                    Цемент в мешках
-                  </div>
-                  <div className="card-direction">
-                    <div className="card-direction-from">Бишкек, Арча-Бешик</div>
-                    <div className="card-direction-to">Талас, Шекер</div>
-                  </div>
-                  <div className="card-main-information">
-                    <div className="card-details">
-                      <div className="card-date">25.09.2020 - 01.01.2021</div>
-                      <div className="card-volume">4.0т / 41м³</div>
+                <div className="filter-size">
+                  <div className="filter-size-information">
+                    <div className="filter-weight">
+                      <p className="filter-direction-title">Вес груза, т</p>
+                      <div className="filter-size-from">
+                        <div className="filter-direction-area">
+                          <select className="filter-size-selection" name="area">
+                            <option value="from">От</option>
+                            <option value="osh">Ошская</option>
+                            <option value="naryn">Нарынская</option>
+                            <option value="issyk_kul">Иссык-Кульская</option>
+                          </select>
+                        </div>
+                        <div className="filter-direction-city">
+                          <select className="filter-size-selection" name="area">
+                            <option value="to">До</option>
+                            <option value="osh">Ошская</option>
+                            <option value="naryn">Нарынская</option>
+                            <option value="issyk_kul">Иссык-Кульская</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
-                    <div className="card-price">13 500 c</div>
-                  </div>
-                  <div className="card-line"></div>
-                  <div className="card-addition-information">
-                    <div className="card-period">6 часов назад</div>
-                    <a className="card_addition_btn" href="/">Подробнее</a>
+
+                    <div className="filter-volume">
+                      <p className="filter-direction-title">Объем груза, м³ </p>
+                      <div className="filter-size-to">
+                        <div className="filter-direction-area">
+                          <select className="filter-size-selection" name="area">
+                            <option value="from">От</option>
+                            <option value="osh">Ошская</option>
+                            <option value="naryn">Нарынская</option>
+                            <option value="issyk_kul">Иссык-Кульская</option>
+                          </select>
+                        </div>
+                        <div className="filter-direction-city">
+                          <select className="filter-size-selection" name="area">
+                            <option value="to">До</option>
+                            <option value="osh">Ошская</option>
+                            <option value="naryn">Нарынская</option>
+                            <option value="issyk_kul">Иссык-Кульская</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+
+
                   </div>
                 </div>
-              </div>
 
-              <div className="card_item">
-                <div className="card_inner">
 
-                  <div className="card_name">
-                    Цемент в мешках
-                  </div>
-                  <div className="card-direction">
-                    <div className="card-direction-from">Бишкек, Арча-Бешик</div>
-                    <div className="card-direction-to">Талас, Шекер</div>
-                  </div>
-                  <div className="card-main-information">
-                    <div className="card-details">
-                      <div className="card-date">25.09.2020 - 01.01.2021</div>
-                      <div className="card-volume">4.0т / 41м³</div>
-                    </div>
-                    <div className="card-price">13 500 c</div>
-                  </div>
-                  <div className="card-line"></div>
-                  <div className="card-addition-information">
-                    <div className="card-period">6 часов назад</div>
-                    <a className="card_addition_btn" href="/">Подробнее</a>
-                  </div>
-                </div>
-              </div>
 
-              <div className="card_item">
-                <div className="card_inner">
-
-                  <div className="card_name">
-                    Цемент в мешках
-                  </div>
-                  <div className="card-direction">
-                    <div className="card-direction-from">Бишкек, Арча-Бешик</div>
-                    <div className="card-direction-to">Талас, Шекер</div>
-                  </div>
-                  <div className="card-main-information">
-                    <div className="card-details">
-                      <div className="card-date">25.09.2020 - 01.01.2021</div>
-                      <div className="card-volume">4.0т / 41м³</div>
-                    </div>
-                    <div className="card-price">13 500 c</div>
-                  </div>
-                  <div className="card-line"></div>
-                  <div className="card-addition-information">
-                    <div className="card-period">6 часов назад</div>
-                    <a className="card_addition_btn" href="/">Подробнее</a>
-                  </div>
-                </div>
               </div>
             </div>
+
           </div>
         </section>
+        <TransportSection />
+        <Footer />
       </>
   );
 }
