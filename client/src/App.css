@@ -17,8 +17,6 @@
 }
 
 .filter {
-    width: 70%;
-
     background: #FFFFFF;
     box-shadow: 0px 4px 10px rgba(144, 144, 144, 0.25);
     border-radius: 10px;
@@ -27,9 +25,7 @@
 .filter-item {
     display: flex;
     flex-direction: column;
-    padding-top: 28px;
-    padding-left: 20px;
-    padding-bottom: 30px;
+    padding: 28px 20px 30px;
 }
 
 .filter-chooser {
@@ -41,7 +37,6 @@
 
     color: #000000;
 }
-
 
 .filter-searchFields {
     padding-left: 12px;
@@ -71,7 +66,7 @@
     padding-top: 30px;
 }
 
-.filter-direction-title {
+.filter-title {
     font-family: "Gilroy-Medium";
     font-size: 12px;
 
@@ -118,6 +113,7 @@
 .filter-size-information {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .filter-size-from, .filter-size-to {
@@ -130,7 +126,7 @@
     font-size: 16px;
 
     color: #909090;
-    width: 80%;
+    /*width: 50%;*/
     padding: 8px 8px;
 
     background: #FFFFFF;
@@ -138,4 +134,43 @@
     box-sizing: border-box;
     border-radius: 4px 4px;
 }
+
+.filter-price {
+    display: flex;
+    align-items: flex-end;
+}
+
+/*Filter Buttons*/
+.filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 33px;
+}
+
+.filter-reset-btn, .filter-show-btn {
+    font-family: "Gilroy-SemiBold";
+    font-size: 16px;
+
+    text-decoration: none;
+    padding: 8px 90px;
+    color: #FFFFFF;
+    border-radius: 4px;
+}
+
+.filter-reset-btn {
+    background: #ff0000;
+}
+
+.filter-show-btn {
+    background: #007AFF;
+}
+
+/*@media only screen and (max-width: 1100px) {*/
+/*    .filter-size-information {*/
+/*        flex-direction: column;*/
+/*    }*/
+/*}*/
+
+
+
 
