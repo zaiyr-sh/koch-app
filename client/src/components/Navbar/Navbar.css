@@ -28,9 +28,13 @@
     font-family: "Gilroy-ExtraBold", sans-serif;
     font-size: 24px;
 
-    color: #3B4256;
-
     margin-right: 30px;
+}
+
+.header__logo-link {
+    color: #3B4256;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .header__logo-location {

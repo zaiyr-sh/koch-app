@@ -9,7 +9,7 @@ const Navbar = () => {
                 <div className="header__inner">
                     <div className="header__left">
                         <div className="header__logo">
-                            ONOI
+                            <Link to="/" className="header__logo-link">ONOI</Link>
                         </div>
                         <div className="header__logo-location">
                             Кыргызстан
@@ -18,8 +18,8 @@ const Navbar = () => {
 
                     <div className="header__right">
                         <nav className="nav">
-                            <a className="nav__link-lang" href="#">ru</a>
-                            <a className="nav__link-signIn" href="#">Войти</a>
+                            <Link className="nav__link-lang" to="/g">ru</Link>
+                            <Link className="nav__link-signIn" to="/login">Войти</Link>
                             <a className="nav__link-placeAd" href="#"><i className="fa fa-plus"/>  Разместить</a>
                         </nav>
                     </div>
