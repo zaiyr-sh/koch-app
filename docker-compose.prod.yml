@@ -1,0 +1,50 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:12-alpine
+    env_file:
+      - .env
+    volumes:
+      - data:/var/lib/postgresql/data/
+    restart: always
+
+  backend: &backend
+    build:
+      context: kochapp/
+      dockerfile: ../compose/django.Dockerfile
+    image: kochapp-backend
+    env_file:
+      - .env
+    volumes:
+      - media:/usr/src/backend/media/
+      - static:/usr/src/backend/static/
+      - ./backend/:/usr/src/backend/
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --no-input &&
+      gunicorn -b 0.0.0.0:8000 -w 3 --log-level info kochapp.wsgi:application"
+    depends_on:
+      - db
+    restart: always
+
+  nginx:
+    build:
+      context: .
+      dockerfile: compose/nginx.Dockerfile
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - .env
+    volumes:
+      - media:/usr/media/:ro
+      - static:/usr/static/:ro
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  data:
+  media:
+  static:
