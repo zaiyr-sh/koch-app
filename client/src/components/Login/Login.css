@@ -1,0 +1,89 @@
+/*Login Section*/
+.section-login {
+    padding-top: 70px;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+}
+
+.login__form {
+    width: 300px;
+}
+
+.login__title {
+    font-family: "Gilroy-SemiBold";
+    font-size: 26px;
+
+    color: #000000;
+}
+
+.login__phoneNumber {
+    padding-top: 40px;
+}
+
+.login__field-phoneNumber, .login__field-password {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #909090;
+
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 35px;
+    width: 100%;
+    padding-left: 12px;
+}
+
+.login__password {
+    padding-top: 8px;
+}
+
+.login__resetPassword {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-top: 8px;
+}
+
+.login__button-resetPassword {
+    font-family: "Gilroy-Medium";
+    font-size: 12px;
+    color: #007AFF;
+    text-decoration: none;
+}
+
+.login__buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-top: 50px;
+}
+
+.login__button-registration {
+    display: flex;
+    align-items: center;
+    font-family: "Gilroy-SemiBold";
+    font-size: 18px;
+
+    color: #007AFF;
+    text-decoration: none;
+    padding-right: 24px;
+}
+
+.login__button-signin {
+    display: flex;
+    align-items: center;
+    font-family: "Gilroy-SemiBold";
+    font-size: 18px;
+
+    color: #FFFFFF;
+    padding: 8px 12px;
+
+    text-decoration: none;
+    background: #007AFF;
+    border-radius: 4px;
+}
