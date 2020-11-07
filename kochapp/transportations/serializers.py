@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from transportations.models import Cargo
-from users.serializers import UserSerializer
+from users.serializers import CustomUserSerializer
 
 
 class CargoListSerializer(serializers.ModelSerializer):
@@ -24,7 +24,7 @@ class CargoListSerializer(serializers.ModelSerializer):
 
 
 class CargoDetailSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user = CustomUserSerializer(read_only=True)
 
     class Meta:
         model = Cargo
