@@ -7,6 +7,7 @@ import TransportSection from "./components/TransportSection/TransportSection";
 import Footer from "./components/Footer/Footer";
 import FilterSection from "./components/FilterSection/FilterSection";
 import Login from "./components/Login/Login";
+import TransportSectionContainer from "./components/TransportSection/TransportSectionContainer";
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
 const PrimaryContainer = () => (
     <>
         <FilterSection />
-        <TransportSection />
+        <TransportSectionContainer />
         <Footer />
     </>
 )
