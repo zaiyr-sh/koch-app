@@ -4,7 +4,6 @@ from .models import Cargo
 
 
 class CargoFilter(filters.FilterSet):
-
     class Meta:
         model = Cargo
         fields = {
