@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     volumes:
-      - data:/var/lib/postgresql/data/
+      - koch-data:/var/lib/postgresql/data/
     restart: always
 
   backend: &backend
@@ -38,6 +38,6 @@ services:
       - backend
 
 volumes:
-  data:
+  koch-data:
   media:
   static:

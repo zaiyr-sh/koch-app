@@ -5,6 +5,14 @@ from django.db import models
 from .managers import UserManager
 
 
+class CargoType(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class VehicleType(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     """Base user model"""
     name = models.CharField(max_length=255, blank=True, null=True, verbose_name='First name')
@@ -14,7 +22,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, verbose_name='Is active')
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['name', "surname",]
+    REQUIRED_FIELDS = ['name', "surname", ]
 
     objects = UserManager()
 
@@ -30,3 +38,25 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
+
+
+def user_directory_path(instance, filename):
+    return 'driver_{0}/{1}'.format(instance.user.id, filename)
+
+
+class Drivers(models.Model):
+    """
+    Storing drivers information
+    """
+    vehicle_type = models.ForeignKey(VehicleType, on_delete=models.PROTECT, related_name='drivers')
+    cargo_type = models.ForeignKey(CargoType, on_delete=models.PROTECT, related_name='drivers')
+    carrying_capacity = models.IntegerField()
+
+    vehicle_passport = models.ImageField(upload_to=user_directory_path)
+    driver_license = models.ImageField(upload_to=user_directory_path)
+    id_passport = models.ImageField(upload_to=user_directory_path)
+
+    base_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+
+    def __str__(self):
+        return f"{self.base_user.name}, "

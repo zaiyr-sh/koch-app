@@ -5,10 +5,12 @@ from users.serializers import CustomUserSerializer
 
 
 class CargoListSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Cargo
         fields = [
             "id",
+            "name",
             'from_region',
             'from_city',
             'to_region',
@@ -37,7 +39,7 @@ class CargoDetailSerializer(serializers.ModelSerializer):
             "date_published",
             "place_comment",
             "cargo_comment",
-            "cargo_type",
+            "name",
             "weight",
             "volume",
             "length",
@@ -47,7 +49,7 @@ class CargoDetailSerializer(serializers.ModelSerializer):
             "whatsapp_number",
             "telegram_number",
             "price",
-            "name",
-            "surname",
+            "sender_name",
+            "sender_surname",
             "user",
         ]
