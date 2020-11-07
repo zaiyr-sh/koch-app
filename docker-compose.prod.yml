@@ -19,7 +19,7 @@ services:
     volumes:
       - media:/usr/src/backend/media/
       - static:/usr/src/backend/static/
-      - ./backend/:/usr/src/backend/
+      - ./kochapp/:/usr/src/kochapp/
     command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --no-input &&
       gunicorn -b 0.0.0.0:8000 -w 3 --log-level info kochapp.wsgi:application"
     depends_on:
