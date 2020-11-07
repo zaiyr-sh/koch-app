@@ -10,7 +10,6 @@ class UserManager(BaseUserManager):
 
         if not phone_number:
             raise ValueError('The given email must be set')
-
         user = self.model(
             phone_number=phone_number, **kwargs)
         user.set_password(password)
