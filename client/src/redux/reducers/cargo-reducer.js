@@ -6,7 +6,7 @@ let initialState = {
     cargoes: [],
 }
 
-const clientReducer = (state = initialState, action) => {
+const cargoReducer = (state = initialState, action) => {
     switch(action.type) {
         case SET_CARGOES:
             return {
@@ -25,4 +25,4 @@ export const getCargoesThunkCreator = () => async (dispatch) => {
 }
 const setCargoesActionCreator = (cargoes) => ({type: SET_CARGOES, cargoes})
 
-export default clientReducer;
+export default cargoReducer;

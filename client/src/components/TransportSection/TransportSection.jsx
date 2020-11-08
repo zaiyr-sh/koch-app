@@ -1,8 +1,12 @@
 import React from 'react';
 import "./TransportSection.css";
 import Card from "./Card";
+import Preloader from "../common/Preloader/Preloader";
 
 const TransportSection = ({ cargoes }) => {
+
+    if (!cargoes) return <Preloader />
+
     return (
         <section className="section-card">
             <div className="container">

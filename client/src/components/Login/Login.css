@@ -85,5 +85,6 @@
 
     text-decoration: none;
     background: #007AFF;
+    border: solid #007AFF 1px;
     border-radius: 4px;
 }
