@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import ClientProfile from "./ClientProfile";
 import {connect} from "react-redux";
-import {getClientProfileThunkCreator} from "../../../../redux/reducers/client-reducer";
+import {
+    editClientProfileActionCreator,
+    getClientProfileThunkCreator,
+    updateClientProfileHandlerThunkCreator
+} from "../../../../redux/reducers/client-reducer";
 
 class ClientProfileContainer extends Component {
 
@@ -11,7 +15,11 @@ class ClientProfileContainer extends Component {
 
     render() {
         return (
-            <ClientProfile clientProfile={this.props.clientProfile}/>
+            <ClientProfile
+                clientProfile={this.props.clientProfile}
+                editClientProfileHandler={this.props.editClientProfileHandler}
+                updateClientProfileHandler={this.props.updateClientProfileHandler}
+            />
         );
     }
 }
@@ -24,7 +32,13 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getClientProfile: () => {
             dispatch(getClientProfileThunkCreator())
-        }
+        },
+        editClientProfileHandler: (nameField, value) => {
+            dispatch(editClientProfileActionCreator(nameField, value))
+        },
+        updateClientProfileHandler: () => {
+            dispatch(updateClientProfileHandlerThunkCreator())
+        },
     }
 }
 
