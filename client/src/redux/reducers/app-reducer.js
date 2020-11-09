@@ -1,6 +1,3 @@
-import {loginThunkCreator} from "./auth-reducer";
-import {getClientProfileThunkCreator} from "./client-reducer";
-
 const SET_INITIALIZING_SUCCESS = 'SET-INITIALIZING_SUCCESS';
 
 let initialState = {

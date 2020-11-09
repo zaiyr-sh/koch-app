@@ -4,6 +4,7 @@ import "./Profile.css";
 import UserNavbar from "../Navbar/UserNavbar/UserNavbar";
 import OrdersProfile from "./OrdersProfile/OrdersProfile";
 import ClientProfileContainer from "./UserProfile/ClientProfile/ClientProfileContainer";
+import DriverProfile from "./UserProfile/DriverProfile/DriverProfile";
 
 const Profile = () => {
     return (
@@ -11,7 +12,8 @@ const Profile = () => {
             <UserNavbar />
             <Switch>
                 <Route path="/profile/my_orders" component={OrdersProfile}/>
-                <Route path="/profile/my_profile" component={ClientProfileContainer}/>
+                {/*<Route path="/profile/my_profile" component={ClientProfileContainer}/>*/}
+                <Route path="/profile/my_profile" component={DriverProfile}/>
             </Switch>
         </>
     );

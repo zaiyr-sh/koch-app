@@ -33,16 +33,6 @@ const ClientProfile = ({ clientProfile, editClientProfileHandler, updateClientPr
                                     onChange={(e) => editClientProfileHandler(e.target.name, e.target.value)}
                                 />
                             </div>
-                            <div className="client__phoneNumber">
-                                <input
-                                    type="text"
-                                    className="client__field"
-                                    value={clientProfile.phone_number}
-                                    placeholder="Номер телефона"
-                                    name="phone_number"
-                                    onChange={(e) => editClientProfileHandler(e.target.name, e.target.value)}
-                                />
-                            </div>
                             <div className="client__button">
                                 <button className="client__saveButton" onClick={updateClientProfileHandler}>Сохранить изменения</button>
                             </div>

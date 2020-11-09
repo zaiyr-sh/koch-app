@@ -1,4 +1,4 @@
-import {authAPI, cargoesAPI} from "../../api/api";
+import {authAPI} from "../../api/api";
 
 const SET_CLIENT = 'client/SET_CARGOES';
 const SET_EDIT_CLIENT = 'client/SET_EDIT_CLIENT'
