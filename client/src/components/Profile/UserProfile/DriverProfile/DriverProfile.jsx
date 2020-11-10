@@ -1,21 +1,25 @@
 import React, {Component} from 'react';
 import "./DriverProfile.css";
 import camera from "../../../../assets/images/camera_icon.png";
+import {NavLink} from "react-router-dom";
 
 class DriverProfile extends Component {
 
     state={
-        profileImg: camera
+        technicalPassport: camera,
+        driverLicence: camera,
+        idPassport: camera,
     }
 
-    imageHandler = (e) => {
+    imageHandler = (files, name) => {
+        debugger
         const reader = new FileReader();
         reader.onload = () =>{
             if(reader.readyState === 2){
-                this.setState({profileImg: reader.result})
+                this.setState({[name]: reader.result})
             }
         }
-        reader.readAsDataURL(e.target.files[0])
+        reader.readAsDataURL(files[0])
     };
 
     render() {
@@ -78,7 +82,8 @@ class DriverProfile extends Component {
                                             </select>
                                         </div>
                                         <div className="driver__transport-form">
-
+                                            <NavLink className="filter-goods" exact={true} activeClassName="filter-active"name="cargo" to="/">Груз</NavLink>
+                                            <NavLink className="filter-transport" activeClassName="filter-active" name="transport"  to="/">Транспорт</NavLink>
                                         </div>
                                     </div>
                                 </div>
@@ -87,6 +92,7 @@ class DriverProfile extends Component {
                                 <div className="driver__transport-size">
                                     <div className="driver__transport-size-section">
                                         <div className="driver__transport-weight">
+                                            {/*<input type="number" className="driver__transport-type-selection" min="1" max="50" defaultValue="30"/>*/}
                                             <select className="driver__transport-type-selection" name="area">
                                                 <option value="bishkek">30т</option>
                                                 <option value="osh">Ошская</option>
@@ -116,17 +122,17 @@ class DriverProfile extends Component {
                                     <div className="driver__documents-section">
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={this.state.profileImg} alt="" id="img" className="img" />
+                                                <img src={this.state.technicalPassport} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                name="image-upload"
-                                                id="input"
-                                                onChange={this.imageHandler}
+                                                name="technicalPassport"
+                                                id="technicalPassport"
+                                                onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
                                             <div className="image__label">
-                                                <label className="image__upload" htmlFor="input">
+                                                <label className="image__upload" htmlFor="technicalPassport">
                                                     Выберите фото
                                                 </label>
                                             </div>
@@ -137,17 +143,17 @@ class DriverProfile extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={this.state.profileImg} alt="" id="img" className="img" />
+                                                <img src={this.state.driverLicence} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                name="image-upload"
-                                                id="input"
-                                                onChange={this.imageHandler}
+                                                name="driverLicence"
+                                                id="driverLicence"
+                                                onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
                                             <div className="image__label">
-                                                <label className="image__upload" htmlFor="input">
+                                                <label className="image__upload" htmlFor="driverLicence">
                                                     Выберите фото
                                                 </label>
                                             </div>
@@ -158,17 +164,17 @@ class DriverProfile extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={this.state.profileImg} alt="" id="img" className="img" />
+                                                <img src={this.state.idPassport} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                name="image-upload"
-                                                id="input"
-                                                onChange={this.imageHandler}
+                                                name="idPassport"
+                                                id="idPassport"
+                                                onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
                                             <div className="image__label">
-                                                <label className="image__upload" htmlFor="input">
+                                                <label className="image__upload" htmlFor="idPassport">
                                                     Выберите фото
                                                 </label>
                                             </div>

@@ -1,0 +1,11 @@
+.error-template {
+    font-family: "Gilroy-SemiBold", sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }

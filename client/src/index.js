@@ -11,9 +11,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            <React.StrictMode>
                 <App />
-            </React.StrictMode>
         </Provider>
     </BrowserRouter>,
   document.getElementById('root')

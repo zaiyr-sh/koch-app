@@ -151,12 +151,11 @@
     border-radius: 4px;
 }
 .img{
-    width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-#input[type="file"] {
+#input[type="file"], #technicalPassport, #driverLicence, #idPassport {
     display: none;
 }
 

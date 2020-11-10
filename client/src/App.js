@@ -11,28 +11,20 @@ import NavbarContainer from "./components/Navbar/NavbarContainer";
 import {connect} from "react-redux";
 import {initializeAppThunkCreator} from "./redux/reducers/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import Error from "./components/common/Error/Error";
 
-class App extends React.Component{
-
-    componentDidMount(){
-        this.props.initializeAppThunk();
-    }
-
-    render() {
-
-        if (!this.props.initializing) return <Preloader />
-
-        return (
-            <>
-                <NavbarContainer />
-                <Switch>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/profile" component={Profile}/>
-                    <Route component={PrimaryContainer}/>
-                </Switch>
-            </>
-        );
-    }
+const App = () => {
+    return (
+        <>
+            <NavbarContainer />
+            <Switch>
+                <Route exact path="/login" component={Login}/>
+                <Route path="/profile" component={Profile}/>
+                <Route exact path="/" component={PrimaryContainer}/>
+                <Route path="*" component={Error}/>
+            </Switch>
+        </>
+    );
 }
 
 const PrimaryContainer = () => (
@@ -43,16 +35,5 @@ const PrimaryContainer = () => (
     </>
 )
 
-let mapStateToProps = (state) => ({
-    initializing: state.app.initializing
-});
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        initializeAppThunk: () => {
-            dispatch(initializeAppThunkCreator())
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
