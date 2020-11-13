@@ -8,10 +8,8 @@ import Login from "./components/Login/Login";
 import TransportSectionContainer from "./components/TransportSection/TransportSectionContainer";
 import Profile from "./components/Profile/Profile";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
-import {connect} from "react-redux";
-import {initializeAppThunkCreator} from "./redux/reducers/app-reducer";
-import Preloader from "./components/common/Preloader/Preloader";
 import Error from "./components/common/Error/Error";
+import RegistrationContainer from "./components/Registration/RegistrationContainer";
 
 const App = () => {
     return (
@@ -19,6 +17,7 @@ const App = () => {
             <NavbarContainer />
             <Switch>
                 <Route exact path="/login" component={Login}/>
+                <Route path="/registration" render={() => <RegistrationContainer />}/>
                 <Route path="/profile" component={Profile}/>
                 <Route exact path="/" component={PrimaryContainer}/>
                 <Route path="*" component={Error}/>

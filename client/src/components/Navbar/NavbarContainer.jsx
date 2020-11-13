@@ -6,12 +6,12 @@ import {initializeAppThunkCreator} from "../../redux/reducers/app-reducer";
 import Preloader from "../common/Preloader/Preloader";
 
 class NavbarContainer extends Component {
+
     componentDidMount(){
         this.props.initializeAppThunk();
     }
 
     render() {
-        if (!this.props.initializing) return <Preloader />
         return (
             <Navbar isLoggedIn={this.props.isLoggedIn}/>
         );

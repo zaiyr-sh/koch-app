@@ -41,7 +41,7 @@ const LoginForm = ({handleSubmit, error}) => {
             </div>
             { error &&  <div className={styles.formSummaryError}>{error}</div> }
             <div className="login__buttons">
-                <a className="login__button-registration" href="/registration">Регистрация</a>
+                <Link className="login__button-registration" to="/registration">Регистрация</Link>
                 <button className="login__button-signin">Войти</button>
             </div>
         </form>

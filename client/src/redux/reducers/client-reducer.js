@@ -29,7 +29,6 @@ const clientReducer = (state = initialState, action) => {
 
 export const getClientProfileThunkCreator = () => async (dispatch) => {
     const response = await authAPI.getUserData();
-    debugger
     dispatch(setClientProfileActionCreator(response.data))
 }
 const setClientProfileActionCreator = (clientProfile) => ({type: SET_CLIENT, clientProfile, isLoggedIn: true})

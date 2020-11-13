@@ -6,11 +6,13 @@ import cargoReducer from "../reducers/cargo-reducer";
 import authReducer from "../reducers/auth-reducer";
 import clientReducer from "../reducers/client-reducer";
 import appReducer from "../reducers/app-reducer";
+import registrationReducer from "../reducers/registration-reducer";
 
 let reducers = combineReducers({
     app: appReducer,
     cargoPage: cargoReducer,
     authPage: authReducer,
+    registrationPage: registrationReducer,
     clientPage: clientReducer,
     form: formReducer
 });
