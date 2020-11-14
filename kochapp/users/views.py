@@ -1,7 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from transportations.models import Cargo, Transportation
+from transportations.serializers import CargoListSerializer, TransportationSerializer
 from . import models
 from . import serializers
 from .models import User
@@ -20,3 +23,22 @@ class DriverCreateView(generics.GenericAPIView):
         serializer.is_valid(raise_exeception=True)
         serializer.save(user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class PublishedAds(generics.ListAPIView):
+    """
+    Getting ads published by a driver or a client
+    """
+    permission_classes = (IsAuthenticated, )
+
+    def get_serializer(self, *args, **kwargs):
+        if self.request.user.user_type == 'client':
+            return CargoListSerializer
+        if self.request.user.user_type == 'driver':
+            return TransportationSerializer
+
+    def get_queryset(self):
+        if self.request.user.user_type == 'client':
+            return Cargo.objects.all()
+        if self.request.user.user_type == 'driver':
+            return Transportation.objects.all()

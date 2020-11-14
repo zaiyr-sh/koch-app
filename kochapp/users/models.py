@@ -30,7 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, verbose_name='Is active')
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['name', "surname", ]
+    REQUIRED_FIELDS = ['name', "surname", 'user_type']
 
     objects = UserManager()
 
