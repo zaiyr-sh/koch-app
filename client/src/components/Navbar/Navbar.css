@@ -86,6 +86,8 @@
     background: #E5F2FF;
     border: solid #E5F2FF 1px;
     border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .nav__link-placeAd {
@@ -102,7 +104,7 @@
 
 /*Navbar User*/
 
-.header__user {
+.header__user-left {
     margin-right: 25px;
 }
 
