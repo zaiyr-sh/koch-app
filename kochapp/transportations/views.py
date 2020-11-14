@@ -1,9 +1,9 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from transportations.filters import CargoFilter
-from transportations.models import Cargo
-from transportations.serializers import CargoDetailSerializer, CargoListSerializer
+from .filters import CargoFilter, TransportationFilter
+from .models import Cargo, Transportation
+from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer
 
 
 class CargoListView(generics.ListCreateAPIView):
@@ -20,3 +20,9 @@ class CargoListView(generics.ListCreateAPIView):
 class CargoDetailView(generics.RetrieveUpdateAPIView):
     serializer_class = CargoDetailSerializer
     queryset = Cargo.objects.all()
+
+
+class TransportationListView(generics.ListCreateAPIView):
+    filterset_class = TransportationFilter
+    serializer_class = TransportationSerializer
+    queryset = Transportation.objects.all()

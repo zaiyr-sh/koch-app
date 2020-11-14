@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from transportations.models import Cargo
+from transportations.models import Cargo, Transportation
 from users.serializers import CustomUserSerializer
 
 
@@ -52,4 +52,23 @@ class CargoDetailSerializer(serializers.ModelSerializer):
             "sender_name",
             "sender_surname",
             "user",
+        ]
+
+
+class TransportationSerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer(read_only=True)
+
+    class Meta:
+        model = Transportation
+        fields = [
+            'id',
+            'user',
+            'departure_date',
+            'from_region',
+            'from_city',
+            'to_region',
+            'to_city',
+            'date_published',
+            'vehicle_comment',
+            'price',
         ]

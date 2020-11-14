@@ -15,9 +15,17 @@ class VehicleType(models.Model):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """Base user model"""
+    driver = 'driver'
+    client = 'client'
+    CHOICES = (
+        (driver, 'driver'),
+        (client, 'client')
+    )
     name = models.CharField(max_length=255, blank=True, null=True, verbose_name='First name')
     surname = models.CharField(max_length=255, blank=True, null=True, verbose_name='Last name')
     phone_number = models.CharField(max_length=200, blank=True, null=True, verbose_name='Phone number', unique=True)
+    user_type = models.CharField(max_length=30, choices=CHOICES)
+    registered = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False, verbose_name='Is staff')
     is_active = models.BooleanField(default=True, verbose_name='Is active')
 
@@ -44,7 +52,7 @@ def user_directory_path(instance, filename):
     return 'driver_{0}/{1}'.format(instance.user.id, filename)
 
 
-class Drivers(models.Model):
+class Driver(models.Model):
     """
     Storing drivers information
     """
@@ -56,7 +64,7 @@ class Drivers(models.Model):
     driver_license = models.ImageField(upload_to=user_directory_path)
     id_passport = models.ImageField(upload_to=user_directory_path)
 
-    base_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
-        return f"{self.base_user.name}, "
+        return f"{self.user.name}"

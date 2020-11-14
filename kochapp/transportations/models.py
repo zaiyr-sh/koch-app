@@ -57,7 +57,7 @@ class Cargo(models.Model):
         ordering = ['-date_published']
 
 
-class Vehicle(models.Model):
+class Transportation(models.Model):
     """
     Storing vehicles published by users
     """
@@ -66,17 +66,14 @@ class Vehicle(models.Model):
     from_region = models.ForeignKey(Region, on_delete=models.PROTECT, related_name='vehicle_from_region')
     from_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='vehicle_from_region')
 
-
     to_region = models.ForeignKey(Region, on_delete=models.PROTECT, related_name='vehicle_to_region')
     to_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='vehicle_to_city')
 
     date_published = models.DateTimeField(auto_now_add=True)
-    cargo_comment = models.TextField(null=True, blank=True)
+    vehicle_comment = models.TextField(null=True, blank=True)
+    carrying_capacity = models.FloatField()
+    volume = models.IntegerField()
     price = models.IntegerField()
-
-    phone_number = models.CharField(max_length=200)
-    whatsapp_number = models.CharField(max_length=200, null=True, blank=True)
-    telegram_number = models.CharField(max_length=200, null=True, blank=True)
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='vehicles')
 
