@@ -4,16 +4,16 @@ import { reducer as formReducer } from "redux-form";
 
 import cargoReducer from "../reducers/cargo-reducer";
 import authReducer from "../reducers/auth-reducer";
-import clientReducer from "../reducers/client-reducer";
 import appReducer from "../reducers/app-reducer";
 import registrationReducer from "../reducers/registration-reducer";
+import userReducer from "../reducers/user-reducer";
 
 let reducers = combineReducers({
     app: appReducer,
     cargoPage: cargoReducer,
     authPage: authReducer,
     registrationPage: registrationReducer,
-    clientPage: clientReducer,
+    userPage: userReducer,
     form: formReducer
 });
 

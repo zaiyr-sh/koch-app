@@ -30,7 +30,7 @@ export const authAPI = {
                 { phone_number, password}
             );
     },
-    updateClientProfile(clientProfile) {
+    updateUserProfile(clientProfile) {
         return axiosInstance
             .put(
                 `auth/users/me/`, clientProfile, { headers: authHeader() }

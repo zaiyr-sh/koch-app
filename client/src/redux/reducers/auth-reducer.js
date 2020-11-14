@@ -4,6 +4,7 @@ import {stopSubmit} from "redux-form";
 const SET_USER_DATA = 'auth/SET-USER-DATA';
 const LOGIN_SUCCESS = 'auth/LOGIN-SUCCESS';
 const LOGOUT_SUCCESS = 'auth/LOGOUT-SUCCESS';
+const SET_EDIT_LOGIN = 'auth/SET_EDIT_LOGIN';
 
 let initialState = {
     isLoggedIn: false,
@@ -17,6 +18,11 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
             };
+        case SET_EDIT_LOGIN:
+            return {
+                ...state,
+                user: {...state.user, [action.nameField]: action.value}
+            }
         case LOGIN_SUCCESS:
             return {
                 isLoggedIn: true,
@@ -41,8 +47,11 @@ export const getAuthUserDataThunkCreator = () => async (dispatch) => {
     // }
 }
 
-export const loginThunkCreator = (phone_number, password) => async (dispatch) => {
-    let response = await authAPI.login(phone_number, password);
+export const editLoginActionCreator = (nameField, value) => ({type: SET_EDIT_LOGIN, nameField, value })
+
+export const loginThunkCreator = () => async (dispatch, getState) => {
+    const { user } = getState().authPage;
+    let response = await authAPI.login(user.phone_number, user.password);
     if(response && response.status === 200) {
         localStorage.setItem('user', JSON.stringify(response.data));
         dispatch(loginSuccess(response.data))

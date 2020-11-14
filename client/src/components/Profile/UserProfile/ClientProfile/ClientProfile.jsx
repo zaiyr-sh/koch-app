@@ -2,9 +2,9 @@ import React from 'react';
 import "./ClientProfile.css";
 import Preloader from "../../../common/Preloader/Preloader";
 
-const ClientProfile = ({ clientProfile, editClientProfileHandler, updateClientProfileHandler }) => {
+const ClientProfile = ({ userProfile, editUserProfileHandler, updateUserProfileHandler }) => {
 
-    if (!clientProfile) return <Preloader />
+    if (!userProfile) return <Preloader />
 
     return (
         <section className="section-clientProfile">
@@ -17,24 +17,24 @@ const ClientProfile = ({ clientProfile, editClientProfileHandler, updateClientPr
                                 <input
                                     type="text"
                                     className="client__field"
-                                    value={clientProfile.name}
+                                    value={userProfile.name}
                                     placeholder="Имя"
                                     name="name"
-                                    onChange={(e) => editClientProfileHandler(e.target.name, e.target.value)}
+                                    onChange={(e) => editUserProfileHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                             <div className="client__surname">
                                 <input
                                     type="text"
                                     className="client__field"
-                                    value={clientProfile.surname}
+                                    value={userProfile.surname}
                                     placeholder="Фамилия"
                                     name="surname"
-                                    onChange={(e) => editClientProfileHandler(e.target.name, e.target.value)}
+                                    onChange={(e) => editUserProfileHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                             <div className="client__button">
-                                <button className="client__saveButton" onClick={updateClientProfileHandler}>Сохранить изменения</button>
+                                <button className="client__saveButton" onClick={updateUserProfileHandler}>Сохранить изменения</button>
                             </div>
                         </form>
                     </div>

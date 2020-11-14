@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
-import ClientProfile from "./ClientProfile";
-import {connect} from "react-redux";
+import Profile from "./Profile";
 import {
     editUserProfileActionCreator,
     getUserProfileThunkCreator,
     updateUserProfileThunkCreator
-} from "../../../../redux/reducers/user-reducer";
+} from "../../redux/reducers/user-reducer";
+import {connect} from "react-redux";
+import ClientProfile from "./UserProfile/ClientProfile/ClientProfile";
 
-class ClientProfileContainer extends Component {
+class ProfileContainer extends Component {
 
     componentDidMount() {
         this.props.getUserProfile()
     }
 
     render() {
-        return (
-            <ClientProfile
-                userProfile={this.props.userProfile}
-                editUserProfileHandler={this.props.editUserProfileHandler}
-                updateUserProfileHandler={this.props.updateUserProfileHandler}
-            />
-        );
+        return <Profile
+            userType = {this.props.userProfile.user_type}
+            userProfile={this.props.userProfile}
+            editUserProfileHandler={this.props.editUserProfileHandler}
+            updateUserProfileHandler={this.props.updateUserProfileHandler}
+        />;
     }
 }
 
@@ -42,4 +42,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

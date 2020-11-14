@@ -9,58 +9,15 @@ import {connect} from "react-redux";
 import {loginThunkCreator} from "../../redux/reducers/auth-reducer";
 import {maxLengthThunkCreator, minLengthThunkCreator, required} from "../../utils/validators";
 
-const maxLength30 = maxLengthThunkCreator(30);
-const minLength3 = minLengthThunkCreator(3);
+const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
 
-const LoginForm = ({handleSubmit, error}) => {
-    return (
-        <form onSubmit={handleSubmit} className="login__form">
-            <div className="login__phoneNumber">
-                <Field
-                    placeholder="Номер телефона"
-                    className="login__field-phoneNumber"
-                    type="text"
-                    component="input"
-                    name="phone_number"
-                    // validate={[required]}
-                />
-                {/*<NumberFormat className="login__field-phoneNumber" format="+996 (###) ###-###" allowEmptyFormatting mask="_"/>*/}
-            </div>
-            <div className="login__password">
-                <Field
-                    placeholder="Пароль"
-                    className="login__field-password"
-                    type="password"
-                    component="input"
-                    name="password"
-                    // validate={[required, minLength3, maxLength30]}
-                />
-            </div>
-            <div className="login__resetPassword">
-                <Link className="login__button-resetPassword" to="/reset" >Забыл пароль</Link>
-            </div>
-            { error &&  <div className={styles.formSummaryError}>{error}</div> }
-            <div className="login__buttons">
-                <Link className="login__button-registration" to="/registration">Регистрация</Link>
-                <button className="login__button-signin">Войти</button>
-            </div>
-        </form>
-    );
-};
-
-const LoginReduxForm  = reduxForm({
-    // a unique name for the form
-    form: 'login'
-})(LoginForm)
-
-const Login = (props) => {
-
-    if(props.isLoggedIn) {
+    if(isLoggedIn) {
         return <Redirect to="/profile/my_orders"/>
     }
 
-    const onSubmit = (formData) => {
-        props.loginThunk(formData.phone_number, formData.password)
+    const onSubmit = e => {
+        e.preventDefault()
+        loginHandler()
     }
 
     return (
@@ -69,7 +26,36 @@ const Login = (props) => {
                 <div className="login">
                     <div className="login__form">
                         <h2 className="login__title">Войдите в свой аккаунт</h2>
-                        <LoginReduxForm onSubmit={onSubmit}/>
+                        <form className="login__form" onSubmit={onSubmit}>
+                            <div className="login__phoneNumber">
+                                <input
+                                    placeholder="Номер телефона"
+                                    className="login__field-phoneNumber"
+                                    type="text"
+                                    name="phone_number"
+                                    value={user.phone_number}
+                                    onChange={(e) => editLoginHandler(e.target.name, e.target.value)}
+                                />
+                                {/*<NumberFormat className="login__field-phoneNumber" format="+996 (###) ###-###" allowEmptyFormatting mask="_"/>*/}
+                            </div>
+                            <div className="login__password">
+                                <input
+                                    placeholder="Пароль"
+                                    className="login__field-password"
+                                    type="password"
+                                    name="password"
+                                    value={user.password}
+                                    onChange={(e) => editLoginHandler(e.target.name, e.target.value)}
+                                />
+                            </div>
+                            <div className="login__resetPassword">
+                                <Link className="login__button-resetPassword" to="/reset" >Забыл пароль</Link>
+                            </div>
+                            <div className="login__buttons">
+                                <Link className="login__button-registration" to="/registration">Регистрация</Link>
+                                <button className="login__button-signin">Войти</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -77,17 +63,5 @@ const Login = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    user: state.authPage.user,
-    isLoggedIn: state.authPage.isLoggedIn
-})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loginThunk: (phone_number, password) => {
-            dispatch(loginThunkCreator(phone_number, password));
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

@@ -1,5 +1,5 @@
 import {loginThunkCreator} from "./auth-reducer";
-import {getClientProfileThunkCreator} from "./client-reducer";
+import {getUserProfileThunkCreator} from "./user-reducer";
 
 const SET_INITIALIZING_SUCCESS = 'SET-INITIALIZING_SUCCESS';
 
@@ -22,7 +22,7 @@ const appReducer = (state = initialState, action) => {
 export const setInitializingSuccess = () => ({ type: SET_INITIALIZING_SUCCESS})
 
 export const initializeAppThunkCreator = () => (dispatch) => {
-    let promise = dispatch(getClientProfileThunkCreator());
+    let promise = dispatch(getUserProfileThunkCreator());
 
     // Promise.all([promise, somethingElse, ...]) - for several promises
     promise.then(() => {
