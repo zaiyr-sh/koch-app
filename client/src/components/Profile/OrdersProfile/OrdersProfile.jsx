@@ -1,10 +1,25 @@
 import React from 'react';
+import Card from "../../TransportSection/Card";
 
-const OrdersProfile = () => {
+const OrdersProfile = ({userOrders}) => {
     return (
-        <div>
-            I AM USER ORDERS
-        </div>
+        <section className="section-card">
+            <div className="container">
+
+                <div className="card">
+                    {userOrders.map(cargo => (
+                        <Card cargo={cargo} key={cargo.id}/>
+                    ))}
+                </div>
+                {/*Card */}
+
+                <div className="card-next">
+                    <a className="card-next-btn" href="/">Еще...</a>
+                </div>
+
+            </div>
+            {/*Container*/}
+        </section>
     );
 };
 

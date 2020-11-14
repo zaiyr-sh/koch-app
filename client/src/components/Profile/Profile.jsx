@@ -7,7 +7,7 @@ import UserNavbarContainer from "../Navbar/UserNavbar/UserNavbarContainer";
 import ClientProfile from "./UserProfile/ClientProfile/ClientProfile";
 import DriverProfile from "./UserProfile/DriverProfile/DriverProfile";
 
-const Profile = ({ userType, userProfile, editUserProfileHandler, updateUserProfileHandler }) => {
+const Profile = ({ userType, userProfile, userOrders, editUserProfileHandler, updateUserProfileHandler }) => {
 
     const checkType = () => {
         switch (userType) {
@@ -38,7 +38,7 @@ const Profile = ({ userType, userProfile, editUserProfileHandler, updateUserProf
         <>
             <UserNavbarContainer />
             <Switch>
-                <Route path="/profile/my_orders" component={OrdersProfile}/>
+                <Route path="/profile/my_orders" component={() => <OrdersProfile userOrders={userOrders}/>}/>
                 {checkType()}
             </Switch>
             <Footer />

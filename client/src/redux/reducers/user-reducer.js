@@ -1,10 +1,12 @@
 import {authAPI} from "../../api/api";
 
 const SET_USER = 'client/SET_USER';
-const SET_EDIT_USER = 'client/SET_EDIT_USER'
+const SET_EDIT_USER = 'client/SET_EDIT_USER';
+const SET_USER_ORDERS = 'client/SET_USER_ORDERS';
 
 let initialState = {
     userProfile: [],
+    userOrders: [],
     isLoggedIn: false,
 }
 
@@ -16,6 +18,11 @@ const userReducer = (state = initialState, action) => {
                 userProfile: action.userProfile,
                 isLoggedIn: action.isLoggedIn
             }
+        case SET_USER_ORDERS:
+            return {
+                ...state,
+                userOrders: action.userOrders
+            }
         case SET_EDIT_USER:
             return {
                 ...state,
@@ -26,6 +33,12 @@ const userReducer = (state = initialState, action) => {
 
     }
 }
+
+export const getUserOrdersThunkCreator = () => async (dispatch) => {
+    const response = await authAPI.getUserOrders();
+    dispatch(setUserOrdersActionCreator(response.data))
+}
+const setUserOrdersActionCreator = (userOrders) => ({type: SET_USER_ORDERS, userOrders})
 
 export const getUserProfileThunkCreator = () => async (dispatch) => {
     const response = await authAPI.getUserData();
