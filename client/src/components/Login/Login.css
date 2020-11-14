@@ -13,17 +13,33 @@
 }
 
 .login__title {
+    display: flex;
+    justify-content: center;
     font-family: "Gilroy-SemiBold";
     font-size: 26px;
 
     color: #000000;
 }
 
-.login__phoneNumber {
-    padding-top: 40px;
+.login__description {
+    padding-top: 12px;
+    margin: 0 auto;
+    width: 80%;
+    font-family: "Gilroy-Medium";
+    font-size: 12px;
+
+    color: #000000;
 }
 
-.login__field-phoneNumber, .login__field-password {
+.login__form {
+    padding-top: 30px;
+}
+
+.registration__form {
+    padding-top: 20px;
+}
+
+.login__field-phoneNumber, .login__field-password, .registration__field-name, .registration__field-surname, .registration__field-phoneNumber {
     font-family: "Gilroy-Medium";
     font-size: 16px;
 
@@ -38,25 +54,25 @@
     padding-left: 12px;
 }
 
-.login__password {
+.login__password, .registration__surname, .registration__phoneNumber {
     padding-top: 8px;
 }
 
-.login__resetPassword {
+.login__resetPassword, .registration__addNumber {
     display: flex;
     justify-content: flex-end;
 
     padding-top: 8px;
 }
 
-.login__button-resetPassword {
+.login__button-resetPassword, .registration__button-addNumber {
     font-family: "Gilroy-Medium";
     font-size: 12px;
     color: #007AFF;
     text-decoration: none;
 }
 
-.login__buttons {
+.login__buttons, .registration__buttons {
     display: flex;
     justify-content: flex-end;
 
@@ -74,7 +90,7 @@
     padding-right: 24px;
 }
 
-.login__button-signin {
+.login__button-signin, .registration__button-signup {
     display: flex;
     align-items: center;
     font-family: "Gilroy-SemiBold";
@@ -85,5 +101,6 @@
 
     text-decoration: none;
     background: #007AFF;
+    border: solid #007AFF 1px;
     border-radius: 4px;
 }

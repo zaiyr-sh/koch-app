@@ -1,0 +1,204 @@
+/*Driver Section*/
+
+.section-driverProfile {
+    padding-top: 70px;
+}
+
+.driver__data {
+    display: flex;
+    justify-content: center;
+}
+
+.driver__inner {
+    width: 50%;
+}
+
+.driver__title {
+    font-family: "Gilroy-SemiBold";
+    font-size: 26px;
+
+    color: #000000;
+}
+
+.driver__form {
+    padding-top: 50px;
+}
+
+.driver__field {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    margin-top: 8px;
+    color: #000000;
+
+    height: 35px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+}
+
+/*Direction*/
+.driver__direction {
+    padding-top: 20px;
+}
+
+.driver__direction-title {
+    font-family: "Gilroy-Medium";
+    font-size: 12px;
+
+    color: #000000;
+}
+
+.driver__direction-from {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 4px;
+}
+
+.driver__direction-selection {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #000000;
+
+    padding: 8px 0;
+
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+/*Transport*/
+.driver__transport {
+    padding-top: 38px;
+}
+
+.driver__transport-title {
+    font-family: "Gilroy-SemiBold";
+    font-size: 16px;
+
+    color: #000000;
+}
+
+.driver__transport-section {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 28px;
+}
+
+.driver__transport-type-selection {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #000000;
+
+    padding: 8px 0;
+
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+/*Transport Size*/
+.driver__transport-size {
+    padding-top: 12px;
+}
+
+.driver__transport-size-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.driver__transport-weight, .driver__transport-volume, .driver__transport-comments {
+    padding-top: 8px;
+}
+
+.transport-comments {
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 100%;
+    height: 120px;
+}
+
+/*Documents*/
+.driver__documents {
+    padding-top: 60px;
+}
+
+.driver__documents-title {
+    font-family: "Gilroy-SemiBold";
+    font-size: 16px;
+
+    color: #000000;
+}
+
+.driver__documents-section {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+/* Image */
+
+.img__holder{
+    height: 150px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+}
+.img{
+    height: 100%;
+    object-fit: cover;
+}
+
+#input[type="file"], #technicalPassport, #driverLicence, #idPassport {
+    display: none;
+}
+
+.image__label{
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.image__upload{
+    font-family: "Gilroy-SemiBold";
+    font-size: 12px;
+
+    color: #FFFFFF;
+    padding: 4px 6px;
+    background: #007AFF;
+    border: solid #007AFF 1px;
+    border-radius: 4px;
+}
+
+.driver__documents-name {
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 20px;
+    font-family: "Gilroy-Medium";
+    font-size: 12px;
+
+    color: #000000;
+}
+
+.driver__button {
+    display: flex;
+    justify-content: center;
+    padding-top: 79px;
+}
+
+.driver__saveButton {
+    font-family: "Gilroy-SemiBold";
+    font-size: 18px;
+
+    color: #FFFFFF;
+    padding: 8px 12px;
+    background: #007AFF;
+    border: solid #007AFF 1px;
+    border-radius: 4px;
+}

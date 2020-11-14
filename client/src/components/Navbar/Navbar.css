@@ -75,11 +75,48 @@
     border-radius: 4px;
 }
 
+.nav__link-signOut {
+    font-family: "Gilroy-SemiBold", sans-serif;
+    font-size: 16px;
+
+    padding: 8px 12px;
+    margin-left: 16px;
+
+    color: #007AFF;
+    background: #E5F2FF;
+    border: solid #E5F2FF 1px;
+    border-radius: 4px;
+}
+
 .nav__link-placeAd {
     font-size: 16px;
 
     padding: 8px 12px;
     margin-left: 12px;
+
+    color: #FFFFFF;
+    background: #007AFF;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/*Navbar User*/
+
+.header__user {
+    margin-right: 25px;
+}
+
+.nav__link-user{
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    text-decoration: none;
+    color: #007AFF;
+}
+
+.nav__link-activeUser {
+    font-size: 16px;
+    padding: 8px 12px;
 
     color: #FFFFFF;
     background: #007AFF;

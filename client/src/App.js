@@ -2,28 +2,34 @@ import React from 'react';
 import {Route, Switch} from "react-router-dom";
 
 import './App.css';
-import Navbar from "./components/Navbar/Navbar";
-import TransportSection from "./components/TransportSection/TransportSection";
 import Footer from "./components/Footer/Footer";
 import FilterSection from "./components/FilterSection/FilterSection";
 import Login from "./components/Login/Login";
+import TransportSectionContainer from "./components/TransportSection/TransportSectionContainer";
+import Profile from "./components/Profile/Profile";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
+import Error from "./components/common/Error/Error";
+import RegistrationContainer from "./components/Registration/RegistrationContainer";
 
 const App = () => {
-  return (
+    return (
         <>
-          <Navbar />
-          <Switch>
-            <Route path="/login" component={Login}/>
-            <Route component={PrimaryContainer}/>
-          </Switch>
+            <NavbarContainer />
+            <Switch>
+                <Route exact path="/login" component={Login}/>
+                <Route path="/registration" render={() => <RegistrationContainer />}/>
+                <Route path="/profile" component={Profile}/>
+                <Route exact path="/" component={PrimaryContainer}/>
+                <Route path="*" component={Error}/>
+            </Switch>
         </>
-  );
+    );
 }
 
 const PrimaryContainer = () => (
     <>
         <FilterSection />
-        <TransportSection />
+        <TransportSectionContainer />
         <Footer />
     </>
 )
