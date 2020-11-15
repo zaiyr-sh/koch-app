@@ -12,6 +12,12 @@ export const cargoesAPI = {
             .get(
                 `cargo`
             )
+    },
+    getNextCargoes(offset) {
+        return axiosInstance
+            .get(
+                `cargo/?limit=10&offset=${offset}`
+            )
     }
 }
 
