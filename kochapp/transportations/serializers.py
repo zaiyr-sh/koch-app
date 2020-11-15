@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from transportations.models import Cargo, Transportation
+from transportations.models import Cargo, Transportation, Region, City
 from users.serializers import CustomUserSerializer
 
 
@@ -71,4 +71,24 @@ class TransportationSerializer(serializers.ModelSerializer):
             'date_published',
             'vehicle_comment',
             'price',
+        ]
+
+
+class RegionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Region
+        fields = [
+            'id',
+            'name'
+        ]
+
+
+class CitiesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = City
+        fields = [
+            'id',
+            'name'
         ]

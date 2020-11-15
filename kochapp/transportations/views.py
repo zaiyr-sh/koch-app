@@ -2,8 +2,9 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 
 from .filters import CargoFilter, TransportationFilter
-from .models import Cargo, Transportation
-from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer
+from .models import Cargo, Transportation, Region, City
+from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer, RegionsSerializer, \
+    CitiesSerializer
 
 
 class CargoListView(generics.ListCreateAPIView):
@@ -26,3 +27,19 @@ class TransportationListView(generics.ListCreateAPIView):
     filterset_class = TransportationFilter
     serializer_class = TransportationSerializer
     queryset = Transportation.objects.all()
+
+
+class RegionsView(generics.ListAPIView):
+    """
+    Listing regions
+    """
+    queryset = Region.objects.all()
+    serializer_class = RegionsSerializer
+
+
+class CitiesView(generics.ListAPIView):
+    """
+    Listing cities
+    """
+    queryset = City.objects.all()
+    serializer_class = CitiesSerializer
