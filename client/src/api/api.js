@@ -23,6 +23,12 @@ export const authAPI = {
                 `auth/users/me`, { headers: authHeader() }
             );
     },
+    getUserOrders() {
+        return axiosInstance
+            .get(
+                `/users/proflie/published-ads/`, { headers: authHeader() }
+            )
+    },
     login(phone_number, password) {
         return axiosInstance
             .post(
@@ -30,7 +36,7 @@ export const authAPI = {
                 { phone_number, password}
             );
     },
-    updateClientProfile(clientProfile) {
+    updateUserProfile(clientProfile) {
         return axiosInstance
             .put(
                 `auth/users/me/`, clientProfile, { headers: authHeader() }

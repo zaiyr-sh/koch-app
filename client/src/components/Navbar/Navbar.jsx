@@ -5,8 +5,6 @@ import {Link} from "react-router-dom";
 const Navbar = ({ isLoggedIn }) => {
     console.log(isLoggedIn)
 
-    // const isLogin = () => props.isLoggedIn ? <Link onClick={ e => { if (window.confirm('Вы уверены, что хотите выйти?')) props.logoutThunk()}} className="nav__link-signOut" to="/">Выйти</Link> : <Link className="nav__link-signIn" to="/login">Войти</Link>
-
     return (
         <header className="header">
             <div className="container">

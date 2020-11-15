@@ -2,42 +2,42 @@ import React, {Component} from 'react';
 import ClientProfile from "./ClientProfile";
 import {connect} from "react-redux";
 import {
-    editClientProfileActionCreator,
-    getClientProfileThunkCreator,
-    updateClientProfileHandlerThunkCreator
-} from "../../../../redux/reducers/client-reducer";
+    editUserProfileActionCreator,
+    getUserProfileThunkCreator,
+    updateUserProfileThunkCreator
+} from "../../../../redux/reducers/user-reducer";
 
 class ClientProfileContainer extends Component {
 
     componentDidMount() {
-        this.props.getClientProfile()
+        this.props.getUserProfile()
     }
 
     render() {
         return (
             <ClientProfile
-                clientProfile={this.props.clientProfile}
-                editClientProfileHandler={this.props.editClientProfileHandler}
-                updateClientProfileHandler={this.props.updateClientProfileHandler}
+                userProfile={this.props.userProfile}
+                editUserProfileHandler={this.props.editUserProfileHandler}
+                updateUserProfileHandler={this.props.updateUserProfileHandler}
             />
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    clientProfile: state.clientPage.clientProfile
+    userProfile: state.userPage.userProfile
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getClientProfile: () => {
-            dispatch(getClientProfileThunkCreator())
+        getUserProfile: () => {
+            dispatch(getUserProfileThunkCreator())
         },
-        editClientProfileHandler: (nameField, value) => {
-            dispatch(editClientProfileActionCreator(nameField, value))
+        editUserProfileHandler: (nameField, value) => {
+            dispatch(editUserProfileActionCreator(nameField, value))
         },
-        updateClientProfileHandler: () => {
-            dispatch(updateClientProfileHandlerThunkCreator())
+        updateUserProfileHandler: () => {
+            dispatch(updateUserProfileThunkCreator())
         },
     }
 }

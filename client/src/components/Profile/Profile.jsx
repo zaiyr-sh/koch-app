@@ -1,20 +1,45 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import "./Profile.css";
-import UserNavbar from "../Navbar/UserNavbar/UserNavbar";
 import OrdersProfile from "./OrdersProfile/OrdersProfile";
-import ClientProfileContainer from "./UserProfile/ClientProfile/ClientProfileContainer";
-import DriverProfile from "./UserProfile/DriverProfile/DriverProfile";
 import Footer from "../Footer/Footer";
+import UserNavbarContainer from "../Navbar/UserNavbar/UserNavbarContainer";
+import ClientProfile from "./UserProfile/ClientProfile/ClientProfile";
+import DriverProfile from "./UserProfile/DriverProfile/DriverProfile";
 
-const Profile = () => {
+const Profile = ({ userType, userProfile, userOrders, editUserProfileHandler, updateUserProfileHandler }) => {
+
+    const checkType = () => {
+        switch (userType) {
+            case "client":
+                return (
+                    <Route path="/profile/my_profile" component={() =>
+                        <ClientProfile
+                            userProfile={userProfile}
+                            editUserProfileHandler={editUserProfileHandler}
+                            updateUserProfileHandler={updateUserProfileHandler}
+                        />
+                    }/>
+                )
+            case "driver":
+                return (
+                    <Route path="/profile/my_profile" component={() =>
+                        <DriverProfile
+                            userProfile={userProfile}
+                            editUserProfileHandler={editUserProfileHandler}
+                            updateUserProfileHandler={updateUserProfileHandler}
+                        />
+                    }/>
+                )
+        }
+    }
+
     return (
         <>
-            <UserNavbar />
+            <UserNavbarContainer />
             <Switch>
-                <Route path="/profile/my_orders" component={OrdersProfile}/>
-                <Route path="/profile/my_profile" component={ClientProfileContainer}/>
-                {/*<Route path="/profile/my_profile" component={DriverProfile}/>*/}
+                <Route path="/profile/my_orders" component={() => <OrdersProfile userOrders={userOrders}/>}/>
+                {checkType()}
             </Switch>
             <Footer />
         </>

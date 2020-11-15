@@ -20,7 +20,7 @@ class NavbarContainer extends Component {
 
 const mapStateToProps = (state) => ({
     initializing: state.app.initializing,
-    isLoggedIn: state.clientPage.isLoggedIn
+    isLoggedIn: state.userPage.isLoggedIn
 })
 
 const mapDispatchToProps = (dispatch) => {
