@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 from .filters import CargoFilter, TransportationFilter
 from .models import Cargo, Transportation, Region, City
-from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer, RegionsSerializer, \
+from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer, RegionSerializer, \
     CitiesSerializer
 
 
@@ -34,7 +34,7 @@ class RegionsView(generics.ListAPIView):
     Listing regions
     """
     queryset = Region.objects.all()
-    serializer_class = RegionsSerializer
+    serializer_class = RegionSerializer
 
 
 class CitiesView(generics.ListAPIView):
