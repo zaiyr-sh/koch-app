@@ -29,7 +29,7 @@ const App = () => {
 
 const PrimaryContainer = () => (
     <>
-        <FilterSection />
+        {/*<FilterSection />*/}
         <TransportSectionContainer />
         <Footer />
     </>

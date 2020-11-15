@@ -17,7 +17,7 @@ const Card = ({ cargo }) => {
                         <p className="card-date">25.09.2020 - 01.01.2021</p>
                         <p className="card-volume">{cargo.weight}т / {cargo.volume}м³</p>
                     </div>
-                    <p className="card-price">{cargo.price} c</p>
+                    <div className="card-price">{cargo.price}c</div>
                 </div>
                 <div className="card-line"></div>
                 <div className="card-addition-information">
