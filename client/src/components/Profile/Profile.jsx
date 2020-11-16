@@ -1,11 +1,13 @@
 import React from 'react';
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
+
 import "./Profile.css";
 import OrdersProfile from "./OrdersProfile/OrdersProfile";
 import Footer from "../Footer/Footer";
 import UserNavbarContainer from "../Navbar/UserNavbar/UserNavbarContainer";
 import ClientProfile from "./UserProfile/ClientProfile/ClientProfile";
 import DriverProfile from "./UserProfile/DriverProfile/DriverProfile";
+import Preloader from "../common/Preloader/Preloader";
 
 const Profile = ({ userType, userProfile, userOrders, editUserProfileHandler, updateUserProfileHandler }) => {
 
@@ -31,6 +33,8 @@ const Profile = ({ userType, userProfile, userOrders, editUserProfileHandler, up
                         />
                     }/>
                 )
+            default:
+                return <Preloader />
         }
     }
 

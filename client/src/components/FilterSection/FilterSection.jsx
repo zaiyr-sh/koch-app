@@ -1,8 +1,9 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
+
 import "./FilterSection.css";
 import FilterCargo from "./FilterCargo/FilterCargo";
 import FilterTransport from "./FilterTransport/FilterTransport";
-import {NavLink} from "react-router-dom";
 
 class FilterSection extends React.Component {
 

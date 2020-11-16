@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 
-import {getCargoesThunkCreator, getNextCargoesThunkCreator} from "../../redux/reducers/cargo-reducer";
+import {
+    getCargoesThunkCreator,
+    getNextCargoesThunkCreator,
+    setOpenCardModalActionCreator
+} from "../../redux/reducers/cargo-reducer";
 import TransportSection from "./TransportSection";
 
 class TransportSectionContainer extends Component {
@@ -16,6 +20,7 @@ class TransportSectionContainer extends Component {
                 <TransportSection
                     cargoes={this.props.cargoes}
                     getNextCargoes={this.props.getNextCargoes}
+                    onOpenCardModal={this.props.setOpenCardModal}
                 />
             </div>
         );
@@ -33,6 +38,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getNextCargoes(offset) {
             dispatch(getNextCargoesThunkCreator(offset))
+        },
+        setOpenCardModal(card) {
+            dispatch(setOpenCardModalActionCreator(card))
         }
     }
 }

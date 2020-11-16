@@ -5,12 +5,12 @@ import './App.css';
 import Footer from "./components/Footer/Footer";
 import FilterSection from "./components/FilterSection/FilterSection";
 import TransportSectionContainer from "./components/TransportSection/TransportSectionContainer";
-import Profile from "./components/Profile/Profile";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import Error from "./components/common/Error/Error";
 import RegistrationContainer from "./components/Registration/RegistrationContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import CardModalContainer from "./components/Modals/CardModalContainer";
 
 const App = () => {
     return (
@@ -23,13 +23,14 @@ const App = () => {
                 <Route exact path="/" component={PrimaryContainer}/>
                 <Route path="*" component={Error}/>
             </Switch>
+            <CardModalContainer />
         </>
     );
 }
 
 const PrimaryContainer = () => (
     <>
-        {/*<FilterSection />*/}
+        <FilterSection />
         <TransportSectionContainer />
         <Footer />
     </>

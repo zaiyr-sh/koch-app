@@ -1,13 +1,8 @@
 import React from 'react';
 import {Link, Redirect} from "react-router-dom";
 import NumberFormat from 'react-number-format';
-import { reduxForm, Field } from 'redux-form';
 
 import "./Login.css";
-import styles from "../common/FormsControl/FormsControl.module.css"
-import {connect} from "react-redux";
-import {loginThunkCreator} from "../../redux/reducers/auth-reducer";
-import {maxLengthThunkCreator, minLengthThunkCreator, required} from "../../utils/validators";
 
 const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import ClientProfile from "./ClientProfile";
 import {connect} from "react-redux";
+
+import ClientProfile from "./ClientProfile";
 import {
     editUserProfileActionCreator,
     getUserProfileThunkCreator,

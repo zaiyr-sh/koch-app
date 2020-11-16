@@ -1,6 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
-import { reducer as formReducer } from "redux-form";
 
 import cargoReducer from "../reducers/cargo-reducer";
 import authReducer from "../reducers/auth-reducer";
@@ -13,8 +12,7 @@ let reducers = combineReducers({
     cargoPage: cargoReducer,
     authPage: authReducer,
     registrationPage: registrationReducer,
-    userPage: userReducer,
-    form: formReducer
+    userPage: userReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

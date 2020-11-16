@@ -1,6 +1,3 @@
-import { authAPI } from "../../api/api";
-import {stopSubmit} from "redux-form";
-
 const SET_USER_DATA = 'auth/SET-USER-DATA';
 const REGISTRATION_FIRST_STAGE_SUCCESS = 'registration/REGISTRATION_FIRST_STAGE_SUCCESS';
 

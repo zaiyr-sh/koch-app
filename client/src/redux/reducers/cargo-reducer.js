@@ -2,14 +2,17 @@ import {cargoesAPI} from "../../api/api";
 
 const SET_CARGOES = 'client/SET_CARGOES';
 const SET_NEW_CARGOES = 'client/SET_NEW_CARGOES';
+const SET_OPEN_CARD_MODAL = 'client/SET_OPEN_CARD_MODAL';
+const SET_CLOSE_CARD_MODAL = 'client/SET_CLOSE_CARD_MODAL';
 
 let initialState = {
     cargoes: {
         results: [],
         next: "",
         previous: "",
-        count: 0
-    }
+        count: 0,
+    },
+    card: {}
 }
 
 const cargoReducer = (state = initialState, action) => {
@@ -30,6 +33,16 @@ const cargoReducer = (state = initialState, action) => {
                     count: action.cargoes.count
                 }
             }
+        case SET_OPEN_CARD_MODAL:
+            return {
+                ...state,
+                card: action.card
+            }
+        case SET_CLOSE_CARD_MODAL:
+            return {
+                ...state,
+                card: ""
+            }
         default:
             return state;
 
@@ -42,10 +55,13 @@ export const getCargoesThunkCreator = () => async (dispatch) => {
 }
 const setCargoesActionCreator = (cargoes) => ({type: SET_CARGOES, cargoes})
 
-export const getNextCargoesThunkCreator = (offset = 0) => async (dispatch) => {
+export const getNextCargoesThunkCreator = (offset) => async (dispatch) => {
     const response = await cargoesAPI.getNextCargoes(offset);
     dispatch(setNewCargoesActionCreator(response.data))
 }
 const setNewCargoesActionCreator = (cargoes) => ({type: SET_NEW_CARGOES, cargoes})
+
+export const setOpenCardModalActionCreator = (card) => ({type: SET_OPEN_CARD_MODAL, card})
+export const closeOpenCardActionCreator = () => ({type: SET_CLOSE_CARD_MODAL})
 
 export default cargoReducer;

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+
 import {logoutThunkCreator} from "../../redux/reducers/auth-reducer";
 import Navbar from "./Navbar";
 import {initializeAppThunkCreator} from "../../redux/reducers/app-reducer";
-import Preloader from "../common/Preloader/Preloader";
 
 class NavbarContainer extends Component {
 

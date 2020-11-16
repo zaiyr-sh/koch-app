@@ -1,14 +1,6 @@
 import React from 'react';
-import {Field, reduxForm} from "redux-form";
-import {connect} from "react-redux";
 
 import "../Login/Login.css";
-import {maxLengthThunkCreator, minLengthThunkCreator} from "../../utils/validators";
-import styles from "../common/FormsControl/FormsControl.module.css";
-import {registrationFirstStageThunkCreator} from "../../redux/reducers/registration-reducer";
-
-const maxLength30 = maxLengthThunkCreator(30);
-const minLength3 = minLengthThunkCreator(3);
 
 const Registration = ({ registration, editRegistrationFieldHandler }) => {
 

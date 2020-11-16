@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+
 import Registration from "./Registration";
 import {registrationFirstStageThunkCreator} from "../../redux/reducers/registration-reducer";
-import {connect} from "react-redux";
 
 class RegistrationContainer extends Component {
 

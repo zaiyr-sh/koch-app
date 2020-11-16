@@ -12,21 +12,21 @@
     flex-wrap: wrap;
 }
 
-.card_item {
+.card__item {
     width: 49%;
     background: #FFFFFF;
     border-radius: 8px;
     margin-top: 20px;
 }
 
-.card_inner {
+.card__inner {
     display: flex;
     flex-direction: column;
 
     padding: 20px;
 }
 
-.card_name {
+.card__name {
     font-family: "Gilroy-Bold";
     font-size: 18px;
 
@@ -35,28 +35,25 @@
     border-radius: 8px;
 }
 
-.card-direction {
+.card__direction {
     padding-top: 9px;
-}
-
-.card-direction{
     font-family: "Gilroy-Medium";
     font-size: 16px;
 
     color: #909090;
 }
 
-.card-direction-from::before {
+.card__direction-from::before {
     content: url("../../assets/images/card_from_icon.png");
     padding-right: 10px;
 }
 
-.card-direction-to::before {
+.card__direction-to::before {
     content: url("../../assets/images/card-to-icon.png");
     padding-right: 10px;
 }
 
-.card-main-information {
+.card__main-information {
     display: flex;
     justify-content: space-between;
 
@@ -64,7 +61,7 @@
     padding-bottom: 10px;
 }
 
-.card-details {
+.card__details {
     display: flex;
     justify-content: space-between;
     width: 40%;
@@ -76,7 +73,7 @@
     color: #000000;
 }
 
-.card-price {
+.card__price {
     font-family: "Gilroy-SemiBold";
     font-size: 16px;
 
@@ -90,7 +87,7 @@
     border-radius: 4px;
 }
 
-.card-line {
+.card__line {
     height: 1px;
     width: 100%;
 
@@ -98,41 +95,42 @@
     border-radius: 4px;
 }
 
-.card-addition-information {
+.card__addition-information {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 14px;
 }
 
-.card-period {
+.card__period {
     font-family: "Gilroy-Medium";
     font-size: 12px;
 
     color: #909090;
 }
 
-.card_addition_btn {
+.card__addition-btn {
     font-family: "Gilroy-SemiBold";
     font-size: 16px;
 
     color: #FFFFFF;
 
-    padding: 4px 12px;
+    padding: 0 12px;
     height: 27px;
 
     text-decoration: none;
     background: #007AFF;
+    border: 1px solid #007AFF;
     border-radius: 4px;
 }
 
 /*Card Next*/
-.card-next {
+.card__next {
     display: flex;
     padding-top: 50px;
 }
 
-.card-next-btn {
+.card__next-btn {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -154,13 +152,13 @@
         flex-direction: column;
         flex-wrap: wrap;
     }
-    .card_item {
+    .card__item {
         width: 80%;
         background: #FFFFFF;
         border-radius: 8px;
         margin: 20px auto 0;
     }
-    .card-details {
+    .card__details {
         display: flex;
         flex-direction: column;
         width: 40%;
@@ -171,10 +169,24 @@
 
         color: #000000;
     }
+    .card__next-btn {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 80%;
+        font-family: "Gilroy-SemiBold";
+        font-size: 16px;
+        text-decoration: none;
+
+        color: #FFFFFF;
+        background: #007AFF;
+        border-radius: 4px;
+        padding: 8px 0;
+    }
 }
 
 @media only screen and (max-width: 720px) {
-    .card-details {
+    .card__details {
         display: flex;
         flex-direction: column;
         width: 100%;
