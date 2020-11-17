@@ -13,8 +13,8 @@ const OrdersProfile = ({userOrders}) => {
                 </div>
                 {/*Card */}
 
-                <div className="card-next">
-                    <a className="card-next-btn" href="/">Еще...</a>
+                <div className="card__next">
+                    <a className="card__next-btn" href="/">Еще...</a>
                 </div>
 
             </div>

@@ -18,6 +18,13 @@ export const cargoesAPI = {
             .get(
                 `cargo/?limit=10&offset=${offset}`
             )
+    },
+    getFilteredCargoes(from_region, from_city, to_region, to_city, weight, volume, length, width, height, price) {
+        return axiosInstance
+            .get(
+                `cargo?
+                from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}&weigh=${weight}&volume=${volume}&length=${length}&width=${width}&height=${height}&price=${price}`
+            )
     }
 }
 

@@ -34,7 +34,7 @@ const CardModal = ({card, closeOpenCard}) => {
                         </div>
 
                         <div className="card__comment">
-                            <p className="card__comment-title">Комментарий к отправке</p>
+                            <p className="card__comment-title">Комментарий к грузу</p>
                             <p className="card__comment-content">Каждый веб-разработчик знает, что такое текст-”рыба”. Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на</p>
                         </div>
 

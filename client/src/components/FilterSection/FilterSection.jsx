@@ -2,8 +2,8 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 
 import "./FilterSection.css";
-import FilterCargo from "./FilterCargo/FilterCargo";
 import FilterTransport from "./FilterTransport/FilterTransport";
+import FilterCargoContainer from "./FilterCargo/FilterCargoContainer";
 
 class FilterSection extends React.Component {
 
@@ -21,7 +21,7 @@ class FilterSection extends React.Component {
         let { display } = this.state;
 
         if (display === "cargo") {
-            return <FilterCargo />
+            return <FilterCargoContainer />
         } else if (display === "transport") {
             return <FilterTransport />
         }

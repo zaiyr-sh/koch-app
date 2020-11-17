@@ -2,7 +2,7 @@ import React from 'react';
 
 import "../FilterSection.css";
 
-const FilterCargo = () => {
+const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargoes }) => {
     return (
         <>
             <div className="filter-direction">
@@ -100,7 +100,13 @@ const FilterCargo = () => {
                     <div className="filter-price">
                         <div className="filter-size-to">
                             <div className="filter-direction-area">
-                                <input className="filter-size-selection" type="text" placeholder="Цена от, сом"/>
+                                <input className="filter-size-selection"
+                                       name="price"
+                                       value={filteredCargoes.price}
+                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                       type="text"
+                                       placeholder="Цена от, сом"
+                                />
                             </div>
                             <div className="filter-direction-city">
                                 <input className="filter-size-selection" type="text" placeholder="До"/>
@@ -117,7 +123,7 @@ const FilterCargo = () => {
                     <a href="/" className="filter-reset-btn">Сбросить <i className="fa fa-close"/></a>
                 </div>
                 <div className="filter-show">
-                    <a href="/" className="filter-show-btn">Показать 941 объявлений</a>
+                    <button className="filter-show-btn" onClick={getFilteredCargoes}>Показать объявления</button>
                 </div>
             </div>
         </>
