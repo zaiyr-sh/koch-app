@@ -6,7 +6,7 @@ import FilterCargo from "./FilterCargo";
 import {
     editCargoFilterActionCreator, editPlaceSelectionActionCreator, getCargoesThunkCreator,
     getCargoPlacesThunkCreator,
-    getFilteredCargoesThunkCreator
+    getFilteredCargoesThunkCreator, resetFilterCargoesActionCreator
 } from "../../../redux/reducers/cargo-reducer";
 
 class FilterCargoContainer extends Component {
@@ -24,6 +24,7 @@ class FilterCargoContainer extends Component {
             getFilteredCargoes={this.props.getFilteredCargoes}
             editPlaceSelectionHandler={this.props.editPlaceSelectionHandler}
             getCargoes={this.props.getCargoes}
+            resetFilterCargoes={this.props.resetFilterCargoes}
         />;
     }
 }
@@ -50,6 +51,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         editPlaceSelectionHandler: (nameField, value) => {
             dispatch(editPlaceSelectionActionCreator(nameField, value))
+        },
+        resetFilterCargoes: () => {
+            dispatch(resetFilterCargoesActionCreator())
         }
     }
 }

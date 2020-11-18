@@ -2,11 +2,18 @@ import React from 'react';
 
 import "../FilterSection.css";
 
-const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargoes, cities, regions, editPlaceSelectionHandler, getCargoes }) => {
+const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargoes,
+                         cities, regions, editPlaceSelectionHandler,
+                         getCargoes, resetFilterCargoes }
+                         ) => {
 
-    console.log(regions.results)
-
+    console.log(filteredCargoes)
     if (!cities && !regions) return <></>
+
+    const resetFilter = () => {
+        resetFilterCargoes()
+        getCargoes()
+    }
 
     return (
         <>
@@ -131,7 +138,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
 
             <div className="filter-buttons">
                 <div className="filter-reset">
-                    <button className="filter-reset-btn" onClick={getCargoes}>Сбросить <i className="fa fa-close"/></button>
+                    <button className="filter-reset-btn" onClick={resetFilter}>Сбросить <i className="fa fa-close"/></button>
                 </div>
                 <div className="filter-show">
                     <button className="filter-show-btn" onClick={getFilteredCargoes}>Показать объявления</button>

@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router-dom";
 import './App.css';
 import Footer from "./components/Footer/Footer";
 import FilterSection from "./components/FilterSection/FilterSection";
-import TransportSectionContainer from "./components/TransportSection/TransportSectionContainer";
+import CargoSectionContainer from "./components/CargoSection/CargoSectionContainer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import Error from "./components/common/Error/Error";
 import RegistrationContainer from "./components/Registration/RegistrationContainer";
@@ -31,7 +31,7 @@ const App = () => {
 const PrimaryContainer = () => (
     <>
         <FilterSection />
-        <TransportSectionContainer />
+        <CargoSectionContainer />
         <Footer />
     </>
 )

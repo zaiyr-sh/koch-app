@@ -6,6 +6,7 @@ const SET_OPEN_CARD_MODAL = 'client/SET_OPEN_CARD_MODAL';
 const SET_CLOSE_CARD_MODAL = 'client/SET_CLOSE_CARD_MODAL';
 const SET_EDIT_CARGO_FILTER = 'client/SET_EDIT_CARGO_FILTER';
 const SET_CARGO_PLACES = 'client/SET_CARGO_PLACES';
+const RESET_CARGO_FILTER = 'clint/RESET_CARGO_FILTER';
 
 let initialState = {
     cargoes: {
@@ -74,6 +75,14 @@ const cargoReducer = (state = initialState, action) => {
                 cities: action.citiesResponse,
                 regions: action.regionsResponse
             }
+        case RESET_CARGO_FILTER:
+            return {
+                ...state,
+                filteredCargoes: {
+                    ...state.filteredCargoes,
+                    from_region: "", from_city: "", to_region: "", to_city: "", weight: "", volume: "", length: "", width: "", height: "", from_price: "", to_price: ""
+                }
+            }
         default:
             return state;
 
@@ -87,6 +96,7 @@ export const getCargoPlacesThunkCreator = () => async (dispatch) => {
 }
 const setCargoPlacesActionCreator = (citiesResponse, regionsResponse) => ({type: SET_CARGO_PLACES, citiesResponse, regionsResponse})
 export const editPlaceSelectionActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
+export const resetFilterCargoesActionCreator = () => ({type: RESET_CARGO_FILTER})
 
 export const getCargoesThunkCreator = () => async (dispatch) => {
     const response = await cargoesAPI.getCargoes();
@@ -94,8 +104,9 @@ export const getCargoesThunkCreator = () => async (dispatch) => {
 }
 const setCargoesActionCreator = (cargoes) => ({type: SET_CARGOES, cargoes})
 
-export const getNextCargoesThunkCreator = (offset) => async (dispatch) => {
-    const response = await cargoesAPI.getNextCargoes(offset);
+export const getNextCargoesThunkCreator = (offset) => async (dispatch, getState) => {
+    let { from_region = "", from_city = "", to_region = "", to_city = "", weight = "", volume = "", length = "", width = "", height = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
+    const response = await cargoesAPI.getNextCargoes(offset, from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price);
     dispatch(setNewCargoesActionCreator(response.data))
 }
 const setNewCargoesActionCreator = (cargoes) => ({type: SET_NEW_CARGOES, cargoes})

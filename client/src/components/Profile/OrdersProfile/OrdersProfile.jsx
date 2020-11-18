@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from "../../TransportSection/Card";
+import Card from "../../CargoSection/Card";
 
 const OrdersProfile = ({userOrders}) => {
     return (

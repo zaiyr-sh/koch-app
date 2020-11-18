@@ -1,10 +1,10 @@
 import React from 'react';
 
-import "./TransportSection.css";
+import "./CargoSection.css";
 import Card from "./Card";
 import Preloader from "../common/Preloader/Preloader";
 
-const TransportSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
+const CargoSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
 
     let offset = 0;
     if (!cargoes.results) return <Preloader />
@@ -35,4 +35,4 @@ const TransportSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
     );
 };
 
-export default TransportSection;
+export default CargoSection;

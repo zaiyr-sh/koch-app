@@ -13,10 +13,12 @@ export const cargoesAPI = {
                 `cargo`
             )
     },
-    getNextCargoes(offset) {
+    getNextCargoes(offset, from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price) {
+        const priceParam = from_price === "" && to_price === "" ? "" : `&price__range=${from_price},${to_price}`
         return axiosInstance
             .get(
-                `cargo/?limit=10&offset=${offset}`
+                `cargo/?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}&weight=${weight}&volume=${volume}&length=${length}&width=${width}&height=${height}
+                ${priceParam}`
             )
     },
     getFilteredCargoes(from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price) {

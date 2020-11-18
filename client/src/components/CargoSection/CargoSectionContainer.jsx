@@ -6,9 +6,9 @@ import {
     getNextCargoesThunkCreator,
     setOpenCardModalActionCreator
 } from "../../redux/reducers/cargo-reducer";
-import TransportSection from "./TransportSection";
+import CargoSection from "./CargoSection";
 
-class TransportSectionContainer extends Component {
+class CargoSectionContainer extends Component {
 
     componentDidMount() {
         this.props.getCargoes();
@@ -17,7 +17,7 @@ class TransportSectionContainer extends Component {
     render() {
         return (
             <div>
-                <TransportSection
+                <CargoSection
                     cargoes={this.props.cargoes}
                     getNextCargoes={this.props.getNextCargoes}
                     onOpenCardModal={this.props.setOpenCardModal}
@@ -45,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransportSectionContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CargoSectionContainer);
