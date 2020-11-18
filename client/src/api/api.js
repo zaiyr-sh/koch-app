@@ -19,11 +19,25 @@ export const cargoesAPI = {
                 `cargo/?limit=10&offset=${offset}`
             )
     },
-    getFilteredCargoes(from_region, from_city, to_region, to_city, weight, volume, length, width, height, price) {
+    getFilteredCargoes(from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price) {
+        // const priceParam = to_price === "" && from_price ? `price=${from_price}` : `price__range=${from_price},${to_price}`;
         return axiosInstance
             .get(
                 `cargo?
-                from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}&weigh=${weight}&volume=${volume}&length=${length}&width=${width}&height=${height}&price=${price}`
+                from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}&weight=${weight}&volume=${volume}&length=${length}&width=${width}&height=${height}
+                &price__range=${from_price},${to_price}`
+            )
+    },
+    getCargoCities(){
+        return axiosInstance
+            .get(
+                `cargo/cities/`
+            )
+    },
+    getCargoRegions(){
+        return axiosInstance
+            .get(
+                `cargo/regions/`
             )
     }
 }

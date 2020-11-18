@@ -2,26 +2,31 @@ import React from 'react';
 
 import "../FilterSection.css";
 
-const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargoes }) => {
+const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargoes, cities, regions, editPlaceSelectionHandler, getCargoes }) => {
+
+    console.log(regions.results)
+
+    if (!cities && !regions) return <></>
+
     return (
         <>
             <div className="filter-direction">
                 <p className="filter-title">Откуда</p>
                 <div className="filter-direction-from">
                     <div className="filter-direction-area">
-                        <select className="filter-direction-selection" name="area">
-                            <option value="area">Область</option>
-                            <option value="osh">Ошская</option>
-                            <option value="naryn">Нарынская</option>
-                            <option value="issyk_kul">Иссык-Кульская</option>
+                        <select value={filteredCargoes.from_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="from_region">
+                            <option value="">Область</option>
+                            {regions.results.map(region => (
+                                <option key={region.id} value={region.name}>{region.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="filter-direction-city">
-                        <select className="filter-direction-selection" name="area">
-                            <option value="area">Город, район</option>
-                            <option value="osh">Ошская</option>
-                            <option value="naryn">Нарынская</option>
-                            <option value="issyk_kul">Иссык-Кульская</option>
+                        <select value={filteredCargoes.from_city} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}  className="filter-direction-selection" name="from_city">
+                            <option value="">Город, район</option>
+                            {cities.results.map(city => (
+                                <option key={city.id} value={city.name}>{city.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="filter-date">25 сен 2020</div>
@@ -30,19 +35,19 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                 <p className="filter-title">Куда</p>
                 <div className="filter-direction-to">
                     <div className="filter-direction-area">
-                        <select className="filter-direction-selection" name="area">
-                            <option value="area">Область</option>
-                            <option value="osh">Ошская</option>
-                            <option value="naryn">Нарынская</option>
-                            <option value="issyk_kul">Иссык-Кульская</option>
+                        <select value={filteredCargoes.to_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="to_region">
+                            <option value="">Область</option>
+                            {regions.results.map(region => (
+                                <option key={region.id} value={region.name}>{region.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="filter-direction-city">
-                        <select className="filter-direction-selection" name="area">
-                            <option value="area">Город, район</option>
-                            <option value="osh">Ошская</option>
-                            <option value="naryn">Нарынская</option>
-                            <option value="issyk_kul">Иссык-Кульская</option>
+                        <select value={filteredCargoes.to_city} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="to_city">
+                            <option value="">Город, район</option>
+                            {cities.results.map(city => (
+                                <option key={city.id} value={city.name}>{city.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="filter-date">25 сен 2020</div>
@@ -57,20 +62,20 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                         <p className="filter-title">Вес груза, т</p>
                         <div className="filter-size-from">
                             <div className="filter-direction-area">
-                                <select className="filter-size-selection" name="area">
-                                    <option value="from">От</option>
-                                    <option value="osh">Ошская</option>
-                                    <option value="naryn">Нарынская</option>
-                                    <option value="issyk_kul">Иссык-Кульская</option>
-                                </select>
+                                <input className="filter-size-selection"
+                                       name="area"
+                                       placeholder="От"
+                                       value={filteredCargoes.weight}
+                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                />
                             </div>
                             <div className="filter-direction-city">
-                                <select className="filter-size-selection" name="area">
-                                    <option value="to">До</option>
-                                    <option value="osh">Ошская</option>
-                                    <option value="naryn">Нарынская</option>
-                                    <option value="issyk_kul">Иссык-Кульская</option>
-                                </select>
+                                <input className="filter-size-selection"
+                                       name="area"
+                                       placeholder="До"
+                                       value={filteredCargoes.weight}
+                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                />
                             </div>
                         </div>
                     </div>
@@ -79,20 +84,20 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                         <p className="filter-title">Объем груза, м³ </p>
                         <div className="filter-size-to">
                             <div className="filter-direction-area">
-                                <select className="filter-size-selection" name="area">
-                                    <option value="from">От</option>
-                                    <option value="osh">Ошская</option>
-                                    <option value="naryn">Нарынская</option>
-                                    <option value="issyk_kul">Иссык-Кульская</option>
-                                </select>
+                                <input className="filter-size-selection"
+                                       name="area"
+                                       placeholder="От"
+                                       value={filteredCargoes.volume}
+                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                />
                             </div>
                             <div className="filter-direction-city">
-                                <select className="filter-size-selection" name="area">
-                                    <option value="to">До</option>
-                                    <option value="osh">Ошская</option>
-                                    <option value="naryn">Нарынская</option>
-                                    <option value="issyk_kul">Иссык-Кульская</option>
-                                </select>
+                                <input className="filter-size-selection"
+                                       name="area"
+                                       placeholder="До"
+                                       value={filteredCargoes.weight}
+                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                />
                             </div>
                         </div>
                     </div>
@@ -101,15 +106,21 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                         <div className="filter-size-to">
                             <div className="filter-direction-area">
                                 <input className="filter-size-selection"
-                                       name="price"
-                                       value={filteredCargoes.price}
+                                       name="from_price"
+                                       value={filteredCargoes.from_price}
                                        onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                        type="text"
                                        placeholder="Цена от, сом"
                                 />
                             </div>
                             <div className="filter-direction-city">
-                                <input className="filter-size-selection" type="text" placeholder="До"/>
+                                <input className="filter-size-selection"
+                                       name="to_price"
+                                       value={filteredCargoes.to_price}
+                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                       type="text"
+                                       placeholder="До"
+                                />
                             </div>
                         </div>
                     </div>
@@ -120,7 +131,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
 
             <div className="filter-buttons">
                 <div className="filter-reset">
-                    <a href="/" className="filter-reset-btn">Сбросить <i className="fa fa-close"/></a>
+                    <button className="filter-reset-btn" onClick={getCargoes}>Сбросить <i className="fa fa-close"/></button>
                 </div>
                 <div className="filter-show">
                     <button className="filter-show-btn" onClick={getFilteredCargoes}>Показать объявления</button>

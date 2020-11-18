@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Card = ({ cargo, onOpenCardModal }) => {
-    console.log(cargo)
     return (
         <div className="card__item">
             <div className="card__inner">
@@ -22,7 +21,7 @@ const Card = ({ cargo, onOpenCardModal }) => {
                 </div>
                 <div className="card__line"></div>
                 <div className="card__addition-information">
-                    <p className="card__period">{new Date(cargo.date_published).getHours()} часов назад</p>
+                    <p className="card__period">{new Date(cargo.date_published).getDate()}.{new Date(cargo.date_published).getMonth()}.{new Date(cargo.date_published).getFullYear()}, {new Date(cargo.date_published).getHours()} ч. назад</p>
                     <button className="card__addition-btn" onClick={() => onOpenCardModal(cargo)}>Подробнее</button>
                 </div>
             </div>

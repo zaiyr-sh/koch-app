@@ -5,6 +5,7 @@ const SET_NEW_CARGOES = 'client/SET_NEW_CARGOES';
 const SET_OPEN_CARD_MODAL = 'client/SET_OPEN_CARD_MODAL';
 const SET_CLOSE_CARD_MODAL = 'client/SET_CLOSE_CARD_MODAL';
 const SET_EDIT_CARGO_FILTER = 'client/SET_EDIT_CARGO_FILTER';
+const SET_CARGO_PLACES = 'client/SET_CARGO_PLACES';
 
 let initialState = {
     cargoes: {
@@ -23,9 +24,12 @@ let initialState = {
         length: "",
         width: "",
         height: "",
-        price: ""
+        from_price: "",
+        to_price: ""
     },
-    card: {}
+    card: {},
+    cities: "",
+    regions: ""
 }
 
 const cargoReducer = (state = initialState, action) => {
@@ -64,11 +68,25 @@ const cargoReducer = (state = initialState, action) => {
                     [action.nameField]: action.value
                 }
             }
+        case SET_CARGO_PLACES:
+            return {
+                ...state,
+                cities: action.citiesResponse,
+                regions: action.regionsResponse
+            }
         default:
             return state;
 
     }
 }
+
+export const getCargoPlacesThunkCreator = () => async (dispatch) => {
+    const citiesResponse = await cargoesAPI.getCargoCities();
+    const regionsResponse = await cargoesAPI.getCargoRegions();
+    dispatch(setCargoPlacesActionCreator(citiesResponse.data, regionsResponse.data))
+}
+const setCargoPlacesActionCreator = (citiesResponse, regionsResponse) => ({type: SET_CARGO_PLACES, citiesResponse, regionsResponse})
+export const editPlaceSelectionActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
 
 export const getCargoesThunkCreator = () => async (dispatch) => {
     const response = await cargoesAPI.getCargoes();
@@ -83,12 +101,12 @@ export const getNextCargoesThunkCreator = (offset) => async (dispatch) => {
 const setNewCargoesActionCreator = (cargoes) => ({type: SET_NEW_CARGOES, cargoes})
 
 export const getFilteredCargoesThunkCreator = () => async (dispatch, getState) => {
-    let { from_region = "", from_city = "", to_region = "", to_city = "", weight = "", volume = "", length = "", width = "", height = "", price = "" } = getState().cargoPage.filteredCargoes;
-    debugger
-    const response = await cargoesAPI.getFilteredCargoes( from_region, from_city, to_region, to_city, weight, volume, length, width, height, price );
+    let { from_region = "", from_city = "", to_region = "", to_city = "", weight = "", volume = "", length = "", width = "", height = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
+
+    const response = await cargoesAPI.getFilteredCargoes( from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price );
     dispatch(setCargoesActionCreator(response.data))
 }
-export const editCargoFilterThunkCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
+export const editCargoFilterActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
 
 export const setOpenCardModalActionCreator = (card) => ({type: SET_OPEN_CARD_MODAL, card})
 export const closeOpenCardActionCreator = () => ({type: SET_CLOSE_CARD_MODAL})

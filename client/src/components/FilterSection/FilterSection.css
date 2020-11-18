@@ -159,6 +159,7 @@
 
 .filter-reset-btn {
     background: #ff0000;
+    border: 1px solid #ff0000;
 }
 
 .filter-show-btn {
