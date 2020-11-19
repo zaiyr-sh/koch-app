@@ -7,7 +7,6 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                          getCargoes, resetFilterCargoes }
                          ) => {
 
-    console.log(filteredCargoes)
     if (!cities && !regions) return <></>
 
     const resetFilter = () => {

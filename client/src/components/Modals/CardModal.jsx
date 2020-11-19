@@ -44,7 +44,7 @@ const CardModal = ({card, closeOpenCard}) => {
                         </div>
 
                         <div className="card__addition-information">
-                            <p className="card__period">{new Date(card.date_published).getHours()} часов назад</p>
+                            <p className="card__period">{new Date(card.date_published).getDate()}.{new Date(card.date_published).getMonth()}.{new Date(card.date_published).getFullYear()}, {new Date(card.date_published).getHours()} ч. назад</p>
                         </div>
 
                     </div>

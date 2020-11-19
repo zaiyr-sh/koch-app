@@ -53,7 +53,7 @@ export const logoutThunkCreator = () => async (dispatch) => {
     localStorage.removeItem('user')
 }
 
-export const loginSuccess = (user) => { return { type: LOGIN_SUCCESS, user } }
-export const logoutSuccess = () => { return { type: LOGOUT_SUCCESS } }
+export const loginSuccess = (user) => ({ type: LOGIN_SUCCESS, user });
+export const logoutSuccess = () => ({ type: LOGOUT_SUCCESS });
 
 export default authReducer;

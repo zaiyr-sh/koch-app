@@ -73,5 +73,16 @@ export const authAPI = {
     }
 }
 
+// registration endpoint
+export const registrationAPI = {
+    register(name, surname, user_type, phone_number, password) {
+        return axiosInstance
+            .post(
+                `auth/users/`,
+                {name, surname, user_type, phone_number, password}
+            )
+    }
+}
+
 
 

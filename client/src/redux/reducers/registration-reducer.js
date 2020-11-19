@@ -1,43 +1,48 @@
-const SET_USER_DATA = 'auth/SET-USER-DATA';
-const REGISTRATION_FIRST_STAGE_SUCCESS = 'registration/REGISTRATION_FIRST_STAGE_SUCCESS';
+import {registrationAPI} from "../../api/api";
+
+const SET_EDIT_USER = 'registration/SET_EDIT_USER';
+const REGISTRATION_SUCCESS = 'registration/REGISTRATION_SUCCESS';
 
 let initialState = {
     user: {
+        user_type: "",
         name: "",
         surname: "",
-        phone_number: ""
-    }
+        phone_number: "",
+        password: ""
+    },
+    isRegister: false
 };
 
 const registrationReducer = (state = initialState, action) => {
     switch(action.type) {
-        case SET_USER_DATA:
+        case SET_EDIT_USER:
             return {
                 ...state,
-                ...action.payload,
-            };
-        case REGISTRATION_FIRST_STAGE_SUCCESS:
+                user: {...state.user, [action.nameField]: action.value}
+            }
+        case REGISTRATION_SUCCESS: {
             return {
                 ...state,
-                ...state.user,
-                name: action.name,
-                surname: action.surname,
-                phone_number: action.phone_number
-            };
+                isRegister: true
+            }
+        }
         default:
             return state;
     }
 }
 
-export const setAuthUserDataActionCreator = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: {userId, email, login, isAuth} })
-export const getAuthUserDataThunkCreator = () => async (dispatch) => {
-    // let response = await authAPI.myUserData()
-    // if (response.data.resultCode === 0) {
-    //     let {id, email, login} = response.data.data; // destructuring
-    //     dispatch(setAuthUserDataActionCreator(id, email, login, true));
-    // }
+export const editRegistrationFieldActionCreator = (nameField, value) => ({type: SET_EDIT_USER, nameField, value });
+export const registrationThunkCreator = () => async (dispatch, getState) => {
+    const {name, surname, user_type, phone_number, password} = getState().registrationPage.user;
+    const response = await registrationAPI.register(name, surname, user_type, phone_number, password);
+    debugger
+    if (response.status === 201) {
+        dispatch(registrationSuccess())
+
+    }
 }
 
-export const registrationFirstStageThunkCreator = (name, surname, phone_number) => ({ type: REGISTRATION_FIRST_STAGE_SUCCESS, name, surname, phone_number })
+export const registrationSuccess = () => ({ type: REGISTRATION_SUCCESS })
 
 export default registrationReducer;

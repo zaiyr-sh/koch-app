@@ -39,7 +39,7 @@
     padding-top: 20px;
 }
 
-.login__field-phoneNumber, .login__field-password, .registration__field-name, .registration__field-surname, .registration__field-phoneNumber {
+.login__field-phoneNumber, .login__field-password, .registration__field-name, .registration__field-surname, .registration__field-phoneNumber, .registration__field-password {
     font-family: "Gilroy-Medium";
     font-size: 16px;
 
@@ -54,7 +54,7 @@
     padding-left: 12px;
 }
 
-.login__password, .registration__surname, .registration__phoneNumber {
+.login__password, .registration__surname, .registration__phoneNumber, .registration__password {
     padding-top: 8px;
 }
 
@@ -79,7 +79,7 @@
     padding-top: 50px;
 }
 
-.login__button-registration {
+.login__button-registration, .registration__button-signin {
     display: flex;
     align-items: center;
     font-family: "Gilroy-SemiBold";
@@ -88,6 +88,27 @@
     color: #007AFF;
     text-decoration: none;
     padding-right: 24px;
+}
+
+.login__preregistration {
+    display: flex;
+    justify-content: center;
+}
+
+.registration__button-driver, .registration__button-client {
+    display: flex;
+    align-items: center;
+    font-family: "Gilroy-SemiBold";
+    font-size: 16px;
+    margin-top: 38px;
+
+    color: #007AFF;
+    text-decoration: none;
+    padding-right: 24px;
+    border: 1px solid #FFFFFF;
+    background: #FFFFFF;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .login__button-signin, .registration__button-signup {
