@@ -31,7 +31,7 @@ class PublishedAds(generics.ListAPIView):
     """
     permission_classes = (IsAuthenticated, )
 
-    def get_serializer(self, *args, **kwargs):
+    def get_serializer_class(self):
         if self.request.user.user_type == 'client':
             return CargoListSerializer
         if self.request.user.user_type == 'driver':
@@ -39,6 +39,6 @@ class PublishedAds(generics.ListAPIView):
 
     def get_queryset(self):
         if self.request.user.user_type == 'client':
-            return Cargo.objects.all()
+            return Cargo.objects.filter(user=request.user)
         if self.request.user.user_type == 'driver':
-            return Transportation.objects.all()
+            return Transportation.objects.filter(user=request.user)
