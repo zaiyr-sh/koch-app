@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from users.models import User, Driver
+from users.models import User, Driver, CargoType, VehicleType
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -14,7 +14,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 
 class DriverSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Driver
         fields = [
@@ -23,4 +22,22 @@ class DriverSerializer(serializers.ModelSerializer):
             'vehicle_passport',
             'driver_license',
             'id_passport',
+        ]
+
+
+class CargoTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CargoType
+        fields = [
+            'id',
+            'name'
+        ]
+
+
+class VehicleTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VehicleType
+        fields = [
+            'id',
+            'name'
         ]
