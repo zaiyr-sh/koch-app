@@ -15,20 +15,19 @@ class CargoSectionContainer extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <CargoSection
-                    cargoes={this.props.cargoes}
-                    getNextCargoes={this.props.getNextCargoes}
-                    onOpenCardModal={this.props.setOpenCardModal}
-                />
-            </div>
-        );
+        return this.props.display === "cargo" ? (
+            <CargoSection
+                cargoes={this.props.cargoes}
+                getNextCargoes={this.props.getNextCargoes}
+                onOpenCardModal={this.props.setOpenCardModal}
+            />
+        ) : <></>;
     }
 }
 
 const mapStateToProps = (state) => ({
-    cargoes: state.cargoPage.cargoes
+    cargoes: state.cargoPage.cargoes,
+    display: state.filterPage.display
 })
 
 const mapDispatchToProps = (dispatch) => {

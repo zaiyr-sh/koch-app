@@ -5,7 +5,11 @@ const SET_EDIT_USER = 'client/SET_EDIT_USER';
 const SET_USER_ORDERS = 'client/SET_USER_ORDERS';
 
 let initialState = {
-    userProfile: [],
+    userProfile: {
+        name: "",
+        surname: "",
+        phone_number: ""
+    },
     userOrders: [],
     isLoggedIn: false,
 }

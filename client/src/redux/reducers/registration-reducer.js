@@ -36,10 +36,8 @@ export const editRegistrationFieldActionCreator = (nameField, value) => ({type: 
 export const registrationThunkCreator = () => async (dispatch, getState) => {
     const {name, surname, user_type, phone_number, password} = getState().registrationPage.user;
     const response = await registrationAPI.register(name, surname, user_type, phone_number, password);
-    debugger
     if (response.status === 201) {
         dispatch(registrationSuccess())
-
     }
 }
 

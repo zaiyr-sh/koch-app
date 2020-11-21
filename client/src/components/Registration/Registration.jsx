@@ -29,7 +29,7 @@ class Registration extends React.Component {
         let {user, editRegistrationFieldHandler, isRegister} = this.props;
 
         if(isRegister) {
-            return <Redirect to="/profile/my_orders"/>
+            return <Redirect to="/login"/>
         }
 
         return this.state.isChose ? (

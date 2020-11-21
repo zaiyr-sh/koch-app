@@ -6,13 +6,17 @@ import authReducer from "../reducers/auth-reducer";
 import appReducer from "../reducers/app-reducer";
 import registrationReducer from "../reducers/registration-reducer";
 import userReducer from "../reducers/user-reducer";
+import filterReducer from "../reducers/filter-reducer";
+import transportationReducer from "../reducers/transportation-reducer";
 
 let reducers = combineReducers({
     app: appReducer,
     cargoPage: cargoReducer,
+    transportationPage: transportationReducer,
     authPage: authReducer,
     registrationPage: registrationReducer,
-    userPage: userReducer
+    userPage: userReducer,
+    filterPage: filterReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

@@ -113,8 +113,8 @@ const setNewCargoesActionCreator = (cargoes) => ({type: SET_NEW_CARGOES, cargoes
 
 export const getFilteredCargoesThunkCreator = () => async (dispatch, getState) => {
     let { from_region = "", from_city = "", to_region = "", to_city = "", weight = "", volume = "", length = "", width = "", height = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
-
     const response = await cargoesAPI.getFilteredCargoes( from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price );
+    console.log(response)
     dispatch(setCargoesActionCreator(response.data))
 }
 export const editCargoFilterActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
