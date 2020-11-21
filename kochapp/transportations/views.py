@@ -1,7 +1,7 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from drf_yasg2.utils import swagger_auto_schema
+from drf_yasg.utils import swagger_auto_schema
 from .filters import CargoFilter, TransportationFilter
 from .models import Cargo, Transportation, Region, City
 from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer, RegionSerializer, \
@@ -16,6 +16,8 @@ class CargoListView(generics.ListCreateAPIView):
     def get_serializer_class(self):
         if self.request.method == "POST":
             return CargoDetailSerializer
+        else:
+            return self.serializer_class
 
     @swagger_auto_schema(responses={'200': CargoDetailSerializer()}, tags=['cargo'])
     def post(self, request, *args, **kwargs):
