@@ -13,20 +13,22 @@ export const cargoesAPI = {
                 `cargo/`
             )
     },
-    getNextCargoes(offset, from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price) {
-        const priceParam = from_price === "" && to_price === "" ? "" : `&price__range=${from_price},${to_price}`
+    getNextCargoes(offset, from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+        const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
+        const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
+        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
         return axiosInstance
             .get(
-                `cargo/?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}&weight=${weight}&volume=${volume}&length=${length}&width=${width}&height=${height}
-                ${priceParam}`
+                `cargo/?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
             )
     },
-    getFilteredCargoes( from_region = "", from_city = "", to_region = "", to_city = "", weight = "", volume = "", length = "", width = "", height = "", from_price = "", to_price = "" ) {
-        // const priceParam = to_price === "" && from_price ? `price=${from_price}` : `price__range=${from_price},${to_price}`;
-        const priceParam = to_price === "" && from_price ? `price__range=${from_price},${to_price}` : ""
+    getFilteredCargoes( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+        const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
+        const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
+        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
         return axiosInstance
             .get(
-                `cargo?width=${width}&height=${height}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}&weight=${weight}&volume=${volume}&length=${length}&${priceParam}`
+                `cargo?from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
             )
     },
     getCargoCities(){

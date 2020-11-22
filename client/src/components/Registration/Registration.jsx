@@ -29,7 +29,7 @@ class Registration extends React.Component {
         let {user, editRegistrationFieldHandler, isRegister} = this.props;
 
         if(isRegister) {
-            return <Redirect to="/login"/>
+            if (window.confirm('Вы успешно зарегестрировались! Войдите в свой аккаунт.')) return <Redirect to="/login"/>;
         }
 
         return this.state.isChose ? (
@@ -45,6 +45,7 @@ class Registration extends React.Component {
                                     <input
                                         placeholder="Имя"
                                         className="registration__field-name"
+                                        required="true"
                                         type="text"
                                         name="name"
                                         value={user.name}
@@ -55,6 +56,7 @@ class Registration extends React.Component {
                                     <input
                                         placeholder="Фамилия"
                                         className="registration__field-surname"
+                                        required="true"
                                         type="text"
                                         name="surname"
                                         value={user.surname}
@@ -65,6 +67,7 @@ class Registration extends React.Component {
                                     <input
                                         placeholder="Номер телефона"
                                         className="registration__field-phoneNumber"
+                                        required="true"
                                         type="text"
                                         name="phone_number"
                                         value={user.phone_number}
@@ -76,6 +79,7 @@ class Registration extends React.Component {
                                     <input
                                         placeholder="Пароль"
                                         className="registration__field-password"
+                                        required="true"
                                         type="password"
                                         name="password"
                                         value={user.password}

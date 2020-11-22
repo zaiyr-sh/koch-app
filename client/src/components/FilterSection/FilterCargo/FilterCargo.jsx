@@ -7,15 +7,29 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                          getCargoes, resetFilterCargoes }
                          ) => {
 
+    const state = {
+        button: ""
+    }
+
     if (!cities && !regions) return <></>
 
     const resetFilter = () => {
-        resetFilterCargoes()
-        getCargoes()
+        resetFilterCargoes();
+        getCargoes();
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (state.button === "reset") {
+            resetFilter();
+        }
+        if (state.button === "show") {
+            getFilteredCargoes();
+        }
     }
 
     return (
-        <>
+        <form className="filter__form" onSubmit={onSubmit}>
             <div className="filter-direction">
                 <p className="filter-title">Откуда</p>
                 <div className="filter-direction-from">
@@ -70,18 +84,22 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                             <div className="filter-direction-area">
                                 <input className="filter-size-selection"
                                        type="number"
+                                       required={filteredCargoes.to_weight !== ""}
                                        min="0"
-                                       name="weight"
+                                       name="from_weight"
                                        placeholder="От"
-                                       value={filteredCargoes.weight}
+                                       value={filteredCargoes.from_weight}
                                        onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                             <div className="filter-direction-city">
                                 <input className="filter-size-selection"
-                                       name="weight"
+                                       type="number"
+                                       required={filteredCargoes.from_weight !== ""}
+                                       min="0"
+                                       name="to_weight"
                                        placeholder="До"
-                                       value={filteredCargoes.weight}
+                                       value={filteredCargoes.to_weight}
                                        onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
@@ -93,17 +111,23 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                         <div className="filter-size-to">
                             <div className="filter-direction-area">
                                 <input className="filter-size-selection"
-                                       name="volume"
+                                       type="number"
+                                       required={filteredCargoes.to_volume !== ""}
+                                       min="0"
+                                       name="from_volume"
                                        placeholder="От"
-                                       value={filteredCargoes.volume}
+                                       value={filteredCargoes.from_volume}
                                        onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                             <div className="filter-direction-city">
                                 <input className="filter-size-selection"
-                                       name="volume"
+                                       type="number"
+                                       required={filteredCargoes.from_volume !== ""}
+                                       min="0"
+                                       name="to_volume"
                                        placeholder="До"
-                                       value={filteredCargoes.volume}
+                                       value={filteredCargoes.to_volume}
                                        onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
@@ -115,6 +139,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                             <div className="filter-direction-area">
                                 <input className="filter-size-selection"
                                        name="from_price"
+                                       required={filteredCargoes.to_price !== ""}
                                        type="number"
                                        min="0"
                                        value={filteredCargoes.from_price}
@@ -125,6 +150,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                             <div className="filter-direction-city">
                                 <input className="filter-size-selection"
                                        name="to_price"
+                                       required={filteredCargoes.from_price !== ""}
                                        type="number"
                                        min="0"
                                        value={filteredCargoes.to_price}
@@ -141,13 +167,13 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
 
             <div className="filter-buttons">
                 <div className="filter-reset">
-                    <button className="filter-reset-btn" onClick={resetFilter}>Сбросить <i className="fa fa-close"/></button>
+                    <button className="filter-reset-btn" onClick={() => (state.button = "reset")}>Сбросить <i className="fa fa-close"/></button>
                 </div>
                 <div className="filter-show">
-                    <button className="filter-show-btn" onClick={getFilteredCargoes}>Показать объявления</button>
+                    <button className="filter-show-btn" onClick={() => (state.button = "show")}>Показать объявления</button>
                 </div>
             </div>
-        </>
+        </form>
     );
 };
 

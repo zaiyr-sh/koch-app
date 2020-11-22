@@ -20,11 +20,10 @@ let initialState = {
         from_city: "",
         to_region: "",
         to_city: "",
-        weight: "",
-        volume: "",
-        length: "",
-        width: "",
-        height: "",
+        from_weight: "",
+        to_weight: "",
+        from_volume: "",
+        to_volume: "",
         from_price: "",
         to_price: ""
     },
@@ -80,7 +79,7 @@ const cargoReducer = (state = initialState, action) => {
                 ...state,
                 filteredCargoes: {
                     ...state.filteredCargoes,
-                    from_region: "", from_city: "", to_region: "", to_city: "", weight: "", volume: "", length: "", width: "", height: "", from_price: "", to_price: ""
+                    from_region: "", from_city: "", to_region: "", to_city: "", from_weight: "", to_weight: "", from_volume: "", to_volume: "", from_price: "", to_price: ""
                 }
             }
         default:
@@ -105,16 +104,15 @@ export const getCargoesThunkCreator = () => async (dispatch) => {
 const setCargoesActionCreator = (cargoes) => ({type: SET_CARGOES, cargoes})
 
 export const getNextCargoesThunkCreator = (offset) => async (dispatch, getState) => {
-    let { from_region = "", from_city = "", to_region = "", to_city = "", weight = "", volume = "", length = "", width = "", height = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
-    const response = await cargoesAPI.getNextCargoes(offset, from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price);
+    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
+    const response = await cargoesAPI.getNextCargoes(offset,  from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price );
     dispatch(setNewCargoesActionCreator(response.data))
 }
 const setNewCargoesActionCreator = (cargoes) => ({type: SET_NEW_CARGOES, cargoes})
 
 export const getFilteredCargoesThunkCreator = () => async (dispatch, getState) => {
-    let { from_region = "", from_city = "", to_region = "", to_city = "", weight = "", volume = "", length = "", width = "", height = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
-    const response = await cargoesAPI.getFilteredCargoes( from_region, from_city, to_region, to_city, weight, volume, length, width, height, from_price, to_price );
-    console.log(response)
+    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
+    const response = await cargoesAPI.getFilteredCargoes(from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price );
     dispatch(setCargoesActionCreator(response.data))
 }
 export const editCargoFilterActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })

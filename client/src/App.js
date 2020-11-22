@@ -12,14 +12,16 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import CardModalContainer from "./components/Modals/CardModalContainer";
 import FilterSectionContainer from "./components/FilterSection/FilterSectionContainer";
 import TransportSectionContainer from "./components/TransportationSection/TransportationSectionContainer";
+import OrderPlacementContainer from "./components/Profile/OrderPlacement/OrderPlacementContainer";
 
 const App = () => {
     return (
         <>
             <NavbarContainer />
             <Switch>
-                <Route exact path="/login" component={LoginContainer}/>
-                <Route path="/registration" render={() => <RegistrationContainer />}/>
+                <Route path="/login" component={LoginContainer}/>
+                <Route path="/registration" component={RegistrationContainer}/>
+                <Route path="/placement" component={OrderPlacementContainer}/>
                 <Route path="/profile" component={ProfileContainer}/>
                 <Route exact path="/" component={PrimaryContainer}/>
                 <Route path="*" component={Error}/>

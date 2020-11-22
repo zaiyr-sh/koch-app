@@ -26,6 +26,8 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
                                 <input
                                     placeholder="Номер телефона"
                                     className="login__field-phoneNumber"
+                                    required="true"
+                                    title="Пожалуйста, заполните поле."
                                     type="text"
                                     name="phone_number"
                                     value={user.phone_number}
@@ -37,6 +39,7 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
                                 <input
                                     placeholder="Пароль"
                                     className="login__field-password"
+                                    required="true"
                                     type="password"
                                     name="password"
                                     value={user.password}
