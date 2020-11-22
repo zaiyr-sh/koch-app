@@ -1,9 +1,9 @@
 import React from 'react';
 
-import "./ClientProfile.css";
-import Preloader from "../../../common/Preloader/Preloader";
+import "./UserProfile.css";
+import Preloader from "../../common/Preloader/Preloader";
 
-const ClientProfile = ({ userProfile, editUserProfileHandler, updateUserProfileHandler }) => {
+const UserProfile = ({ userProfile, editUserProfileHandler, updateUserProfileHandler }) => {
 
     if (!userProfile) return <Preloader />
 
@@ -55,4 +55,4 @@ const ClientProfile = ({ userProfile, editUserProfileHandler, updateUserProfileH
     );
 };
 
-export default ClientProfile;
+export default UserProfile;

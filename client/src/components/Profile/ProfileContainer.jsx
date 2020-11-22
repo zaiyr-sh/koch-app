@@ -17,7 +17,6 @@ class ProfileContainer extends Component {
 
     render() {
         return <Profile
-            userType = {this.props.userProfile.user_type}
             userProfile={this.props.userProfile}
             userOrders={this.props.userOrders}
             editUserProfileHandler={this.props.editUserProfileHandler}

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import "./DriverProfile.css";
-import camera from "../../../../assets/images/camera_icon.png";
 import {NavLink} from "react-router-dom";
 
-class DriverProfile extends Component {
+import "./DriverRegistration.css";
+import camera from "../../../assets/images/camera_icon.png";
+
+class DriverRegistration extends Component {
 
     state={
         technicalPassport: camera,
@@ -199,4 +200,4 @@ class DriverProfile extends Component {
 
 };
 
-export default DriverProfile;
+export default DriverRegistration;

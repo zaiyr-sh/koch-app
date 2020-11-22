@@ -2,12 +2,17 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import Registration from "./Registration";
-import {editRegistrationFieldActionCreator, registrationThunkCreator} from "../../redux/reducers/registration-reducer";
+import {
+    editRegistrationFieldActionCreator,
+    openRegistrationSectionActionCreator,
+    registrationThunkCreator
+} from "../../redux/reducers/registration-reducer";
 
 class RegistrationContainer extends Component {
 
     render() {
         return < Registration
+            user_type={this.props.user_type}
             user={this.props.user}
             isRegister={this.props.isRegister}
             editRegistrationFieldHandler={this.props.editRegistrationFieldHandler}
@@ -17,6 +22,7 @@ class RegistrationContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user_type: state.registrationPage.user_type,
     user: state.registrationPage.user,
     isRegister: state.registrationPage.isRegister
 })

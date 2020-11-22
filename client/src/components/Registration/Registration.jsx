@@ -3,6 +3,8 @@ import {Link, Redirect} from "react-router-dom";
 
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
+import ClientRegistration from "./ClientRegistration/ClientRegistration";
+import DriverRegistration from "./DriverRegistration/DriverRegistration";
 
 class Registration extends React.Component {
 
@@ -24,81 +26,39 @@ class Registration extends React.Component {
         this.props.registrationHandler()
     }
 
+    handleUserType = (user, editRegistrationFieldHandler) => {
+        switch (user.user_type) {
+            case "client":
+                return (
+                    <ClientRegistration
+                        user={user}
+                        editRegistrationFieldHandler={editRegistrationFieldHandler}
+                        onSubmit={this.onSubmit}
+                        handleCloseRegistrationSection={this.handleCloseRegistrationSection}
+                    />
+                )
+            case "driver":
+                return (
+                    <DriverRegistration
+                        user={user}
+                        editRegistrationFieldHandler={editRegistrationFieldHandler}
+                        onSubmit={this.onSubmit}
+                        handleCloseRegistrationSection={this.handleCloseRegistrationSection}
+                    />
+                )
+        }
+    }
+
     render() {
 
-        let {user, editRegistrationFieldHandler, isRegister} = this.props;
+        let {user, editRegistrationFieldHandler, isRegister } = this.props;
 
         if(isRegister) {
             if (window.confirm('Вы успешно зарегестрировались! Войдите в свой аккаунт.')) return <Redirect to="/login"/>;
         }
 
         return this.state.isChose ? (
-            <section className="section-login">
-                <div className="container">
-                    <div className="login">
-                        <div className="login__form">
-                            <h2 className="login__title">Регистрация в Onoi.kg</h2>
-                            <p className="login__description">Введите ваше имя, фамилию и номер, на который
-                                мы отправим код подтверждения</p>
-                            <form className="registration__form" onSubmit={this.onSubmit}>
-                                <div className="registration__name">
-                                    <input
-                                        placeholder="Имя"
-                                        className="registration__field-name"
-                                        required="true"
-                                        type="text"
-                                        name="name"
-                                        value={user.name}
-                                        onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
-                                    />
-                                </div>
-                                <div className="registration__surname">
-                                    <input
-                                        placeholder="Фамилия"
-                                        className="registration__field-surname"
-                                        required="true"
-                                        type="text"
-                                        name="surname"
-                                        value={user.surname}
-                                        onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
-                                    />
-                                </div>
-                                <div className="registration__phoneNumber">
-                                    <input
-                                        placeholder="Номер телефона"
-                                        className="registration__field-phoneNumber"
-                                        required="true"
-                                        type="text"
-                                        name="phone_number"
-                                        value={user.phone_number}
-                                        onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
-                                    />
-                                    {/*<NumberFormat className="login__field-phoneNumber" format="+996 (###) ###-###" allowEmptyFormatting mask="_"/>*/}
-                                </div>
-                                <div className="registration__password">
-                                    <input
-                                        placeholder="Пароль"
-                                        className="registration__field-password"
-                                        required="true"
-                                        type="password"
-                                        name="password"
-                                        value={user.password}
-                                        onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
-                                    />
-                                    {/*<NumberFormat className="login__field-phoneNumber" format="+996 (###) ###-###" allowEmptyFormatting mask="_"/>*/}
-                                </div>
-                                {/*<div className="registration__addNumber">*/}
-                                {/*    <Link className="registration__button-addNumber" to="/reset" >Добавить номер</Link>*/}
-                                {/*</div>*/}
-                                <div className="registration__buttons">
-                                    <Link onClick={this.handleCloseRegistrationSection} className="registration__button-signin" to="/login">Войти</Link>
-                                    <button className="registration__button-signup">Зарегистрироваться</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            this.handleUserType(user, editRegistrationFieldHandler)
         ) : <Preregistration handleOpenRegistrationSection={this.handleOpenRegistrationSection}/>
     }
 }
