@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Card = ({ cargo, onOpenCardModal }) => {
+    console.log(cargo)
+
     return (
         <div className="card__item">
             <div className="card__inner">
@@ -14,7 +16,7 @@ const Card = ({ cargo, onOpenCardModal }) => {
                 </div>
                 <div className="card__main-information">
                     <div className="card__details">
-                        <p className="card__date">25.09.2020 - 01.01.2021</p>
+                        <p className="card__date">{new Date(cargo.departure_date).getDate()}.{new Date(cargo.departure_date).getMonth()}.{new Date(cargo.departure_date).getFullYear()}</p>
                         <p className="card__volume">{cargo.weight}т / {cargo.volume}м³</p>
                     </div>
                     <div className="card__price">{cargo.price}c</div>

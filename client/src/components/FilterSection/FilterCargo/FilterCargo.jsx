@@ -32,7 +32,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
         <form className="filter__form" onSubmit={onSubmit}>
             <div className="filter-direction">
                 <p className="filter-title">Откуда</p>
-                <div className="filter-direction-from">
+                <div className="filter-direction-from   ">
                     <div className="filter-direction-area">
                         <select value={filteredCargoes.from_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="from_region">
                             <option value="">Область</option>

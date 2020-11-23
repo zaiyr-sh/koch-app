@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import Registration from "./Registration";
 import {
     editRegistrationFieldActionCreator,
-    openRegistrationSectionActionCreator,
     registrationThunkCreator
 } from "../../redux/reducers/registration-reducer";
 

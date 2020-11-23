@@ -20,7 +20,7 @@ const CardModal = ({card, closeOpenCard}) => {
                         </div>
                         <div className="card__main-information">
                             <div className="card__details">
-                                <p className="card__date">25.09.2020 - 01.01.2021</p>
+                                <p className="card__date">{new Date(card.departure_date).getDate()}.{new Date(card.departure_date).getMonth()}.{new Date(card.departure_date).getFullYear()}</p>
                                 <p className="card__volume">{card.weight}т / {card.volume}м³</p>
                             </div>
                             <div className="card__price">{card.price}c</div>

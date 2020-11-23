@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const ClientRegistration = ({user, editRegistrationFieldHandler, onSubmit, handleCloseRegistrationSection}) => {
+const UserRegistration = ({user, editRegistrationFieldHandler, onSubmit, handleCloseRegistrationSection}) => {
     return (
         <section className="section-login">
             <div className="container">
@@ -72,4 +72,4 @@ const ClientRegistration = ({user, editRegistrationFieldHandler, onSubmit, handl
     );
 };
 
-export default ClientRegistration;
+export default UserRegistration;

@@ -1,10 +1,9 @@
 import React from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
-import ClientRegistration from "./ClientRegistration/ClientRegistration";
-import DriverRegistration from "./DriverRegistration/DriverRegistration";
+import UserRegistration from "./UserRegistration/UserRegistration";
 
 class Registration extends React.Component {
 
@@ -26,29 +25,6 @@ class Registration extends React.Component {
         this.props.registrationHandler()
     }
 
-    handleUserType = (user, editRegistrationFieldHandler) => {
-        switch (user.user_type) {
-            case "client":
-                return (
-                    <ClientRegistration
-                        user={user}
-                        editRegistrationFieldHandler={editRegistrationFieldHandler}
-                        onSubmit={this.onSubmit}
-                        handleCloseRegistrationSection={this.handleCloseRegistrationSection}
-                    />
-                )
-            case "driver":
-                return (
-                    <DriverRegistration
-                        user={user}
-                        editRegistrationFieldHandler={editRegistrationFieldHandler}
-                        onSubmit={this.onSubmit}
-                        handleCloseRegistrationSection={this.handleCloseRegistrationSection}
-                    />
-                )
-        }
-    }
-
     render() {
 
         let {user, editRegistrationFieldHandler, isRegister } = this.props;
@@ -58,7 +34,12 @@ class Registration extends React.Component {
         }
 
         return this.state.isChose ? (
-            this.handleUserType(user, editRegistrationFieldHandler)
+            <UserRegistration
+                user={user}
+                editRegistrationFieldHandler={editRegistrationFieldHandler}
+                onSubmit={this.onSubmit}
+                handleCloseRegistrationSection={this.handleCloseRegistrationSection}
+            />
         ) : <Preregistration handleOpenRegistrationSection={this.handleOpenRegistrationSection}/>
     }
 }

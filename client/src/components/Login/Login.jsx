@@ -11,8 +11,8 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
     }
 
     const onSubmit = e => {
-        e.preventDefault()
-        loginHandler()
+        e.preventDefault();
+        loginHandler();
     }
 
     return (

@@ -2,6 +2,7 @@ import { authAPI } from "../../api/api";
 
 const SET_USER_DATA = 'auth/SET-USER-DATA';
 const LOGIN_SUCCESS = 'auth/LOGIN-SUCCESS';
+const LOGIN_UNSUCCESS = 'auth/LOGIN_UNSUCCESS';
 const LOGOUT_SUCCESS = 'auth/LOGOUT-SUCCESS';
 const SET_EDIT_LOGIN = 'auth/SET_EDIT_LOGIN';
 
@@ -27,6 +28,11 @@ const authReducer = (state = initialState, action) => {
                 isLoggedIn: true,
                 user: action.user
             };
+        case LOGIN_UNSUCCESS:
+            return {
+                isLoggedIn: false,
+                user: {}
+            }
         case LOGOUT_SUCCESS:
             return {
                 isLoggedIn: false,
@@ -41,11 +47,17 @@ export const editLoginActionCreator = (nameField, value) => ({type: SET_EDIT_LOG
 
 export const loginThunkCreator = () => async (dispatch, getState) => {
     const { user } = getState().authPage;
-    let response = await authAPI.login(user.phone_number, user.password);
-    if(response && response.status === 200) {
-        localStorage.setItem('user', JSON.stringify(response.data));
-        dispatch(loginSuccess(response.data))
+    try {
+        let response = await authAPI.login(user.phone_number, user.password);
+        if(response && response.status === 200) {
+            localStorage.setItem('user', JSON.stringify(response.data));
+            dispatch(loginSuccess(response.data))
+        }
+    } catch (e) {
+        dispatch(loginUnsuccess());
+        alert("Введены неправильные данные!");
     }
+    
 }
 
 export const logoutThunkCreator = () => async (dispatch) => {
@@ -54,6 +66,7 @@ export const logoutThunkCreator = () => async (dispatch) => {
 }
 
 export const loginSuccess = (user) => ({ type: LOGIN_SUCCESS, user });
+export const loginUnsuccess = () => ({ type: LOGIN_UNSUCCESS });
 export const logoutSuccess = () => ({ type: LOGOUT_SUCCESS });
 
 export default authReducer;
