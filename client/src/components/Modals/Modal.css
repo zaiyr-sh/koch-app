@@ -1,0 +1,89 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 45%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup .popup__close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.card__comment {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+}
+
+.card__comment-title {
+    font-family: "Gilroy-Medium";
+    font-size: 12px;
+
+    color: #909090;
+}
+
+.card__comment-content {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #404040;
+    padding-top: 4px;
+}
+
+.card__personal-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    height: 36px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(144, 144, 144, 0.16);
+    border-radius: 4px;
+    padding: 0 12px;
+}
+
+.card__fullname {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #000000;
+}
+
+.card__phone-numbers {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #000000;
+}
+
+@media screen and (max-width: 700px){
+    .box{
+        width: 70%;
+    }
+    .popup{
+        width: 70%;
+    }
+}

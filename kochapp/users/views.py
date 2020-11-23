@@ -7,7 +7,7 @@ from transportations.models import Cargo, Transportation
 from transportations.serializers import CargoListSerializer, TransportationSerializer
 from . import models
 from . import serializers
-from .models import User
+from .models import User, CargoType, VehicleType
 
 
 class DriverCreateView(generics.GenericAPIView):
@@ -44,3 +44,19 @@ class PublishedAds(generics.ListAPIView):
             return Cargo.objects.filter(user=self.request.user)
         if self.request.user.user_type == 'driver':
             return Transportation.objects.filter(user=self.request.user)
+
+
+class CargoTypes(generics.ListAPIView):
+    """
+    Listing all available cargos
+    """
+    serializer_class = serializers.CargoTypeSerializer
+    queryset = CargoType.objects.all()
+
+
+class VehicleTypes(generics.ListAPIView):
+    """
+    Listing all available vehicles
+    """
+    serializer_class = serializers.VehicleTypeSerializer
+    queryset = VehicleType.objects.all()

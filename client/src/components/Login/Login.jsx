@@ -1,13 +1,8 @@
 import React from 'react';
 import {Link, Redirect} from "react-router-dom";
 import NumberFormat from 'react-number-format';
-import { reduxForm, Field } from 'redux-form';
 
 import "./Login.css";
-import styles from "../common/FormsControl/FormsControl.module.css"
-import {connect} from "react-redux";
-import {loginThunkCreator} from "../../redux/reducers/auth-reducer";
-import {maxLengthThunkCreator, minLengthThunkCreator, required} from "../../utils/validators";
 
 const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
 
@@ -16,8 +11,8 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
     }
 
     const onSubmit = e => {
-        e.preventDefault()
-        loginHandler()
+        e.preventDefault();
+        loginHandler();
     }
 
     return (
@@ -31,6 +26,8 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
                                 <input
                                     placeholder="Номер телефона"
                                     className="login__field-phoneNumber"
+                                    required="true"
+                                    title="Пожалуйста, заполните поле."
                                     type="text"
                                     name="phone_number"
                                     value={user.phone_number}
@@ -42,6 +39,7 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
                                 <input
                                     placeholder="Пароль"
                                     className="login__field-password"
+                                    required="true"
                                     type="password"
                                     name="password"
                                     value={user.password}

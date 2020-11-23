@@ -10,9 +10,49 @@ export const cargoesAPI = {
     getCargoes() {
         return axiosInstance
             .get(
-                `cargo`
+                `cargo/`
+            )
+    },
+    getNextCargoes(offset, from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+        const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
+        const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
+        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
+        return axiosInstance
+            .get(
+                `cargo/?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+            )
+    },
+    getFilteredCargoes( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+        const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
+        const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
+        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
+        return axiosInstance
+            .get(
+                `cargo?from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+            )
+    },
+    getCargoCities(){
+        return axiosInstance
+            .get(
+                `cargo/cities/`
+            )
+    },
+    getCargoRegions(){
+        return axiosInstance
+            .get(
+                `cargo/regions/`
             )
     }
+}
+
+// Cargo Transportation endpoint
+export const cargoTransportationAPI = {
+    getCargoTransportations() {
+        return axiosInstance
+            .get(
+                `cargo/transportation/`
+            )
+    },
 }
 
 // auth endpoint
@@ -40,6 +80,17 @@ export const authAPI = {
         return axiosInstance
             .put(
                 `auth/users/me/`, clientProfile, { headers: authHeader() }
+            )
+    }
+}
+
+// registration endpoint
+export const registrationAPI = {
+    register(name, surname, user_type, phone_number, password) {
+        return axiosInstance
+            .post(
+                `auth/users/`,
+                {name, surname, user_type, phone_number, password}
             )
     }
 }

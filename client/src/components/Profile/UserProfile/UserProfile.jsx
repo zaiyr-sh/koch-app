@@ -1,8 +1,9 @@
 import React from 'react';
-import "./ClientProfile.css";
-import Preloader from "../../../common/Preloader/Preloader";
 
-const ClientProfile = ({ userProfile, editUserProfileHandler, updateUserProfileHandler }) => {
+import "./UserProfile.css";
+import Preloader from "../../common/Preloader/Preloader";
+
+const UserProfile = ({ userProfile, editUserProfileHandler, updateUserProfileHandler }) => {
 
     if (!userProfile) return <Preloader />
 
@@ -33,6 +34,16 @@ const ClientProfile = ({ userProfile, editUserProfileHandler, updateUserProfileH
                                     onChange={(e) => editUserProfileHandler(e.target.name, e.target.value)}
                                 />
                             </div>
+                            <div className="client__phone-number">
+                                <input
+                                    type="text"
+                                    className="client__field"
+                                    value={userProfile.phone_number}
+                                    placeholder="Номер телефона"
+                                    name="phone_number"
+                                    onChange={(e) => editUserProfileHandler(e.target.name, e.target.value)}
+                                />
+                            </div>
                             <div className="client__button">
                                 <button className="client__saveButton" onClick={updateUserProfileHandler}>Сохранить изменения</button>
                             </div>
@@ -44,4 +55,4 @@ const ClientProfile = ({ userProfile, editUserProfileHandler, updateUserProfileH
     );
 };
 
-export default ClientProfile;
+export default UserProfile;

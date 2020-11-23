@@ -1,64 +1,57 @@
 import React from 'react';
+
 import "./FilterSection.css";
-import FilterCargo from "./FilterCargo/FilterCargo";
 import FilterTransport from "./FilterTransport/FilterTransport";
-import {NavLink} from "react-router-dom";
+import FilterCargoContainer from "./FilterCargo/FilterCargoContainer";
 
-class FilterSection extends React.Component {
+const FilterSection = ({display, editDisplayHandler}) => {
 
-    state = {
-        display: "cargo"
-    };
-
-    changeDisplay = (e) => {
+    const changeDisplay = (e) => {
         e.preventDefault()
-        let display = e.target.name
-        this.setState({display});
+        const display = e.target.name
+        editDisplayHandler(display)
     }
 
-    renderInner() {
-        let { display } = this.state;
-
+    const renderInner = () => {
         if (display === "cargo") {
-            return <FilterCargo />
-        } else if (display === "transport") {
+            return <FilterCargoContainer />
+        } else if (display === "transportation") {
             return <FilterTransport />
         }
     }
-    render() {
-        return (
-            <>
-                <div className="main-menu">
-                    <div className="container">
-                        <h2 className="menu-name">Грузоперевозки по всей стране</h2>
-                    </div>
+
+    return (
+        <>
+            <div className="main-menu">
+                <div className="container">
+                    <h2 className="menu-name">Грузоперевозки по всей стране</h2>
                 </div>
+            </div>
 
-                <section className="section-filteredTransport">
-                    <div className="container">
+            <section className="section-filteredTransport">
+                <div className="container">
 
-                        <div className="filter">
-                            <div className="filter-item">
+                    <div className="filter">
+                        <div className="filter-item">
 
-                                <div className="filter-chooser">
-                                    <p className="filter-search">Искать</p>
-                                    <div className="filter-searchFields">
-                                        <NavLink className="filter-goods" exact={true} activeClassName="filter-active" onClick={e => this.changeDisplay(e)} name="cargo" to="/">Груз</NavLink>
-                                        <NavLink className="filter-transport" activeClassName="filter-active" name="transport" onClick={e => this.changeDisplay(e)} to="/">Транспорт</NavLink>
-                                    </div>
+                            <div className="filter-chooser">
+                                <p className="filter-search">Искать</p>
+                                <div className="filter-searchFields">
+                                    <button className={display === 'cargo' ? 'filter-goods filter-active': 'filter-goods'} onClick={e => changeDisplay(e)} name="cargo">Груз</button>
+                                    <button className={display === 'transportation' ? 'filter-transport filter-active': 'filter-transport'} onClick={e => changeDisplay(e)}  name="transportation" >Транспорт</button>
                                 </div>
-
-                                {this.renderInner()}
-
                             </div>
-                            {/*Filter Item*/}
-                        </div>
 
+                            {renderInner()}
+
+                        </div>
+                        {/*Filter Item*/}
                     </div>
-                </section>
-            </>
-        );
-    }
+
+                </div>
+            </section>
+        </>
+    );
 };
 
 export default FilterSection;

@@ -1,4 +1,3 @@
-import {loginThunkCreator} from "./auth-reducer";
 import {getUserProfileThunkCreator} from "./user-reducer";
 
 const SET_INITIALIZING_SUCCESS = 'SET-INITIALIZING_SUCCESS';

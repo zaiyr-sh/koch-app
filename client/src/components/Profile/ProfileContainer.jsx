@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+
 import Profile from "./Profile";
 import {
     editUserProfileActionCreator, getUserOrdersThunkCreator,
     getUserProfileThunkCreator,
     updateUserProfileThunkCreator
 } from "../../redux/reducers/user-reducer";
-import {connect} from "react-redux";
-import ClientProfile from "./UserProfile/ClientProfile/ClientProfile";
 
 class ProfileContainer extends Component {
 
@@ -17,7 +17,6 @@ class ProfileContainer extends Component {
 
     render() {
         return <Profile
-            userType = {this.props.userProfile.user_type}
             userProfile={this.props.userProfile}
             userOrders={this.props.userOrders}
             editUserProfileHandler={this.props.editUserProfileHandler}

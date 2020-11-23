@@ -1,6 +1,7 @@
 import React from 'react';
-import "./Navbar.css";
 import {Link} from "react-router-dom";
+
+import "./Navbar.css";
 
 const Navbar = ({ isLoggedIn }) => {
     console.log(isLoggedIn)
@@ -22,7 +23,7 @@ const Navbar = ({ isLoggedIn }) => {
                         <nav className="nav">
                             <Link className="nav__link-lang" to="/g">ru</Link>
                             <Link className="nav__link-signIn" to={isLoggedIn ? "/profile/my_orders" : "/login"}>Войти</Link>
-                            <Link className="nav__link-placeAd" to={isLoggedIn ? "/profile/my_profile" : "/login"}><i className="fa fa-plus"/>  Разместить</Link>
+                            <Link className="nav__link-placeAd" to={isLoggedIn ? "/placement" : "/login"}><i className="fa fa-plus"/>  Разместить</Link>
                         </nav>
                     </div>
                 </div>

@@ -1,10 +1,15 @@
 from rest_framework import serializers
 
-from transportations.models import Cargo, Transportation, Region, City
+from .models import Cargo, Transportation, Region, City
+from .fields import CustomPrimaryKeyField
 from users.serializers import CustomUserSerializer
 
 
 class CargoListSerializer(serializers.ModelSerializer):
+    from_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
+    to_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
+    from_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
+    to_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
 
     class Meta:
         model = Cargo
@@ -27,6 +32,10 @@ class CargoListSerializer(serializers.ModelSerializer):
 
 class CargoDetailSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
+    from_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
+    to_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
+    from_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
+    to_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
 
     class Meta:
         model = Cargo
@@ -59,6 +68,10 @@ class CargoDetailSerializer(serializers.ModelSerializer):
 
 class TransportationSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
+    from_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
+    to_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
+    from_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
+    to_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
 
     class Meta:
         model = Transportation

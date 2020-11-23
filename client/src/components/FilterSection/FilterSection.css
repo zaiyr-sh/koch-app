@@ -31,6 +31,7 @@
 .filter-chooser {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 
     font-family: "Gilroy-Medium";
     font-size: 16px;
@@ -47,13 +48,14 @@
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
-    border-radius: 0 4px 4px 0;
+    border-radius: 4px 0 0 4px;
     text-decoration: none;
 
     padding: 8px 12px;
+    cursor: pointer;
 }
 
-.filter-goods:hover, .filter-transport:hover {
+.filter-active, .filter-active {
     color: #000000;
     background: #E5F2FF;
     border: 1px solid #007AFF;
@@ -87,7 +89,7 @@
 
     color: #909090;
 
-    padding: 8px 32px;
+    padding: 8px 10px;
 
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
@@ -127,7 +129,7 @@
 
     color: #909090;
     /*width: 50%;*/
-    padding: 8px 8px;
+    padding: 8px 10px;
 
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
@@ -159,10 +161,12 @@
 
 .filter-reset-btn {
     background: #ff0000;
+    border: 1px solid #ff0000;
 }
 
 .filter-show-btn {
     background: #007AFF;
+    border: 1px solid #007AFF;
 }
 
 /*@media only screen and (max-width: 1100px) {*/

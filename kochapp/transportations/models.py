@@ -79,7 +79,7 @@ class Transportation(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='vehicles')
 
     def __str__(self):
-        return f"{self.date_published} {self.user.driver.cargo_type} {self.driver.volume}"
+        return f"{self.date_published} {self.user.driver.cargo_type} {self.user.driver.carrying_capacity}"
 
     class Meta:
         ordering = ['-date_published']

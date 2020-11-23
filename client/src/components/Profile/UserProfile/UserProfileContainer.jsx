@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import ClientProfile from "./ClientProfile";
 import {connect} from "react-redux";
+
+import UserProfile from "./UserProfile";
 import {
     editUserProfileActionCreator,
     getUserProfileThunkCreator,
     updateUserProfileThunkCreator
-} from "../../../../redux/reducers/user-reducer";
+} from "../../../redux/reducers/user-reducer";
 
-class ClientProfileContainer extends Component {
+class UserProfileContainer extends Component {
 
     componentDidMount() {
         this.props.getUserProfile()
@@ -15,7 +16,7 @@ class ClientProfileContainer extends Component {
 
     render() {
         return (
-            <ClientProfile
+            <UserProfile
                 userProfile={this.props.userProfile}
                 editUserProfileHandler={this.props.editUserProfileHandler}
                 updateUserProfileHandler={this.props.updateUserProfileHandler}
@@ -42,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfileContainer);

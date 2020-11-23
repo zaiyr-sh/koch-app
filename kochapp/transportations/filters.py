@@ -8,12 +8,12 @@ class CargoFilter(filters.FilterSet):
         model = Cargo
         fields = {
             "price": ['range', 'exact'],
-            'from_city': ['in'],
-            'from_region': ['in'],
-            'to_city': ['in'],
-            'to_region': ['in'],
-            'weight': ['exact', 'range'],
-            'volume': ['exact', 'range'],
+            "weight": ['range', 'exact'],
+            "volume": ['range', 'exact'],
+            'from_city': ["exact"],
+            'from_region': ["exact"],
+            'to_city': ["exact"],
+            'to_region': ["exact"],
         }
 
 
