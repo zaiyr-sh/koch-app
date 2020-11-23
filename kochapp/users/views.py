@@ -17,8 +17,10 @@ class DriverCreateView(generics.GenericAPIView):
     serializer_class = serializers.DriverSerializer
     queryset = models.Driver.objects.all()
 
+    # permission_classes = (IsNotRegisteredDriver, )
+
     def post(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=request.data.pop('user'))
+        user = get_object_or_404(User, pk=request.data.pop('user_id'))
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exeception=True)
         serializer.save(user=user)
@@ -29,9 +31,9 @@ class PublishedAds(generics.ListAPIView):
     """
     Getting ads published by a driver or a client
     """
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
-    def get_serializer(self, *args, **kwargs):
+    def get_serializer_class(self):
         if self.request.user.user_type == 'client':
             return CargoListSerializer
         if self.request.user.user_type == 'driver':
@@ -39,6 +41,6 @@ class PublishedAds(generics.ListAPIView):
 
     def get_queryset(self):
         if self.request.user.user_type == 'client':
-            return Cargo.objects.all()
+            return Cargo.objects.filter(user=self.request.user)
         if self.request.user.user_type == 'driver':
-            return Transportation.objects.all()
+            return Transportation.objects.filter(user=self.request.user)

@@ -39,6 +39,8 @@ class CargoDetailSerializer(serializers.ModelSerializer):
             "date_published",
             "place_comment",
             "cargo_comment",
+            'from_shipment_date',
+            'to_shipment_date',
             "name",
             "weight",
             "volume",
@@ -63,7 +65,8 @@ class TransportationSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'user',
-            'departure_date',
+            'from_shipment_date',
+            'to_shipment_date',
             'from_region',
             'from_city',
             'to_region',
@@ -71,6 +74,8 @@ class TransportationSerializer(serializers.ModelSerializer):
             'date_published',
             'vehicle_comment',
             'price',
+            'weight',
+            'volume',
         ]
 
 

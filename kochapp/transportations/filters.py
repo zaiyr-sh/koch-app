@@ -8,23 +8,35 @@ class CargoFilter(filters.FilterSet):
         model = Cargo
         fields = {
             "price": ['range', 'exact'],
-            "date_published": ['range'],
             'from_city': ['in'],
             'from_region': ['in'],
             'to_city': ['in'],
             'to_region': ['in'],
+            'weight': ['exact', 'range'],
+            'volume': ['exact', 'range'],
         }
 
+
 class TransportationFilter(filters.FilterSet):
+    # vehicle_type = filters.CharFilter(method='get_vehicle_type')
+    # cargo_type = filters.CharFilter(method='get_cargo_type')
+
     class Meta:
         model = Transportation
         fields = {
             "price": ['range', 'exact'],
-            "departure_date": ['range'],
             'from_city': ['in'],
             'from_region': ['in'],
             'to_city': ['in'],
             'to_region': ['in'],
-            'carrying_capacity': ['exact', 'range'],
+            'weight': ['exact', 'range'],
             'volume': ['exact', 'range'],
+            # 'vehicle_type': ['exact'],
+            # 'cargo_type': ['exact']
         }
+    #
+    # def get_cargo_type(self, queryset, name, value):
+    #     return queryset.filter(user__driver__cargo_type=value)
+    #
+    # def get_vehicle_type(self, queryset, name, value):
+    #     return queryset.filter(user__driver__vehicle_type=value)

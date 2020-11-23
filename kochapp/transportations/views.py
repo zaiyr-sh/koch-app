@@ -1,6 +1,6 @@
-from rest_framework import generics, status
-from rest_framework.response import Response
+from rest_framework import generics
 
+from users.permissions import IsRegisteredDriver, IsClient
 from .filters import CargoFilter, TransportationFilter
 from .models import Cargo, Transportation, Region, City
 from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer, RegionSerializer, \
@@ -11,22 +11,23 @@ class CargoListView(generics.ListCreateAPIView):
     filterset_class = CargoFilter
     serializer_class = CargoListSerializer
     queryset = Cargo.objects.all()
+    permission_classes = (IsClient,)
 
     def perform_create(self, serializer):
-        if self.request.user.is_authenticated:
-            serializer.save(user=self.request.user)
-        else:
-            return Response({"error": "Authentication required to post cargo ad"}, status=status.HTTP_401_UNAUTHORIZED)
+        serializer.save(user=self.request.user)
+
 
 class CargoDetailView(generics.RetrieveUpdateAPIView):
     serializer_class = CargoDetailSerializer
     queryset = Cargo.objects.all()
+    permission_classes = ()
 
 
 class TransportationListView(generics.ListCreateAPIView):
     filterset_class = TransportationFilter
     serializer_class = TransportationSerializer
     queryset = Transportation.objects.all()
+    permission_classes = (IsRegisteredDriver,)
 
 
 class RegionsView(generics.ListAPIView):

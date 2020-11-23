@@ -61,7 +61,8 @@ class Transportation(models.Model):
     """
     Storing vehicles published by users
     """
-    departure_date = models.DateField()
+    from_shipment_date = models.DateField(null=True)
+    to_shipment_date = models.DateField(null=True)
 
     from_region = models.ForeignKey(Region, on_delete=models.PROTECT, related_name='vehicle_from_region')
     from_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='vehicle_from_region')
@@ -71,8 +72,8 @@ class Transportation(models.Model):
 
     date_published = models.DateTimeField(auto_now_add=True)
     vehicle_comment = models.TextField(null=True, blank=True)
-    carrying_capacity = models.FloatField()
-    volume = models.IntegerField()
+    weight = models.IntegerField()
+    volume = models.FloatField()
     price = models.IntegerField()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='vehicles')
