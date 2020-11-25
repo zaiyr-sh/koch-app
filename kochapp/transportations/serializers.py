@@ -36,6 +36,8 @@ class CargoDetailSerializer(serializers.ModelSerializer):
     to_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
     from_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
     to_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
+    sender_name = serializers.CharField(required=False)
+    sender_surname = serializers.CharField(required=False)
 
     class Meta:
         model = Cargo
