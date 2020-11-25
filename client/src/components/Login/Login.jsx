@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link, Redirect} from "react-router-dom";
-import NumberFormat from 'react-number-format';
 
 import "./Login.css";
 
@@ -26,20 +25,19 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
                                 <input
                                     placeholder="Номер телефона"
                                     className="login__field-phoneNumber"
-                                    required="true"
+                                    required
                                     title="Пожалуйста, заполните поле."
                                     type="text"
                                     name="phone_number"
                                     value={user.phone_number}
                                     onChange={(e) => editLoginHandler(e.target.name, e.target.value)}
                                 />
-                                {/*<NumberFormat className="login__field-phoneNumber" format="+996 (###) ###-###" allowEmptyFormatting mask="_"/>*/}
                             </div>
                             <div className="login__password">
                                 <input
                                     placeholder="Пароль"
                                     className="login__field-password"
-                                    required="true"
+                                    required
                                     type="password"
                                     name="password"
                                     value={user.password}

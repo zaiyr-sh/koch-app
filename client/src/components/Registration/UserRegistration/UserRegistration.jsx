@@ -15,7 +15,7 @@ const UserRegistration = ({user, editRegistrationFieldHandler, onSubmit, handleC
                                 <input
                                     placeholder="Имя"
                                     className="registration__field-name"
-                                    required="true"
+                                    required
                                     type="text"
                                     name="name"
                                     value={user.name}
@@ -26,7 +26,7 @@ const UserRegistration = ({user, editRegistrationFieldHandler, onSubmit, handleC
                                 <input
                                     placeholder="Фамилия"
                                     className="registration__field-surname"
-                                    required="true"
+                                    required
                                     type="text"
                                     name="surname"
                                     value={user.surname}
@@ -37,25 +37,23 @@ const UserRegistration = ({user, editRegistrationFieldHandler, onSubmit, handleC
                                 <input
                                     placeholder="Номер телефона"
                                     className="registration__field-phoneNumber"
-                                    required="true"
+                                    required
                                     type="text"
                                     name="phone_number"
                                     value={user.phone_number}
                                     onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
                                 />
-                                {/*<NumberFormat className="login__field-phoneNumber" format="+996 (###) ###-###" allowEmptyFormatting mask="_"/>*/}
                             </div>
                             <div className="registration__password">
                                 <input
                                     placeholder="Пароль"
                                     className="registration__field-password"
-                                    required="true"
+                                    required
                                     type="password"
                                     name="password"
                                     value={user.password}
                                     onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
                                 />
-                                {/*<NumberFormat className="login__field-phoneNumber" format="+996 (###) ###-###" allowEmptyFormatting mask="_"/>*/}
                             </div>
                             {/*<div className="registration__addNumber">*/}
                             {/*    <Link className="registration__button-addNumber" to="/reset" >Добавить номер</Link>*/}

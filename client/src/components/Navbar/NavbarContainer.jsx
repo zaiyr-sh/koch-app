@@ -11,16 +11,21 @@ class NavbarContainer extends Component {
         this.props.initializeAppThunk();
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.initializing !== prevProps.initializing) {
+            this.props.initializeAppThunk();
+        }
+    }
+
     render() {
         return (
-            <Navbar isLoggedIn={this.props.isLoggedIn}/>
+            <Navbar initializing={this.props.initializing}/>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    initializing: state.app.initializing,
-    isLoggedIn: state.userPage.isLoggedIn
+    initializing: state.app.initializing
 })
 
 const mapDispatchToProps = (dispatch) => {

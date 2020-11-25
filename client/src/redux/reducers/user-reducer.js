@@ -1,11 +1,9 @@
-import {authAPI, cargoesAPI} from "../../api/api";
+import {authAPI} from "../../api/api";
 
 const SET_USER = 'user/SET_USER';
 const SET_EDIT_USER = 'user/SET_EDIT_USER';
 const SET_USER_ORDERS = 'user/SET_USER_ORDERS';
 const SET_NEW_ORDERS = 'user/SET_NEW_ORDERS';
-const SET_OPEN_USER_CARD_MODAL = 'user/SET_OPEN_USER_CARD_MODAL';
-const SET_CLOSE_USER_CARD_MODAL = 'user/SET_CLOSE_USER_CARD_MODAL';
 
 let initialState = {
     userProfile: {
@@ -47,16 +45,6 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 userProfile: {...state.userProfile, [action.nameField]: action.value}
             }
-        case SET_OPEN_USER_CARD_MODAL:
-            return {
-                ...state,
-                userCard: action.userCard
-            }
-        case SET_CLOSE_USER_CARD_MODAL:
-            return {
-                ...state,
-                userCard: ""
-            }
         default:
             return state;
 
@@ -87,8 +75,5 @@ export const getNextOrdersThunkCreator = (offset) => async (dispatch) => {
     dispatch(setNewOrdersActionCreator(response.data))
 }
 const setNewOrdersActionCreator = (userOrders) => ({type: SET_NEW_ORDERS, userOrders})
-
-export const setOpenUserCardModalActionCreator = (userCard) => ({type: SET_OPEN_USER_CARD_MODAL, userCard})
-export const closeUserCardActionCreator = () => ({type: SET_CLOSE_USER_CARD_MODAL})
 
 export default userReducer;

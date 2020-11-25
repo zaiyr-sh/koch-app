@@ -6,7 +6,6 @@ const FilterTransport = ({ filteredTransportations, editTransportationFilterHand
                          cities, regions, editPlaceSelectionHandler,
                              getTransportations, resetFilterTransportation }
 ) => {
-    console.log(filteredTransportations)
 
     const state = {
         button: ""

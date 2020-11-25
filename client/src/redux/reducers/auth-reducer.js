@@ -8,7 +8,10 @@ const SET_EDIT_LOGIN = 'auth/SET_EDIT_LOGIN';
 
 let initialState = {
     isLoggedIn: false,
-    user: {}
+    user: {
+        phone_number: "",
+        password: ""
+    }
 };
 
 const authReducer = (state = initialState, action) => {
@@ -51,7 +54,7 @@ export const loginThunkCreator = () => async (dispatch, getState) => {
         let response = await authAPI.login(user.phone_number, user.password);
         if(response && response.status === 200) {
             localStorage.setItem('user', JSON.stringify(response.data));
-            dispatch(loginSuccess(response.data))
+            dispatch(loginSuccess(response.data));
         }
     } catch (e) {
         dispatch(loginUnsuccess());
@@ -61,8 +64,8 @@ export const loginThunkCreator = () => async (dispatch, getState) => {
 }
 
 export const logoutThunkCreator = () => async (dispatch) => {
-    dispatch(logoutSuccess())
-    localStorage.removeItem('user')
+    dispatch(logoutSuccess());
+    localStorage.removeItem('user');
 }
 
 export const loginSuccess = (user) => ({ type: LOGIN_SUCCESS, user });
