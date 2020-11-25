@@ -17,6 +17,7 @@ class DriverSerializer(serializers.ModelSerializer):
     class Meta:
         model = Driver
         fields = [
+            'carrying_capacity',
             'vehicle_type',
             'cargo_type',
             'vehicle_passport',

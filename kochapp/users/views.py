@@ -17,8 +17,6 @@ class DriverCreateView(generics.GenericAPIView):
     serializer_class = serializers.DriverSerializer
     queryset = models.Driver.objects.all()
 
-    # permission_classes = (IsNotRegisteredDriver, )
-
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, pk=request.data.pop('user_id'))
         serializer = self.get_serializer(data=request.data)

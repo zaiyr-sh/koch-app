@@ -1,7 +1,7 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics
 
 from users.permissions import IsRegisteredDriver, IsClient
-from drf_yasg.utils import swagger_auto_schema
 from .filters import CargoFilter, TransportationFilter
 from .models import Cargo, Transportation, Region, City
 from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer, RegionSerializer, \
@@ -12,7 +12,7 @@ class CargoListView(generics.ListCreateAPIView):
     filterset_class = CargoFilter
     serializer_class = CargoListSerializer
     queryset = Cargo.objects.all()
-    permission_classes = (IsClient,)
+    # permission_classes = (IsClient,)
 
     def get_serializer_class(self):
         if self.request.method == "POST":
@@ -22,11 +22,10 @@ class CargoListView(generics.ListCreateAPIView):
 
     @swagger_auto_schema(responses={'200': CargoDetailSerializer()}, tags=['cargo'])
     def post(self, request, *args, **kwargs):
-        super(CargoListView, self).post(request, *args, **kwargs)
+        return super(CargoListView, self).post(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
 
 
 class CargoDetailView(generics.RetrieveUpdateAPIView):
@@ -42,10 +41,7 @@ class TransportationListView(generics.ListCreateAPIView):
     permission_classes = (IsRegisteredDriver,)
 
     def perform_create(self, serializer):
-        if self.request.user.is_authenticated:
-            serializer.save(user=self.request.user)
-        else:
-            return Response({"error": "Authentication required to post cargo ad"}, status=status.HTTP_401_UNAUTHORIZED)
+        serializer.save(user=self.request.user)
 
 
 class RegionsView(generics.ListAPIView):
