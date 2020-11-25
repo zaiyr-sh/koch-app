@@ -19,7 +19,7 @@ export const cargoesAPI = {
         const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
         return axiosInstance
             .get(
-                `cargo/?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+                `cargo?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
             )
     },
     getFilteredCargoes( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
@@ -61,6 +61,12 @@ export const authAPI = {
         return axiosInstance
             .get(
                 `auth/users/me`, { headers: authHeader() }
+            );
+    },
+    getNextOrders(offset) {
+        return axiosInstance
+            .get(
+                `users/proflie/published-ads?limit=10&offset=${offset}`, { headers: authHeader() }
             );
     },
     getUserOrders() {

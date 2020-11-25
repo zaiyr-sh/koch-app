@@ -1,21 +1,31 @@
 import React from 'react';
 import Card from "../../CargoSection/Card";
+import Preloader from "../../common/Preloader/Preloader";
 
-const OrdersProfile = ({userOrders}) => {
+const OrdersProfile = ({userOrders, getNextOrders, onOpenCardModal}) => {
+
+    let offset = 0;
+    if(!userOrders.results) return <Preloader />
+
+    const loadOrdersHandler = e => {
+        e.preventDefault();
+        getNextOrders(offset+=10);
+    }
+
     return (
         <section className="section-card">
             <div className="container">
 
                 <div className="card">
-                    {userOrders.map(cargo => (
-                        <Card cargo={cargo} key={cargo.id}/>
+                    {userOrders.results.map(card => (
+                        <Card onOpenCardModal={onOpenCardModal} card={card} key={card.id}/>
                     ))}
                 </div>
                 {/*Card */}
 
-                <div className="card__next">
-                    <a className="card__next-btn" href="/">Еще...</a>
-                </div>
+                {userOrders.next !== null ? <div className="card__next">
+                    <a className="card__next-btn" href="/" onClick={loadOrdersHandler}>Еще...</a>
+                </div> : ""}
 
             </div>
             {/*Container*/}

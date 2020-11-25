@@ -3,10 +3,10 @@ import {connect} from "react-redux";
 
 import {
     getCargoesThunkCreator,
-    getNextCargoesThunkCreator,
-    setOpenCardModalActionCreator
+    getNextCargoesThunkCreator
 } from "../../redux/reducers/cargo-reducer";
 import CargoSection from "./CargoSection";
+import {setOpenCardModalActionCreator} from "../../redux/reducers/modal-reducer";
 
 class CargoSectionContainer extends Component {
 

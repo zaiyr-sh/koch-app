@@ -9,6 +9,7 @@ import userReducer from "../reducers/user-reducer";
 import filterReducer from "../reducers/filter-reducer";
 import transportationReducer from "../reducers/transportation-reducer";
 import placementReducer from "../reducers/placement-reducer";
+import modalReducer from "../reducers/modal-reducer";
 
 let reducers = combineReducers({
     app: appReducer,
@@ -18,7 +19,8 @@ let reducers = combineReducers({
     registrationPage: registrationReducer,
     userPage: userReducer,
     filterPage: filterReducer,
-    placementPage: placementReducer
+    placementPage: placementReducer,
+    modalPage: modalReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

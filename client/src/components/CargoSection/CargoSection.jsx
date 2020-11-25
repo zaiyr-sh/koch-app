@@ -19,8 +19,8 @@ const CargoSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
             <div className="container">
 
                 <div className="card">
-                    {cargoes.results.map(cargo => (
-                        <Card onOpenCardModal={onOpenCardModal} cargo={cargo} key={cargo.id}/>
+                    {cargoes.results.map(card => (
+                        <Card onOpenCardModal={onOpenCardModal} card={card} key={card.id}/>
                     ))}
                 </div>
                 {/*Card */}

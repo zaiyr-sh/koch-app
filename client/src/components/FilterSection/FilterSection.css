@@ -17,7 +17,7 @@
 }
 
 .filter {
-    width: 750px;
+    width: 800px;
     background: #FFFFFF;
     box-shadow: 0px 4px 10px rgba(144, 144, 144, 0.25);
     border-radius: 10px;
@@ -56,7 +56,30 @@
     cursor: pointer;
 }
 
-.filter-active, .filter-active {
+.filter-kind {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 39px;
+}
+
+.filter-transport-kind{
+    width: 111px;
+    color: #909090;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px 0 0 4px;
+    text-decoration: none;
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #909090;
+
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.filter-active {
     color: #000000;
     background: #E5F2FF;
     border: 1px solid #007AFF;
@@ -119,7 +142,10 @@
 .filter-size-information {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+}
+
+.filter-volume, .filter-price, .filter-kind {
+    padding-left: 12px;
 }
 
 .filter-size-from, .filter-size-to {
@@ -176,7 +202,7 @@
 .filter-show-btn {
     background: #007AFF;
     border: 1px solid #007AFF;
-    padding: 8px 63px;
+    padding: 8px 85px;
 }
 
 /*@media only screen and (max-width: 1100px) {*/

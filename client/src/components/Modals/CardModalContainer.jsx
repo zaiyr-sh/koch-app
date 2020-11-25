@@ -2,22 +2,22 @@ import React, {Component} from 'react';
 import {connect} from "react-redux"
 
 import CardModal from "./CardModal";
-import {closeOpenCardActionCreator} from "../../redux/reducers/cargo-reducer";
+import {closeCardActionCreator} from "../../redux/reducers/modal-reducer";
 
 class CardModalContainer extends Component {
     render() {
-        return <CardModal card={this.props.card} closeOpenCard={this.props.closeOpenCard}/>;
+        return <CardModal card={this.props.card} closeCard={this.props.closeCard}/>;
     }
 }
 
 const mapStateToProps = (state) => ({
-    card: state.cargoPage.card
+    card: state.modalPage.card
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        closeOpenCard() {
-            dispatch(closeOpenCardActionCreator())
+        closeCard() {
+            dispatch(closeCardActionCreator())
         }
     }
 }

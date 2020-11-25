@@ -2,8 +2,6 @@ import {cargoesAPI} from "../../api/api";
 
 const SET_CARGOES = 'client/SET_CARGOES';
 const SET_NEW_CARGOES = 'client/SET_NEW_CARGOES';
-const SET_OPEN_CARD_MODAL = 'client/SET_OPEN_CARD_MODAL';
-const SET_CLOSE_CARD_MODAL = 'client/SET_CLOSE_CARD_MODAL';
 const SET_EDIT_CARGO_FILTER = 'client/SET_EDIT_CARGO_FILTER';
 const SET_CARGO_PLACES = 'client/SET_CARGO_PLACES';
 const RESET_CARGO_FILTER = 'clint/RESET_CARGO_FILTER';
@@ -49,16 +47,6 @@ const cargoReducer = (state = initialState, action) => {
                     previous: action.cargoes.previous,
                     count: action.cargoes.count
                 }
-            }
-        case SET_OPEN_CARD_MODAL:
-            return {
-                ...state,
-                card: action.card
-            }
-        case SET_CLOSE_CARD_MODAL:
-            return {
-                ...state,
-                card: ""
             }
         case SET_EDIT_CARGO_FILTER:
             return {
@@ -116,8 +104,5 @@ export const getFilteredCargoesThunkCreator = () => async (dispatch, getState) =
     dispatch(setCargoesActionCreator(response.data))
 }
 export const editCargoFilterActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
-
-export const setOpenCardModalActionCreator = (card) => ({type: SET_OPEN_CARD_MODAL, card})
-export const closeOpenCardActionCreator = () => ({type: SET_CLOSE_CARD_MODAL})
 
 export default cargoReducer;

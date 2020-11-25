@@ -18,6 +18,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
         getCargoes();
     }
 
+
     const onSubmit = (e) => {
         e.preventDefault();
         if (state.button === "reset") {
@@ -49,7 +50,6 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                             ))}
                         </select>
                     </div>
-                    {/*<div className="filter-date">25 сен 2020</div>*/}
                 </div>
 
                 <p className="filter-title">Куда</p>
@@ -70,7 +70,6 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                             ))}
                         </select>
                     </div>
-                    {/*<div className="filter-date">25 сен 2020</div>*/}
                 </div>
             </div>
             {/*Filter Direction*/}

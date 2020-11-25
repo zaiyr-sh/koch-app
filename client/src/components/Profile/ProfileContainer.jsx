@@ -3,16 +3,17 @@ import {connect} from "react-redux";
 
 import Profile from "./Profile";
 import {
-    editUserProfileActionCreator, getUserOrdersThunkCreator,
+    editUserProfileActionCreator, getNextOrdersThunkCreator, getUserOrdersThunkCreator,
     getUserProfileThunkCreator,
     updateUserProfileThunkCreator
 } from "../../redux/reducers/user-reducer";
+import {setOpenCardModalActionCreator} from "../../redux/reducers/modal-reducer";
 
 class ProfileContainer extends Component {
 
     componentDidMount() {
-        this.props.getUserProfile()
-        this.props.getUserOrders()
+        this.props.getUserOrders();
+        this.props.getUserProfile();
     }
 
     render() {
@@ -21,6 +22,8 @@ class ProfileContainer extends Component {
             userOrders={this.props.userOrders}
             editUserProfileHandler={this.props.editUserProfileHandler}
             updateUserProfileHandler={this.props.updateUserProfileHandler}
+            getNextOrders={this.props.getNextOrders}
+            onOpenCardModal={this.props.onOpenCardModal}
         />;
     }
 }
@@ -38,12 +41,18 @@ const mapDispatchToProps = (dispatch) => {
         getUserOrders: () => {
             dispatch(getUserOrdersThunkCreator())
         },
+        getNextOrders:(offset) => {
+          dispatch(getNextOrdersThunkCreator(offset))
+        },
         editUserProfileHandler: (nameField, value) => {
             dispatch(editUserProfileActionCreator(nameField, value))
         },
         updateUserProfileHandler: () => {
             dispatch(updateUserProfileThunkCreator())
         },
+        onOpenCardModal: (userCard) => {
+            dispatch(setOpenCardModalActionCreator(userCard))
+        }
     }
 }
 

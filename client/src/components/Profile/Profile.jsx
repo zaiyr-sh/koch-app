@@ -7,13 +7,19 @@ import Footer from "../Footer/Footer";
 import UserNavbarContainer from "../Navbar/UserNavbar/UserNavbarContainer";
 import UserProfile from "./UserProfile/UserProfile";
 
-const Profile = ({ userProfile, userOrders, editUserProfileHandler, updateUserProfileHandler }) => {
+const Profile = ({ userProfile, userOrders, editUserProfileHandler, updateUserProfileHandler, getNextOrders, onOpenCardModal }) => {
 
     return (
         <>
             <UserNavbarContainer />
             <Switch>
-                <Route path="/profile/my_orders" component={() => <OrdersProfile userOrders={userOrders}/>}/>
+                <Route path="/profile/my_orders" component={() =>
+                    <OrdersProfile
+                        getNextOrders={getNextOrders}
+                        userOrders={userOrders}
+                        onOpenCardModal={onOpenCardModal}
+                    />
+                }/>
                 <Route path="/profile/my_profile" component={() =>
                     <UserProfile
                         userProfile={userProfile}

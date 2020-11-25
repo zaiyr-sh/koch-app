@@ -2,14 +2,14 @@ import React from 'react';
 import './Modal.css';
 import close from "../../assets/images/close_modal_icon.png";
 
-const CardModal = ({card, closeOpenCard}) => {
+const CardModal = ({card, closeCard}) => {
 
     if(Object.keys(card).length === 0) return <></>;
 
     return (
         <div className="overlay">
             <div className="popup">
-                <div className="popup__close" onClick={closeOpenCard}><img src={close} alt="close"/></div>
+                <div className="popup__close" onClick={closeCard}><img src={close} alt="close"/></div>
                     <div className="card__inner">
                         <div className="card__name">
                             {card.name}

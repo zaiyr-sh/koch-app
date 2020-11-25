@@ -1,8 +1,11 @@
-import {authAPI} from "../../api/api";
+import {authAPI, cargoesAPI} from "../../api/api";
 
-const SET_USER = 'client/SET_USER';
-const SET_EDIT_USER = 'client/SET_EDIT_USER';
-const SET_USER_ORDERS = 'client/SET_USER_ORDERS';
+const SET_USER = 'user/SET_USER';
+const SET_EDIT_USER = 'user/SET_EDIT_USER';
+const SET_USER_ORDERS = 'user/SET_USER_ORDERS';
+const SET_NEW_ORDERS = 'user/SET_NEW_ORDERS';
+const SET_OPEN_USER_CARD_MODAL = 'user/SET_OPEN_USER_CARD_MODAL';
+const SET_CLOSE_USER_CARD_MODAL = 'user/SET_CLOSE_USER_CARD_MODAL';
 
 let initialState = {
     userProfile: {
@@ -10,8 +13,9 @@ let initialState = {
         surname: "",
         phone_number: ""
     },
-    userOrders: [],
+    userOrders: {},
     isLoggedIn: false,
+    userCard: {}
 }
 
 const userReducer = (state = initialState, action) => {
@@ -27,10 +31,31 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 userOrders: action.userOrders
             }
+        case SET_NEW_ORDERS:
+            return {
+                ...state,
+                userOrders: {
+                    ...state.userOrders,
+                    results: [...state.userOrders.results, ...action.userOrders.results],
+                    next: action.userOrders.next,
+                    previous: action.userOrders.previous,
+                    count: action.userOrders.count
+                }
+            }
         case SET_EDIT_USER:
             return {
                 ...state,
                 userProfile: {...state.userProfile, [action.nameField]: action.value}
+            }
+        case SET_OPEN_USER_CARD_MODAL:
+            return {
+                ...state,
+                userCard: action.userCard
+            }
+        case SET_CLOSE_USER_CARD_MODAL:
+            return {
+                ...state,
+                userCard: ""
             }
         default:
             return state;
@@ -40,7 +65,7 @@ const userReducer = (state = initialState, action) => {
 
 export const getUserOrdersThunkCreator = () => async (dispatch) => {
     const response = await authAPI.getUserOrders();
-    dispatch(setUserOrdersActionCreator(response.data))
+    dispatch(setUserOrdersActionCreator(response.data));
 }
 const setUserOrdersActionCreator = (userOrders) => ({type: SET_USER_ORDERS, userOrders})
 
@@ -56,5 +81,14 @@ export const updateUserProfileThunkCreator = () => async (dispatch, getState) =>
     await authAPI.updateUserProfile(userProfile);
     dispatch(getUserProfileThunkCreator());
 }
+
+export const getNextOrdersThunkCreator = (offset) => async (dispatch) => {
+    const response = await authAPI.getNextOrders(offset);
+    dispatch(setNewOrdersActionCreator(response.data))
+}
+const setNewOrdersActionCreator = (userOrders) => ({type: SET_NEW_ORDERS, userOrders})
+
+export const setOpenUserCardModalActionCreator = (userCard) => ({type: SET_OPEN_USER_CARD_MODAL, userCard})
+export const closeUserCardActionCreator = () => ({type: SET_CLOSE_USER_CARD_MODAL})
 
 export default userReducer;
