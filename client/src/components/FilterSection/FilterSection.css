@@ -17,6 +17,7 @@
 }
 
 .filter {
+    width: 750px;
     background: #FFFFFF;
     box-shadow: 0px 4px 10px rgba(144, 144, 144, 0.25);
     border-radius: 10px;
@@ -78,9 +79,11 @@
 
 .filter-direction-from, .filter-direction-to {
     display: flex;
-    justify-content: space-between;
-    width: 70%;
     padding-top: 4px;
+}
+
+.filter-direction-city {
+    padding-left: 12px;
 }
 
 .filter-direction-selection {
@@ -89,6 +92,7 @@
 
     color: #909090;
 
+    width: 200px;
     padding: 8px 10px;
 
     background: #FFFFFF;
@@ -128,13 +132,17 @@
     font-size: 16px;
 
     color: #909090;
-    /*width: 50%;*/
+    width: 100px;
     padding: 8px 10px;
 
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 4px 4px;
+}
+
+.filter-price-selection {
+    width: 145px;
 }
 
 .filter-price {
@@ -154,19 +162,21 @@
     font-size: 16px;
 
     text-decoration: none;
-    padding: 8px 90px;
     color: #FFFFFF;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .filter-reset-btn {
     background: #ff0000;
     border: 1px solid #ff0000;
+    padding: 8px 55px
 }
 
 .filter-show-btn {
     background: #007AFF;
     border: 1px solid #007AFF;
+    padding: 8px 63px;
 }
 
 /*@media only screen and (max-width: 1100px) {*/

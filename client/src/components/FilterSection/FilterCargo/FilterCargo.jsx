@@ -32,7 +32,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
         <form className="filter__form" onSubmit={onSubmit}>
             <div className="filter-direction">
                 <p className="filter-title">Откуда</p>
-                <div className="filter-direction-from   ">
+                <div className="filter-direction-from">
                     <div className="filter-direction-area">
                         <select value={filteredCargoes.from_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="from_region">
                             <option value="">Область</option>
@@ -81,7 +81,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                     <div className="filter-weight">
                         <p className="filter-title">Вес груза, т</p>
                         <div className="filter-size-from">
-                            <div className="filter-direction-area">
+                            <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
                                        required={filteredCargoes.to_weight !== ""}
@@ -92,7 +92,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                                        onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
-                            <div className="filter-direction-city">
+                            <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
                                        required={filteredCargoes.from_weight !== ""}
@@ -109,7 +109,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                     <div className="filter-volume">
                         <p className="filter-title">Объем груза, м³ </p>
                         <div className="filter-size-to">
-                            <div className="filter-direction-area">
+                            <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
                                        required={filteredCargoes.to_volume !== ""}
@@ -120,7 +120,7 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                                        onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
-                            <div className="filter-direction-city">
+                            <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
                                        required={filteredCargoes.from_volume !== ""}
@@ -136,8 +136,8 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
 
                     <div className="filter-price">
                         <div className="filter-size-to">
-                            <div className="filter-direction-area">
-                                <input className="filter-size-selection"
+                            <div className="filter-direction-size">
+                                <input className="filter-size-selection filter-price-selection"
                                        name="from_price"
                                        required={filteredCargoes.to_price !== ""}
                                        type="number"
@@ -147,8 +147,8 @@ const FilterCargo = ({ filteredCargoes, editCargoFilterHandler, getFilteredCargo
                                        placeholder="Цена от, сом"
                                 />
                             </div>
-                            <div className="filter-direction-city">
-                                <input className="filter-size-selection"
+                            <div className="filter-direction-size">
+                                <input className="filter-size-selection filter-price-selection"
                                        name="to_price"
                                        required={filteredCargoes.from_price !== ""}
                                        type="number"

@@ -66,7 +66,7 @@ export const authAPI = {
     getUserOrders() {
         return axiosInstance
             .get(
-                `/users/proflie/published-ads/`, { headers: authHeader() }
+                `users/proflie/published-ads/`, { headers: authHeader() }
             )
     },
     login(phone_number, password) {
