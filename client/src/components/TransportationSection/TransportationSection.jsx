@@ -2,8 +2,14 @@ import React from 'react';
 import Preloader from "../common/Preloader/Preloader";
 import Card from "../CargoSection/Card";
 
-const TransportationSection = ({transportations, onOpenCardModal, loadTransportationsHandler}) => {
+const TransportationSection = ({transportations, onOpenCardModal, getNextTransportations}) => {
+    let offset = 0;
     if (!transportations.results) return <Preloader />
+
+    const loadTransportationsHandler = e => {
+        e.preventDefault();
+        getNextTransportations(offset+=10);
+    }
 
     return (
         <section className="section-card">

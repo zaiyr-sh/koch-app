@@ -1,10 +1,10 @@
-import {cargoesAPI} from "../../api/api";
+import {cargoesAPI, placesAPI} from "../../api/api";
 
-const SET_CARGOES = 'client/SET_CARGOES';
-const SET_NEW_CARGOES = 'client/SET_NEW_CARGOES';
-const SET_EDIT_CARGO_FILTER = 'client/SET_EDIT_CARGO_FILTER';
-const SET_CARGO_PLACES = 'client/SET_CARGO_PLACES';
-const RESET_CARGO_FILTER = 'clint/RESET_CARGO_FILTER';
+const SET_CARGOES = 'cargo/SET_CARGOES';
+const SET_NEW_CARGOES = 'cargo/SET_NEW_CARGOES';
+const SET_EDIT_CARGO_FILTER = 'cargo/SET_EDIT_CARGO_FILTER';
+const SET_CARGO_PLACES = 'cargo/SET_CARGO_PLACES';
+const RESET_CARGO_FILTER = 'cargo/RESET_CARGO_FILTER';
 
 let initialState = {
     cargoes: {
@@ -25,7 +25,6 @@ let initialState = {
         from_price: "",
         to_price: ""
     },
-    card: {},
     cities: "",
     regions: ""
 }
@@ -76,12 +75,12 @@ const cargoReducer = (state = initialState, action) => {
     }
 }
 
-export const getCargoPlacesThunkCreator = () => async (dispatch) => {
-    const citiesResponse = await cargoesAPI.getCargoCities();
-    const regionsResponse = await cargoesAPI.getCargoRegions();
-    dispatch(setCargoPlacesActionCreator(citiesResponse.data, regionsResponse.data))
+export const getPlacesThunkCreator = () => async (dispatch) => {
+    const citiesResponse = await placesAPI.getCities();
+    const regionsResponse = await placesAPI.getRegions();
+    dispatch(setPlacesActionCreator(citiesResponse.data, regionsResponse.data))
 }
-const setCargoPlacesActionCreator = (citiesResponse, regionsResponse) => ({type: SET_CARGO_PLACES, citiesResponse, regionsResponse})
+const setPlacesActionCreator = (citiesResponse, regionsResponse) => ({type: SET_CARGO_PLACES, citiesResponse, regionsResponse})
 export const editPlaceSelectionActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
 export const resetFilterCargoesActionCreator = () => ({type: RESET_CARGO_FILTER})
 

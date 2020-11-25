@@ -5,6 +5,22 @@ const axiosInstance = axios.create({
     baseURL: "http://159.89.97.207/api/"
 })
 
+// places endpoint
+export const placesAPI = {
+    getCities(){
+        return axiosInstance
+            .get(
+                `cargo/cities/`
+            )
+    },
+    getRegions(){
+        return axiosInstance
+            .get(
+                `cargo/regions/`
+            )
+    }
+}
+
 // cargoes endpoint
 export const cargoesAPI = {
     getCargoes() {
@@ -30,18 +46,6 @@ export const cargoesAPI = {
             .get(
                 `cargo?from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
             )
-    },
-    getCargoCities(){
-        return axiosInstance
-            .get(
-                `cargo/cities/`
-            )
-    },
-    getCargoRegions(){
-        return axiosInstance
-            .get(
-                `cargo/regions/`
-            )
     }
 }
 
@@ -53,6 +57,24 @@ export const cargoTransportationAPI = {
                 `cargo/transportation/`
             )
     },
+    getNextCargoTransportations(offset, from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+        const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
+        const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
+        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
+        return axiosInstance
+            .get(
+                `cargo/transportation?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+            )
+    },
+    getFilteredCargoTransportations( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+        const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
+        const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
+        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
+        return axiosInstance
+            .get(
+                `cargo/transportation?from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+            )
+    }
 }
 
 // auth endpoint

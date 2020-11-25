@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import TransportationSection from "./TransportationSection";
-import {getTransportationsThunkCreator} from "../../redux/reducers/transportation-reducer";
+import {
+    getNextTransportationsThunkCreator,
+    getTransportationsThunkCreator
+} from "../../redux/reducers/transportation-reducer";
 import {connect} from "react-redux";
 import {setOpenCardModalActionCreator} from "../../redux/reducers/modal-reducer";
 
@@ -16,6 +19,7 @@ class TransportSectionContainer extends Component {
             <TransportationSection
                 transportations={this.props.transportations}
                 onOpenCardModal={this.props.setOpenCardModal}
+                getNextTransportations={this.props.getNextTransportations}
             />
         ) : <></>;
     }
@@ -30,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getTransportations: () => {
             dispatch(getTransportationsThunkCreator())
+        },
+        getNextTransportations: (offset) => {
+            dispatch(getNextTransportationsThunkCreator(offset))
         },
         setOpenCardModal(card) {
             dispatch(setOpenCardModalActionCreator(card))

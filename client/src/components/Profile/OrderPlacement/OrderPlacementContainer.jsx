@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import CargoPlacement from "./CargoPlacement/CargoPlacement";
 import {editCargoPlacementActionCreator} from "../../../redux/reducers/placement-reducer";
-import {getCargoPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
+import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
 import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 
@@ -11,7 +11,7 @@ class OrderPlacementContainer extends Component {
 
     componentDidMount() {
         this.props.getUserProfile();
-        this.props.getCargoPlaces();
+        this.props.getPlaces();
     }
 
     checkUserType = () => {
@@ -55,8 +55,8 @@ const mapDispatchToProps = (dispatch) => {
         editCargoPlacementHandler: (nameField, value) => {
             dispatch(editCargoPlacementActionCreator(nameField, value))
         },
-        getCargoPlaces: () => {
-            dispatch(getCargoPlacesThunkCreator())
+        getPlaces: () => {
+            dispatch(getPlacesThunkCreator())
         },
     }
 }

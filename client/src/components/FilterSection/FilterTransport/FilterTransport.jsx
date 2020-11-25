@@ -2,20 +2,21 @@ import React from 'react';
 
 import "../FilterSection.css";
 
-const FilterTransport = ({ filteredCargoes = "", editCargoFilterHandler, getFilteredCargoes,
+const FilterTransport = ({ filteredTransportations, editTransportationFilterHandler, getFilteredTransportations,
                          cities, regions, editPlaceSelectionHandler,
-                         getCargoes, resetFilterCargoes }
+                             getTransportations, resetFilterTransportation }
 ) => {
+    console.log(filteredTransportations)
 
     const state = {
         button: ""
     }
 
-    // if (!cities && !regions) return <></>
+    if (!cities && !regions) return <></>
 
     const resetFilter = () => {
-        resetFilterCargoes();
-        getCargoes();
+        resetFilterTransportation();
+        getTransportations();
     }
 
 
@@ -25,7 +26,7 @@ const FilterTransport = ({ filteredCargoes = "", editCargoFilterHandler, getFilt
             resetFilter();
         }
         if (state.button === "show") {
-            getFilteredCargoes();
+            getFilteredTransportations();
         }
     }
 
@@ -35,43 +36,41 @@ const FilterTransport = ({ filteredCargoes = "", editCargoFilterHandler, getFilt
                 <p className="filter-title">Откуда</p>
                 <div className="filter-direction-from">
                     <div className="filter-direction-area">
-                        <select value={filteredCargoes.from_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="from_region">
+                        <select value={filteredTransportations.from_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="from_region">
                             <option value="">Область</option>
-                            {/*{regions.results.map(region => (*/}
-                            {/*    <option key={region.id} value={region.id}>{region.name}</option>*/}
-                            {/*))}*/}
+                            {regions.results.map(region => (
+                                <option key={region.id} value={region.id}>{region.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="filter-direction-city">
-                        <select value={filteredCargoes.from_city} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}  className="filter-direction-selection" name="from_city">
+                        <select value={filteredTransportations.from_city} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}  className="filter-direction-selection" name="from_city">
                             <option value="">Город, район</option>
-                            {/*{cities.results.map(city => (*/}
-                            {/*    <option key={city.id} value={city.id}>{city.name}</option>*/}
-                            {/*))}*/}
+                            {cities.results.map(city => (
+                                <option key={city.id} value={city.id}>{city.name}</option>
+                            ))}
                         </select>
                     </div>
-                    {/*<div className="filter-date">25 сен 2020</div>*/}
                 </div>
 
                 <p className="filter-title">Куда</p>
                 <div className="filter-direction-to">
                     <div className="filter-direction-area">
-                        <select value={filteredCargoes.to_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="to_region">
+                        <select value={filteredTransportations.to_region} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="to_region">
                             <option value="">Область</option>
-                            {/*{regions.results.map(region => (*/}
-                            {/*    <option key={region.id} value={region.id}>{region.name}</option>*/}
-                            {/*))}*/}
+                            {regions.results.map(region => (
+                                <option key={region.id} value={region.id}>{region.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="filter-direction-city">
-                        <select value={filteredCargoes.to_city} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="to_city">
+                        <select value={filteredTransportations.to_city} onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)} className="filter-direction-selection" name="to_city">
                             <option value="">Город, район</option>
-                            {/*{cities.results.map(city => (*/}
-                            {/*    <option key={city.id} value={city.id}>{city.name}</option>*/}
-                            {/*))}*/}
+                            {cities.results.map(city => (
+                                <option key={city.id} value={city.id}>{city.name}</option>
+                            ))}
                         </select>
                     </div>
-                    {/*<div className="filter-date">25 сен 2020</div>*/}
                 </div>
             </div>
             {/*Filter Direction*/}
@@ -85,23 +84,23 @@ const FilterTransport = ({ filteredCargoes = "", editCargoFilterHandler, getFilt
                             <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
-                                       required={filteredCargoes.to_weight !== ""}
+                                       required={filteredTransportations.to_weight !== ""}
                                        min="0"
                                        name="from_weight"
                                        placeholder="От"
-                                       value={filteredCargoes.from_weight}
-                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                       value={filteredTransportations.from_weight}
+                                       onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                             <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
-                                       required={filteredCargoes.from_weight !== ""}
+                                       required={filteredTransportations.from_weight !== ""}
                                        min="0"
                                        name="to_weight"
                                        placeholder="До"
-                                       value={filteredCargoes.to_weight}
-                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                       value={filteredTransportations.to_weight}
+                                       onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                         </div>
@@ -113,32 +112,32 @@ const FilterTransport = ({ filteredCargoes = "", editCargoFilterHandler, getFilt
                             <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
-                                       required={filteredCargoes.to_volume !== ""}
+                                       required={filteredTransportations.to_volume !== ""}
                                        min="0"
                                        name="from_volume"
                                        placeholder="От"
-                                       value={filteredCargoes.from_volume}
-                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                       value={filteredTransportations.from_volume}
+                                       onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                             <div className="filter-direction-size">
                                 <input className="filter-size-selection"
                                        type="number"
-                                       required={filteredCargoes.from_volume !== ""}
+                                       required={filteredTransportations.from_volume !== ""}
                                        min="0"
                                        name="to_volume"
                                        placeholder="До"
-                                       value={filteredCargoes.to_volume}
-                                       onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
+                                       value={filteredTransportations.to_volume}
+                                       onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
                                 />
                             </div>
                         </div>
                     </div>
 
                     <div className="filter-kind">
-                        <button className={filteredCargoes.kindOfTransport === "lorry" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="lorry">Грузовик</button>
-                        <button className={filteredCargoes.kindOfTransport === "semitrailer" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="semitrailer">Полуприцеп</button>
-                        <button className={filteredCargoes.kindOfTransport === "coupler" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="coupler">Сцепка</button>
+                        <button className={filteredTransportations.kindOfTransport === "lorry" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="lorry">Грузовик</button>
+                        <button className={filteredTransportations.kindOfTransport === "semitrailer" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="semitrailer">Полуприцеп</button>
+                        <button className={filteredTransportations.kindOfTransport === "coupler" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="coupler">Сцепка</button>
                     </div>
 
                 </div>

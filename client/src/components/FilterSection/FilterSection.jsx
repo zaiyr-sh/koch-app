@@ -1,8 +1,8 @@
 import React from 'react';
 
 import "./FilterSection.css";
-import FilterTransport from "./FilterTransport/FilterTransport";
 import FilterCargoContainer from "./FilterCargo/FilterCargoContainer";
+import FilterTransportContainer from "./FilterTransport/FilterTransportContainer";
 
 const FilterSection = ({display, editDisplayHandler}) => {
 
@@ -16,7 +16,7 @@ const FilterSection = ({display, editDisplayHandler}) => {
         if (display === "cargo") {
             return <FilterCargoContainer />
         } else if (display === "transportation") {
-            return <FilterTransport />
+            return <FilterTransportContainer />
         }
     }
 
