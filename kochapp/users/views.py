@@ -46,7 +46,7 @@ class PublishedAds(generics.ListAPIView):
 
 class CargoTypes(generics.ListAPIView):
     """
-    Listing all available cargos
+    Listing all available cargo types
     """
     serializer_class = serializers.CargoTypeSerializer
     queryset = CargoType.objects.all()

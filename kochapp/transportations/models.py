@@ -81,5 +81,9 @@ class Transportation(models.Model):
     def __str__(self):
         return f"{self.date_published} {self.user.driver.cargo_type} {self.user.driver.carrying_capacity}"
 
+    @property
+    def name(self):
+        return self.user.driver.vehicle_type.name
+
     class Meta:
         ordering = ['-date_published']

@@ -20,6 +20,8 @@ class CargoListSerializer(serializers.ModelSerializer):
             'from_city',
             'to_region',
             'to_city',
+            'from_shipment_date',
+            'to_shipment_date',
             "date_published",
             "weight",
             "volume",
@@ -70,6 +72,7 @@ class CargoDetailSerializer(serializers.ModelSerializer):
 
 class TransportationSerializer(serializers.ModelSerializer):
     user = CustomUserSerializer(read_only=True)
+    name = serializers.CharField()
     from_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
     to_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
     from_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
@@ -79,6 +82,7 @@ class TransportationSerializer(serializers.ModelSerializer):
         model = Transportation
         fields = [
             'id',
+            "name",
             'user',
             'from_shipment_date',
             'to_shipment_date',
