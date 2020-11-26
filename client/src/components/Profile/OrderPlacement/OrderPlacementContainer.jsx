@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import CargoPlacement from "./CargoPlacement/CargoPlacement";
-import {editCargoPlacementActionCreator, placeCargoThunkCreator} from "../../../redux/reducers/placement-reducer";
+import {
+    editCargoPlacementActionCreator,
+    editTransportationPlacementActionCreator,
+    placeCargoThunkCreator, placeTransportationThunkCreator
+} from "../../../redux/reducers/placement-reducer";
 import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
 import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
@@ -52,6 +56,7 @@ class OrderPlacementContainer extends Component {
 const mapStateToProps = (state) => ({
     user_type: state.userPage.userProfile.user_type,
     cargo: state.placementPage.cargo,
+    transportation: state.placementPage.transportation,
     cities: state.cargoPage.cities,
     regions: state.cargoPage.regions,
 })
@@ -69,6 +74,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         placeCargoHandler: () => {
             dispatch(placeCargoThunkCreator())
+        },
+        editTransportationPlacementHandler: (nameField, value) => {
+            dispatch(editTransportationPlacementActionCreator(nameField, value))
+        },
+        placeTransportationHandler: () => {
+            dispatch(placeTransportationThunkCreator())
         }
     }
 }

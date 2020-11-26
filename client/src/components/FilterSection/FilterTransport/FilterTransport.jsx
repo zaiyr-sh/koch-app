@@ -7,6 +7,8 @@ const FilterTransport = ({ filteredTransportations, editTransportationFilterHand
                              getTransportations, resetFilterTransportation }
 ) => {
 
+    console.log(filteredTransportations)
+
     const state = {
         button: ""
     }
@@ -134,9 +136,9 @@ const FilterTransport = ({ filteredTransportations, editTransportationFilterHand
                     </div>
 
                     <div className="filter-kind">
-                        <button className={filteredTransportations.kindOfTransport === "lorry" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="lorry">Грузовик</button>
-                        <button className={filteredTransportations.kindOfTransport === "semitrailer" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="semitrailer">Полуприцеп</button>
-                        <button className={filteredTransportations.kindOfTransport === "coupler" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("kindOfTransport", e.target.name)} name="coupler">Сцепка</button>
+                        <button className={filteredTransportations.vehicle_type === "lorry" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)} name="lorry">Грузовик</button>
+                        <button className={filteredTransportations.vehicle_type === "semitrailer" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)} name="semitrailer">Полуприцеп</button>
+                        <button className={filteredTransportations.vehicle_type === "coupler" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'} onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)} name="coupler">Сцепка</button>
                     </div>
 
                 </div>

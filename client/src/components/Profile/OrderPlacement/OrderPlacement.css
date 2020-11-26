@@ -89,18 +89,18 @@
 
 /*Placement Cargo*/
 
-.placement__cargo {
+.placement__cargo, .placement__transport {
     padding-top: 60px;
 }
 
-.placement__cargo__title {
+.placement__cargo__title, .placement__transport__title {
     font-family: "Gilroy-SemiBold";
     font-size: 16px;
     padding-bottom: 20px;
     color: #000000;
 }
 
-.placement__cargo-fields {
+.placement__cargo-fields, .placement__transport-fields {
     padding-top: 8px;
 }
 
@@ -110,7 +110,7 @@
     padding-top: 8px;
 }
 
-.placement__cargo-selection {
+.placement__cargo-selection, .placement__transport-selection {
     font-family: "Gilroy-Medium";
     font-size: 16px;
 

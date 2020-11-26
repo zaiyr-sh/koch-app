@@ -7,7 +7,6 @@ import Preloader from "../common/Preloader/Preloader";
 let offset = 0;
 
 const CargoSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
-    console.log(cargoes)
 
     if (!cargoes.results) return <Preloader />
 

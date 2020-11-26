@@ -22,7 +22,7 @@ const Navbar = ({ initializing }) => {
                         <nav className="nav">
                             {/*<Link className="nav__link-lang" to="/g">ru</Link>*/}
                             <Link className="nav__link-signIn" to={initializing === true ? "/profile/my_orders" : "/login"}>Войти</Link>
-                            <Link className="nav__link-placeAd" to="/placement"><i className="fa fa-plus"/>  Разместить</Link>
+                            <Link className="nav__link-placeAd" to={initializing === true ? "/placement" : "/login"}><i className="fa fa-plus"/>  Разместить</Link>
                         </nav>
                     </div>
                 </div>

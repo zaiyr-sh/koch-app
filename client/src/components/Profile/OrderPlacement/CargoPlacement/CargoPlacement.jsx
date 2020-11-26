@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./CargoPlacement.css";
+import "../OrderPlacement.css";
 
 const CargoPlacement = ({editCargoPlacementHandler, cargo, cities, regions, placeCargoHandler}) => {
     console.log(cargo)

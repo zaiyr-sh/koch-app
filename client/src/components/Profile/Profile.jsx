@@ -20,15 +20,17 @@ const Profile = ({ userProfile, userOrders, editUserProfileHandler, updateUserPr
                         onOpenCardModal={onOpenCardModal}
                     />
                 }/>
-                <Route path="/profile/my_profile" component={() =>
-                    <UserProfile
-                        userProfile={userProfile}
-                        editUserProfileHandler={editUserProfileHandler}
-                        updateUserProfileHandler={updateUserProfileHandler}
-                    />
-                }/>
+                <Route path="/profile/my_profile" component={() => (
+                    <>
+                        <UserProfile
+                            userProfile={userProfile}
+                            editUserProfileHandler={editUserProfileHandler}
+                            updateUserProfileHandler={updateUserProfileHandler}
+                        />
+                        <Footer />
+                    </>
+                )}/>
             </Switch>
-            <Footer />
         </>
     );
 };
