@@ -1,5 +1,6 @@
 from django_filters import rest_framework as filters
 
+from users.models import CargoType
 from .models import Cargo, Transportation
 
 
@@ -18,25 +19,17 @@ class CargoFilter(filters.FilterSet):
 
 
 class TransportationFilter(filters.FilterSet):
-    # vehicle_type = filters.CharFilter(method='get_vehicle_type')
-    # cargo_type = filters.CharFilter(method='get_cargo_type')
+    name = filters.CharFilter(field_name='user__driver__vehicle_type__name')
+    cargo_type = filters.ModelChoiceFilter(queryset=CargoType.objects.all(), field_name='user__driver__cargo_type')
 
     class Meta:
         model = Transportation
         fields = {
             "price": ['range', 'exact'],
-            'from_city': ['in'],
-            'from_region': ['in'],
-            'to_city': ['in'],
-            'to_region': ['in'],
+            'from_city': ['exact'],
+            'from_region': ['exact'],
+            'to_city': ['exact'],
+            'to_region': ['exact'],
             'weight': ['exact', 'range'],
             'volume': ['exact', 'range'],
-            # 'vehicle_type': ['exact'],
-            # 'cargo_type': ['exact']
         }
-    #
-    # def get_cargo_type(self, queryset, name, value):
-    #     return queryset.filter(user__driver__cargo_type=value)
-    #
-    # def get_vehicle_type(self, queryset, name, value):
-    #     return queryset.filter(user__driver__vehicle_type=value)
