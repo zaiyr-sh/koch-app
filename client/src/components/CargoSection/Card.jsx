@@ -2,6 +2,22 @@ import React from 'react';
 
 const Card = ({ card, onOpenCardModal }) => {
 
+    const minutes_with_leading_zeros = (dt) => {
+        return (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes();
+    }
+
+    const hours_with_leading_zeros = (dt) => {
+        return (dt.getHours() < 10 ? '0' : '') + dt.getHours();
+    }
+
+    const dates_with_leading_zeros = (dt) => {
+        return (dt.getDate() < 10 ? '0' : '') + dt.getDate();
+    }
+
+    const months_with_leading_zeros = (dt) => {
+        return (dt.getMonth() < 10 ? '0' : '') + dt.getMonth();
+    }
+
     return (
         <div className="card__item">
             <div className="card__inner">
@@ -15,14 +31,14 @@ const Card = ({ card, onOpenCardModal }) => {
                 </div>
                 <div className="card__main-information">
                     <div className="card__details">
-                        <p className="card__date">{new Date(card.from_shipment_date).getDate()}.{new Date(card.from_shipment_date).getMonth()}.{new Date(card.from_shipment_date).getFullYear()} - {new Date(card.to_shipment_date).getDate()}.{new Date(card.to_shipment_date).getMonth()}.{new Date(card.to_shipment_date).getFullYear()}</p>
+                        <p className="card__date">{hours_with_leading_zeros(new Date(card.from_shipment_date))}.{months_with_leading_zeros(new Date(card.from_shipment_date))}.{new Date(card.from_shipment_date).getFullYear()} - {dates_with_leading_zeros(new Date(card.to_shipment_date))}.{months_with_leading_zeros(new Date(card.to_shipment_date))}.{new Date(card.to_shipment_date).getFullYear()}</p>
                         <p className="card__volume">{card.weight}т / {card.volume}м³</p>
                     </div>
                     <div className="card__price">{card.price}c</div>
                 </div>
                 <div className="card__line"></div>
                 <div className="card__addition-information">
-                    <p className="card__period">{new Date(card.date_published).getDate()}.{new Date(card.date_published).getMonth()}.{new Date(card.date_published).getFullYear()}, {new Date(card.date_published).getHours()} ч. назад</p>
+                    <p className="card__period">{dates_with_leading_zeros(new Date(card.date_published))}.{months_with_leading_zeros(new Date(card.date_published))}.{new Date(card.date_published).getFullYear()}, в {hours_with_leading_zeros(new Date(card.date_published))}:{minutes_with_leading_zeros(new Date(card.date_published))} ч.</p>
                     <button className="card__addition-btn" onClick={() => onOpenCardModal(card)}>Подробнее</button>
                 </div>
             </div>

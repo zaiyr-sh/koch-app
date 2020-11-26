@@ -2,9 +2,10 @@ import React from 'react';
 import Card from "../../CargoSection/Card";
 import Preloader from "../../common/Preloader/Preloader";
 
+let offset = 0;
+
 const OrdersProfile = ({userOrders, getNextOrders, onOpenCardModal}) => {
 
-    let offset = 0;
     if(!userOrders.results) return <Preloader />
 
     const loadOrdersHandler = e => {

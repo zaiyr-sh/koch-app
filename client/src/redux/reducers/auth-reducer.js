@@ -51,7 +51,7 @@ export const editLoginActionCreator = (nameField, value) => ({type: SET_EDIT_LOG
 export const loginThunkCreator = () => async (dispatch, getState) => {
     const { user } = getState().authPage;
     try {
-        let response = await authAPI.login(user.phone_number, user.password);
+        const response = await authAPI.login(user.phone_number, user.password);
         if(response && response.status === 200) {
             localStorage.setItem('user', JSON.stringify(response.data));
             dispatch(loginSuccess(response.data));

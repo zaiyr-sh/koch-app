@@ -36,36 +36,36 @@
 .direction__from, .direction__to {
     display: flex;
     justify-content: space-between;
-    width: 70%;
     padding-top: 4px;
 }
 
-.direction__selection {
+.direction__selection{
     font-family: "Gilroy-Medium";
     font-size: 16px;
 
     color: #909090;
 
     padding: 8px 10px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.direction__selection-date {
+    font-family: "Gilroy-Medium";
+    font-size: 16px;
+
+    color: #909090;
+
+    padding: 7px 10px;
 
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 4px;
-}
-
-.direction__date {
-    display: flex;
-    align-items: center;
-
-    font-family: "Gilroy-Medium";
-    font-size: 16px;
-
-    color: #007AFF;
-    padding: 8px 12px;
-
-    background: #E5F2FF;
-    border-radius: 4px;
+    width: 200px;
 }
 
 /*Comments*/
@@ -121,6 +121,11 @@
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 4px 4px;
+    width: 200px;
+}
+
+.name-selection {
+    width: 372px;
 }
 
 /*Placement Contacts*/
@@ -149,26 +154,6 @@
     padding-bottom: 20px;
 }
 
-.placement__payment-chooser {
-    display: flex;
-    justify-content: space-between;
-}
-
-.placement__payment-selection {
-    font-family: "Gilroy-Medium";
-    font-size: 16px;
-
-    color: #909090;
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    box-sizing: border-box;
-    border-radius: 4px 0 0 4px;
-    text-decoration: none;
-
-    padding: 8px 12px;
-    cursor: pointer;
-}
-
 .placement__button {
     display: flex;
     justify-content: center;
@@ -185,4 +170,5 @@
     border: solid #007AFF 1px;
     border-radius: 4px;
     margin-bottom: 157px;
+    cursor: pointer;
 }

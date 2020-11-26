@@ -4,9 +4,11 @@ import "./CargoSection.css";
 import Card from "./Card";
 import Preloader from "../common/Preloader/Preloader";
 
-const CargoSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
+let offset = 0;
 
-    let offset = 0;
+const CargoSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
+    console.log(cargoes)
+
     if (!cargoes.results) return <Preloader />
 
     const loadCargoesHandler = e => {

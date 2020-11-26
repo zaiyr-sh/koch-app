@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import CargoPlacement from "./CargoPlacement/CargoPlacement";
-import {editCargoPlacementActionCreator} from "../../../redux/reducers/placement-reducer";
+import {editCargoPlacementActionCreator, placeCargoThunkCreator} from "../../../redux/reducers/placement-reducer";
 import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
 import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
+import TransportationPlacement from "./TransportationPlacement/TransportationPlacement";
 
 class OrderPlacementContainer extends Component {
 
@@ -15,6 +16,7 @@ class OrderPlacementContainer extends Component {
     }
 
     checkUserType = () => {
+        console.log("TYPES " + this.props.user_type)
         switch (this.props.user_type) {
             case "client":
                 return (
@@ -23,11 +25,18 @@ class OrderPlacementContainer extends Component {
                         regions={this.props.regions}
                         editCargoPlacementHandler={this.props.editCargoPlacementHandler}
                         cargo={this.props.cargo}
+                        placeCargoHandler={this.props.placeCargoHandler}
                     />
                 )
             case "driver":
                 return (
-                    <h1>DRIVER</h1>
+                    <TransportationPlacement
+                        cities={this.props.cities}
+                        regions={this.props.regions}
+                        editTransportationPlacementHandler={this.props.editTransportationPlacementHandler}
+                        transportation={this.props.transportation}
+                        placeTransportationHandler={this.props.placeTransportationHandler}
+                    />
                 )
             default:
                 return <></>
@@ -52,12 +61,15 @@ const mapDispatchToProps = (dispatch) => {
         getUserProfile: () => {
             dispatch(getUserProfileThunkCreator())
         },
-        editCargoPlacementHandler: (nameField, value) => {
-            dispatch(editCargoPlacementActionCreator(nameField, value))
-        },
         getPlaces: () => {
             dispatch(getPlacesThunkCreator())
         },
+        editCargoPlacementHandler: (nameField, value) => {
+            dispatch(editCargoPlacementActionCreator(nameField, value))
+        },
+        placeCargoHandler: () => {
+            dispatch(placeCargoThunkCreator())
+        }
     }
 }
 

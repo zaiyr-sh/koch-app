@@ -1,9 +1,6 @@
 import React from 'react';
 
-import "./CargoPlacement.css";
-
-const CargoPlacement = ({editCargoPlacementHandler, cargo, cities, regions, placeCargoHandler}) => {
-    console.log(cargo)
+const TransportationPlacement = ({editCargoPlacementHandler, cargo, cities, regions, placeCargoHandler}) => {
 
     if (!cities && !regions) return <></>
 
@@ -196,17 +193,17 @@ const CargoPlacement = ({editCargoPlacementHandler, cargo, cities, regions, plac
 
                         <div className="placement__payment">
                             <p className="placement__payment-title">Оплата за доставку</p>
-                                <div className="placement__cargo-fields">
-                                    <input
-                                        type="text"
-                                        className="placement__cargo-selection"
-                                        placeholder="Сумма, сом"
-                                        name="price"
-                                        required
-                                        value={cargo.price}
-                                        onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
-                                    />
-                                </div>
+                            <div className="placement__cargo-fields">
+                                <input
+                                    type="text"
+                                    className="placement__cargo-selection"
+                                    placeholder="Сумма, сом"
+                                    name="price"
+                                    required
+                                    value={cargo.price}
+                                    onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
+                                />
+                            </div>
                             {/*</div>*/}
                         </div>
                         {/*Placement Payment*/}
@@ -221,4 +218,4 @@ const CargoPlacement = ({editCargoPlacementHandler, cargo, cities, regions, plac
     );
 }
 
-export default CargoPlacement;
+export default TransportationPlacement;

@@ -123,5 +123,15 @@ export const registrationAPI = {
     }
 }
 
+// placement endpoints
+export const placementAPI = {
+    cargoPlacement(cargo) {
+        return axiosInstance
+            .post(
+                `cargo/`, cargo, { headers: authHeader() }
+            )
+    }
+}
+
 
 
