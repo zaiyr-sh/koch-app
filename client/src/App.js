@@ -12,22 +12,31 @@ import CardModalContainer from "./components/Modals/CardModalContainer";
 import FilterSectionContainer from "./components/FilterSection/FilterSectionContainer";
 import TransportSectionContainer from "./components/TransportationSection/TransportationSectionContainer";
 import OrderPlacementContainer from "./components/Profile/OrderPlacement/OrderPlacementContainer";
+import {connect} from "react-redux";
+import {initializeAppThunkCreator} from "./redux/reducers/app-reducer";
 
-const App = () => {
-    return (
-        <>
-            <NavbarContainer />
-            <Switch>
-                <Route path="/login" component={LoginContainer}/>
-                <Route path="/registration" component={RegistrationContainer}/>
-                <Route path="/placement" component={OrderPlacementContainer}/>
-                <Route path="/profile" component={ProfileContainer}/>
-                <Route exact path="/" component={PrimaryContainer}/>
-                <Route path="*" component={Error}/>
-            </Switch>
-            <CardModalContainer />
-        </>
-    );
+class App extends React.Component {
+
+    componentDidMount() {
+        this.props.initializeApp();
+    }
+
+    render() {
+        return (
+            <>
+                <NavbarContainer/>
+                <Switch>
+                    <Route path="/login" component={LoginContainer}/>
+                    <Route path="/registration" component={RegistrationContainer}/>
+                    <Route path="/placement" component={OrderPlacementContainer}/>
+                    <Route path="/profile" component={ProfileContainer}/>
+                    <Route exact path="/" component={PrimaryContainer}/>
+                    <Route path="*" component={Error}/>
+                </Switch>
+                <CardModalContainer/>
+            </>
+        );
+    }
 }
 
 const PrimaryContainer = () => (
@@ -40,4 +49,13 @@ const PrimaryContainer = () => (
 )
 
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        initializeApp: () => {
+            dispatch(initializeAppThunkCreator())
+        }
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(App);

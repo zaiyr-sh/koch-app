@@ -11,6 +11,7 @@ import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
 import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import TransportationPlacement from "./TransportationPlacement/TransportationPlacement";
+import {Redirect} from "react-router-dom";
 
 class OrderPlacementContainer extends Component {
 
@@ -20,7 +21,6 @@ class OrderPlacementContainer extends Component {
     }
 
     checkUserType = () => {
-        console.log("TYPES " + this.props.user_type)
         switch (this.props.user_type) {
             case "client":
                 return (
@@ -48,12 +48,14 @@ class OrderPlacementContainer extends Component {
     }
 
     render() {
+        if (!this.props.isLoggedIn) return <Redirect to="/"/>;
         if(!this.props.user_type) return <Preloader/>;
         return this.checkUserType();
     }
 }
 
 const mapStateToProps = (state) => ({
+    isLoggedIn: state.userPage.isLoggedIn,
     user_type: state.userPage.userProfile.user_type,
     cargo: state.placementPage.cargo,
     transportation: state.placementPage.transportation,
