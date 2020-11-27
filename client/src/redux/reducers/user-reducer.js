@@ -55,13 +55,13 @@ export const getUserOrdersThunkCreator = () => async (dispatch) => {
     const response = await authAPI.getUserOrders();
     dispatch(setUserOrdersActionCreator(response.data));
 }
-const setUserOrdersActionCreator = (userOrders) => ({type: SET_USER_ORDERS, userOrders})
+export const setUserOrdersActionCreator = (userOrders) => ({type: SET_USER_ORDERS, userOrders})
 
 export const getUserProfileThunkCreator = () => async (dispatch) => {
     const response = await authAPI.getUserData();
-    dispatch(setUserProfileActionCreator(response.data))
+    dispatch(setUserProfileActionCreator(response.data, true))
 }
-const setUserProfileActionCreator = (userProfile) => ({type: SET_USER, userProfile, isLoggedIn: true})
+export const setUserProfileActionCreator = (userProfile, isLoggedIn) => ({type: SET_USER, userProfile, isLoggedIn})
 
 export const editUserProfileActionCreator = (nameField, value) => ({type: SET_EDIT_USER, nameField, value })
 export const updateUserProfileThunkCreator = () => async (dispatch, getState) => {

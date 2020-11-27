@@ -7,25 +7,15 @@ import {initializeAppThunkCreator} from "../../redux/reducers/app-reducer";
 
 class NavbarContainer extends Component {
 
-    componentDidMount(){
-        this.props.initializeAppThunk();
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.initializing !== prevProps.initializing) {
-            this.props.initializeAppThunk();
-        }
-    }
-
     render() {
         return (
-            <Navbar initializing={this.props.initializing}/>
+            <Navbar isLoggedIn={this.props.isLoggedIn}/>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    initializing: state.app.initializing
+    isLoggedIn: state.userPage.isLoggedIn
 })
 
 const mapDispatchToProps = (dispatch) => {

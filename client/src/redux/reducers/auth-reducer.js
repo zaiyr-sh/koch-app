@@ -1,13 +1,10 @@
 import { authAPI } from "../../api/api";
+import {getUserProfileThunkCreator, setUserOrdersActionCreator, setUserProfileActionCreator} from "./user-reducer";
 
-const SET_USER_DATA = 'auth/SET-USER-DATA';
-const LOGIN_SUCCESS = 'auth/LOGIN-SUCCESS';
-const LOGIN_UNSUCCESS = 'auth/LOGIN_UNSUCCESS';
-const LOGOUT_SUCCESS = 'auth/LOGOUT-SUCCESS';
+const RESET_USER_DATA = 'auth/RESET_USER_DATA';
 const SET_EDIT_LOGIN = 'auth/SET_EDIT_LOGIN';
 
 let initialState = {
-    isLoggedIn: false,
     user: {
         phone_number: "",
         password: ""
@@ -16,31 +13,16 @@ let initialState = {
 
 const authReducer = (state = initialState, action) => {
     switch(action.type) {
-        case SET_USER_DATA:
+        case RESET_USER_DATA:
             return {
                 ...state,
-                ...action.payload,
+                user: {phone_number: "", password: ""}
             };
         case SET_EDIT_LOGIN:
             return {
                 ...state,
                 user: {...state.user, [action.nameField]: action.value}
             }
-        case LOGIN_SUCCESS:
-            return {
-                isLoggedIn: true,
-                user: action.user
-            };
-        case LOGIN_UNSUCCESS:
-            return {
-                isLoggedIn: false,
-                user: {}
-            }
-        case LOGOUT_SUCCESS:
-            return {
-                isLoggedIn: false,
-                user: {}
-            };
         default:
             return state;
     }
@@ -54,22 +36,20 @@ export const loginThunkCreator = () => async (dispatch, getState) => {
         const response = await authAPI.login(user.phone_number, user.password);
         if(response && response.status === 200) {
             localStorage.setItem('user', JSON.stringify(response.data));
-            dispatch(loginSuccess(response.data));
+            dispatch(getUserProfileThunkCreator());
         }
     } catch (e) {
-        dispatch(loginUnsuccess());
         alert("Введены неправильные данные!");
     }
     
 }
 
+const resetUserProfileActionCreator = () => ({type: RESET_USER_DATA})
 export const logoutThunkCreator = () => async (dispatch) => {
-    dispatch(logoutSuccess());
     localStorage.removeItem('user');
+    dispatch(setUserProfileActionCreator({userProfile: {name: "", surname: "", phone_number: ""}}, false));
+    dispatch(setUserOrdersActionCreator({userOrders: {}}));
+    dispatch(resetUserProfileActionCreator());
 }
-
-export const loginSuccess = (user) => ({ type: LOGIN_SUCCESS, user });
-export const loginUnsuccess = () => ({ type: LOGIN_UNSUCCESS });
-export const logoutSuccess = () => ({ type: LOGOUT_SUCCESS });
 
 export default authReducer;

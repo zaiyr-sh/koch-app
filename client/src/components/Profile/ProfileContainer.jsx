@@ -8,6 +8,8 @@ import {
     updateUserProfileThunkCreator
 } from "../../redux/reducers/user-reducer";
 import {setOpenCardModalActionCreator} from "../../redux/reducers/modal-reducer";
+import UserNavbar from "../Navbar/UserNavbar/UserNavbar";
+import {logoutThunkCreator} from "../../redux/reducers/auth-reducer";
 
 class ProfileContainer extends Component {
 
@@ -17,18 +19,22 @@ class ProfileContainer extends Component {
     }
 
     render() {
-        return <Profile
-            userProfile={this.props.userProfile}
-            userOrders={this.props.userOrders}
-            editUserProfileHandler={this.props.editUserProfileHandler}
-            updateUserProfileHandler={this.props.updateUserProfileHandler}
-            getNextOrders={this.props.getNextOrders}
-            onOpenCardModal={this.props.onOpenCardModal}
-        />;
+        return <>
+                <UserNavbar logoutThunk={this.props.logoutThunk} isLoggedIn={this.props.isLoggedIn}/>;
+                <Profile
+                    userProfile={this.props.userProfile}
+                    userOrders={this.props.userOrders}
+                    editUserProfileHandler={this.props.editUserProfileHandler}
+                    updateUserProfileHandler={this.props.updateUserProfileHandler}
+                    getNextOrders={this.props.getNextOrders}
+                    onOpenCardModal={this.props.onOpenCardModal}
+                />
+            </>;
     }
 }
 
 const mapStateToProps = (state) => ({
+    isLoggedIn: state.userPage.isLoggedIn,
     userProfile: state.userPage.userProfile,
     userOrders: state.userPage.userOrders
 })
@@ -52,6 +58,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onOpenCardModal: (userCard) => {
             dispatch(setOpenCardModalActionCreator(userCard))
+        },
+        logoutThunk: () => {
+            dispatch(logoutThunkCreator());
         }
     }
 }

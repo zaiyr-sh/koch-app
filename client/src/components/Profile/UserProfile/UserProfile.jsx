@@ -7,13 +7,18 @@ const UserProfile = ({ userProfile, editUserProfileHandler, updateUserProfileHan
 
     if (!userProfile) return <Preloader />
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        updateUserProfileHandler();
+    }
+
     return (
         <section className="section-clientProfile">
             <div className="container">
                 <div className="client__data">
                     <div className="client__inner">
                         <h2 className="client__title">Мои данные</h2>
-                        <form className="client__form">
+                        <form className="client__form" onSubmit={onSubmit}>
                             <div className="client__name">
                                 <input
                                     type="text"
@@ -34,18 +39,8 @@ const UserProfile = ({ userProfile, editUserProfileHandler, updateUserProfileHan
                                     onChange={(e) => editUserProfileHandler(e.target.name, e.target.value)}
                                 />
                             </div>
-                            {/*<div className="client__phone-number">*/}
-                            {/*    <input*/}
-                            {/*        type="text"*/}
-                            {/*        className="client__field"*/}
-                            {/*        value={userProfile.phone_number}*/}
-                            {/*        placeholder="Номер телефона"*/}
-                            {/*        name="phone_number"*/}
-                            {/*        onChange={(e) => editUserProfileHandler(e.target.name, e.target.value)}*/}
-                            {/*    />*/}
-                            {/*</div>*/}
                             <div className="client__button">
-                                <button className="client__saveButton" onClick={updateUserProfileHandler}>Сохранить изменения</button>
+                                <button className="client__saveButton">Сохранить изменения</button>
                             </div>
                         </form>
                     </div>
