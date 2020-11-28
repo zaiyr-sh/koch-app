@@ -3,12 +3,14 @@ import {getUserProfileThunkCreator, setUserOrdersActionCreator, setUserProfileAc
 
 const RESET_USER_DATA = 'auth/RESET_USER_DATA';
 const SET_EDIT_LOGIN = 'auth/SET_EDIT_LOGIN';
+const LOGIN_UNSUCCESS = 'auth/LOGIN_UNSUCCESS';
 
 let initialState = {
     user: {
         phone_number: "",
         password: ""
-    }
+    },
+    loginError: ""
 };
 
 const authReducer = (state = initialState, action) => {
@@ -22,6 +24,11 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: {...state.user, [action.nameField]: action.value}
+            }
+        case LOGIN_UNSUCCESS:
+            return {
+                ...state,
+                loginError: action.loginError
             }
         default:
             return state;
@@ -39,7 +46,7 @@ export const loginThunkCreator = () => async (dispatch, getState) => {
             dispatch(getUserProfileThunkCreator());
         }
     } catch (e) {
-        alert("Введены неправильные данные!");
+        dispatch(loginUnSuccess());
     }
     
 }
@@ -51,5 +58,7 @@ export const logoutThunkCreator = () => async (dispatch) => {
     dispatch(setUserOrdersActionCreator({userOrders: {}}));
     dispatch(resetUserProfileActionCreator());
 }
+
+const loginUnSuccess = () => ({type: LOGIN_UNSUCCESS, loginError: "Введен неверный логин или пароль"})
 
 export default authReducer;

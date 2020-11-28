@@ -172,3 +172,10 @@
     margin-bottom: 157px;
     cursor: pointer;
 }
+
+.error__description-order {
+    font-family: "Gilroy-Medium";
+    font-size: 12px;
+
+    color: #ff0000;
+}

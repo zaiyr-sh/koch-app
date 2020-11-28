@@ -9,6 +9,7 @@ class LoginContainer extends Component {
         return <Login
             user={this.props.user}
             isLoggedIn={this.props.isLoggedIn}
+            loginError={this.props.loginError}
             editLoginHandler={this.props.editLoginHandler}
             loginHandler={this.props.loginHandler}
         />;
@@ -17,7 +18,8 @@ class LoginContainer extends Component {
 
 const mapStateToProps = (state) => ({
     user: state.authPage.user,
-    isLoggedIn: state.userPage.isLoggedIn
+    isLoggedIn: state.userPage.isLoggedIn,
+    loginError: state.authPage.loginError
 })
 
 const mapDispatchToProps = (dispatch) => {

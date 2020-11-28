@@ -3,7 +3,7 @@ import {Link, Redirect} from "react-router-dom";
 
 import "./Login.css";
 
-const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
+const Login = ({ editLoginHandler, isLoggedIn, user, loginError, loginHandler }) => {
 
     if(isLoggedIn) {
         return <Redirect to="/profile/my_orders"/>
@@ -44,6 +44,9 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginHandler }) => {
                                     onChange={(e) => editLoginHandler(e.target.name, e.target.value)}
                                 />
                             </div>
+                            <p className="error__description">
+                                {loginError}
+                            </p>
                             <div className="login__resetPassword">
                                 <Link className="login__button-resetPassword" to="/reset" >Забыл пароль</Link>
                             </div>
