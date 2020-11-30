@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect} from "react-router-dom";
+import { withAlert  } from "react-alert";
 
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
@@ -13,6 +13,23 @@ class Registration extends React.Component {
         surnameError: "",
         phoneNumberError: "",
         passwordError: ""
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.registrationError) {
+            this.props.alert.error('Пользователь с таким номером уже зарегестрирован. Попробуйте заново!');
+        }
+
+        if(this.props.isRegister && this.props.user.user_type === "client") {
+            this.props.alert.success('Вы успешно зарегестрировались! Войдите в свой аккаунт.');
+            this.props.resetRegistration();
+        }
+
+        // if(this.props.isRegister && this.props.user.user_type === "driver") {
+        //     console.log(this.props.isRegister)
+        //     this.props.alert.success('Вы успешно зарегестрировались! Чтобы продолжить работу, отправьте данные вашего транспорта.');
+        //     this.props.editRegistrationDriverFieldHandler("user_id", JSON.parse(localStorage.getItem('user_id')));
+        // }
     }
 
     handleCloseRegistrationSection = () => {
@@ -50,7 +67,7 @@ class Registration extends React.Component {
             phoneNumberError = "Неправильно введенный формат номера телефона";
         }
         if (!(/[a-zA-Z]/g.test(password) && /\d/.test(password)) || (password.length <= 8)) {
-            passwordError = "Пароль должен быть от 8 символов длиной, и содержать один символ, и число";
+            passwordError = "Пароль должен быть от 8 символов длиной, содержать одну латинскую букву и число";
         }
 
         if (phoneNumberError || nameError || surnameError || passwordError) {
@@ -61,14 +78,8 @@ class Registration extends React.Component {
     }
 
     render() {
-
-        let {user, editRegistrationFieldHandler, isRegister } = this.props;
-
+        let {user, editRegistrationFieldHandler, driver, editRegistrationDriverFieldHandler } = this.props;
         let {isChose, nameError, surnameError, phoneNumberError, passwordError} = this.state;
-
-        if(isRegister) {
-            if (window.confirm('Вы успешно зарегестрировались! Войдите в свой аккаунт.')) return <Redirect to="/login"/>;
-        }
 
         return isChose ? (
             <UserRegistration
@@ -85,4 +96,4 @@ class Registration extends React.Component {
     }
 }
 
-export default Registration;
+export default withAlert()(Registration);

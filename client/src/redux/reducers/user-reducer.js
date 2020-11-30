@@ -4,6 +4,7 @@ const SET_USER = 'user/SET_USER';
 const SET_EDIT_USER = 'user/SET_EDIT_USER';
 const SET_USER_ORDERS = 'user/SET_USER_ORDERS';
 const SET_NEW_ORDERS = 'user/SET_NEW_ORDERS';
+const SET_USER_UPDATE_SUCCESS ='user/SET_USER_UPDATE_SUCCESS';
 
 let initialState = {
     userProfile: {
@@ -11,9 +12,14 @@ let initialState = {
         surname: "",
         phone_number: ""
     },
-    userOrders: {},
+    userOrders: {
+        results: [],
+        next: "",
+        previous: "",
+        count: 0,
+    },
     isLoggedIn: false,
-    userCard: {}
+    isUpdated: false
 }
 
 const userReducer = (state = initialState, action) => {
@@ -45,6 +51,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 userProfile: {...state.userProfile, [action.nameField]: action.value}
             }
+        case SET_USER_UPDATE_SUCCESS:
+            return {
+                ...state,
+                isUpdated: action.isUpdated
+            }
         default:
             return state;
 
@@ -68,12 +79,15 @@ export const updateUserProfileThunkCreator = () => async (dispatch, getState) =>
     const { userProfile } = getState().userPage;
     await authAPI.updateUserProfile(userProfile);
     dispatch(getUserProfileThunkCreator());
+    dispatch(updateUserProfileSuccessActionCreator(true));
 }
+export const updateUserProfileSuccessActionCreator = (isUpdated) => ({type: SET_USER_UPDATE_SUCCESS, isUpdated})
 
 export const getNextOrdersThunkCreator = (offset) => async (dispatch) => {
     const response = await authAPI.getNextOrders(offset);
     dispatch(setNewOrdersActionCreator(response.data))
 }
 const setNewOrdersActionCreator = (userOrders) => ({type: SET_NEW_ORDERS, userOrders})
+
 
 export default userReducer;

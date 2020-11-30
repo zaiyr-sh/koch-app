@@ -120,6 +120,13 @@ export const registrationAPI = {
                 `auth/users/`,
                 {name, surname, user_type, phone_number, password}
             )
+    },
+    registerDriver(user_id, carrying_capacity, vehicle_type, cargo_type, vehicle_passport, driver_license, id_passport) {
+        return axiosInstance
+            .post(
+                `users/drivers/register/`,
+                {user_id, carrying_capacity, vehicle_type, cargo_type, vehicle_passport, driver_license, id_passport}
+            )
     }
 }
 

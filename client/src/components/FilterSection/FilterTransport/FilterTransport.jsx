@@ -152,19 +152,22 @@ class FilterTransport extends React.Component {
 
                         <div className="filter-kind">
                             <button
-                                className={filteredTransportations.vehicle_type === "lorry" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                className={filteredTransportations.vehicle_type === "грузовик" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
                                 onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)}
-                                name="lorry">Грузовик
+                                type="button"
+                                name="грузовик">Грузовик
                             </button>
                             <button
-                                className={filteredTransportations.vehicle_type === "semitrailer" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                className={filteredTransportations.vehicle_type === "полуприцеп" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
                                 onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)}
-                                name="semitrailer">Полуприцеп
+                                type="button"
+                                name="полуприцеп">Полуприцеп
                             </button>
                             <button
-                                className={filteredTransportations.vehicle_type === "coupler" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                className={filteredTransportations.vehicle_type === "сцепка" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
                                 onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)}
-                                name="coupler">Сцепка
+                                type="button"
+                                name="сцепка">Сцепка
                             </button>
                         </div>
 

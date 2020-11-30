@@ -1,67 +1,98 @@
 import React from 'react';
 
 import '../OrderPlacement.css';
+import {placementSuccessActionCreator} from "../../../../redux/reducers/placement-reducer";
+import {withAlert} from "react-alert";
 
-const TransportationPlacement = ({editTransportationPlacementHandler, transportation, cities, regions, placeTransportationHandler}) => {
-    console.log(transportation)
-    if (!cities && !regions) return <></>
+class TransportationPlacement extends React.Component {
 
-    const onSubmit = (e) => {
+    onSubmit = (e) => {
         e.preventDefault();
-        placeTransportationHandler();
+        this.props.placeTransportationHandler();
     }
 
-    return (
-        <section className="section-placement">
-            <div className="container">
-                <div className="placement__inner">
-                    <p className="placement__title">Данные транспортного средства</p>
-                    <form className="placement__form" onSubmit={onSubmit}>
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.isPlaced){
+            this.props.alert.success('Вы успешно опубликовали!');
+            placementSuccessActionCreator(false);
+        }
+    }
 
-                        <div className="placement__direction">
-                            <p className="direction__address">Адреса</p>
-                            <p className="placement__direction__title">Откуда</p>
-                            <div className="direction__from">
-                                <div className="direction__area">
-                                    <select className="direction__selection" name="from_region" required value={transportation.from_region} onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
-                                        <option value="">Область</option>
-                                        {regions.results.map(region => (
-                                            <option key={region.id} value={region.id}>{region.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="direction__city">
-                                    <select className="direction__selection" name="from_city" required value={transportation.from_city} onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
-                                        <option value="">Город, район</option>
-                                        {cities.results.map(city => (
-                                            <option key={city.id} value={city.id}>{city.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="direction__date"><input className="direction__selection-date" required value={transportation.from_shipment_date} onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)} type="date" lang="fr-CA" id="from_shipment_date" name="from_shipment_date"/></div>
-                            </div>
+    render() {
+        let {editTransportationPlacementHandler, transportation, cities, regions} = this.props;
 
-                            <p className="placement__direction__title">Куда</p>
-                            <div className="direction__to">
-                                <div className="direction__area">
-                                    <select className="direction__selection" name="to_region" required value={transportation.to_region} onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
-                                        <option value="">Область</option>
-                                        {regions.results.map(region => (
-                                            <option key={region.id} value={region.id}>{region.name}</option>
-                                        ))}
-                                    </select>
+        if (!cities && !regions) return <></>
+
+        return (
+            <section className="section-placement">
+                <div className="container">
+                    <div className="placement__inner">
+                        <p className="placement__title">Данные транспортного средства</p>
+                        <form className="placement__form" onSubmit={this.onSubmit}>
+
+                            <div className="placement__direction">
+                                <p className="direction__address">Адреса</p>
+                                <p className="placement__direction__title">Откуда</p>
+                                <div className="direction__from">
+                                    <div className="direction__area">
+                                        <select className="direction__selection" name="from_region" required
+                                                value={transportation.from_region}
+                                                onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
+                                            <option value="">Область</option>
+                                            {regions.results.map(region => (
+                                                <option key={region.id} value={region.id}>{region.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="direction__city">
+                                        <select className="direction__selection" name="from_city" required
+                                                value={transportation.from_city}
+                                                onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
+                                            <option value="">Город, район</option>
+                                            {cities.results.map(city => (
+                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="direction__date"><input className="direction__selection-date"
+                                                                            required
+                                                                            value={transportation.from_shipment_date}
+                                                                            onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
+                                                                            type="date" lang="fr-CA"
+                                                                            id="from_shipment_date"
+                                                                            name="from_shipment_date"/></div>
                                 </div>
-                                <div className="direction__city">
-                                    <select className="direction__selection" name="to_city" required value={transportation.to_city} onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
-                                        <option value="">Город, район</option>
-                                        {cities.results.map(city => (
-                                            <option key={city.id} value={city.id}>{city.name}</option>
-                                        ))}
-                                    </select>
+
+                                <p className="placement__direction__title">Куда</p>
+                                <div className="direction__to">
+                                    <div className="direction__area">
+                                        <select className="direction__selection" name="to_region" required
+                                                value={transportation.to_region}
+                                                onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
+                                            <option value="">Область</option>
+                                            {regions.results.map(region => (
+                                                <option key={region.id} value={region.id}>{region.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="direction__city">
+                                        <select className="direction__selection" name="to_city" required
+                                                value={transportation.to_city}
+                                                onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
+                                            <option value="">Город, район</option>
+                                            {cities.results.map(city => (
+                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="direction__date"><input className="direction__selection-date"
+                                                                            required
+                                                                            value={transportation.to_shipment_date}
+                                                                            onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
+                                                                            type="date" id="to_shipment_date"
+                                                                            name="to_shipment_date"/></div>
                                 </div>
-                                <div className="direction__date"><input className="direction__selection-date" required value={transportation.to_shipment_date} onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)} type="date" id="to_shipment_date" name="to_shipment_date"/></div>
-                            </div>
-                            <div className="placement__comment">
+                                <div className="placement__comment">
                                 <textarea
                                     className="comment__sender"
                                     placeholder="Комментарий к транспортному средству ..."
@@ -69,64 +100,76 @@ const TransportationPlacement = ({editTransportationPlacementHandler, transporta
                                     value={transportation.vehicle_comment}
                                     onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
                                 />
+                                </div>
                             </div>
-                        </div>
-                        {/*Placement Direction*/}
+                            {/*Placement Direction*/}
 
-                        <div className="placement__transport">
-                            <p className="placement__transport__title">Транспорт</p>
-                            <div className="placement__transport-fields">
-                                <input
-                                    type="number"
-                                    min="0"
-                                    className="placement__transport-selection"
-                                    placeholder="Грузоподъемность, т"
-                                    name="weight"
-                                    required
-                                    value={transportation.weight}
-                                    onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
-                                />
+                            <div className="placement__transport">
+                                <p className="placement__transport__title">Транспорт</p>
+                                <div className="placement__transport-fields">
+                                    <input
+                                        type="text"
+                                        className="placement__cargo-selection name-selection"
+                                        placeholder="Название груза"
+                                        name="name"
+                                        required
+                                        value={transportation.name}
+                                        onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
+                                    />
+                                </div>
+                                <div className="placement__transport-fields">
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        className="placement__transport-selection"
+                                        placeholder="Грузоподъемность, т"
+                                        name="weight"
+                                        required
+                                        value={transportation.weight}
+                                        onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
+                                    />
+                                </div>
+                                <div className="placement__transport-fields">
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        className="placement__transport-selection"
+                                        placeholder="Объем багажа, м³"
+                                        name="volume"
+                                        required
+                                        value={transportation.volume}
+                                        onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
+                                    />
+                                </div>
                             </div>
-                            <div className="placement__transport-fields">
-                                <input
-                                    type="number"
-                                    min="0"
-                                    className="placement__transport-selection"
-                                    placeholder="Объем багажа, м³"
-                                    name="volume"
-                                    required
-                                    value={transportation.volume}
-                                    onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        {/*Placement Cargo*/}
+                            {/*Placement Cargo*/}
 
-                        <div className="placement__payment">
-                            <p className="placement__payment-title">Оплата за доставку</p>
-                            <div className="placement__transport-fields">
-                                <input
-                                    type="text"
-                                    className="placement__transport-selection"
-                                    placeholder="Сумма, сом"
-                                    name="price"
-                                    required
-                                    value={transportation.price}
-                                    onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
-                                />
+                            <div className="placement__payment">
+                                <p className="placement__payment-title">Оплата за доставку</p>
+                                <div className="placement__transport-fields">
+                                    <input
+                                        type="text"
+                                        className="placement__transport-selection"
+                                        placeholder="Сумма, сом"
+                                        name="price"
+                                        required
+                                        value={transportation.price}
+                                        onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
+                                    />
+                                </div>
+                                {/*</div>*/}
                             </div>
-                            {/*</div>*/}
-                        </div>
-                        {/*Placement Payment*/}
+                            {/*Placement Payment*/}
 
-                        <div className="placement__button">
-                            <button className="placement__place-button">Разместить</button>
-                        </div>
-                    </form>
+                            <div className="placement__button">
+                                <button className="placement__place-button">Разместить</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
-    );
+            </section>
+        );
+    }
 }
 
-export default TransportationPlacement;
+export default withAlert()(TransportationPlacement);

@@ -2,89 +2,74 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 
 import "./DriverRegistration.css";
-import camera from "../../../assets/images/camera_icon.png";
 
 class DriverRegistration extends Component {
 
-    state={
-        technicalPassport: camera,
-        driverLicence: camera,
-        idPassport: camera,
-    }
+    // state={
+    //     vehicle_passport: camera,
+    //     driver_license: camera,
+    //     id_passport: camera,
+    // }
 
     imageHandler = (files, name) => {
-        debugger
         const reader = new FileReader();
         reader.onload = () =>{
             if(reader.readyState === 2){
-                this.setState({[name]: reader.result})
+                this.props.editRegistrationDriverFieldHandler(name, reader.result)
             }
         }
         reader.readAsDataURL(files[0])
     };
 
+    onSubmit = (e) => {
+        e.preventDefault();
+        // const data = new FormData()
+        // data.append('vehicle_passport', this.state.vehicle_passport)
+        // data.append('driver_license', this.state.driver_license)
+        // data.append('id_passport', this.state.id_passport)
+    }
+
     render() {
+
+        let {driver, editRegistrationDriverFieldHandler} = this.props;
+        console.log(driver)
+
         return (
             <section className="section-driverProfile">
                 <div className="container">
                     <div className="driver__data">
                         <div className="driver__inner">
                             <h2 className="driver__title">Данные водителя</h2>
-                            <form className="driver__form">
-                                <div className="driver__name">
-                                    <input
-                                        type="text"
-                                        className="driver__field"
-                                        placeholder="Имя"
-                                        name="name"
-                                    />
-                                </div>
-                                <div className="driver__surname">
-                                    <input
-                                        type="text"
-                                        className="driver__field"
-                                        placeholder="Фамилия"
-                                        name="surname"
-                                    />
-                                </div>
-
-                                <div className="driver__direction">
-                                    <p className="driver__direction-title">Местоположение</p>
-                                    <div className="driver__direction-from">
-                                        <div className="driver__direction-area">
-                                            <select className="driver__direction-selection" name="area">
-                                                <option value="bishkek">Бишкек</option>
-                                                <option value="osh">Ошская</option>
-                                                <option value="naryn">Нарынская</option>
-                                                <option value="issyk_kul">Иссык-Кульская</option>
-                                            </select>
-                                        </div>
-                                        <div className="driver__direction-area">
-                                            <select className="driver__direction-selection" name="area">
-                                                <option value="area">Тунгуч</option>
-                                                <option value="osh">Ошская</option>
-                                                <option value="naryn">Нарынская</option>
-                                                <option value="issyk_kul">Иссык-Кульская</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/*Driver Direction*/}
+                            <form className="driver__form" onSubmit={this.onSubmit}>
 
                                 <div className="driver__transport">
                                     <p className="driver__transport-title">Транспорт</p>
                                     <div className="driver__transport-section">
                                         <div className="driver__transport-type">
-                                            <select className="driver__transport-type-selection" name="area">
-                                                <option value="bishkek">Рефрижератор</option>
-                                                <option value="osh">Ошская</option>
-                                                <option value="naryn">Нарынская</option>
-                                                <option value="issyk_kul">Иссык-Кульская</option>
+                                            <select value={driver.cargo_type} onChange={e => editRegistrationDriverFieldHandler(e.target.name, e.target.value)} className="driver__transport-type-selection" name="cargo_type">
+                                                <option value="">Тип транспорта</option>
+                                                <option value="4">Рефрижератор</option>
                                             </select>
                                         </div>
                                         <div className="driver__transport-form">
-                                            <NavLink className="filter-goods" exact={true} activeClassName="filter-active"name="cargo" to="/">Груз</NavLink>
-                                            <NavLink className="filter-transport" activeClassName="filter-active" name="transport"  to="/">Транспорт</NavLink>
+                                            <button
+                                                className={driver.vehicle_type === "грузовик" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
+                                                type="button"
+                                                name="грузовик">Грузовик
+                                            </button>
+                                            <button
+                                                className={driver.vehicle_type  === "полуприцеп" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
+                                                type="button"
+                                                name="полуприцеп">Полуприцеп
+                                            </button>
+                                            <button
+                                                className={driver.vehicle_type  === "сцепка" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
+                                                type="button"
+                                                name="сцепка">Сцепка
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,27 +77,16 @@ class DriverRegistration extends Component {
 
                                 <div className="driver__transport-size">
                                     <div className="driver__transport-size-section">
-                                        <div className="driver__transport-weight">
-                                            {/*<input type="number" className="driver__transport-type-selection" min="1" max="50" defaultValue="30"/>*/}
-                                            <select className="driver__transport-type-selection" name="area">
-                                                <option value="bishkek">30т</option>
-                                                <option value="osh">Ошская</option>
-                                                <option value="naryn">Нарынская</option>
-                                                <option value="issyk_kul">Иссык-Кульская</option>
-                                            </select>
-                                        </div>
                                         <div className="driver__transport-volume">
-                                            <select className="driver__transport-type-selection" name="area">
-                                                <option value="bishkek">70м³</option>
-                                                <option value="osh">Ошская</option>
-                                                <option value="naryn">Нарынская</option>
-                                                <option value="issyk_kul">Иссык-Кульская</option>
-                                            </select>
-                                        </div>
-                                        <div className="driver__transport-comments">
-                                        <textarea id="transport-comments" className="transport-comments">
-
-                                        </textarea>
+                                            <input className="driver__transport-volume-selection"
+                                                   type="number"
+                                                   required
+                                                   min="0"
+                                                   name="carrying_capacity"
+                                                   placeholder="Объем багажа, м³"
+                                                   value={driver.carrying_capacity}
+                                                   onChange={(e) => editRegistrationDriverFieldHandler(e.target.name, e.target.value)}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -123,17 +97,18 @@ class DriverRegistration extends Component {
                                     <div className="driver__documents-section">
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={this.state.technicalPassport} alt="" id="img" className="img" />
+                                                <img src={driver.vehicle_passport} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                name="technicalPassport"
-                                                id="technicalPassport"
+                                                required
+                                                name="vehicle_passport"
+                                                id="vehicle_passport"
                                                 onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
                                             <div className="image__label">
-                                                <label className="image__upload" htmlFor="technicalPassport">
+                                                <label className="image__upload" htmlFor="vehicle_passport">
                                                     Выберите фото
                                                 </label>
                                             </div>
@@ -144,17 +119,18 @@ class DriverRegistration extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={this.state.driverLicence} alt="" id="img" className="img" />
+                                                <img src={driver.driver_license} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                name="driverLicence"
-                                                id="driverLicence"
+                                                required
+                                                name="driver_license"
+                                                id="driver_license"
                                                 onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
                                             <div className="image__label">
-                                                <label className="image__upload" htmlFor="driverLicence">
+                                                <label className="image__upload" htmlFor="driver_license">
                                                     Выберите фото
                                                 </label>
                                             </div>
@@ -165,17 +141,18 @@ class DriverRegistration extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={this.state.idPassport} alt="" id="img" className="img" />
+                                                <img src={driver.id_passport} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                name="idPassport"
-                                                id="idPassport"
+                                                required
+                                                name="id_passport"
+                                                id="id_passport"
                                                 onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
                                             <div className="image__label">
-                                                <label className="image__upload" htmlFor="idPassport">
+                                                <label className="image__upload" htmlFor="id_passport">
                                                     Выберите фото
                                                 </label>
                                             </div>

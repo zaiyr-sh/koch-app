@@ -14,6 +14,7 @@ import TransportSectionContainer from "./components/TransportationSection/Transp
 import OrderPlacementContainer from "./components/Profile/OrderPlacement/OrderPlacementContainer";
 import {connect} from "react-redux";
 import {initializeAppThunkCreator} from "./redux/reducers/app-reducer";
+import DriverRegistration from "./components/Registration/DriverRegistration/DriverRegistration";
 
 class App extends React.Component {
 
@@ -28,6 +29,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/login" component={LoginContainer}/>
                     <Route path="/registration" component={RegistrationContainer}/>
+                    {/*<Route path="/transport" component={DriverRegistration}/>*/}
                     <Route path="/placement" component={OrderPlacementContainer}/>
                     <Route path="/profile" component={ProfileContainer}/>
                     <Route exact path="/" component={PrimaryContainer}/>

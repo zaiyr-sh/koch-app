@@ -30,6 +30,8 @@ class OrderPlacementContainer extends Component {
                         editCargoPlacementHandler={this.props.editCargoPlacementHandler}
                         cargo={this.props.cargo}
                         placeCargoHandler={this.props.placeCargoHandler}
+                        isPlaced={this.props.isPlaced}
+                        placementSuccessActionCreator={this.props.placementSuccessActionCreator}
                     />
                 )
             case "driver":
@@ -40,6 +42,8 @@ class OrderPlacementContainer extends Component {
                         editTransportationPlacementHandler={this.props.editTransportationPlacementHandler}
                         transportation={this.props.transportation}
                         placeTransportationHandler={this.props.placeTransportationHandler}
+                        isPlaced={this.props.isPlaced}
+                        placementSuccessActionCreator={this.props.placementSuccessActionCreator}
                     />
                 )
             default:
@@ -48,7 +52,7 @@ class OrderPlacementContainer extends Component {
     }
 
     render() {
-        if (!this.props.isLoggedIn) return <Redirect to="/"/>;
+        if(!this.props.isLoggedIn) return <Redirect to="/"/>;
         if(!this.props.user_type) return <Preloader/>;
         return this.checkUserType();
     }
@@ -61,6 +65,7 @@ const mapStateToProps = (state) => ({
     transportation: state.placementPage.transportation,
     cities: state.cargoPage.cities,
     regions: state.cargoPage.regions,
+    isPlaced: state.placementPage.isPlaced
 })
 
 const mapDispatchToProps = (dispatch) => {

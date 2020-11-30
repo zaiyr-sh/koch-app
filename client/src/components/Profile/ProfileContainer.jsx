@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {compose} from "redux";
+import { withAlert  } from "react-alert";
 
 import Profile from "./Profile";
 import {
     editUserProfileActionCreator, getNextOrdersThunkCreator, getUserOrdersThunkCreator,
-    getUserProfileThunkCreator,
+    getUserProfileThunkCreator, updateUserProfileSuccessActionCreator,
     updateUserProfileThunkCreator
 } from "../../redux/reducers/user-reducer";
 import {setOpenCardModalActionCreator} from "../../redux/reducers/modal-reducer";
@@ -16,6 +18,13 @@ class ProfileContainer extends Component {
     componentDidMount() {
         this.props.getUserOrders();
         this.props.getUserProfile();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.isUpdated) {
+            this.props.alert.success('Ваши данные успешно обновлены!');
+            this.props.updateUserProfileSuccess(false);
+        }
     }
 
     render() {
@@ -36,7 +45,8 @@ class ProfileContainer extends Component {
 const mapStateToProps = (state) => ({
     isLoggedIn: state.userPage.isLoggedIn,
     userProfile: state.userPage.userProfile,
-    userOrders: state.userPage.userOrders
+    userOrders: state.userPage.userOrders,
+    isUpdated: state.userPage.isUpdated
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -61,8 +71,14 @@ const mapDispatchToProps = (dispatch) => {
         },
         logoutThunk: () => {
             dispatch(logoutThunkCreator());
+        },
+        updateUserProfileSuccess: (isUpdated) => {
+            dispatch(updateUserProfileSuccessActionCreator(isUpdated))
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAlert()
+)(ProfileContainer);

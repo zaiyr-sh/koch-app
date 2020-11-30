@@ -1,7 +1,8 @@
 import React from 'react';
 
 import "../OrderPlacement.css";
-import * as PropTypes from "prop-types";
+import {placementSuccessActionCreator} from "../../../../redux/reducers/placement-reducer";
+import {withAlert} from "react-alert";
 
 class CargoPlacement extends React.Component {
 
@@ -9,6 +10,13 @@ class CargoPlacement extends React.Component {
         nameError: "",
         surnameError: "",
         phoneNumberError: "",
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.isPlaced){
+            this.props.alert.success('Вы успешно опубликовали!');
+            placementSuccessActionCreator(false);
+        }
     }
 
     onSubmit = (e) => {
@@ -284,12 +292,5 @@ class CargoPlacement extends React.Component {
     }
 }
 
-CargoPlacement.propTypes = {
-    editCargoPlacementHandler: PropTypes.any,
-    cargo: PropTypes.any,
-    cities: PropTypes.any,
-    regions: PropTypes.any,
-    placeCargoHandler: PropTypes.any
-}
 
-export default CargoPlacement;
+export default withAlert()(CargoPlacement);
