@@ -1,15 +1,43 @@
 import React, {Component} from 'react';
-import {NavLink} from "react-router-dom";
+import camera from '../../../assets/images/camera_icon.png';
 
 import "./DriverRegistration.css";
 
 class DriverRegistration extends Component {
 
-    // state={
-    //     vehicle_passport: camera,
-    //     driver_license: camera,
-    //     id_passport: camera,
-    // }
+    state = {
+        vehiclePassportError: "",
+        driverLicenseError: "",
+        idPassportError: "",
+        vehicleTypeError: "",
+    }
+
+    validate = () => {
+        let vehiclePassportError = "";
+        let driverLicenseError = "";
+        let idPassportError = "";
+        let vehicleTypeError = "";
+        let {vehicle_passport, driver_license, id_passport, vehicle_type} = this.props.driver;
+
+        if ((vehicle_passport.length === 0)) {
+            vehiclePassportError = "Поле не должно быть пустым";
+        }
+        if ((driver_license.length === 0)) {
+            driverLicenseError = "Поле не должно быть пустым";
+        }
+        if ((id_passport.length === 0)) {
+            idPassportError = "Поле не должно быть пустым";
+        }
+        if ((vehicle_type.length === 0)) {
+            vehicleTypeError = "Поле не должно быть пустым";
+        }
+
+        if (vehiclePassportError || driverLicenseError || idPassportError || vehicleTypeError) {
+            this.setState({ vehiclePassportError, driverLicenseError, idPassportError, vehicleTypeError});
+            return false;
+        }
+        return true;
+    }
 
     imageHandler = (files, name) => {
         const reader = new FileReader();
@@ -23,16 +51,17 @@ class DriverRegistration extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        // const data = new FormData()
-        // data.append('vehicle_passport', this.state.vehicle_passport)
-        // data.append('driver_license', this.state.driver_license)
-        // data.append('id_passport', this.state.id_passport)
+        const isValid = this.validate();
+        if (isValid) {
+            // this.props.registrationDriver();
+            alert("OK!")
+        }
     }
 
     render() {
 
         let {driver, editRegistrationDriverFieldHandler} = this.props;
-        console.log(driver)
+        let {vehiclePassportError, driverLicenseError, idPassportError, vehicleTypeError} = this.state;
 
         return (
             <section className="section-driverProfile">
@@ -46,7 +75,7 @@ class DriverRegistration extends Component {
                                     <p className="driver__transport-title">Транспорт</p>
                                     <div className="driver__transport-section">
                                         <div className="driver__transport-type">
-                                            <select value={driver.cargo_type} onChange={e => editRegistrationDriverFieldHandler(e.target.name, e.target.value)} className="driver__transport-type-selection" name="cargo_type">
+                                            <select required value={driver.cargo_type} onChange={e => editRegistrationDriverFieldHandler(e.target.name, e.target.value)} className="driver__transport-type-selection" name="cargo_type">
                                                 <option value="">Тип транспорта</option>
                                                 <option value="4">Рефрижератор</option>
                                             </select>
@@ -70,6 +99,9 @@ class DriverRegistration extends Component {
                                                 type="button"
                                                 name="сцепка">Сцепка
                                             </button>
+                                            <p className="error__description">
+                                                {vehicleTypeError}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -97,16 +129,18 @@ class DriverRegistration extends Component {
                                     <div className="driver__documents-section">
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={driver.vehicle_passport} alt="" id="img" className="img" />
+                                                <img src={driver.vehicle_passport || camera} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                required
                                                 name="vehicle_passport"
                                                 id="vehicle_passport"
                                                 onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
+                                            <p className="error__description">
+                                                {vehiclePassportError}
+                                            </p>
                                             <div className="image__label">
                                                 <label className="image__upload" htmlFor="vehicle_passport">
                                                     Выберите фото
@@ -119,16 +153,18 @@ class DriverRegistration extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={driver.driver_license} alt="" id="img" className="img" />
+                                                <img src={driver.driver_license || camera} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                required
                                                 name="driver_license"
                                                 id="driver_license"
                                                 onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
+                                            <p className="error__description">
+                                                {driverLicenseError}
+                                            </p>
                                             <div className="image__label">
                                                 <label className="image__upload" htmlFor="driver_license">
                                                     Выберите фото
@@ -141,16 +177,18 @@ class DriverRegistration extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={driver.id_passport} alt="" id="img" className="img" />
+                                                <img src={driver.id_passport || camera} alt="" id="img" className="img" />
                                             </div>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                required
                                                 name="id_passport"
                                                 id="id_passport"
                                                 onChange={(e) => this.imageHandler(e.target.files, e.target.name)}
                                             />
+                                            <p className="error__description">
+                                                {idPassportError}
+                                            </p>
                                             <div className="image__label">
                                                 <label className="image__upload" htmlFor="id_passport">
                                                     Выберите фото

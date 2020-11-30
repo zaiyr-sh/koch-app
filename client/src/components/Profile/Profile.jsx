@@ -7,7 +7,6 @@ import Footer from "../Footer/Footer";
 import UserProfile from "./UserProfile/UserProfile";
 
 const Profile = ({ userProfile, userOrders, editUserProfileHandler, updateUserProfileHandler, getNextOrders, onOpenCardModal }) => {
-
     return (
         <>
             <Switch>

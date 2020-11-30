@@ -2,7 +2,6 @@ import React from 'react';
 
 import "./UserProfile.css";
 import Preloader from "../../common/Preloader/Preloader";
-import * as PropTypes from "prop-types";
 
 class UserProfile extends React.Component {
 
@@ -91,10 +90,5 @@ class UserProfile extends React.Component {
     }
 }
 
-UserProfile.propTypes = {
-    userProfile: PropTypes.any,
-    editUserProfileHandler: PropTypes.any,
-    updateUserProfileHandler: PropTypes.any
-}
 
 export default UserProfile;

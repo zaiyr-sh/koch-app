@@ -13,7 +13,7 @@ const Error = () => {
                     <h2>
                         Ошибка 404</h2>
                     <div className="error-details">
-                        Извините, но данная Страница не найдена!
+                        Извините, но данная Страница не найдена или не доступна!
                     </div>
                     <div className="error-actions">
                         <Link to="/" className="nav__link-placeAd">

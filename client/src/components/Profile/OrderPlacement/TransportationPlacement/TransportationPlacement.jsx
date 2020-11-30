@@ -108,17 +108,6 @@ class TransportationPlacement extends React.Component {
                                 <p className="placement__transport__title">Транспорт</p>
                                 <div className="placement__transport-fields">
                                     <input
-                                        type="text"
-                                        className="placement__cargo-selection name-selection"
-                                        placeholder="Название груза"
-                                        name="name"
-                                        required
-                                        value={transportation.name}
-                                        onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
-                                    />
-                                </div>
-                                <div className="placement__transport-fields">
-                                    <input
                                         type="number"
                                         min="0"
                                         className="placement__transport-selection"

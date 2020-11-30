@@ -139,6 +139,7 @@
 .driver__documents-name {
     margin: 0 auto;
     width: 50%;
+    text-align: center;
     padding-top: 20px;
     font-family: "Gilroy-Medium";
     font-size: 12px;

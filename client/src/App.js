@@ -14,7 +14,6 @@ import TransportSectionContainer from "./components/TransportationSection/Transp
 import OrderPlacementContainer from "./components/Profile/OrderPlacement/OrderPlacementContainer";
 import {connect} from "react-redux";
 import {initializeAppThunkCreator} from "./redux/reducers/app-reducer";
-import DriverRegistration from "./components/Registration/DriverRegistration/DriverRegistration";
 
 class App extends React.Component {
 

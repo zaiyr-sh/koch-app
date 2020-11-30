@@ -1,5 +1,4 @@
 import {registrationAPI} from "../../api/api";
-import camera from "../../assets/images/camera_icon.png";
 
 const SET_EDIT_USER = 'registration/SET_EDIT_USER';
 const REGISTRATION_SUCCESS = 'registration/REGISTRATION_SUCCESS';
@@ -22,9 +21,9 @@ let initialState = {
         carrying_capacity: "",
         vehicle_type: "",
         cargo_type: "",
-        vehicle_passport: camera,
-        driver_license: camera,
-        id_passport: camera,
+        vehicle_passport: "",
+        driver_license: "",
+        id_passport: "",
     },
     isRegister: false,
     isDriverRegister: false,
@@ -62,7 +61,8 @@ const registrationReducer = (state = initialState, action) => {
                     ...state.driver,
                     user_id: "", carrying_capacity: "", vehicle_type: "", cargo_type: "", vehicle_passport: "", driver_license: "", id_passport: "",
                 },
-                registrationError: ""
+                registrationError: "",
+                isRegister: false
             }
         }
         case REGISTRATION_DRIVER_SUCCESS: {
@@ -94,9 +94,9 @@ export const registrationThunkCreator = () => async (dispatch, getState) => {
     try {
         const response = await registrationAPI.register(name, surname, user_type, phone_number, password);
         if (response.status === 201) {
-            // if(response.data.user_type === "driver"){
-            //     localStorage.setItem('user_id', JSON.stringify(response.data.id));
-            // }
+            if(response.data.user_type === "driver"){
+                localStorage.setItem('user_id', JSON.stringify(response.data.id));
+            }
             dispatch(registrationSuccess());
             dispatch(resetRegistrationActionCreator());
         }

@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 
 import Registration from "./Registration";
 import {
-    editRegistrationDriverFieldActionCreator,
     editRegistrationFieldActionCreator,
     registrationThunkCreator, resetRegistrationActionCreator
 } from "../../redux/reducers/registration-reducer";
@@ -19,8 +18,6 @@ class RegistrationContainer extends Component {
             registrationHandler={this.props.registrationHandler}
             resetRegistration={this.props.resetRegistration}
             registrationError={this.props.registrationError}
-            driver={this.props.driver}
-            editRegistrationDriverFieldHandler={this.props.editRegistrationDriverFieldHandler}
         />;
     }
 }
@@ -29,8 +26,7 @@ const mapStateToProps = (state) => ({
     user_type: state.registrationPage.user_type,
     user: state.registrationPage.user,
     isRegister: state.registrationPage.isRegister,
-    registrationError: state.registrationPage.registrationError,
-    driver: state.registrationPage.driver
+    registrationError: state.registrationPage.registrationError
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -43,9 +39,6 @@ const mapDispatchToProps = (dispatch) => {
         },
         resetRegistration: () => {
             dispatch(resetRegistrationActionCreator())
-        },
-        editRegistrationDriverFieldHandler: (nameField, value) => {
-            dispatch(editRegistrationDriverFieldActionCreator(nameField, value))
         }
     }
 }

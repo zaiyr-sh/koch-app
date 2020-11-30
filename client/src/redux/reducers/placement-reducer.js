@@ -35,7 +35,6 @@ let initialState = {
         to_region: "",
         to_city: "",
         vehicle_comment: "",
-        name: "",
         price: "",
         weight: "",
         volume: ""
@@ -72,7 +71,7 @@ const placementReducer = (state = initialState, action) => {
             return {
                 ...state,
                 transportation: {
-                    ...state.transportation, from_shipment_date: "", to_shipment_date: "", from_region: "", from_city: "", to_region: "", to_city: "", vehicle_comment: "", name: "", price: "", weight: "", volume: ""
+                    ...state.transportation, from_shipment_date: "", to_shipment_date: "", from_region: "", from_city: "", to_region: "", to_city: "", vehicle_comment: "", price: "", weight: "", volume: ""
                 }
             }
         default:

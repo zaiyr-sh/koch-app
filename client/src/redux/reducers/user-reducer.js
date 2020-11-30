@@ -8,6 +8,8 @@ const SET_USER_UPDATE_SUCCESS ='user/SET_USER_UPDATE_SUCCESS';
 
 let initialState = {
     userProfile: {
+        id: "",
+        user_type: "",
         name: "",
         surname: "",
         phone_number: ""

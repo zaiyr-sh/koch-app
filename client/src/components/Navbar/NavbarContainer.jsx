@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 
 import {logoutThunkCreator} from "../../redux/reducers/auth-reducer";
 import Navbar from "./Navbar";
-import {initializeAppThunkCreator} from "../../redux/reducers/app-reducer";
 
 class NavbarContainer extends Component {
 
@@ -22,9 +21,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         logoutThunk: () => {
             dispatch(logoutThunkCreator());
-        },
-        initializeAppThunk: () => {
-            dispatch(initializeAppThunkCreator())
         }
     }
 }

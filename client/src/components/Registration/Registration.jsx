@@ -4,6 +4,7 @@ import { withAlert  } from "react-alert";
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
 import UserRegistration from "./UserRegistration/UserRegistration";
+import DriverRegistration from "./DriverRegistration/DriverRegistration";
 
 class Registration extends React.Component {
 
@@ -20,16 +21,10 @@ class Registration extends React.Component {
             this.props.alert.error('Пользователь с таким номером уже зарегестрирован. Попробуйте заново!');
         }
 
-        if(this.props.isRegister && this.props.user.user_type === "client") {
+        if(this.props.isRegister) {
             this.props.alert.success('Вы успешно зарегестрировались! Войдите в свой аккаунт.');
             this.props.resetRegistration();
         }
-
-        // if(this.props.isRegister && this.props.user.user_type === "driver") {
-        //     console.log(this.props.isRegister)
-        //     this.props.alert.success('Вы успешно зарегестрировались! Чтобы продолжить работу, отправьте данные вашего транспорта.');
-        //     this.props.editRegistrationDriverFieldHandler("user_id", JSON.parse(localStorage.getItem('user_id')));
-        // }
     }
 
     handleCloseRegistrationSection = () => {
@@ -78,7 +73,7 @@ class Registration extends React.Component {
     }
 
     render() {
-        let {user, editRegistrationFieldHandler, driver, editRegistrationDriverFieldHandler } = this.props;
+        let {user, editRegistrationFieldHandler} = this.props;
         let {isChose, nameError, surnameError, phoneNumberError, passwordError} = this.state;
 
         return isChose ? (
