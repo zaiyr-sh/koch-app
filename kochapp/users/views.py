@@ -20,7 +20,7 @@ class DriverCreateView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, pk=request.data.pop('user_id'))
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exeception=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save(user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
