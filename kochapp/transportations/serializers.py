@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
-from .models import Cargo, Transportation, Region, City
+from users.serializers import CustomUserSerializer, DriverSerializer
 from .fields import CustomPrimaryKeyField
-from users.serializers import CustomUserSerializer
+from .models import Cargo, Transportation, Region, City
 
 
 class CargoListSerializer(serializers.ModelSerializer):
@@ -71,8 +71,8 @@ class CargoDetailSerializer(serializers.ModelSerializer):
 
 
 class TransportationSerializer(serializers.ModelSerializer):
-    user = CustomUserSerializer(read_only=True)
-    name = serializers.CharField()
+    user = DriverSerializer(source='user__driver', read_only=True)
+    name = serializers.CharField(source='')
     from_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
     to_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
     from_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
@@ -99,7 +99,6 @@ class TransportationSerializer(serializers.ModelSerializer):
 
 
 class RegionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Region
         fields = [
@@ -109,7 +108,6 @@ class RegionSerializer(serializers.ModelSerializer):
 
 
 class CitiesSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = City
         fields = [
