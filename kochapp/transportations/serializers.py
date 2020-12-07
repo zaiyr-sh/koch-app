@@ -72,7 +72,7 @@ class CargoDetailSerializer(serializers.ModelSerializer):
 
 class TransportationSerializer(serializers.ModelSerializer):
     user = DriverSerializer(source='user__driver', read_only=True)
-    name = serializers.CharField(source='')
+    name = serializers.CharField(read_only=True)
     from_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
     to_region = CustomPrimaryKeyField(queryset=Region.objects.all(), model=Region)
     from_city = CustomPrimaryKeyField(queryset=City.objects.all(), model=City)
