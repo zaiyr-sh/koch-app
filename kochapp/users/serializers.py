@@ -10,6 +10,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
             "name",
             "surname",
             "phone_number",
+            "is_registered",
+            "user_type",
         ]
 
 
