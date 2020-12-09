@@ -1,6 +1,14 @@
 from rest_framework import serializers
 
 from users.models import User, Driver, CargoType, VehicleType
+from djoser.serializers import UserSerializer
+
+
+class CurrentUserSerializer(UserSerializer):
+
+    class Meta(UserSerializer.Meta):
+        fields = UserSerializer.Meta.fields + ('registered',)
+        read_only_fields = ('registered',)
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -10,6 +18,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
             "name",
             "surname",
             "phone_number",
+            "user_type",
         ]
 
 
