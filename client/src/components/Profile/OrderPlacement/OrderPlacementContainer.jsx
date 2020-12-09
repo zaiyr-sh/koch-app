@@ -5,7 +5,7 @@ import CargoPlacement from "./CargoPlacement/CargoPlacement";
 import {
     editCargoPlacementActionCreator,
     editTransportationPlacementActionCreator,
-    placeCargoThunkCreator, placeTransportationThunkCreator
+    placeCargoThunkCreator, placementSuccessActionCreator, placeTransportationThunkCreator
 } from "../../../redux/reducers/placement-reducer";
 import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
 import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
@@ -31,7 +31,7 @@ class OrderPlacementContainer extends Component {
                         cargo={this.props.cargo}
                         placeCargoHandler={this.props.placeCargoHandler}
                         isPlaced={this.props.isPlaced}
-                        placementSuccessActionCreator={this.props.placementSuccessActionCreator}
+                        placementSuccess={this.props.placementSuccess}
                     />
                 )
             case "driver":
@@ -43,7 +43,7 @@ class OrderPlacementContainer extends Component {
                         transportation={this.props.transportation}
                         placeTransportationHandler={this.props.placeTransportationHandler}
                         isPlaced={this.props.isPlaced}
-                        placementSuccessActionCreator={this.props.placementSuccessActionCreator}
+                        placementSuccess={this.props.placementSuccess}
                     />
                 )
             default:
@@ -87,6 +87,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         placeTransportationHandler: () => {
             dispatch(placeTransportationThunkCreator())
+        },
+        placementSuccess: (isPlaced) => {
+            dispatch(placementSuccessActionCreator(isPlaced))
         }
     }
 }

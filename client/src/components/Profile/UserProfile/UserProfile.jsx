@@ -51,6 +51,10 @@ class UserProfile extends React.Component {
                     <div className="client__data">
                         <div className="client__inner">
                             <h2 className="client__title">Мои данные</h2>
+                            <p className="client__activation-title">{userProfile.registered
+                                ? "Учетная запись активирована администратором"
+                                : "Учетная запись не активирована администратором"}
+                            </p>
                             <form className="client__form" onSubmit={this.onSubmit}>
                                 <div className="client__name">
                                     <input

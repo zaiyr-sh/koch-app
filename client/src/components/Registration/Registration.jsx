@@ -4,7 +4,6 @@ import { withAlert  } from "react-alert";
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
 import UserRegistration from "./UserRegistration/UserRegistration";
-import DriverRegistration from "./DriverRegistration/DriverRegistration";
 
 class Registration extends React.Component {
 

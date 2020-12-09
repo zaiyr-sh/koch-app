@@ -1,8 +1,15 @@
 import React from 'react';
 import './Modal.css';
 import close from "../../assets/images/close_modal_icon.png";
+import {
+    dates_with_leading_zeros,
+    hours_with_leading_zeros,
+    minutes_with_leading_zeros,
+    months_with_leading_zeros
+} from "../../helpers/date-helper";
 
 const CardModal = ({card, closeCard}) => {
+    console.log(card)
 
     if(Object.keys(card).length === 0) return <></>;
 
@@ -20,7 +27,7 @@ const CardModal = ({card, closeCard}) => {
                         </div>
                         <div className="card__main-information">
                             <div className="card__details">
-                                <p className="card__date">{new Date(card.departure_date).getDate()}.{new Date(card.departure_date).getMonth()}.{new Date(card.departure_date).getFullYear()}</p>
+                                <p className="card__date">{hours_with_leading_zeros(new Date(card.from_shipment_date))}.{months_with_leading_zeros(new Date(card.from_shipment_date))}.{new Date(card.from_shipment_date).getFullYear()} - {dates_with_leading_zeros(new Date(card.to_shipment_date))}.{months_with_leading_zeros(new Date(card.to_shipment_date))}.{new Date(card.to_shipment_date).getFullYear()}</p>
                                 <p className="card__volume">{card.weight}т / {card.volume}м³</p>
                             </div>
                             <div className="card__price">{card.price}c</div>
@@ -44,7 +51,7 @@ const CardModal = ({card, closeCard}) => {
                         </div>
 
                         <div className="card__addition-information">
-                            <p className="card__period">{new Date(card.date_published).getDate()}.{new Date(card.date_published).getMonth()}.{new Date(card.date_published).getFullYear()}, {new Date(card.date_published).getHours()} ч. назад</p>
+                            <p className="card__period"><p className="card__period">{dates_with_leading_zeros(new Date(card.date_published))}.{months_with_leading_zeros(new Date(card.date_published))}.{new Date(card.date_published).getFullYear()}, в {hours_with_leading_zeros(new Date(card.date_published))}:{minutes_with_leading_zeros(new Date(card.date_published))} ч.</p></p>
                         </div>
 
                     </div>

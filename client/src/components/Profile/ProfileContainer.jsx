@@ -16,7 +16,6 @@ import {
     editRegistrationDriverFieldActionCreator,
     registrationDriverThunkCreator
 } from "../../redux/reducers/registration-reducer";
-import DriverRegistration from "../Registration/DriverRegistration/DriverRegistration";
 
 class ProfileContainer extends Component {
 
@@ -27,7 +26,7 @@ class ProfileContainer extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.isUpdated) {
-            this.props.alert.success('Ваши данные успешно обновлены!');
+            this.props.alert.success('Ваши данные успешно сохранены!');
             this.props.updateUserProfileSuccess(false);
         }
     }

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import "../OrderPlacement.css";
-import {placementSuccessActionCreator} from "../../../../redux/reducers/placement-reducer";
 import {withAlert} from "react-alert";
 
 class CargoPlacement extends React.Component {
@@ -15,7 +14,7 @@ class CargoPlacement extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.isPlaced){
             this.props.alert.success('Вы успешно опубликовали!');
-            placementSuccessActionCreator(false);
+            this.props.placementSuccess(false);
         }
     }
 

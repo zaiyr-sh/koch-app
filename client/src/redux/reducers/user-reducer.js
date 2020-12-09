@@ -12,7 +12,8 @@ let initialState = {
         user_type: "",
         name: "",
         surname: "",
-        phone_number: ""
+        phone_number: "",
+        registered: false
     },
     userOrders: {
         results: [],

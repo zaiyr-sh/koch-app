@@ -1,22 +1,12 @@
 import React from 'react';
+import {
+    dates_with_leading_zeros,
+    hours_with_leading_zeros,
+    minutes_with_leading_zeros,
+    months_with_leading_zeros
+} from "../../helpers/date-helper";
 
 const Card = ({ card, onOpenCardModal }) => {
-
-    const minutes_with_leading_zeros = (dt) => {
-        return (dt.getMinutes() < 10 ? '0' : '') + dt.getMinutes();
-    }
-
-    const hours_with_leading_zeros = (dt) => {
-        return (dt.getHours() < 10 ? '0' : '') + dt.getHours();
-    }
-
-    const dates_with_leading_zeros = (dt) => {
-        return (dt.getDate() < 10 ? '0' : '') + dt.getDate();
-    }
-
-    const months_with_leading_zeros = (dt) => {
-        return (dt.getMonth() < 10 ? '0' : '') + dt.getMonth();
-    }
 
     return (
         <div className="card__item">
