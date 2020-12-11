@@ -7,7 +7,7 @@ from djoser.serializers import UserSerializer
 class CurrentUserSerializer(UserSerializer):
 
     class Meta(UserSerializer.Meta):
-        fields = UserSerializer.Meta.fields + ('registered',)
+        fields = UserSerializer.Meta.fields + ('registered', 'checked')
         read_only_fields = ('registered',)
 
 
