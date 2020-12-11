@@ -26,6 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=200, blank=True, null=True, verbose_name='Phone number', unique=True)
     user_type = models.CharField(max_length=30, choices=CHOICES)
     registered = models.BooleanField(default=True)
+    checked = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False, verbose_name='Is staff')
     is_active = models.BooleanField(default=True, verbose_name='Is active')
 
