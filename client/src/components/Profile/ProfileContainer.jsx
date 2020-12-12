@@ -12,10 +12,6 @@ import {
 import {setOpenCardModalActionCreator} from "../../redux/reducers/modal-reducer";
 import UserNavbar from "../Navbar/UserNavbar/UserNavbar";
 import {logoutThunkCreator} from "../../redux/reducers/auth-reducer";
-import {
-    editRegistrationDriverFieldActionCreator,
-    registrationDriverThunkCreator
-} from "../../redux/reducers/registration-reducer";
 
 class ProfileContainer extends Component {
 
@@ -32,13 +28,6 @@ class ProfileContainer extends Component {
     }
 
     render() {
-        // if(this.props.userProfile.user_type === "driver") {
-        //     return <DriverRegistration
-        //         driver={this.props.driver}
-        //         editRegistrationDriverFieldHandler={this.props.editRegistrationDriverFieldHandler}
-        //         registrationDriver={this.props.registrationDriver}
-        //     />
-        // }
         return <>
                 <UserNavbar logoutThunk={this.props.logoutThunk} isLoggedIn={this.props.isLoggedIn}/>;
                 <Profile
@@ -57,8 +46,7 @@ const mapStateToProps = (state) => ({
     isLoggedIn: state.userPage.isLoggedIn,
     userProfile: state.userPage.userProfile,
     userOrders: state.userPage.userOrders,
-    isUpdated: state.userPage.isUpdated,
-    driver: state.registrationPage.driver
+    isUpdated: state.userPage.isUpdated
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -86,12 +74,6 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateUserProfileSuccess: (isUpdated) => {
             dispatch(updateUserProfileSuccessActionCreator(isUpdated))
-        },
-        editRegistrationDriverFieldHandler: (nameField, value) => {
-            dispatch(editRegistrationDriverFieldActionCreator(nameField, value))
-        },
-        registrationDriver: () => {
-            dispatch(registrationDriverThunkCreator())
         }
     }
 }

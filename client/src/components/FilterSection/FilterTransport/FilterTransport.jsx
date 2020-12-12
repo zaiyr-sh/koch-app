@@ -36,8 +36,6 @@ class FilterTransport extends React.Component {
 
         let { button } = this.state;
 
-        if (!cities && !regions) return <></>
-
         return (
             <form className="filter__form" onSubmit={this.onSubmit}>
                 <div className="filter-direction">

@@ -12,12 +12,18 @@ import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import TransportationPlacement from "./TransportationPlacement/TransportationPlacement";
 import {Redirect} from "react-router-dom";
+import DriverRegistration from "../../Registration/DriverRegistration/DriverRegistration";
+import {
+    editRegistrationDriverFieldActionCreator, editRegistrationDriverImageFieldActionCreator, getTypesThunkCreator,
+    registrationDriverThunkCreator, resetRegistrationActionCreator
+} from "../../../redux/reducers/registration-reducer";
 
 class OrderPlacementContainer extends Component {
 
     componentDidMount() {
         this.props.getUserProfile();
         this.props.getPlaces();
+        this.props.getTypes();
     }
 
     checkUserType = () => {
@@ -35,8 +41,8 @@ class OrderPlacementContainer extends Component {
                     />
                 )
             case "driver":
-                return (
-                    <TransportationPlacement
+                if (this.props.registered) {
+                    return <TransportationPlacement
                         cities={this.props.cities}
                         regions={this.props.regions}
                         editTransportationPlacementHandler={this.props.editTransportationPlacementHandler}
@@ -44,8 +50,19 @@ class OrderPlacementContainer extends Component {
                         placeTransportationHandler={this.props.placeTransportationHandler}
                         isPlaced={this.props.isPlaced}
                         placementSuccess={this.props.placementSuccess}
+                        placementError={this.props.placementError}
                     />
-                )
+                } else {
+                    return <DriverRegistration
+                        driver={this.props.driver}
+                        cargoTypes={this.props.cargoTypes}
+                        editRegistrationDriverFieldHandler={this.props.editRegistrationDriverFieldHandler}
+                        editRegistrationDriverImageFieldHandler={this.props.editRegistrationDriverImageFieldHandler}
+                        registrationDriver={this.props.registrationDriver}
+                        isDriverRegister={this.props.isDriverRegister}
+                        resetRegistration={this.props.resetRegistration}
+                    />
+                }
             default:
                 return <></>
         }
@@ -61,11 +78,17 @@ class OrderPlacementContainer extends Component {
 const mapStateToProps = (state) => ({
     isLoggedIn: state.userPage.isLoggedIn,
     user_type: state.userPage.userProfile.user_type,
+    registered: state.userPage.userProfile.registered,
     cargo: state.placementPage.cargo,
     transportation: state.placementPage.transportation,
     cities: state.cargoPage.cities,
     regions: state.cargoPage.regions,
-    isPlaced: state.placementPage.isPlaced
+    isPlaced: state.placementPage.isPlaced,
+    driver: state.registrationPage.driver,
+    cargoTypes: state.registrationPage.cargoTypes,
+    isDriverRegister: state.registrationPage.isDriverRegister,
+    registrationDriverError: state.registrationPage.registrationDriverError,
+    placementError: state.registrationPage.placementError
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -90,6 +113,21 @@ const mapDispatchToProps = (dispatch) => {
         },
         placementSuccess: (isPlaced) => {
             dispatch(placementSuccessActionCreator(isPlaced))
+        },
+        editRegistrationDriverFieldHandler: (nameField, value) => {
+            dispatch(editRegistrationDriverFieldActionCreator(nameField, value))
+        },
+        editRegistrationDriverImageFieldHandler: (nameField, imgBase64, img) => {
+            dispatch(editRegistrationDriverImageFieldActionCreator(nameField, imgBase64, img))
+        },
+        registrationDriver: () => {
+            dispatch(registrationDriverThunkCreator())
+        },
+        getTypes: () => {
+            dispatch(getTypesThunkCreator())
+        },
+        resetRegistration: () => {
+            dispatch(resetRegistrationActionCreator())
         }
     }
 }

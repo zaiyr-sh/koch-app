@@ -13,7 +13,8 @@ let initialState = {
         name: "",
         surname: "",
         phone_number: "",
-        registered: false
+        registered: false,
+        checked: false
     },
     userOrders: {
         results: [],

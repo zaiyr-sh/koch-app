@@ -4,6 +4,7 @@ const SET_EDIT_CARGO_PLACEMENT = 'placement/SET_EDIT_CARGO_PLACEMENT';
 const RESET_PLACEMENT_CARGO = 'placement/RESET_PLACEMENT_CARGO';
 const SET_EDIT_TRANSPORTATION_PLACEMENT = 'placement/SET_EDIT_TRANSPORTATION_PLACEMENT';
 const PLACEMENT_SUCCESS = 'placement/PLACEMENT_SUCCESS';
+const PLACEMENT_UNSUCCESS = 'placement/PLACEMENT_UNSUCCESS';
 const RESET_PLACEMENT_TRANSPORTATION = 'placement/RESET_PLACEMENT_TRANSPORTATION';
 
 let initialState = {
@@ -39,7 +40,8 @@ let initialState = {
         weight: "",
         volume: ""
     },
-    isPlaced: false
+    isPlaced: false,
+    placementError: ""
 };
 
 const placementReducer = (state = initialState, action) => {
@@ -67,6 +69,12 @@ const placementReducer = (state = initialState, action) => {
                 ...state,
                 isPlaced: action.isPlaced
             }
+        case PLACEMENT_UNSUCCESS: {
+            return {
+                ...state,
+                placementError: action.placementError
+            }
+        }
         case RESET_PLACEMENT_TRANSPORTATION:
             return {
                 ...state,
@@ -89,15 +97,20 @@ export const placeCargoThunkCreator = () => async (dispatch, getState) => {
     }
 }
 export const placementSuccessActionCreator = (isPlaced) => ({type: PLACEMENT_SUCCESS, isPlaced})
+const placementUnsuccessActionCreator = () => ({type: PLACEMENT_UNSUCCESS, placementError: "ERROR"})
 const resetPlacementCargoActionCreator = () => ({type: RESET_PLACEMENT_CARGO})
 
 export const editTransportationPlacementActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_PLACEMENT, nameField, value })
 export const placeTransportationThunkCreator = () => async (dispatch, getState) => {
     const { transportation } = getState().placementPage;
-    console.log(transportation)
-    const response = await placementAPI.transportationPlacement(transportation);
-    if(response && response.status === 201) {
-        dispatch(placementSuccessActionCreator(true));
+    try {
+        const response = await placementAPI.transportationPlacement(transportation);
+        if(response && response.status === 201) {
+            dispatch(placementSuccessActionCreator(true));
+            dispatch(resetPlacementTransportationActionCreator());
+        }
+    } catch (e) {
+        dispatch(placementUnsuccessActionCreator())
         dispatch(resetPlacementTransportationActionCreator());
     }
 }

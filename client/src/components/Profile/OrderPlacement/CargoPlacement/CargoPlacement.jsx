@@ -9,6 +9,12 @@ class CargoPlacement extends React.Component {
         nameError: "",
         surnameError: "",
         phoneNumberError: "",
+        cargoNameError: "",
+        weightError: "",
+        volumeError: "",
+        lengthError: "",
+        widthError: "",
+        heightError: "",
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -30,7 +36,13 @@ class CargoPlacement extends React.Component {
         let nameError = "";
         let surnameError = "";
         let phoneNumberError = "";
-        let {sender_name, sender_surname, phone_number } = this.props.cargo;
+        let cargoNameError = "";
+        let weightError = "";
+        let volumeError = "";
+        let lengthError = "";
+        let widthError = "";
+        let heightError = "";
+        let {sender_name, sender_surname, phone_number, name, weight, volume, length, width, height} = this.props.cargo;
 
         if (/\d/.test(sender_name) || (sender_name.length <= 1)) {
             nameError = "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
@@ -41,9 +53,27 @@ class CargoPlacement extends React.Component {
         if (/[a-zA-Z]/g.test(phone_number) || (phone_number.length !== 10)) {
             phoneNumberError = "Неправильно введенный формат номера телефона";
         }
+        if (name.length <= 1) {
+            cargoNameError = "Поле должно быть от 2 и выше символов длиной";
+        }
+        if (weight.toString().length > 4) {
+            weightError = "Поле должно быть до 4 цифр длиной";
+        }
+        if (volume.toString().length > 4) {
+            volumeError = "Поле должно быть до 4 цифр длиной";
+        }
+        if (length.toString().length > 4) {
+            lengthError = "Поле должно быть до 4 цифр длиной";
+        }
+        if (width.toString().length > 4) {
+            widthError = "Поле должно быть до 4 цифр длиной";
+        }
+        if (height.toString().length > 4) {
+            heightError = "Поле должно быть до 4 цифр длиной";
+        }
 
-        if (phoneNumberError || nameError || surnameError ) {
-            this.setState({ phoneNumberError, nameError, surnameError });
+        if (phoneNumberError || nameError || surnameError || cargoNameError || weightError || volumeError || lengthError || widthError || heightError) {
+            this.setState({ nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError, widthError, heightError });
             return false;
         }
         return true;
@@ -51,9 +81,7 @@ class CargoPlacement extends React.Component {
 
     render() {
         let {editCargoPlacementHandler, cargo, cities, regions} = this.props;
-        let {nameError, surnameError, phoneNumberError} = this.state;
-
-        if (!cities && !regions) return <></>
+        let {nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError, widthError, heightError} = this.state;
 
         return (
             <section className="section-placement">
@@ -146,6 +174,9 @@ class CargoPlacement extends React.Component {
                                         value={cargo.name}
                                         onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
                                     />
+                                    <p className="error__description-order">
+                                        {cargoNameError}
+                                    </p>
                                 </div>
                                 <div className="placement__cargo-fields">
                                     <input
@@ -158,6 +189,9 @@ class CargoPlacement extends React.Component {
                                         value={cargo.weight}
                                         onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
                                     />
+                                    <p className="error__description-order">
+                                        {weightError}
+                                    </p>
                                 </div>
                                 <div className="placement__cargo-fields">
                                     <input
@@ -170,38 +204,56 @@ class CargoPlacement extends React.Component {
                                         value={cargo.volume}
                                         onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
                                     />
+                                    <p className="error__description-order">
+                                        {volumeError}
+                                    </p>
                                 </div>
                                 <div className="placement__cargo-size">
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        className="placement__cargo-selection"
-                                        placeholder="Длина, м"
-                                        name="length"
-                                        required
-                                        value={cargo.length}
-                                        onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
-                                    />
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        className="placement__cargo-selection"
-                                        placeholder="Ширина, м"
-                                        name="width"
-                                        required
-                                        value={cargo.width}
-                                        onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
-                                    />
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        className="placement__cargo-selection"
-                                        placeholder="Высота, м"
-                                        name="height"
-                                        required
-                                        value={cargo.height}
-                                        onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
-                                    />
+                                    <div className="placement__cargo-size-fields">
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            className="placement__cargo-selection"
+                                            placeholder="Длина, м"
+                                            name="length"
+                                            required
+                                            value={cargo.length}
+                                            onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
+                                        />
+                                        <p className="error__description-order">
+                                            {lengthError}
+                                        </p>
+                                    </div>
+                                    <div className="placement__cargo-size-fields">
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            className="placement__cargo-selection"
+                                            placeholder="Ширина, м"
+                                            name="width"
+                                            required
+                                            value={cargo.width}
+                                            onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
+                                        />
+                                        <p className="error__description-order">
+                                            {widthError}
+                                        </p>
+                                    </div>
+                                    <div className="placement__cargo-size-fields">
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            className="placement__cargo-selection"
+                                            placeholder="Высота, м"
+                                            name="height"
+                                            required
+                                            value={cargo.height}
+                                            onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
+                                        />
+                                        <p className="error__description-order">
+                                            {heightError}
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className="placement__comment">
                                 <textarea

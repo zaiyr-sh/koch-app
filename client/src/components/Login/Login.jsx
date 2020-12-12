@@ -47,9 +47,9 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginError, loginHandler })
                             <p className="error__description">
                                 {loginError}
                             </p>
-                            <div className="login__resetPassword">
-                                <Link className="login__button-resetPassword" to="/reset" >Забыл пароль</Link>
-                            </div>
+                            {/*<div className="login__resetPassword">*/}
+                            {/*    <Link className="login__button-resetPassword" to="/reset" >Забыл пароль</Link>*/}
+                            {/*</div>*/}
                             <div className="login__buttons">
                                 <Link className="login__button-registration" to="/registration">Регистрация</Link>
                                 <button className="login__button-signin">Войти</button>

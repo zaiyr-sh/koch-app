@@ -1,5 +1,5 @@
 import * as axios from 'axios';
-import {authHeader} from "../helpers/auth-header";
+import {authFormDataHeader, authHeader} from "../helpers/auth-header";
 
 const axiosInstance = axios.create({
     baseURL: "http://159.89.97.207/api/"
@@ -83,13 +83,13 @@ export const authAPI = {
         return axiosInstance
             .get(
                 `auth/users/me`, { headers: authHeader() }
-            );
+            )
     },
     getNextOrders(offset) {
         return axiosInstance
             .get(
                 `users/proflie/published-ads?limit=10&offset=${offset}`, { headers: authHeader() }
-            );
+            )
     },
     getUserOrders() {
         return axiosInstance
@@ -102,7 +102,7 @@ export const authAPI = {
             .post(
                 `auth/jwt/create`,
                 { phone_number, password}
-            );
+            )
     },
     updateUserProfile(clientProfile) {
         return axiosInstance
@@ -121,11 +121,12 @@ export const registrationAPI = {
                 {name, surname, user_type, phone_number, password}
             )
     },
-    registerDriver(user_id, carrying_capacity, vehicle_type, cargo_type, vehicle_passport, driver_license, id_passport) {
+    registerDriver(data) {
         return axiosInstance
             .post(
                 `users/drivers/register/`,
-                {user_id, carrying_capacity, vehicle_type, cargo_type, vehicle_passport, driver_license, id_passport}
+                data,
+                { headers: authFormDataHeader() }
             )
     }
 }
@@ -142,6 +143,15 @@ export const placementAPI = {
         return axiosInstance
             .post(
                 `cargo/transportation/`, transportation, { headers: authHeader() }
+            )
+    }
+}
+
+export const typesAPI = {
+    getCargoTypes() {
+        return axiosInstance
+            .get(
+                `users/cargo-types/`
             )
     }
 }

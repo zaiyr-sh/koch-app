@@ -1,12 +1,14 @@
-import {registrationAPI} from "../../api/api";
+import {registrationAPI, typesAPI} from "../../api/api";
 
 const SET_EDIT_USER = 'registration/SET_EDIT_USER';
 const REGISTRATION_SUCCESS = 'registration/REGISTRATION_SUCCESS';
 const RESET_REGISTRATION = 'registration/RESET_REGISTRATION';
 const REGISTRATION_UNSUCCESS = 'registration/REGISTRATION_UNSUCCESS';
 const SET_EDIT_DRIVER = 'registration/SET_EDIT_DRIVER';
+const SET_EDIT_IMAGE_DRIVER = 'registration/SET_EDIT_IMAGE_DRIVER';
 const REGISTRATION_DRIVER_SUCCESS = 'registration/REGISTRATION_DRIVER_SUCCESS';
 const REGISTRATION_DRIVER_UNSUCCESS = 'registration/REGISTRATION_DRIVER_UNSUCCESS';
+const SET_CARGO_TYPES = 'registration/SET_CARGO_TYPES';
 
 let initialState = {
     user: {
@@ -17,18 +19,32 @@ let initialState = {
         password: ""
     },
     driver: {
-        user_id: "",
         carrying_capacity: "",
         vehicle_type: "",
         cargo_type: "",
-        vehicle_passport: "",
-        driver_license: "",
-        id_passport: "",
+        vehicle_passport: {
+            base64Img: "",
+            img: ""
+        },
+        driver_license: {
+            base64Img: "",
+            img: ""
+        },
+        id_passport: {
+            base64Img: "",
+            img: ""
+        }
     },
     isRegister: false,
     isDriverRegister: false,
     registrationDriverError: "",
-    registrationError: ""
+    registrationError: "",
+    cargoTypes: {
+        count: 0,
+        next: "",
+        previous: "",
+        results: []
+    }
 };
 
 const registrationReducer = (state = initialState, action) => {
@@ -59,10 +75,12 @@ const registrationReducer = (state = initialState, action) => {
                 },
                 driver: {
                     ...state.driver,
-                    user_id: "", carrying_capacity: "", vehicle_type: "", cargo_type: "", vehicle_passport: "", driver_license: "", id_passport: "",
+                    user_id: "", carrying_capacity: "", vehicle_type: "", cargo_type: "", vehicle_passport: {base64Img: "", img: ""}, driver_license: {base64Img: "", img: ""}, id_passport: {base64Img: "", img: ""},
                 },
                 registrationError: "",
-                isRegister: false
+                isRegister: false,
+                isDriverRegister: false,
+                registrationDriverError: "",
             }
         }
         case REGISTRATION_DRIVER_SUCCESS: {
@@ -83,6 +101,23 @@ const registrationReducer = (state = initialState, action) => {
                 driver: {...state.driver, [action.nameField]: action.value}
             }
         }
+        case SET_EDIT_IMAGE_DRIVER: {
+            return {
+                ...state,
+                driver: {
+                    ...state.driver,
+                    [action.nameField]: {
+                        base64Img: action.base64Img,
+                        img: action.img
+                    }
+                }
+            }
+        }
+        case SET_CARGO_TYPES:
+            return {
+                ...state,
+                cargoTypes: action.cargoTypes,
+            }
         default:
             return state;
     }
@@ -110,18 +145,25 @@ const registrationSuccess = () => ({ type: REGISTRATION_SUCCESS });
 const registrationUnSuccess = () => ({type: REGISTRATION_UNSUCCESS, registrationError: "ERROR"})
 
 export const editRegistrationDriverFieldActionCreator = (nameField, value) => ({type: SET_EDIT_DRIVER, nameField, value });
+export const editRegistrationDriverImageFieldActionCreator = (nameField, base64Img, img) => ({type: SET_EDIT_IMAGE_DRIVER, nameField, base64Img, img });
 export const registrationDriverThunkCreator = () => async (dispatch, getState) => {
-    const {user_id, carrying_capacity, vehicle_type, cargo_type, vehicle_passport, driver_license, id_passport} = getState().registrationPage.driver;
-    const data = new FormData()
-    data.append('vehicle_passport', vehicle_passport)
-    data.append('driver_license', driver_license)
-    data.append('id_passport', id_passport)
+    const {carrying_capacity, vehicle_type, cargo_type, vehicle_passport, driver_license, id_passport} = getState().registrationPage.driver;
+    const data = new FormData();
+    data.append('carrying_capacity', carrying_capacity)
+    data.append('vehicle_type', vehicle_type)
+    data.append('cargo_type', cargo_type)
+    data.append('vehicle_passport', vehicle_passport.img)
+    data.append('driver_license', driver_license.img)
+    data.append('id_passport', id_passport.img)
     try {
-        const response = await registrationAPI.registerDriver(user_id, carrying_capacity, vehicle_type, cargo_type, data.get('vehicle_passport'), data.get('driver_license'), data.get('id_passport'));
+        const response = await registrationAPI.registerDriver(data);
         if (response.status === 201) {
+            console.log("OKEY")
             dispatch(registrationDriverSuccess())
+            dispatch(resetRegistrationActionCreator());
         }
     } catch (e) {
+        console.log("NOT OKEY")
         dispatch(registrationDriverUnSuccess());
         dispatch(resetRegistrationActionCreator());
     }
@@ -131,5 +173,11 @@ const registrationDriverSuccess = () => ({ type: REGISTRATION_DRIVER_SUCCESS });
 const registrationDriverUnSuccess = () => ({type: REGISTRATION_DRIVER_UNSUCCESS, registrationDriverError: "ERROR"})
 
 export const resetRegistrationActionCreator = () => ({type: RESET_REGISTRATION});
+
+export const getTypesThunkCreator = () => async (dispatch) => {
+    const cargoTypesResponse = await typesAPI.getCargoTypes();
+    dispatch(setPlacesActionCreator(cargoTypesResponse.data))
+}
+const setPlacesActionCreator = (cargoTypes) => ({type: SET_CARGO_TYPES, cargoTypes})
 
 export default registrationReducer;

@@ -5,9 +5,17 @@ import {withAlert} from "react-alert";
 
 class TransportationPlacement extends React.Component {
 
+    state = {
+        weightError: "",
+        volumeError: "",
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.placeTransportationHandler();
+        const isValid = this.validate();
+        if (isValid) {
+            this.props.placeTransportationHandler();
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -15,12 +23,33 @@ class TransportationPlacement extends React.Component {
             this.props.alert.success('Вы успешно опубликовали!');
             this.props.placementSuccess(false);
         }
+        if(this.props.placementError) {
+            this.props.alert.error('Ошибка публикации. Возможно ваш аккаунт еще не подтвержден. Попробуйте позже!');
+        }
+    }
+
+    validate = () => {
+        let weightError = "";
+        let volumeError = "";
+        let {weight, volume} = this.props.transportation;
+
+        if (weight.toString().length > 4) {
+            weightError = "Поле должно быть до 4 цифр длиной";
+        }
+        if (volume.toString().length > 4) {
+            volumeError = "Поле должно быть до 4 цифр длиной";
+        }
+
+        if (weightError || volumeError) {
+            this.setState({weightError, volumeError});
+            return false;
+        }
+        return true;
     }
 
     render() {
         let {editTransportationPlacementHandler, transportation, cities, regions} = this.props;
-
-        if (!cities && !regions) return <></>
+        let {weightError, volumeError} = this.state;
 
         return (
             <section className="section-placement">
@@ -116,6 +145,9 @@ class TransportationPlacement extends React.Component {
                                         value={transportation.weight}
                                         onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
                                     />
+                                    <p className="error__description-order">
+                                        {weightError}
+                                    </p>
                                 </div>
                                 <div className="placement__transport-fields">
                                     <input
@@ -128,6 +160,9 @@ class TransportationPlacement extends React.Component {
                                         value={transportation.volume}
                                         onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}
                                     />
+                                    <p className="error__description-order">
+                                        {volumeError}
+                                    </p>
                                 </div>
                             </div>
                             {/*Placement Cargo*/}

@@ -34,8 +34,6 @@ class FilterCargo extends React.Component {
         } = this.props;
         let { button } = this.state;
 
-        if (!cities && !regions) return <></>
-
         return (
             <form className="filter__form" onSubmit={this.onSubmit}>
                 <div className="filter-direction">

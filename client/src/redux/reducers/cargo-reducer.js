@@ -25,8 +25,18 @@ let initialState = {
         from_price: "",
         to_price: ""
     },
-    cities: "",
-    regions: ""
+    cities: {
+        count: 0,
+        next: "",
+        previous: "",
+        results: []
+    },
+    regions: {
+        count: 0,
+        next: "",
+        previous: "",
+        results: []
+    }
 }
 
 const cargoReducer = (state = initialState, action) => {
@@ -58,8 +68,8 @@ const cargoReducer = (state = initialState, action) => {
         case SET_CARGO_PLACES:
             return {
                 ...state,
-                cities: action.citiesResponse,
-                regions: action.regionsResponse
+                cities: action.cities,
+                regions: action.regions
             }
         case RESET_CARGO_FILTER:
             return {
@@ -80,7 +90,7 @@ export const getPlacesThunkCreator = () => async (dispatch) => {
     const regionsResponse = await placesAPI.getRegions();
     dispatch(setPlacesActionCreator(citiesResponse.data, regionsResponse.data))
 }
-const setPlacesActionCreator = (citiesResponse, regionsResponse) => ({type: SET_CARGO_PLACES, citiesResponse, regionsResponse})
+const setPlacesActionCreator = (cities, regions) => ({type: SET_CARGO_PLACES, cities, regions})
 export const editPlaceSelectionActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value })
 export const resetFilterCargoesActionCreator = () => ({type: RESET_CARGO_FILTER})
 

@@ -9,7 +9,6 @@ import {
 } from "../../helpers/date-helper";
 
 const CardModal = ({card, closeCard}) => {
-    console.log(card)
 
     if(Object.keys(card).length === 0) return <></>;
 
@@ -37,17 +36,17 @@ const CardModal = ({card, closeCard}) => {
 
                         <div className="card__comment">
                             <p className="card__comment-title">Комментарий к отправке</p>
-                            <p className="card__comment-content">Каждый веб-разработчик знает, что такое текст-”рыба”. Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на</p>
+                            <p className="card__comment-content">{card.place_comment}</p>
                         </div>
 
                         <div className="card__comment">
                             <p className="card__comment-title">Комментарий к грузу</p>
-                            <p className="card__comment-content">Каждый веб-разработчик знает, что такое текст-”рыба”. Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на</p>
+                            <p className="card__comment-content">{card.cargo_comment}</p>
                         </div>
 
                         <div className="card__personal-information">
-                            <p className="card__fullname">Алымбек Бакаев</p>
-                            <p className="card__phone-numbers">+996 555 093 938 / 704 344 569</p>
+                            <p className="card__fullname">{card.user.name} {card.user.surname}</p>
+                            <p className="card__phone-numbers">{card.user.phone_number}</p>
                         </div>
 
                         <div className="card__addition-information">

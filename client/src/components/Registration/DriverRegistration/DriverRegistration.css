@@ -20,6 +20,13 @@
     color: #000000;
 }
 
+.driver__activation-title {
+    font-family: "Gilroy-Medium";
+    font-size: 14px;
+
+    color: #000000;
+}
+
 .driver__form {
     padding-top: 50px;
 }
