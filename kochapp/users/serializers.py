@@ -23,9 +23,18 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 
 class DriverSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(source='user__name')
+    surname = serializers.CharField(source='user__surname')
+    phone_number = serializers.CharField(source='user__phone_phone')
+    user_type = serializers.CharField(source='user__type')
+
     class Meta:
         model = Driver
         fields = [
+            'name',
+            'surname',
+            'phone_number',
+            'user_type',
             'carrying_capacity',
             'vehicle_type',
             'cargo_type',

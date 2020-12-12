@@ -8,5 +8,5 @@ from users.models import User
 def deactivate_driver(sender, instance, created, **kwargs):
     if instance.user_type == "driver" and created:
         instance.registered = False
-        instance.user.checked = False
+        instance.checked = False
         instance.save()

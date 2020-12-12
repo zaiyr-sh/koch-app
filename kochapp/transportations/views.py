@@ -10,7 +10,7 @@ from .serializers import CargoDetailSerializer, CargoListSerializer, Transportat
 
 class CargoListView(generics.ListCreateAPIView):
     filterset_class = CargoFilter
-    serializer_class = CargoListSerializer
+    serializer_class = CargoDetailSerializer
     queryset = Cargo.objects.all()
     # permission_classes = (IsClient,)
 
