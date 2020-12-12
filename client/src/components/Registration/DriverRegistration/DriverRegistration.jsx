@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
+import {Redirect} from "react-router-dom";
 import { withAlert  } from "react-alert";
 
 import camera from '../../../assets/images/camera_icon.png';
 import "./DriverRegistration.css";
-import {Redirect} from "react-router-dom";
 
 class DriverRegistration extends Component {
 

@@ -1,7 +1,7 @@
 import React from 'react';
+import {withAlert} from "react-alert";
 
 import '../OrderPlacement.css';
-import {withAlert} from "react-alert";
 
 class TransportationPlacement extends React.Component {
 

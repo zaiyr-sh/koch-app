@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
 
-import "./Profile.css";
 import OrdersProfile from "./OrdersProfile/OrdersProfile";
 import Footer from "../Footer/Footer";
 import UserProfile from "./UserProfile/UserProfile";

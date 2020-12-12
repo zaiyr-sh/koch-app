@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './Modal.css';
 import close from "../../assets/images/close_modal_icon.png";
 import {

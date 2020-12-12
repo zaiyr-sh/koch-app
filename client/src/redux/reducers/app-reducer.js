@@ -19,7 +19,6 @@ const appReducer = (state = initialState, action) => {
 }
 
 export const setInitializingSuccess = () => ({ type: SET_INITIALIZING_SUCCESS})
-
 export const initializeAppThunkCreator = () => (dispatch) => {
     let promise = dispatch(getUserProfileThunkCreator());
 

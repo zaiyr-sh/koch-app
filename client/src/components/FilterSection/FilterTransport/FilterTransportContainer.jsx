@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+
 import FilterTransport from "./FilterTransport";
 import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
-import {connect} from "react-redux";
 import {
     editPlaceSelectionActionCreator,
     editTransportationFilterActionCreator,

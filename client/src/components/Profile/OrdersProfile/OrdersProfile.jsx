@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Card from "../../CargoSection/Card";
 import Preloader from "../../common/Preloader/Preloader";
 

@@ -1,7 +1,7 @@
 import React from 'react';
+import {withAlert} from "react-alert";
 
 import "../OrderPlacement.css";
-import {withAlert} from "react-alert";
 
 class CargoPlacement extends React.Component {
 
@@ -342,6 +342,5 @@ class CargoPlacement extends React.Component {
         );
     }
 }
-
 
 export default withAlert()(CargoPlacement);

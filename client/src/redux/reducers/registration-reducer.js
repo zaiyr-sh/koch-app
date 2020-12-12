@@ -158,12 +158,10 @@ export const registrationDriverThunkCreator = () => async (dispatch, getState) =
     try {
         const response = await registrationAPI.registerDriver(data);
         if (response.status === 201) {
-            console.log("OKEY")
             dispatch(registrationDriverSuccess())
             dispatch(resetRegistrationActionCreator());
         }
     } catch (e) {
-        console.log("NOT OKEY")
         dispatch(registrationDriverUnSuccess());
         dispatch(resetRegistrationActionCreator());
     }

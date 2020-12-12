@@ -90,7 +90,6 @@ const setNewCargoesActionCreator = (transportations) => ({type: SET_NEW_TRANSPOR
 export const getFilteredTransportationsThunkCreator = () => async (dispatch, getState) => {
     let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "", vehicle_type = "" } = getState().transportationPage.filteredTransportations;
     const response = await cargoTransportationAPI.getFilteredCargoTransportations(from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price, vehicle_type );
-    console.log(response)
     dispatch(setTransportationsActionCreator(response.data))
 }
 

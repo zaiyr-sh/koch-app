@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 const UserRegistration = (
     {user, editRegistrationFieldHandler, onSubmit, handleCloseRegistrationSection, nameError, surnameError, phoneNumberError, passwordError}
     ) => {
+
     return (
         <section className="section-login">
             <div className="container">

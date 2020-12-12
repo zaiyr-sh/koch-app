@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 import CargoPlacement from "./CargoPlacement/CargoPlacement";
 import {
@@ -11,7 +12,6 @@ import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
 import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import TransportationPlacement from "./TransportationPlacement/TransportationPlacement";
-import {Redirect} from "react-router-dom";
 import DriverRegistration from "../../Registration/DriverRegistration/DriverRegistration";
 import {
     editRegistrationDriverFieldActionCreator, editRegistrationDriverImageFieldActionCreator, getTypesThunkCreator,

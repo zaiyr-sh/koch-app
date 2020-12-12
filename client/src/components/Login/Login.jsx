@@ -62,5 +62,4 @@ const Login = ({ editLoginHandler, isLoggedIn, user, loginError, loginHandler })
     );
 };
 
-
 export default Login;
