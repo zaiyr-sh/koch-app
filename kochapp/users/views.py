@@ -18,7 +18,9 @@ class DriverCreateView(generics.GenericAPIView):
     queryset = models.Driver.objects.all()
 
     def post(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=request.data.pop('user_id')[0])
+        user = request.user
+        if not user.is_authenticated:
+            return Response({'error': 'No such authenticated user'}, status=status.HTTP_403_FORBIDDEN)
         if user.driver and user.registered:
             return Response({'error': 'Such driver already exists.'}, status=status.HTTP_400_BAD_REQUEST)
         serializer = self.get_serializer(data=request.data)
