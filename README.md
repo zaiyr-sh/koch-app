@@ -12,3 +12,49 @@ Our product helps you find orders as quickly as possible. Drivers can simplyplac
 
 # Screenshots :camera:
 
+<h3 align="center"><strong>Main Page</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/2gcn2dp/main-page.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>Main Page with cards</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/R61xyJm/main-page-cards.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>Main Page with cards</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/R61xyJm/main-page-cards.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>Sign in Page</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/C6ThtfN/sign-in.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>Profile Page</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/cbgC33W/profile.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>My Orders Page</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/RNLyLmH/my-orders.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>Transport Placement Page</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/F3LXT02/placement.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>"Register as" Page</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/xJDpstS/registration-choose.png" alt="Preview"/>
+</p>
+
+<h3 align="center"><strong>Registration Page</strong></h3>
+<p align="center">
+  <img src="https://i.ibb.co/r4dB03J/registration.png" alt="Preview"/>
+</p>
+
+
