@@ -10,7 +10,6 @@ import {
 } from "../../helpers/date-helper";
 
 const CardModal = ({card, closeCard}) => {
-
     if(Object.keys(card).length === 0) return <></>;
 
     return (

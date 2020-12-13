@@ -88,7 +88,7 @@ const mapStateToProps = (state) => ({
     cargoTypes: state.registrationPage.cargoTypes,
     isDriverRegister: state.registrationPage.isDriverRegister,
     registrationDriverError: state.registrationPage.registrationDriverError,
-    placementError: state.registrationPage.placementError
+    placementError: state.placementPage.placementError
 })
 
 const mapDispatchToProps = (dispatch) => {

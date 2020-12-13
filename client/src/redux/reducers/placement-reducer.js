@@ -80,7 +80,9 @@ const placementReducer = (state = initialState, action) => {
                 ...state,
                 transportation: {
                     ...state.transportation, from_shipment_date: "", to_shipment_date: "", from_region: "", from_city: "", to_region: "", to_city: "", vehicle_comment: "", price: "", weight: "", volume: ""
-                }
+                },
+                placementError: "",
+                isPlaced: false
             }
         default:
             return state;
