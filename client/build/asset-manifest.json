@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/koch-app/static/css/main.5cbc0729.chunk.css",
-    "main.js": "/koch-app/static/js/main.068996f4.chunk.js",
-    "main.js.map": "/koch-app/static/js/main.068996f4.chunk.js.map",
-    "runtime-main.js": "/koch-app/static/js/runtime-main.cbfdfafd.js",
-    "runtime-main.js.map": "/koch-app/static/js/runtime-main.cbfdfafd.js.map",
-    "static/js/2.9026c885.chunk.js": "/koch-app/static/js/2.9026c885.chunk.js",
-    "static/js/2.9026c885.chunk.js.map": "/koch-app/static/js/2.9026c885.chunk.js.map",
-    "index.html": "/koch-app/index.html",
-    "precache-manifest.377ec7f382df2ee6f5fcd94c604ea52c.js": "/koch-app/precache-manifest.377ec7f382df2ee6f5fcd94c604ea52c.js",
-    "service-worker.js": "/koch-app/service-worker.js",
-    "static/css/main.5cbc0729.chunk.css.map": "/koch-app/static/css/main.5cbc0729.chunk.css.map",
-    "static/js/2.9026c885.chunk.js.LICENSE.txt": "/koch-app/static/js/2.9026c885.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/koch-app/static/media/Gilroy-SemiBold.a5cf732b.ttf"
+    "main.css": "/static/css/main.1d2fc237.chunk.css",
+    "main.js": "/static/js/main.f24bd488.chunk.js",
+    "main.js.map": "/static/js/main.f24bd488.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.9026c885.chunk.js": "/static/js/2.9026c885.chunk.js",
+    "static/js/2.9026c885.chunk.js.map": "/static/js/2.9026c885.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.2c79d7a7a9cd865c142e886cf1dbc947.js": "/precache-manifest.2c79d7a7a9cd865c142e886cf1dbc947.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.1d2fc237.chunk.css.map": "/static/css/main.1d2fc237.chunk.css.map",
+    "static/js/2.9026c885.chunk.js.LICENSE.txt": "/static/js/2.9026c885.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Gilroy-SemiBold.a5cf732b.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.cbfdfafd.js",
+    "static/js/runtime-main.09b85ec0.js",
     "static/js/2.9026c885.chunk.js",
-    "static/css/main.5cbc0729.chunk.css",
-    "static/js/main.068996f4.chunk.js"
+    "static/css/main.1d2fc237.chunk.css",
+    "static/js/main.f24bd488.chunk.js"
   ]
 }
