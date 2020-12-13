@@ -37,6 +37,7 @@ services:
     volumes:
       - media:/usr/media/:ro
       - static:/usr/static/:ro
+      - ./client/build/:/www/data/kochapp/
     ports:
       - 80:80
       - 443:443
