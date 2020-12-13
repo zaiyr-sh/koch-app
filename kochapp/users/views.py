@@ -26,7 +26,7 @@ class DriverCreateView(generics.GenericAPIView):
             return Response({'error': 'Such driver already exists.'}, status=status.HTTP_400_BAD_REQUEST)
         except Exception:
             pass
-    
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(user=user)

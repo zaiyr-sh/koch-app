@@ -5,7 +5,10 @@ class IsRegisteredDriver(BasePermission):
     def has_permission(self, request, view):
         if request.method == "POST":
             is_authenticated = request.user.is_authenticated
-            return bool(is_authenticated and request.user.user_type == "driver" and request.user.registered)
+            return bool(
+                is_authenticated and request.user.user_type == "driver"
+                and request.user.registered and request.user.checked
+            )
         else:
             return True
 
