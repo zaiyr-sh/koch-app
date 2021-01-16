@@ -3,6 +3,7 @@ import {withAlert} from "react-alert";
 import {Redirect} from "react-router-dom";
 
 import '../OrderPlacement.css';
+import {validateMaxLength} from "../../../../helpers/validation-helper";
 
 class TransportationPlacement extends React.Component {
 
@@ -13,33 +14,30 @@ class TransportationPlacement extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const isValid = this.validate();
-        if (isValid) {
-            this.props.placeTransportationHandler();
-        }
+        if (this.validate()) this.props.placeTransportationHandler();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.isPlaced){
             this.props.alert.success('Вы успешно опубликовали!');
             this.props.placementSuccess(false);
+            this.setState({weightError: "", volumeError: ""});
         }
         if(this.props.placementError) {
             this.props.alert.error('Ошибка публикации. Возможно ваш аккаунт еще не подтвержден. Попробуйте позже!');
         }
     }
 
+    componentWillUnmount() {
+        this.props.resetPlacementTransportationHandler();
+    }
+
     validate = () => {
-        let weightError = "";
-        let volumeError = "";
+        let weightError, volumeError;
         let {weight, volume} = this.props.transportation;
 
-        if (weight.toString().length > 4) {
-            weightError = "Поле должно быть до 4 цифр длиной";
-        }
-        if (volume.toString().length > 4) {
-            volumeError = "Поле должно быть до 4 цифр длиной";
-        }
+        weightError = validateMaxLength(weight, 4);
+        volumeError = validateMaxLength(volume, 4);
 
         if (weightError || volumeError) {
             this.setState({weightError, volumeError});

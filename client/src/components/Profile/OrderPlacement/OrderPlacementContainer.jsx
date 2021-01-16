@@ -6,7 +6,10 @@ import CargoPlacement from "./CargoPlacement/CargoPlacement";
 import {
     editCargoPlacementActionCreator,
     editTransportationPlacementActionCreator,
-    placeCargoThunkCreator, placementSuccessActionCreator, placeTransportationThunkCreator
+    placeCargoThunkCreator,
+    placementSuccessActionCreator,
+    placeTransportationThunkCreator,
+    resetPlacementCargoActionCreator, resetPlacementTransportationActionCreator
 } from "../../../redux/reducers/placement-reducer";
 import {getPlacesThunkCreator} from "../../../redux/reducers/cargo-reducer";
 import {getUserProfileThunkCreator} from "../../../redux/reducers/user-reducer";
@@ -38,6 +41,7 @@ class OrderPlacementContainer extends Component {
                         placeCargoHandler={this.props.placeCargoHandler}
                         isPlaced={this.props.isPlaced}
                         placementSuccess={this.props.placementSuccess}
+                        resetPlacementCargoHandler={this.props.resetPlacementCargoHandler}
                     />
                 )
             case "driver":
@@ -51,6 +55,7 @@ class OrderPlacementContainer extends Component {
                         isPlaced={this.props.isPlaced}
                         placementSuccess={this.props.placementSuccess}
                         placementError={this.props.placementError}
+                        resetPlacementTransportationHandler={this.props.resetPlacementTransportationHandler}
                     />
                 } else {
                     return <DriverRegistration
@@ -128,6 +133,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         resetRegistration: () => {
             dispatch(resetRegistrationActionCreator())
+        },
+        resetPlacementCargoHandler:() => {
+            dispatch(resetPlacementCargoActionCreator())
+        },
+        resetPlacementTransportationHandler:() => {
+            dispatch(resetPlacementTransportationActionCreator())
         }
     }
 }

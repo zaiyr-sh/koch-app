@@ -100,7 +100,7 @@ export const placeCargoThunkCreator = () => async (dispatch, getState) => {
 }
 export const placementSuccessActionCreator = (isPlaced) => ({type: PLACEMENT_SUCCESS, isPlaced})
 const placementUnsuccessActionCreator = () => ({type: PLACEMENT_UNSUCCESS, placementError: "ERROR"})
-const resetPlacementCargoActionCreator = () => ({type: RESET_PLACEMENT_CARGO})
+export const resetPlacementCargoActionCreator = () => ({type: RESET_PLACEMENT_CARGO})
 
 export const editTransportationPlacementActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_PLACEMENT, nameField, value })
 export const placeTransportationThunkCreator = () => async (dispatch, getState) => {
@@ -116,6 +116,6 @@ export const placeTransportationThunkCreator = () => async (dispatch, getState) 
         dispatch(resetPlacementTransportationActionCreator());
     }
 }
-const resetPlacementTransportationActionCreator = () => ({type: RESET_PLACEMENT_TRANSPORTATION})
+export const resetPlacementTransportationActionCreator = () => ({type: RESET_PLACEMENT_TRANSPORTATION})
 
 export default placementReducer;

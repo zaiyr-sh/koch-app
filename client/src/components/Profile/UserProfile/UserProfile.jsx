@@ -2,6 +2,7 @@ import React from 'react';
 
 import "./UserProfile.css";
 import Preloader from "../../common/Preloader/Preloader";
+import {validatePersonName} from "../../../helpers/validation-helper";
 
 class UserProfile extends React.Component {
 
@@ -11,17 +12,11 @@ class UserProfile extends React.Component {
     }
 
     validate = () => {
-        let nameError = "";
-        let surnameError = "";
-
+        let nameError, surnameError;
         let {name, surname} = this.props.userProfile;
 
-        if (/\d/.test(name) || (name.length <= 1)) {
-            nameError = "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
-        }
-        if (/\d/.test(surname) || (surname.length <= 1)) {
-            surnameError = "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
-        }
+        nameError = validatePersonName(name);
+        surnameError = validatePersonName(surname);
 
         if (nameError || surnameError) {
             this.setState({ nameError, surnameError });
@@ -32,8 +27,7 @@ class UserProfile extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const isValid = this.validate();
-        if (isValid) {
+        if (this.validate()) {
             this.props.updateUserProfileHandler();
             this.setState({nameError: "", surnameError: ""});
         }

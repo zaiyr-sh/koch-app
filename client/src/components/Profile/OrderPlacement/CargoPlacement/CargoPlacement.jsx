@@ -3,6 +3,12 @@ import {withAlert} from "react-alert";
 import {Redirect} from "react-router-dom";
 
 import "../OrderPlacement.css";
+import {
+    validateMaxLength,
+    validateMinLength,
+    validatePersonName,
+    validatePhoneNumber
+} from "../../../../helpers/validation-helper";
 
 class CargoPlacement extends React.Component {
 
@@ -22,56 +28,32 @@ class CargoPlacement extends React.Component {
         if(this.props.isPlaced){
             this.props.alert.success('Вы успешно опубликовали!');
             this.props.placementSuccess(false);
+            this.setState({nameError: "", surnameError: "", phoneNumberError: "", cargoNameError: "", weightError: "", volumeError: "", lengthError: "", widthError: "", heightError: ""});
         }
+    }
+
+    componentWillUnmount() {
+        this.props.resetPlacementCargoHandler();
     }
 
     onSubmit = (e) => {
         e.preventDefault();
-        const isValid = this.validate();
-        if (isValid) {
-            this.props.placeCargoHandler();
-        }
+        if (this.validate()) this.props.placeCargoHandler();
     }
 
     validate = () => {
-        let nameError = "";
-        let surnameError = "";
-        let phoneNumberError = "";
-        let cargoNameError = "";
-        let weightError = "";
-        let volumeError = "";
-        let lengthError = "";
-        let widthError = "";
-        let heightError = "";
+        let nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError, widthError, heightError;
         let {sender_name, sender_surname, phone_number, name, weight, volume, length, width, height} = this.props.cargo;
 
-        if (/\d/.test(sender_name) || (sender_name.length <= 1)) {
-            nameError = "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
-        }
-        if (/\d/.test(sender_surname) || (sender_surname.length <= 1)) {
-            surnameError = "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
-        }
-        if (/[a-zA-Z]/g.test(phone_number) || (phone_number.length !== 10)) {
-            phoneNumberError = "Неправильно введенный формат номера телефона";
-        }
-        if (name.length <= 1) {
-            cargoNameError = "Поле должно быть от 2 и выше символов длиной";
-        }
-        if (weight.toString().length > 4) {
-            weightError = "Поле должно быть до 4 цифр длиной";
-        }
-        if (volume.toString().length > 4) {
-            volumeError = "Поле должно быть до 4 цифр длиной";
-        }
-        if (length.toString().length > 4) {
-            lengthError = "Поле должно быть до 4 цифр длиной";
-        }
-        if (width.toString().length > 4) {
-            widthError = "Поле должно быть до 4 цифр длиной";
-        }
-        if (height.toString().length > 4) {
-            heightError = "Поле должно быть до 4 цифр длиной";
-        }
+        nameError = validatePersonName(sender_name);
+        surnameError = validatePersonName(sender_surname);
+        phoneNumberError = validatePhoneNumber(phone_number);
+        cargoNameError = validateMinLength(name, 2);
+        weightError = validateMaxLength(weight, 4);
+        volumeError = validateMaxLength(volume, 4);
+        lengthError = validateMaxLength(length, 4);
+        widthError = validateMaxLength(width, 4);
+        heightError = validateMaxLength(height, 4);
 
         if (phoneNumberError || nameError || surnameError || cargoNameError || weightError || volumeError || lengthError || widthError || heightError) {
             this.setState({ nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError, widthError, heightError });

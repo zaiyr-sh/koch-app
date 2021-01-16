@@ -2,9 +2,19 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import Login from "./Login";
-import {editLoginActionCreator, loginThunkCreator} from "../../redux/reducers/auth-reducer";
+import {
+    editLoginActionCreator,
+    loginThunkCreator, loginUnSuccess,
+    resetUserProfileActionCreator
+} from "../../redux/reducers/auth-reducer";
 
 class LoginContainer extends Component {
+
+    componentWillUnmount() {
+        this.props.resetUserProfileHandler();
+        this.props.loginUnSuccessHandler("")
+    }
+
     render() {
         return <Login
             user={this.props.user}
@@ -12,6 +22,8 @@ class LoginContainer extends Component {
             loginError={this.props.loginError}
             editLoginHandler={this.props.editLoginHandler}
             loginHandler={this.props.loginHandler}
+            resetUserProfileHandler={this.props.resetUserProfileHandler}
+            loginUnSuccessHandler={this.props.loginUnSuccessHandler}
         />;
     }
 }
@@ -29,6 +41,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         editLoginHandler: (nameField, value) => {
             dispatch(editLoginActionCreator(nameField, value))
+        },
+        resetUserProfileHandler: () => {
+            dispatch(resetUserProfileActionCreator())
+        },
+        loginUnSuccessHandler: (message) => {
+            dispatch(loginUnSuccess(message))
         }
     }
 }

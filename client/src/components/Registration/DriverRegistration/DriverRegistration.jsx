@@ -4,6 +4,7 @@ import { withAlert  } from "react-alert";
 
 import camera from '../../../assets/images/camera_icon.png';
 import "./DriverRegistration.css";
+import {validateMaxLength, validateNonEmptyLength} from "../../../helpers/validation-helper";
 
 class DriverRegistration extends Component {
 
@@ -19,36 +20,25 @@ class DriverRegistration extends Component {
         if(this.props.registrationDriverError) {
             this.props.alert.error('Ошибка регистрации. Попробуйте заново!');
         }
-
         if(this.props.isDriverRegister) {
             this.props.alert.success('Вы успешно зарегестрировались! Ожидайте подтверждение администратора.');
             this.props.resetRegistration();
         }
     }
 
+    componentWillUnmount() {
+        this.props.resetRegistration();
+    }
+
     validate = () => {
-        let vehiclePassportError = "";
-        let driverLicenseError = "";
-        let idPassportError = "";
-        let vehicleTypeError = "";
-        let carryingCapacityError = "";
+        let vehiclePassportError, driverLicenseError, idPassportError, vehicleTypeError, carryingCapacityError;
         let {vehicle_passport, driver_license, id_passport, vehicle_type, carrying_capacity} = this.props.driver;
 
-        if ((vehicle_passport.length === 0)) {
-            vehiclePassportError = "Поле не должно быть пустым";
-        }
-        if ((driver_license.length === 0)) {
-            driverLicenseError = "Поле не должно быть пустым";
-        }
-        if ((id_passport.length === 0)) {
-            idPassportError = "Поле не должно быть пустым";
-        }
-        if ((vehicle_type.length === 0)) {
-            vehicleTypeError = "Поле не должно быть пустым";
-        }
-        if (carrying_capacity.toString().length > 4) {
-            carryingCapacityError = "Поле должно быть до 4 цифр длиной";
-        }
+        vehiclePassportError = validateNonEmptyLength(vehicle_passport.base64Img);
+        driverLicenseError = validateNonEmptyLength(driver_license.base64Img);
+        idPassportError = validateNonEmptyLength(id_passport.base64Img);
+        vehicleTypeError = validateNonEmptyLength(vehicle_type);
+        carryingCapacityError = validateMaxLength(carrying_capacity, 4);
 
         if (vehiclePassportError || driverLicenseError || idPassportError || vehicleTypeError || carryingCapacityError) {
             this.setState({ vehiclePassportError, driverLicenseError, idPassportError, vehicleTypeError, carryingCapacityError});
@@ -69,10 +59,7 @@ class DriverRegistration extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const isValid = this.validate();
-        if (isValid) {
-            this.props.registrationDriver();
-        }
+        if (this.validate()) this.props.registrationDriver();
     }
 
     render() {

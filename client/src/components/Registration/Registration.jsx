@@ -4,6 +4,7 @@ import { withAlert  } from "react-alert";
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
 import UserRegistration from "./UserRegistration/UserRegistration";
+import {validatePassword, validatePersonName, validatePhoneNumber} from "../../helpers/validation-helper";
 
 class Registration extends React.Component {
 
@@ -19,11 +20,15 @@ class Registration extends React.Component {
         if(this.props.registrationError) {
             this.props.alert.error('Пользователь с таким номером уже зарегестрирован. Попробуйте заново!');
         }
-
         if(this.props.isRegister) {
             this.props.alert.success('Вы успешно зарегестрировались! Войдите в свой аккаунт.');
             this.props.resetRegistration();
+            this.setState({nameError: "", surnameError: "", phoneNumberError: "", passwordError: ""});
         }
+    }
+
+    componentWillUnmount() {
+        this.props.resetRegistration();
     }
 
     handleCloseRegistrationSection = () => {
@@ -38,31 +43,17 @@ class Registration extends React.Component {
     onSubmit = e => {
         e.preventDefault()
         const isValid = this.validate();
-        if (isValid) {
-            this.props.registrationHandler();
-            this.setState({nameError: "", surnameError: "", phoneNumberError: "", passwordError: ""});
-        }
+        if (isValid) this.props.registrationHandler();
     }
 
     validate = () => {
-        let nameError = "";
-        let surnameError = "";
-        let phoneNumberError = "";
-        let passwordError = "";
+        let nameError, surnameError, phoneNumberError, passwordError;
         let {name, surname, phone_number, password } = this.props.user;
 
-        if (/\d/.test(name) || (name.length <= 1)) {
-            nameError = "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
-        }
-        if (/\d/.test(surname) || (surname.length <= 1)) {
-            surnameError = "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
-        }
-        if (/[a-zA-Z]/g.test(phone_number) || (phone_number.length !== 10)) {
-            phoneNumberError = "Неправильно введенный формат номера телефона";
-        }
-        if (!(/[a-zA-Z]/g.test(password) && /\d/.test(password)) || (password.length <= 8)) {
-            passwordError = "Пароль должен быть от 8 символов длиной, содержать одну латинскую букву и число";
-        }
+        nameError = validatePersonName(name);
+        surnameError = validatePersonName(surname);
+        phoneNumberError = validatePhoneNumber(phone_number)
+        passwordError = validatePassword(password);
 
         if (phoneNumberError || nameError || surnameError || passwordError) {
             this.setState({ phoneNumberError, nameError, surnameError, passwordError });

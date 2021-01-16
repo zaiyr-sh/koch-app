@@ -18,7 +18,7 @@ const authReducer = (state = initialState, action) => {
         case RESET_USER_DATA:
             return {
                 ...state,
-                user: {phone_number: "", password: ""}
+                user: {...state.user, phone_number: "", password: ""}
             };
         case SET_EDIT_LOGIN:
             return {
@@ -51,7 +51,7 @@ export const loginThunkCreator = () => async (dispatch, getState) => {
     
 }
 
-const resetUserProfileActionCreator = () => ({type: RESET_USER_DATA})
+export const resetUserProfileActionCreator = () => ({type: RESET_USER_DATA})
 export const logoutThunkCreator = () => async (dispatch) => {
     localStorage.removeItem('user');
     dispatch(setUserProfileActionCreator({userProfile: {name: "", surname: "", phone_number: ""}}, false));
@@ -59,6 +59,6 @@ export const logoutThunkCreator = () => async (dispatch) => {
     dispatch(resetUserProfileActionCreator());
 }
 
-const loginUnSuccess = () => ({type: LOGIN_UNSUCCESS, loginError: "Введен неверный логин или пароль"})
+export const loginUnSuccess = (message = "Введен неверный логин или пароль") => ({type: LOGIN_UNSUCCESS, loginError: message})
 
 export default authReducer;
