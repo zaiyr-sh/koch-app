@@ -1,5 +1,6 @@
 import React from 'react';
 import {withAlert} from "react-alert";
+import {Redirect} from "react-router-dom";
 
 import '../OrderPlacement.css';
 
@@ -48,6 +49,7 @@ class TransportationPlacement extends React.Component {
     }
 
     render() {
+        if(this.props.isPlaced) return <Redirect to="/"/>;
         let {editTransportationPlacementHandler, transportation, cities, regions} = this.props;
         let {weightError, volumeError} = this.state;
 
