@@ -18,12 +18,12 @@ class TransportationPlacement extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.isPlaced){
+        if (this.props.isPlaced) {
             this.props.alert.success('Вы успешно опубликовали!');
             this.props.placementSuccess(false);
             this.setState({weightError: "", volumeError: ""});
         }
-        if(this.props.placementError) {
+        if (this.props.placementError) {
             this.props.alert.error('Ошибка публикации. Возможно ваш аккаунт еще не подтвержден. Попробуйте позже!');
         }
     }
@@ -47,7 +47,7 @@ class TransportationPlacement extends React.Component {
     }
 
     render() {
-        if(this.props.isPlaced) return <Redirect to="/"/>;
+        if (this.props.isPlaced) return <Redirect to="/"/>;
         let {editTransportationPlacementHandler, transportation, cities, regions} = this.props;
         let {weightError, volumeError} = this.state;
 

@@ -7,11 +7,11 @@ let offset = 0;
 
 const OrdersProfile = ({userOrders, getNextOrders, onOpenCardModal}) => {
 
-    if(!userOrders.results) return <Preloader />
+    if (!userOrders.results) return <Preloader/>
 
     const loadOrdersHandler = e => {
         e.preventDefault();
-        getNextOrders(offset+=10);
+        getNextOrders(offset += 10);
     }
 
     return (

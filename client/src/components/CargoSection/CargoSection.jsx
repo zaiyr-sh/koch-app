@@ -6,13 +6,13 @@ import Preloader from "../common/Preloader/Preloader";
 
 let offset = 0;
 
-const CargoSection = ({ cargoes,  getNextCargoes, onOpenCardModal }) => {
+const CargoSection = ({cargoes, getNextCargoes, onOpenCardModal}) => {
 
-    if (!cargoes.results) return <Preloader />
+    if (!cargoes.results) return <Preloader/>
 
     const loadCargoesHandler = e => {
         e.preventDefault();
-        getNextCargoes(offset+=10);
+        getNextCargoes(offset += 10);
     }
 
     return (

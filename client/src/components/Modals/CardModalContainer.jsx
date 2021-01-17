@@ -17,7 +17,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         closeCard() {
-            dispatch(closeCardActionCreator())
+            dispatch(closeCardActionCreator());
         }
     }
 }

@@ -32,15 +32,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         editRegistrationFieldHandler: (nameField, value) => {
-            dispatch(editRegistrationFieldActionCreator(nameField, value))
+            dispatch(editRegistrationFieldActionCreator(nameField, value));
         },
         registrationHandler: () => {
-            dispatch(registrationThunkCreator())
+            dispatch(registrationThunkCreator());
         },
         resetRegistration: () => {
-            dispatch(resetRegistrationActionCreator())
+            dispatch(resetRegistrationActionCreator());
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationContainer);;
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationContainer);

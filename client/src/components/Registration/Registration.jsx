@@ -1,5 +1,5 @@
 import React from 'react';
-import { withAlert  } from "react-alert";
+import {withAlert} from "react-alert";
 
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
@@ -17,10 +17,10 @@ class Registration extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.registrationError) {
+        if (this.props.registrationError) {
             this.props.alert.error('Пользователь с таким номером уже зарегестрирован. Попробуйте заново!');
         }
-        if(this.props.isRegister) {
+        if (this.props.isRegister) {
             this.props.alert.success('Вы успешно зарегестрировались! Войдите в свой аккаунт.');
             this.props.resetRegistration();
             this.setState({nameError: "", surnameError: "", phoneNumberError: "", passwordError: ""});
@@ -48,15 +48,15 @@ class Registration extends React.Component {
 
     validate = () => {
         let nameError, surnameError, phoneNumberError, passwordError;
-        let {name, surname, phone_number, password } = this.props.user;
+        let {name, surname, phone_number, password} = this.props.user;
 
         nameError = validatePersonName(name);
         surnameError = validatePersonName(surname);
-        phoneNumberError = validatePhoneNumber(phone_number)
+        phoneNumberError = validatePhoneNumber(phone_number);
         passwordError = validatePassword(password);
 
         if (phoneNumberError || nameError || surnameError || passwordError) {
-            this.setState({ phoneNumberError, nameError, surnameError, passwordError });
+            this.setState({phoneNumberError, nameError, surnameError, passwordError});
             return false;
         }
         return true;

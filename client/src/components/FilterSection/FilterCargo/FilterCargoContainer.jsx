@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import FilterCargo from "./FilterCargo";
-
 import {
     editCargoFilterActionCreator, editPlaceSelectionActionCreator, getCargoesThunkCreator,
     getFilteredCargoesThunkCreator, getPlacesThunkCreator, resetFilterCargoesActionCreator
@@ -37,22 +36,22 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         getCargoes: () => {
-            dispatch(getCargoesThunkCreator())
+            dispatch(getCargoesThunkCreator());
         },
         getFilteredCargoes: () => {
-            dispatch(getFilteredCargoesThunkCreator())
+            dispatch(getFilteredCargoesThunkCreator());
         },
         editCargoFilterHandler: (nameField, value) => {
-            dispatch(editCargoFilterActionCreator(nameField, value))
+            dispatch(editCargoFilterActionCreator(nameField, value));
         },
         getPlaces: () => {
-            dispatch(getPlacesThunkCreator())
+            dispatch(getPlacesThunkCreator());
         },
         editPlaceSelectionHandler: (nameField, value) => {
-            dispatch(editPlaceSelectionActionCreator(nameField, value))
+            dispatch(editPlaceSelectionActionCreator(nameField, value));
         },
         resetFilterCargoes: () => {
-            dispatch(resetFilterCargoesActionCreator())
+            dispatch(resetFilterCargoesActionCreator());
         }
     }
 }

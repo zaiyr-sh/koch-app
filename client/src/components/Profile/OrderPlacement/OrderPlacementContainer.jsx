@@ -74,8 +74,8 @@ class OrderPlacementContainer extends Component {
     }
 
     render() {
-        if(!this.props.isLoggedIn) return <Redirect to="/"/>;
-        if(!this.props.user_type) return <Preloader/>;
+        if (!this.props.isLoggedIn) return <Redirect to="/"/>;
+        if (!this.props.user_type) return <Preloader/>;
         return this.checkUserType();
     }
 }
@@ -99,46 +99,46 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserProfile: () => {
-            dispatch(getUserProfileThunkCreator())
+            dispatch(getUserProfileThunkCreator());
         },
         getPlaces: () => {
-            dispatch(getPlacesThunkCreator())
+            dispatch(getPlacesThunkCreator());
         },
         editCargoPlacementHandler: (nameField, value) => {
-            dispatch(editCargoPlacementActionCreator(nameField, value))
+            dispatch(editCargoPlacementActionCreator(nameField, value));
         },
         placeCargoHandler: () => {
-            dispatch(placeCargoThunkCreator())
+            dispatch(placeCargoThunkCreator());
         },
         editTransportationPlacementHandler: (nameField, value) => {
-            dispatch(editTransportationPlacementActionCreator(nameField, value))
+            dispatch(editTransportationPlacementActionCreator(nameField, value));
         },
         placeTransportationHandler: () => {
-            dispatch(placeTransportationThunkCreator())
+            dispatch(placeTransportationThunkCreator());
         },
         placementSuccess: (isPlaced) => {
-            dispatch(placementSuccessActionCreator(isPlaced))
+            dispatch(placementSuccessActionCreator(isPlaced));
         },
         editRegistrationDriverFieldHandler: (nameField, value) => {
-            dispatch(editRegistrationDriverFieldActionCreator(nameField, value))
+            dispatch(editRegistrationDriverFieldActionCreator(nameField, value));
         },
         editRegistrationDriverImageFieldHandler: (nameField, imgBase64, img) => {
-            dispatch(editRegistrationDriverImageFieldActionCreator(nameField, imgBase64, img))
+            dispatch(editRegistrationDriverImageFieldActionCreator(nameField, imgBase64, img));
         },
         registrationDriver: () => {
-            dispatch(registrationDriverThunkCreator())
+            dispatch(registrationDriverThunkCreator());
         },
         getTypes: () => {
-            dispatch(getTypesThunkCreator())
+            dispatch(getTypesThunkCreator());
         },
         resetRegistration: () => {
-            dispatch(resetRegistrationActionCreator())
+            dispatch(resetRegistrationActionCreator());
         },
-        resetPlacementCargoHandler:() => {
-            dispatch(resetPlacementCargoActionCreator())
+        resetPlacementCargoHandler: () => {
+            dispatch(resetPlacementCargoActionCreator());
         },
-        resetPlacementTransportationHandler:() => {
-            dispatch(resetPlacementTransportationActionCreator())
+        resetPlacementTransportationHandler: () => {
+            dispatch(resetPlacementTransportationActionCreator());
         }
     }
 }

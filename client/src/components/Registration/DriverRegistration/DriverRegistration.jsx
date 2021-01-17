@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from "react-router-dom";
-import { withAlert } from "react-alert";
+import {withAlert} from "react-alert";
 
 import camera from '../../../assets/images/camera_icon.png';
 import "./DriverRegistration.css";
@@ -17,10 +17,10 @@ class DriverRegistration extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.registrationDriverError) {
+        if (this.props.registrationDriverError) {
             this.props.alert.error('Ошибка регистрации. Попробуйте заново!');
         }
-        if(this.props.isDriverRegister) {
+        if (this.props.isDriverRegister) {
             this.props.alert.success('Вы успешно зарегестрировались! Ожидайте подтверждение администратора.');
             this.props.resetRegistration();
         }
@@ -41,7 +41,13 @@ class DriverRegistration extends Component {
         carryingCapacityError = validateMaxLength(carrying_capacity, 4);
 
         if (vehiclePassportError || driverLicenseError || idPassportError || vehicleTypeError || carryingCapacityError) {
-            this.setState({ vehiclePassportError, driverLicenseError, idPassportError, vehicleTypeError, carryingCapacityError});
+            this.setState({
+                vehiclePassportError,
+                driverLicenseError,
+                idPassportError,
+                vehicleTypeError,
+                carryingCapacityError
+            });
             return false;
         }
         return true;
@@ -54,10 +60,10 @@ class DriverRegistration extends Component {
         if (file && file.type.match('image.*')) {
             reader.readAsDataURL(file);
         } else {
-            editRegistrationDriverImageFieldHandler(name, "", "")
+            editRegistrationDriverImageFieldHandler(name, "", "");
         }
         reader.onloadend = () => {
-            editRegistrationDriverImageFieldHandler(name, reader.result, file)
+            editRegistrationDriverImageFieldHandler(name, reader.result, file);
         }
     }
 
@@ -67,14 +73,19 @@ class DriverRegistration extends Component {
     }
 
     render() {
+        let {driver, editRegistrationDriverFieldHandler, cargoTypes, isDriverRegister} = this.props;
+        let {
+            vehiclePassportError,
+            driverLicenseError,
+            idPassportError,
+            vehicleTypeError,
+            carryingCapacityError
+        } = this.state;
 
-        if(this.props.isDriverRegister) {
+        if (isDriverRegister) {
             return <Redirect to="/profile/my_profile"/>
         }
 
-        let {driver, editRegistrationDriverFieldHandler, cargoTypes} = this.props;
-        let {vehiclePassportError, driverLicenseError, idPassportError, vehicleTypeError, carryingCapacityError} = this.state;
-        console.log(driver)
         return (
             <section className="section-driverProfile">
                 <div className="container">
@@ -88,7 +99,9 @@ class DriverRegistration extends Component {
                                     <p className="driver__transport-title">Транспорт</p>
                                     <div className="driver__transport-section">
                                         <div className="driver__transport-type">
-                                            <select required value={driver.cargo_type} onChange={e => editRegistrationDriverFieldHandler(e.target.name, e.target.value)} className="driver__transport-type-selection" name="cargo_type">
+                                            <select required value={driver.cargo_type}
+                                                    onChange={e => editRegistrationDriverFieldHandler(e.target.name, e.target.value)}
+                                                    className="driver__transport-type-selection" name="cargo_type">
                                                 <option value="">Тип транспорта</option>
                                                 {cargoTypes.results.map(cargo => (
                                                     <option key={cargo.id} value={cargo.id}>{cargo.name}</option>
@@ -103,13 +116,13 @@ class DriverRegistration extends Component {
                                                 name="1">Грузовик
                                             </button>
                                             <button
-                                                className={driver.vehicle_type  === "2" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                className={driver.vehicle_type === "2" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
                                                 onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
                                                 type="button"
                                                 name="2">Полуприцеп
                                             </button>
                                             <button
-                                                className={driver.vehicle_type  === "3" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                className={driver.vehicle_type === "3" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
                                                 onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
                                                 type="button"
                                                 name="3">Сцепка
@@ -147,7 +160,8 @@ class DriverRegistration extends Component {
                                     <div className="driver__documents-section">
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={driver.vehicle_passport.base64Img || camera} alt="" id="img" className="img" />
+                                                <img src={driver.vehicle_passport.base64Img || camera} alt="" id="img"
+                                                     className="img"/>
                                             </div>
                                             <input
                                                 type="file"
@@ -171,7 +185,8 @@ class DriverRegistration extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={driver.driver_license.base64Img || camera} alt="" id="img" className="img" />
+                                                <img src={driver.driver_license.base64Img || camera} alt="" id="img"
+                                                     className="img"/>
                                             </div>
                                             <input
                                                 type="file"
@@ -195,7 +210,8 @@ class DriverRegistration extends Component {
 
                                         <div className="driver__documents-passport">
                                             <div className="img__holder">
-                                                <img src={driver.id_passport.base64Img || camera} alt="" id="img" className="img" />
+                                                <img src={driver.id_passport.base64Img || camera} alt="" id="img"
+                                                     className="img"/>
                                             </div>
                                             <input
                                                 type="file"
@@ -230,7 +246,6 @@ class DriverRegistration extends Component {
             </section>
         );
     }
-
-};
+}
 
 export default withAlert()(DriverRegistration);

@@ -112,12 +112,13 @@
 
 /* Image */
 
-.img__holder{
+.img__holder {
     height: 150px;
     border: 1px solid #E5E5E5;
     border-radius: 4px;
 }
-.img{
+
+.img {
     height: 100%;
     object-fit: cover;
 }
@@ -126,13 +127,14 @@
     display: none;
 }
 
-.image__label{
+.image__label {
     width: 100%;
     margin-top: 1rem;
     display: flex;
     justify-content: center;
 }
-.image__upload{
+
+.image__upload {
     font-family: "Gilroy-SemiBold";
     font-size: 12px;
 

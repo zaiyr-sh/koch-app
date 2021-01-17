@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         editDisplayHandler: (display) => {
-            dispatch(editDisplayActionCreator(display))
+            dispatch(editDisplayActionCreator(display));
         }
     }
 }

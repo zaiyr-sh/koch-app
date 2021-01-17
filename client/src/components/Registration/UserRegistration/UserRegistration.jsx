@@ -2,9 +2,17 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 const UserRegistration = (
-    {user, editRegistrationFieldHandler, onSubmit, handleCloseRegistrationSection, nameError, surnameError, phoneNumberError, passwordError}
-    ) => {
-
+    {
+        user,
+        editRegistrationFieldHandler,
+        onSubmit,
+        handleCloseRegistrationSection,
+        nameError,
+        surnameError,
+        phoneNumberError,
+        passwordError
+    }
+) => {
     return (
         <section className="section-login">
             <div className="container">
@@ -74,7 +82,8 @@ const UserRegistration = (
                             {/*    <Link className="registration__button-addNumber" to="/reset" >Добавить номер</Link>*/}
                             {/*</div>*/}
                             <div className="registration__buttons">
-                                <Link onClick={handleCloseRegistrationSection} className="registration__button-signin" to="/login">Войти</Link>
+                                <Link onClick={handleCloseRegistrationSection} className="registration__button-signin"
+                                      to="/login">Войти</Link>
                                 <button className="registration__button-signup">Зарегистрироваться</button>
                             </div>
                         </form>

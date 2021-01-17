@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import "./Navbar.css";
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = ({isLoggedIn}) => {
 
     return (
         <header className="header">
@@ -21,8 +21,10 @@ const Navbar = ({ isLoggedIn }) => {
                     <div className="header__right">
                         <nav className="nav">
                             {/*<Link className="nav__link-lang" to="/g">ru</Link>*/}
-                            <Link className="nav__link-signIn" to={isLoggedIn === true ? "/profile/my_orders" : "/login"}>Войти</Link>
-                            <Link className="nav__link-placeAd" to={isLoggedIn === true ? "/placement" : "/login"}><i className="fa fa-plus"/>  Разместить</Link>
+                            <Link className="nav__link-signIn"
+                                  to={isLoggedIn === true ? "/profile/my_orders" : "/login"}>Войти</Link>
+                            <Link className="nav__link-placeAd" to={isLoggedIn === true ? "/placement" : "/login"}><i
+                                className="fa fa-plus"/> Разместить</Link>
                         </nav>
                     </div>
                 </div>

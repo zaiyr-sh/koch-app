@@ -1,5 +1,5 @@
 /* Header */
-.header{
+.header {
     padding-top: 18px;
     padding-bottom: 18px;
     top: 0;
@@ -11,14 +11,14 @@
     box-shadow: 0px 4px 4px rgba(144, 144, 144, 0.1);
 }
 
-.header__inner{
+.header__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 /* Header left */
-.header__left{
+.header__left {
     display: flex;
     align-items: center;
 }
@@ -52,7 +52,7 @@
     font-family: "Gilroy-SemiBold", sans-serif;
 }
 
-.nav a{
+.nav a {
     text-decoration: none;
 }
 
@@ -107,7 +107,7 @@
     margin-right: 25px;
 }
 
-.nav__link-user{
+.nav__link-user {
     font-family: "Gilroy-Medium";
     font-size: 16px;
 

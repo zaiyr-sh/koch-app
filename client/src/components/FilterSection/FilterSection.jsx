@@ -14,9 +14,9 @@ const FilterSection = ({display, editDisplayHandler}) => {
 
     const renderInner = () => {
         if (display === "cargo") {
-            return <FilterCargoContainer />
+            return <FilterCargoContainer/>
         } else if (display === "transportation") {
-            return <FilterTransportContainer />
+            return <FilterTransportContainer/>
         }
     }
 
@@ -37,8 +37,14 @@ const FilterSection = ({display, editDisplayHandler}) => {
                             <div className="filter-chooser">
                                 <p className="filter-search">Искать</p>
                                 <div className="filter-searchFields">
-                                    <button className={display === 'cargo' ? 'filter-goods filter-active': 'filter-goods'} onClick={e => changeDisplay(e)} name="cargo">Груз</button>
-                                    <button className={display === 'transportation' ? 'filter-transport filter-active': 'filter-transport'} onClick={e => changeDisplay(e)}  name="transportation" >Транспорт</button>
+                                    <button
+                                        className={display === 'cargo' ? 'filter-goods filter-active' : 'filter-goods'}
+                                        onClick={e => changeDisplay(e)} name="cargo">Груз
+                                    </button>
+                                    <button
+                                        className={display === 'transportation' ? 'filter-transport filter-active' : 'filter-transport'}
+                                        onClick={e => changeDisplay(e)} name="transportation">Транспорт
+                                    </button>
                                 </div>
                             </div>
 

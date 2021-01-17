@@ -33,8 +33,7 @@ class FilterTransport extends React.Component {
             filteredTransportations, editTransportationFilterHandler,
             cities, regions, editPlaceSelectionHandler
         } = this.props;
-
-        let { button } = this.state;
+        let {button} = this.state;
 
         return (
             <form className="filter__form" onSubmit={this.onSubmit}>

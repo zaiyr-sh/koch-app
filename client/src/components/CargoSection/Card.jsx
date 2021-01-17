@@ -7,12 +7,11 @@ import {
     months_with_leading_zeros
 } from "../../helpers/date-helper";
 
-const Card = ({ card, onOpenCardModal }) => {
+const Card = ({card, onOpenCardModal}) => {
 
     return (
         <div className="card__item">
             <div className="card__inner">
-
                 <div className="card__name">
                     {card.name}
                 </div>
@@ -27,9 +26,10 @@ const Card = ({ card, onOpenCardModal }) => {
                     </div>
                     <div className="card__price">{card.price}c</div>
                 </div>
-                <div className="card__line"></div>
+                <div className="card__line"/>
                 <div className="card__addition-information">
-                    <p className="card__period">{dates_with_leading_zeros(new Date(card.date_published))}.{months_with_leading_zeros(new Date(card.date_published))}.{new Date(card.date_published).getFullYear()}, в {hours_with_leading_zeros(new Date(card.date_published))}:{minutes_with_leading_zeros(new Date(card.date_published))} ч.</p>
+                    <p className="card__period">{dates_with_leading_zeros(new Date(card.date_published))}.{months_with_leading_zeros(new Date(card.date_published))}.{new Date(card.date_published).getFullYear()},
+                        в {hours_with_leading_zeros(new Date(card.date_published))}:{minutes_with_leading_zeros(new Date(card.date_published))} ч.</p>
                     <button className="card__addition-btn" onClick={() => onOpenCardModal(card)}>Подробнее</button>
                 </div>
             </div>

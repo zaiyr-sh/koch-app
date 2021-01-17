@@ -33,13 +33,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         getCargoes: () => {
-            dispatch(getCargoesThunkCreator())
+            dispatch(getCargoesThunkCreator());
         },
         getNextCargoes(offset) {
-            dispatch(getNextCargoesThunkCreator(offset))
+            dispatch(getNextCargoesThunkCreator(offset));
         },
         setOpenCardModal(card) {
-            dispatch(setOpenCardModalActionCreator(card))
+            dispatch(setOpenCardModalActionCreator(card));
         }
     }
 }

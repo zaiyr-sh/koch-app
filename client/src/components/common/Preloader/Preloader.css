@@ -1,79 +1,90 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.preloarder__inner{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    min-height:100vh;
-}
-.preloarder{
-    position:relative;
-    width:100px;
-    height:70px;
-    display:inline-block;
-    transform-origin:center;
-    animation:preloarder 1.5s linear infinite;
-}
-.preloarder .SpanLoad{
-    display:flex;
-    justify-content:center;
-}
-.preloarder span{
-    position:absolute;
-    width:15px;
-    height:15px;
-    background:#000;
-    transform-origin:center 35px;
-    border-radius:50%;
-}
-.preloarder span:first-child{
-    opacity:.1;
-}
-.preloarder span:nth-child(2){
-    transform:rotate(36deg);
-    opacity:.2;
-}
-.preloarder span:nth-child(3){
-    transform:rotate(72deg);
-    opacity:.3;
-}
-.preloarder span:nth-child(4){
-    transform:rotate(108deg);
-    opacity:.4;
-}
-.preloarder span:nth-child(5){
-    transform:rotate(144deg);
-    opacity:.5;
-}
-.preloarder span:nth-child(6){
-    transform:rotate(180deg);
-    opacity:.6;
-}
-.preloarder span:nth-child(7){
-    transform:rotate(216deg);
-    opacity:.7;
-}
-.preloarder span:nth-child(8){
-    transform:rotate(252deg);
-    opacity:.8;
-}
-.preloarder span:nth-child(9){
-    transform:rotate(288deg);
-    opacity:.9;
-}
-.preloarder span:nth-child(10){
-    transform:rotate(324deg);
-    opacity:1;
+.preloarder__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
 }
 
-@keyframes preloarder{
-    0%{
-        transform:rotate(0deg) scale(1);
+.preloarder {
+    position: relative;
+    width: 100px;
+    height: 70px;
+    display: inline-block;
+    transform-origin: center;
+    animation: preloarder 1.5s linear infinite;
+}
+
+.preloarder .SpanLoad {
+    display: flex;
+    justify-content: center;
+}
+
+.preloarder span {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #000;
+    transform-origin: center 35px;
+    border-radius: 50%;
+}
+
+.preloarder span:first-child {
+    opacity: .1;
+}
+
+.preloarder span:nth-child(2) {
+    transform: rotate(36deg);
+    opacity: .2;
+}
+
+.preloarder span:nth-child(3) {
+    transform: rotate(72deg);
+    opacity: .3;
+}
+
+.preloarder span:nth-child(4) {
+    transform: rotate(108deg);
+    opacity: .4;
+}
+
+.preloarder span:nth-child(5) {
+    transform: rotate(144deg);
+    opacity: .5;
+}
+
+.preloarder span:nth-child(6) {
+    transform: rotate(180deg);
+    opacity: .6;
+}
+
+.preloarder span:nth-child(7) {
+    transform: rotate(216deg);
+    opacity: .7;
+}
+
+.preloarder span:nth-child(8) {
+    transform: rotate(252deg);
+    opacity: .8;
+}
+
+.preloarder span:nth-child(9) {
+    transform: rotate(288deg);
+    opacity: .9;
+}
+
+.preloarder span:nth-child(10) {
+    transform: rotate(324deg);
+    opacity: 1;
+}
+
+@keyframes preloarder {
+    0% {
+        transform: rotate(0deg) scale(1);
     }
-    100%{
-        transform:rotate(360deg) scale(1);
+    100% {
+        transform: rotate(360deg) scale(1);
     }
 }
-
-

@@ -32,7 +32,7 @@ class FilterCargo extends React.Component {
             filteredCargoes, editCargoFilterHandler,
             cities, regions, editPlaceSelectionHandler,
         } = this.props;
-        let { button } = this.state;
+        let {button} = this.state;
 
         return (
             <form className="filter__form" onSubmit={this.onSubmit}>

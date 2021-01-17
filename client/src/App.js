@@ -16,6 +16,7 @@ import TransportSectionContainer from "./components/TransportationSection/Transp
 import OrderPlacementContainer from "./components/Profile/OrderPlacement/OrderPlacementContainer";
 
 class App extends React.Component {
+
     componentDidMount() {
         this.props.initializeApp();
     }

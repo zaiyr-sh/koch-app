@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+
 import TransportationSection from "./TransportationSection";
 import {
     getNextTransportationsThunkCreator,
     getTransportationsThunkCreator
 } from "../../redux/reducers/transportation-reducer";
-import {connect} from "react-redux";
 import {setOpenCardModalActionCreator} from "../../redux/reducers/modal-reducer";
 
 
@@ -33,13 +34,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         getTransportations: () => {
-            dispatch(getTransportationsThunkCreator())
+            dispatch(getTransportationsThunkCreator());
         },
         getNextTransportations: (offset) => {
-            dispatch(getNextTransportationsThunkCreator(offset))
+            dispatch(getNextTransportationsThunkCreator(offset));
         },
         setOpenCardModal(card) {
-            dispatch(setOpenCardModalActionCreator(card))
+            dispatch(setOpenCardModalActionCreator(card));
         }
     }
 }

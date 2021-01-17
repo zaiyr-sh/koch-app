@@ -40,13 +40,13 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(loginThunkCreator());
         },
         editLoginHandler: (nameField, value) => {
-            dispatch(editLoginActionCreator(nameField, value))
+            dispatch(editLoginActionCreator(nameField, value));
         },
         resetUserProfileHandler: () => {
-            dispatch(resetUserProfileActionCreator())
+            dispatch(resetUserProfileActionCreator());
         },
         loginUnSuccessHandler: (message) => {
-            dispatch(loginUnSuccessActionCreator(message))
+            dispatch(loginUnSuccessActionCreator(message));
         }
     }
 }

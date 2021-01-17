@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {compose} from "redux";
-import { withAlert  } from "react-alert";
+import {withAlert} from "react-alert";
 
 import Profile from "./Profile";
 import {
@@ -21,7 +21,7 @@ class ProfileContainer extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.isUpdated) {
+        if (this.props.isUpdated) {
             this.props.alert.success('Ваши данные успешно сохранены!');
             this.props.updateUserProfileSuccess(false);
         }
@@ -29,16 +29,16 @@ class ProfileContainer extends Component {
 
     render() {
         return <>
-                <UserNavbar logoutThunk={this.props.logoutThunk} isLoggedIn={this.props.isLoggedIn}/>;
-                <Profile
-                    userProfile={this.props.userProfile}
-                    userOrders={this.props.userOrders}
-                    editUserProfileHandler={this.props.editUserProfileHandler}
-                    updateUserProfileHandler={this.props.updateUserProfileHandler}
-                    getNextOrders={this.props.getNextOrders}
-                    onOpenCardModal={this.props.onOpenCardModal}
-                />
-            </>;
+            <UserNavbar logoutThunk={this.props.logoutThunk} isLoggedIn={this.props.isLoggedIn}/>;
+            <Profile
+                userProfile={this.props.userProfile}
+                userOrders={this.props.userOrders}
+                editUserProfileHandler={this.props.editUserProfileHandler}
+                updateUserProfileHandler={this.props.updateUserProfileHandler}
+                getNextOrders={this.props.getNextOrders}
+                onOpenCardModal={this.props.onOpenCardModal}
+            />
+        </>;
     }
 }
 
@@ -52,28 +52,28 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserProfile: () => {
-            dispatch(getUserProfileThunkCreator())
+            dispatch(getUserProfileThunkCreator());
         },
         getUserOrders: () => {
-            dispatch(getUserOrdersThunkCreator())
+            dispatch(getUserOrdersThunkCreator());
         },
-        getNextOrders:(offset) => {
-          dispatch(getNextOrdersThunkCreator(offset))
+        getNextOrders: (offset) => {
+            dispatch(getNextOrdersThunkCreator(offset));
         },
         editUserProfileHandler: (nameField, value) => {
-            dispatch(editUserProfileActionCreator(nameField, value))
+            dispatch(editUserProfileActionCreator(nameField, value));
         },
         updateUserProfileHandler: () => {
-            dispatch(updateUserProfileThunkCreator())
+            dispatch(updateUserProfileThunkCreator());
         },
         onOpenCardModal: (userCard) => {
-            dispatch(setOpenCardModalActionCreator(userCard))
+            dispatch(setOpenCardModalActionCreator(userCard));
         },
         logoutThunk: () => {
             dispatch(logoutThunkCreator());
         },
         updateUserProfileSuccess: (isUpdated) => {
-            dispatch(updateUserProfileSuccessActionCreator(isUpdated))
+            dispatch(updateUserProfileSuccessActionCreator(isUpdated));
         }
     }
 }

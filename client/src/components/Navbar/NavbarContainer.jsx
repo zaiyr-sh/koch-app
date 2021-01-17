@@ -5,7 +5,6 @@ import {logoutThunkCreator} from "../../redux/reducers/auth-reducer";
 import Navbar from "./Navbar";
 
 class NavbarContainer extends Component {
-
     render() {
         return (
             <Navbar isLoggedIn={this.props.isLoggedIn}/>

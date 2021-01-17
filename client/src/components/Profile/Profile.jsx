@@ -5,7 +5,14 @@ import OrdersProfile from "./OrdersProfile/OrdersProfile";
 import Footer from "../Footer/Footer";
 import UserProfile from "./UserProfile/UserProfile";
 
-const Profile = ({ userProfile, userOrders, editUserProfileHandler, updateUserProfileHandler, getNextOrders, onOpenCardModal }) => {
+const Profile = ({
+                     userProfile,
+                     userOrders,
+                     editUserProfileHandler,
+                     updateUserProfileHandler,
+                     getNextOrders,
+                     onOpenCardModal
+                 }) => {
     return (
         <>
             <Switch>
@@ -23,7 +30,7 @@ const Profile = ({ userProfile, userOrders, editUserProfileHandler, updateUserPr
                             editUserProfileHandler={editUserProfileHandler}
                             updateUserProfileHandler={updateUserProfileHandler}
                         />
-                        <Footer />
+                        <Footer/>
                     </>
                 )}/>
             </Switch>

@@ -25,10 +25,20 @@ class CargoPlacement extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.isPlaced){
+        if (this.props.isPlaced) {
             this.props.alert.success('Вы успешно опубликовали!');
             this.props.placementSuccess(false);
-            this.setState({nameError: "", surnameError: "", phoneNumberError: "", cargoNameError: "", weightError: "", volumeError: "", lengthError: "", widthError: "", heightError: ""});
+            this.setState({
+                nameError: "",
+                surnameError: "",
+                phoneNumberError: "",
+                cargoNameError: "",
+                weightError: "",
+                volumeError: "",
+                lengthError: "",
+                widthError: "",
+                heightError: ""
+            });
         }
     }
 
@@ -42,7 +52,8 @@ class CargoPlacement extends React.Component {
     }
 
     validate = () => {
-        let nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError, widthError, heightError;
+        let nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError,
+            widthError, heightError;
         let {sender_name, sender_surname, phone_number, name, weight, volume, length, width, height} = this.props.cargo;
 
         nameError = validatePersonName(sender_name);
@@ -56,16 +67,36 @@ class CargoPlacement extends React.Component {
         heightError = validateMaxLength(height, 4);
 
         if (phoneNumberError || nameError || surnameError || cargoNameError || weightError || volumeError || lengthError || widthError || heightError) {
-            this.setState({ nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError, widthError, heightError });
+            this.setState({
+                nameError,
+                surnameError,
+                phoneNumberError,
+                cargoNameError,
+                weightError,
+                volumeError,
+                lengthError,
+                widthError,
+                heightError
+            });
             return false;
         }
         return true;
     }
 
     render() {
-        if(this.props.isPlaced) return <Redirect to="/"/>;
+        if (this.props.isPlaced) return <Redirect to="/"/>;
         let {editCargoPlacementHandler, cargo, cities, regions} = this.props;
-        let {nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError, widthError, heightError} = this.state;
+        let {
+            nameError,
+            surnameError,
+            phoneNumberError,
+            cargoNameError,
+            weightError,
+            volumeError,
+            lengthError,
+            widthError,
+            heightError
+        } = this.state;
 
         return (
             <section className="section-placement">

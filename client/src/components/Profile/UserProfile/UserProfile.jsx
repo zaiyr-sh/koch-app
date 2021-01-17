@@ -19,7 +19,7 @@ class UserProfile extends React.Component {
         surnameError = validatePersonName(surname);
 
         if (nameError || surnameError) {
-            this.setState({ nameError, surnameError });
+            this.setState({nameError, surnameError});
             return false;
         }
         return true;
@@ -87,6 +87,5 @@ class UserProfile extends React.Component {
         );
     }
 }
-
 
 export default UserProfile;
