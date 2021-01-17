@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Login from "./Login";
 import {
     editLoginActionCreator,
-    loginThunkCreator, loginUnSuccess,
+    loginThunkCreator, loginUnSuccessActionCreator,
     resetUserProfileActionCreator
 } from "../../redux/reducers/auth-reducer";
 
@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(resetUserProfileActionCreator())
         },
         loginUnSuccessHandler: (message) => {
-            dispatch(loginUnSuccess(message))
+            dispatch(loginUnSuccessActionCreator(message))
         }
     }
 }

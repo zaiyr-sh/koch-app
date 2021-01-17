@@ -1,4 +1,4 @@
-const SET_DISPLAY = 'client/SET_DISPLAY';
+const SET_DISPLAY = 'filter/SET_DISPLAY';
 
 let initialState = {
     display: "cargo"
@@ -13,10 +13,9 @@ const filterReducer = (state = initialState, action) => {
             }
         default:
             return state;
-
     }
 }
 
-export const editDisplayActionCreator = (display) => ({type: SET_DISPLAY, display})
+export const editDisplayActionCreator = (display) => ({type: SET_DISPLAY, display});
 
 export default filterReducer;

@@ -1,5 +1,5 @@
 import * as axios from 'axios';
-import {authFormDataHeader, authHeader} from "../helpers/auth-header";
+import {authHeader} from "../helpers/auth-header";
 
 const axiosInstance = axios.create({
     baseURL: "http://159.89.97.207/api/"
@@ -100,8 +100,7 @@ export const authAPI = {
     login(phone_number, password) {
         return axiosInstance
             .post(
-                `auth/jwt/create`,
-                { phone_number, password}
+                `auth/jwt/create`, { phone_number, password}
             )
     },
     updateUserProfile(clientProfile) {
@@ -117,16 +116,13 @@ export const registrationAPI = {
     register(name, surname, user_type, phone_number, password) {
         return axiosInstance
             .post(
-                `auth/users/`,
-                {name, surname, user_type, phone_number, password}
+                `auth/users/`, {name, surname, user_type, phone_number, password}
             )
     },
     registerDriver(data) {
         return axiosInstance
             .post(
-                `users/drivers/register/`,
-                data,
-                { headers: authFormDataHeader() }
+                `users/drivers/register/`, data, { headers: authHeader('multipart/form-data') }
             )
     }
 }
@@ -147,6 +143,7 @@ export const placementAPI = {
     }
 }
 
+// types endpoint
 export const typesAPI = {
     getCargoTypes() {
         return axiosInstance

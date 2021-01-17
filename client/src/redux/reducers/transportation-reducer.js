@@ -65,32 +65,31 @@ const transportationReducer = (state = initialState, action) => {
             }
         default:
             return state;
-
     }
 }
 
 export const getTransportationsThunkCreator = () => async (dispatch) => {
     const response = await cargoTransportationAPI.getCargoTransportations();
-    dispatch(setTransportationsActionCreator(response.data))
+    dispatch(setTransportationsActionCreator(response.data));
 }
-const setTransportationsActionCreator = (transportations) => ({type: SET_TRANSPORTATION, transportations})
+const setTransportationsActionCreator = (transportations) => ({type: SET_TRANSPORTATION, transportations});
 
-export const editPlaceSelectionActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_FILTER, nameField, value })
-export const resetFilterTransportationActionCreator = () => ({type: RESET_TRANSPORTATION_FILTER})
+export const editPlaceSelectionActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_FILTER, nameField, value });
+export const resetFilterTransportationActionCreator = () => ({type: RESET_TRANSPORTATION_FILTER});
 
-export const editTransportationFilterActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_FILTER, nameField, value })
+export const editTransportationFilterActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_FILTER, nameField, value });
 
 export const getNextTransportationsThunkCreator = (offset) => async (dispatch, getState) => {
     let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "", vehicle_type = "" } = getState().transportationPage.filteredTransportations;
     const response = await cargoTransportationAPI.getNextCargoTransportations(offset,  from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price, vehicle_type );
-    dispatch(setNewCargoesActionCreator(response.data))
+    dispatch(setNewCargoesActionCreator(response.data));
 }
-const setNewCargoesActionCreator = (transportations) => ({type: SET_NEW_TRANSPORTATIONS, transportations})
+const setNewCargoesActionCreator = (transportations) => ({type: SET_NEW_TRANSPORTATIONS, transportations});
 
 export const getFilteredTransportationsThunkCreator = () => async (dispatch, getState) => {
     let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "", vehicle_type = "" } = getState().transportationPage.filteredTransportations;
     const response = await cargoTransportationAPI.getFilteredCargoTransportations(from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price, vehicle_type );
-    dispatch(setTransportationsActionCreator(response.data))
+    dispatch(setTransportationsActionCreator(response.data));
 }
 
 export default transportationReducer;

@@ -16,7 +16,6 @@ import TransportSectionContainer from "./components/TransportationSection/Transp
 import OrderPlacementContainer from "./components/Profile/OrderPlacement/OrderPlacementContainer";
 
 class App extends React.Component {
-
     componentDidMount() {
         this.props.initializeApp();
     }
@@ -48,7 +47,6 @@ const PrimaryContainer = () => (
     </>
 )
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
         initializeApp: () => {
@@ -56,6 +54,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
-
 
 export default connect(null, mapDispatchToProps)(App);

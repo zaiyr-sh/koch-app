@@ -35,8 +35,6 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const editLoginActionCreator = (nameField, value) => ({type: SET_EDIT_LOGIN, nameField, value })
-
 export const loginThunkCreator = () => async (dispatch, getState) => {
     const { user } = getState().authPage;
     try {
@@ -46,12 +44,9 @@ export const loginThunkCreator = () => async (dispatch, getState) => {
             dispatch(getUserProfileThunkCreator());
         }
     } catch (e) {
-        dispatch(loginUnSuccess());
+        dispatch(loginUnSuccessActionCreator());
     }
-    
 }
-
-export const resetUserProfileActionCreator = () => ({type: RESET_USER_DATA})
 export const logoutThunkCreator = () => async (dispatch) => {
     localStorage.removeItem('user');
     dispatch(setUserProfileActionCreator({userProfile: {name: "", surname: "", phone_number: ""}}, false));
@@ -59,6 +54,8 @@ export const logoutThunkCreator = () => async (dispatch) => {
     dispatch(resetUserProfileActionCreator());
 }
 
-export const loginUnSuccess = (message = "Введен неверный логин или пароль") => ({type: LOGIN_UNSUCCESS, loginError: message})
+export const editLoginActionCreator = (nameField, value) => ({type: SET_EDIT_LOGIN, nameField, value });
+export const resetUserProfileActionCreator = () => ({type: RESET_USER_DATA});
+export const loginUnSuccessActionCreator = (message = "Введен неверный логин или пароль") => ({type: LOGIN_UNSUCCESS, loginError: message});
 
 export default authReducer;

@@ -1,5 +1,5 @@
-const SET_OPEN_CARD_MODAL = 'client/SET_OPEN_CARD_MODAL';
-const SET_CLOSE_CARD_MODAL = 'client/SET_CLOSE_CARD_MODAL';
+const SET_OPEN_CARD_MODAL = 'modal/SET_OPEN_CARD_MODAL';
+const SET_CLOSE_CARD_MODAL = 'modal/SET_CLOSE_CARD_MODAL';
 
 let initialState = {
     card: {}
@@ -22,8 +22,7 @@ const modalReducer = (state = initialState, action) => {
     }
 }
 
-
-export const setOpenCardModalActionCreator = (card) => ({type: SET_OPEN_CARD_MODAL, card})
-export const closeCardActionCreator = () => ({type: SET_CLOSE_CARD_MODAL})
+export const setOpenCardModalActionCreator = (card) => ({type: SET_OPEN_CARD_MODAL, card});
+export const closeCardActionCreator = () => ({type: SET_CLOSE_CARD_MODAL});
 
 export default modalReducer;

@@ -35,16 +35,16 @@ let initialState = {
             img: ""
         }
     },
-    isRegister: false,
-    isDriverRegister: false,
-    registrationDriverError: "",
-    registrationError: "",
     cargoTypes: {
         count: 0,
         next: "",
         previous: "",
         results: []
-    }
+    },
+    isRegister: false,
+    isDriverRegister: false,
+    registrationDriverError: "",
+    registrationError: ""
 };
 
 const registrationReducer = (state = initialState, action) => {
@@ -140,9 +140,8 @@ export const registrationThunkCreator = () => async (dispatch, getState) => {
         dispatch(resetRegistrationActionCreator());
     }
 }
-
 const registrationSuccess = () => ({ type: REGISTRATION_SUCCESS });
-const registrationUnSuccess = () => ({type: REGISTRATION_UNSUCCESS, registrationError: "ERROR"})
+const registrationUnSuccess = () => ({type: REGISTRATION_UNSUCCESS, registrationError: "ERROR"});
 
 export const editRegistrationDriverFieldActionCreator = (nameField, value) => ({type: SET_EDIT_DRIVER, nameField, value });
 export const editRegistrationDriverImageFieldActionCreator = (nameField, base64Img, img) => ({type: SET_EDIT_IMAGE_DRIVER, nameField, base64Img, img });
@@ -158,7 +157,7 @@ export const registrationDriverThunkCreator = () => async (dispatch, getState) =
     try {
         const response = await registrationAPI.registerDriver(data);
         if (response.status === 201) {
-            dispatch(registrationDriverSuccess())
+            dispatch(registrationDriverSuccess());
             dispatch(resetRegistrationActionCreator());
         }
     } catch (e) {
@@ -166,16 +165,15 @@ export const registrationDriverThunkCreator = () => async (dispatch, getState) =
         dispatch(resetRegistrationActionCreator());
     }
 }
-
 const registrationDriverSuccess = () => ({ type: REGISTRATION_DRIVER_SUCCESS });
-const registrationDriverUnSuccess = () => ({type: REGISTRATION_DRIVER_UNSUCCESS, registrationDriverError: "ERROR"})
+const registrationDriverUnSuccess = () => ({type: REGISTRATION_DRIVER_UNSUCCESS, registrationDriverError: "ERROR"});
 
 export const resetRegistrationActionCreator = () => ({type: RESET_REGISTRATION});
 
 export const getTypesThunkCreator = () => async (dispatch) => {
     const cargoTypesResponse = await typesAPI.getCargoTypes();
-    dispatch(setPlacesActionCreator(cargoTypesResponse.data))
+    dispatch(setPlacesActionCreator(cargoTypesResponse.data));
 }
-const setPlacesActionCreator = (cargoTypes) => ({type: SET_CARGO_TYPES, cargoTypes})
+const setPlacesActionCreator = (cargoTypes) => ({type: SET_CARGO_TYPES, cargoTypes});
 
 export default registrationReducer;

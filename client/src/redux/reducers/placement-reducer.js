@@ -89,7 +89,10 @@ const placementReducer = (state = initialState, action) => {
     }
 }
 
-export const editCargoPlacementActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_PLACEMENT, nameField, value })
+export const placementSuccessActionCreator = (isPlaced) => ({type: PLACEMENT_SUCCESS, isPlaced});
+const placementUnsuccessActionCreator = () => ({type: PLACEMENT_UNSUCCESS, placementError: "ERROR"});
+
+export const editCargoPlacementActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_PLACEMENT, nameField, value });
 export const placeCargoThunkCreator = () => async (dispatch, getState) => {
     const { cargo } = getState().placementPage;
     const response = await placementAPI.cargoPlacement(cargo);
@@ -98,11 +101,9 @@ export const placeCargoThunkCreator = () => async (dispatch, getState) => {
         dispatch(resetPlacementCargoActionCreator());
     }
 }
-export const placementSuccessActionCreator = (isPlaced) => ({type: PLACEMENT_SUCCESS, isPlaced})
-const placementUnsuccessActionCreator = () => ({type: PLACEMENT_UNSUCCESS, placementError: "ERROR"})
-export const resetPlacementCargoActionCreator = () => ({type: RESET_PLACEMENT_CARGO})
+export const resetPlacementCargoActionCreator = () => ({type: RESET_PLACEMENT_CARGO});
 
-export const editTransportationPlacementActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_PLACEMENT, nameField, value })
+export const editTransportationPlacementActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_PLACEMENT, nameField, value });
 export const placeTransportationThunkCreator = () => async (dispatch, getState) => {
     const { transportation } = getState().placementPage;
     try {
@@ -112,10 +113,10 @@ export const placeTransportationThunkCreator = () => async (dispatch, getState) 
             dispatch(resetPlacementTransportationActionCreator());
         }
     } catch (e) {
-        dispatch(placementUnsuccessActionCreator())
+        dispatch(placementUnsuccessActionCreator());
         dispatch(resetPlacementTransportationActionCreator());
     }
 }
-export const resetPlacementTransportationActionCreator = () => ({type: RESET_PLACEMENT_TRANSPORTATION})
+export const resetPlacementTransportationActionCreator = () => ({type: RESET_PLACEMENT_TRANSPORTATION});
 
 export default placementReducer;

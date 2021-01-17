@@ -62,7 +62,6 @@ const userReducer = (state = initialState, action) => {
             }
         default:
             return state;
-
     }
 }
 
@@ -70,28 +69,27 @@ export const getUserOrdersThunkCreator = () => async (dispatch) => {
     const response = await authAPI.getUserOrders();
     dispatch(setUserOrdersActionCreator(response.data));
 }
-export const setUserOrdersActionCreator = (userOrders) => ({type: SET_USER_ORDERS, userOrders})
+export const setUserOrdersActionCreator = (userOrders) => ({type: SET_USER_ORDERS, userOrders});
 
 export const getUserProfileThunkCreator = () => async (dispatch) => {
     const response = await authAPI.getUserData();
-    dispatch(setUserProfileActionCreator(response.data, true))
+    dispatch(setUserProfileActionCreator(response.data, true));
 }
-export const setUserProfileActionCreator = (userProfile, isLoggedIn) => ({type: SET_USER, userProfile, isLoggedIn})
+export const setUserProfileActionCreator = (userProfile, isLoggedIn) => ({type: SET_USER, userProfile, isLoggedIn});
 
-export const editUserProfileActionCreator = (nameField, value) => ({type: SET_EDIT_USER, nameField, value })
+export const editUserProfileActionCreator = (nameField, value) => ({type: SET_EDIT_USER, nameField, value });
 export const updateUserProfileThunkCreator = () => async (dispatch, getState) => {
     const { userProfile } = getState().userPage;
     await authAPI.updateUserProfile(userProfile);
     dispatch(getUserProfileThunkCreator());
     dispatch(updateUserProfileSuccessActionCreator(true));
 }
-export const updateUserProfileSuccessActionCreator = (isUpdated) => ({type: SET_USER_UPDATE_SUCCESS, isUpdated})
+export const updateUserProfileSuccessActionCreator = (isUpdated) => ({type: SET_USER_UPDATE_SUCCESS, isUpdated});
 
 export const getNextOrdersThunkCreator = (offset) => async (dispatch) => {
     const response = await authAPI.getNextOrders(offset);
-    dispatch(setNewOrdersActionCreator(response.data))
+    dispatch(setNewOrdersActionCreator(response.data));
 }
-const setNewOrdersActionCreator = (userOrders) => ({type: SET_NEW_ORDERS, userOrders})
-
+const setNewOrdersActionCreator = (userOrders) => ({type: SET_NEW_ORDERS, userOrders});
 
 export default userReducer;
