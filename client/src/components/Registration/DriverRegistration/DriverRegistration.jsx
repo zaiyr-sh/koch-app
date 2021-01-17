@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from "react-router-dom";
-import { withAlert  } from "react-alert";
+import { withAlert } from "react-alert";
 
 import camera from '../../../assets/images/camera_icon.png';
 import "./DriverRegistration.css";
@@ -48,14 +48,18 @@ class DriverRegistration extends Component {
     }
 
     imageHandler = (name, files) => {
+        const file = files[0];
         const reader = new FileReader();
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                this.props.editRegistrationDriverImageFieldHandler(name, reader.result, files[0])
-            }
+        let editRegistrationDriverImageFieldHandler = this.props.editRegistrationDriverImageFieldHandler;
+        if (file && file.type.match('image.*')) {
+            reader.readAsDataURL(file);
+        } else {
+            editRegistrationDriverImageFieldHandler(name, "", "")
         }
-        reader.readAsDataURL(files[0]);
-    };
+        reader.onloadend = () => {
+            editRegistrationDriverImageFieldHandler(name, reader.result, file)
+        }
+    }
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -70,7 +74,7 @@ class DriverRegistration extends Component {
 
         let {driver, editRegistrationDriverFieldHandler, cargoTypes} = this.props;
         let {vehiclePassportError, driverLicenseError, idPassportError, vehicleTypeError, carryingCapacityError} = this.state;
-
+        console.log(driver)
         return (
             <section className="section-driverProfile">
                 <div className="container">
