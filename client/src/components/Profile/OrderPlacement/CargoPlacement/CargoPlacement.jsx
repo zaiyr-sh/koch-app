@@ -99,7 +99,7 @@ class CargoPlacement extends React.Component {
         } = this.state;
 
         return (
-            <section className="section-placement">
+            <section className="section__placement">
                 <div className="container">
                     <div className="placement__inner">
                         <p className="placement__title">Данные груза</p>

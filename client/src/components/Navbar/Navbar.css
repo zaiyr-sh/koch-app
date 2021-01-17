@@ -8,7 +8,7 @@
     z-index: 1000;
 
     background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(144, 144, 144, 0.1);
+    box-shadow: 0 4px 4px rgba(144, 144, 144, 0.1);
 }
 
 .header__inner {
@@ -108,7 +108,7 @@
 }
 
 .nav__link-user {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-SemiBold", sans-serif;
     font-size: 16px;
 
     text-decoration: none;

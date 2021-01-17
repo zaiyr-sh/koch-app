@@ -36,23 +36,23 @@ class FilterCargo extends React.Component {
 
         return (
             <form className="filter__form" onSubmit={this.onSubmit}>
-                <div className="filter-direction">
-                    <p className="filter-title">Откуда</p>
-                    <div className="filter-direction-from">
+                <div className="filter__direction">
+                    <p className="filter__title">Откуда</p>
+                    <div className="filter__direction-from">
                         <div className="filter-direction-area">
                             <select value={filteredCargoes.from_region}
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
-                                    className="filter-direction-selection" name="from_region">
+                                    className="filter__direction-selection" name="from_region">
                                 <option value="">Область</option>
                                 {regions.results.map(region => (
                                     <option key={region.id} value={region.id}>{region.name}</option>
                                 ))}
                             </select>
                         </div>
-                        <div className="filter-direction-city">
+                        <div className="filter__direction-city">
                             <select value={filteredCargoes.from_city}
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
-                                    className="filter-direction-selection" name="from_city">
+                                    className="filter__direction-selection" name="from_city">
                                 <option value="">Город, район</option>
                                 {cities.results.map(city => (
                                     <option key={city.id} value={city.id}>{city.name}</option>
@@ -61,22 +61,22 @@ class FilterCargo extends React.Component {
                         </div>
                     </div>
 
-                    <p className="filter-title">Куда</p>
-                    <div className="filter-direction-to">
+                    <p className="filter__title">Куда</p>
+                    <div className="filter__direction-to">
                         <div className="filter-direction-area">
                             <select value={filteredCargoes.to_region}
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
-                                    className="filter-direction-selection" name="to_region">
+                                    className="filter__direction-selection" name="to_region">
                                 <option value="">Область</option>
                                 {regions.results.map(region => (
                                     <option key={region.id} value={region.id}>{region.name}</option>
                                 ))}
                             </select>
                         </div>
-                        <div className="filter-direction-city">
+                        <div className="filter__direction-city">
                             <select value={filteredCargoes.to_city}
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
-                                    className="filter-direction-selection" name="to_city">
+                                    className="filter__direction-selection" name="to_city">
                                 <option value="">Город, район</option>
                                 {cities.results.map(city => (
                                     <option key={city.id} value={city.id}>{city.name}</option>
@@ -88,13 +88,13 @@ class FilterCargo extends React.Component {
                 {/*Filter Direction*/}
 
                 <div className="filter-size">
-                    <div className="filter-size-information">
+                    <div className="filter__size-information">
 
                         <div className="filter-weight">
-                            <p className="filter-title">Вес груза, т</p>
-                            <div className="filter-size-from">
+                            <p className="filter__title">Вес груза, т</p>
+                            <div className="filter__size-from">
                                 <div className="filter-direction-size">
-                                    <input className="filter-size-selection"
+                                    <input className="filter__size-selection"
                                            type="number"
                                            required={filteredCargoes.to_weight !== "" && button === "show"}
                                            min="0"
@@ -105,7 +105,7 @@ class FilterCargo extends React.Component {
                                     />
                                 </div>
                                 <div className="filter-direction-size">
-                                    <input className="filter-size-selection"
+                                    <input className="filter__size-selection"
                                            type="number"
                                            required={filteredCargoes.from_weight !== "" && button === "show"}
                                            min="0"
@@ -118,11 +118,11 @@ class FilterCargo extends React.Component {
                             </div>
                         </div>
 
-                        <div className="filter-volume">
-                            <p className="filter-title">Объем груза, м³ </p>
-                            <div className="filter-size-to">
+                        <div className="filter__volume">
+                            <p className="filter__title">Объем груза, м³ </p>
+                            <div className="filter__size-to">
                                 <div className="filter-direction-size">
-                                    <input className="filter-size-selection"
+                                    <input className="filter__size-selection"
                                            type="number"
                                            required={filteredCargoes.to_volume !== "" && button === "show"}
                                            min="0"
@@ -133,7 +133,7 @@ class FilterCargo extends React.Component {
                                     />
                                 </div>
                                 <div className="filter-direction-size">
-                                    <input className="filter-size-selection"
+                                    <input className="filter__size-selection"
                                            type="number"
                                            required={filteredCargoes.from_volume !== "" && button === "show"}
                                            min="0"
@@ -146,10 +146,10 @@ class FilterCargo extends React.Component {
                             </div>
                         </div>
 
-                        <div className="filter-price">
-                            <div className="filter-size-to">
+                        <div className="filter__price">
+                            <div className="filter__size-to">
                                 <div className="filter-direction-size">
-                                    <input className="filter-size-selection filter-price-selection"
+                                    <input className="filter__size-selection filter__price-selection"
                                            name="from_price"
                                            required={filteredCargoes.to_price !== "" && button === "show"}
                                            type="number"
@@ -160,7 +160,7 @@ class FilterCargo extends React.Component {
                                     />
                                 </div>
                                 <div className="filter-direction-size">
-                                    <input className="filter-size-selection filter-price-selection"
+                                    <input className="filter__size-selection filter__price-selection"
                                            name="to_price"
                                            required={filteredCargoes.from_price !== "" && button === "show"}
                                            type="number"
@@ -177,13 +177,14 @@ class FilterCargo extends React.Component {
                 </div>
                 {/*Filter size*/}
 
-                <div className="filter-buttons">
+                <div className="filter__buttons">
                     <div className="filter-reset">
-                        <button className="filter-reset-btn" onClick={() => this.handleClick("reset")}>Сбросить <i
+                        <button className="filter__reset-btn" onClick={() => this.handleClick("reset")}>Сбросить <i
                             className="fa fa-close"/></button>
                     </div>
                     <div className="filter-show">
-                        <button className="filter-show-btn" onClick={() => this.handleClick("show")}>Показать объявления
+                        <button className="filter__show-btn" onClick={() => this.handleClick("show")}>Показать
+                            объявления
                         </button>
                     </div>
                 </div>

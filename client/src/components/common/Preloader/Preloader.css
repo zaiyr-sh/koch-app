@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.preloarder__inner {
+.preloader__inner {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
     min-height: 100vh;
 }
 
-.preloarder {
+.preloader {
     position: relative;
     width: 100px;
     height: 70px;
@@ -17,12 +17,12 @@
     animation: preloarder 1.5s linear infinite;
 }
 
-.preloarder .SpanLoad {
+.preloader .spanloader {
     display: flex;
     justify-content: center;
 }
 
-.preloarder span {
+.preloader span {
     position: absolute;
     width: 15px;
     height: 15px;
@@ -31,51 +31,51 @@
     border-radius: 50%;
 }
 
-.preloarder span:first-child {
+.preloader span:first-child {
     opacity: .1;
 }
 
-.preloarder span:nth-child(2) {
+.preloader span:nth-child(2) {
     transform: rotate(36deg);
     opacity: .2;
 }
 
-.preloarder span:nth-child(3) {
+.preloader span:nth-child(3) {
     transform: rotate(72deg);
     opacity: .3;
 }
 
-.preloarder span:nth-child(4) {
+.preloader span:nth-child(4) {
     transform: rotate(108deg);
     opacity: .4;
 }
 
-.preloarder span:nth-child(5) {
+.preloader span:nth-child(5) {
     transform: rotate(144deg);
     opacity: .5;
 }
 
-.preloarder span:nth-child(6) {
+.preloader span:nth-child(6) {
     transform: rotate(180deg);
     opacity: .6;
 }
 
-.preloarder span:nth-child(7) {
+.preloader span:nth-child(7) {
     transform: rotate(216deg);
     opacity: .7;
 }
 
-.preloarder span:nth-child(8) {
+.preloader span:nth-child(8) {
     transform: rotate(252deg);
     opacity: .8;
 }
 
-.preloarder span:nth-child(9) {
+.preloader span:nth-child(9) {
     transform: rotate(288deg);
     opacity: .9;
 }
 
-.preloarder span:nth-child(10) {
+.preloader span:nth-child(10) {
     transform: rotate(324deg);
     opacity: 1;
 }

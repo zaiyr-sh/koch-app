@@ -14,7 +14,7 @@ const UserRegistration = (
     }
 ) => {
     return (
-        <section className="section-login">
+        <section className="section__login">
             <div className="container">
                 <div className="login">
                     <div className="login__form">

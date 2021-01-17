@@ -22,27 +22,27 @@ const FilterSection = ({display, editDisplayHandler}) => {
 
     return (
         <>
-            <div className="main-menu">
+            <div className="main__menu">
                 <div className="container">
-                    <h2 className="menu-name">Грузоперевозки по всей стране</h2>
+                    <h2 className="menu__name">Грузоперевозки по всей стране</h2>
                 </div>
             </div>
 
-            <section className="section-filteredTransport">
+            <section className="section__filteredTransport">
                 <div className="container">
 
                     <div className="filter">
-                        <div className="filter-item">
+                        <div className="filter__item">
 
-                            <div className="filter-chooser">
-                                <p className="filter-search">Искать</p>
-                                <div className="filter-searchFields">
+                            <div className="filter__chooser">
+                                <p className="filter__search">Искать</p>
+                                <div className="filter__search-fields">
                                     <button
-                                        className={display === 'cargo' ? 'filter-goods filter-active' : 'filter-goods'}
+                                        className={display === 'cargo' ? 'filter__goods filter__active' : 'filter__goods'}
                                         onClick={e => changeDisplay(e)} name="cargo">Груз
                                     </button>
                                     <button
-                                        className={display === 'transportation' ? 'filter-transport filter-active' : 'filter-transport'}
+                                        className={display === 'transportation' ? 'filter__transport filter__active' : 'filter__transport'}
                                         onClick={e => changeDisplay(e)} name="transportation">Транспорт
                                     </button>
                                 </div>

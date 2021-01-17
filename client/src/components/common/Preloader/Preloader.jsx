@@ -4,19 +4,19 @@ import "./Preloader.css";
 
 const Preloader = () => {
     return (
-        <div className="preloarder__inner">
-            <div className="preloarder">
-                <div className='SpanLoad'>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <div className="preloader__inner">
+            <div className="preloader">
+                <div className='spanloader'>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
+                    <span/>
                 </div>
             </div>
         </div>

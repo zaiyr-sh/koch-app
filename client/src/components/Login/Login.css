@@ -1,5 +1,5 @@
 /*Login Section*/
-.section-login {
+.section__login {
     padding-top: 70px;
 }
 
@@ -15,7 +15,7 @@
 .login__title {
     display: flex;
     justify-content: center;
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 26px;
 
     color: #000000;
@@ -24,7 +24,7 @@
 .login__description {
     padding-top: 12px;
     text-align: center;
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     color: #000000;
@@ -32,14 +32,14 @@
 
 .error__description {
     text-align: center;
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     color: #ff0000;
 }
 
 .error__description-addition {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     color: #ff0000;
@@ -54,7 +54,7 @@
 }
 
 .login__field-phoneNumber, .login__field-password, .registration__field-name, .registration__field-surname, .registration__field-phoneNumber, .registration__field-password {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #909090;
@@ -84,7 +84,7 @@
 }
 
 .login__button-resetPassword, .registration__button-addNumber {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
     color: #007AFF;
     text-decoration: none;
@@ -100,7 +100,7 @@
 .login__button-registration, .registration__button-signin {
     display: flex;
     align-items: center;
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 18px;
 
     color: #007AFF;
@@ -116,7 +116,7 @@
 .registration__button-driver, .registration__button-client {
     display: flex;
     align-items: center;
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 16px;
     margin-top: 38px;
 
@@ -132,7 +132,7 @@
 .login__button-signin, .registration__button-signup {
     display: flex;
     align-items: center;
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 18px;
 
     color: #FFFFFF;

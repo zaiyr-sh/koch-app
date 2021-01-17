@@ -2,7 +2,7 @@ import React from 'react';
 
 const Preregistration = ({handleOpenRegistrationSection}) => {
     return (
-        <section className="section-login">
+        <section className="section__login">
             <div className="container">
                 <h2 className="login__title">Регистрируюсь как ...</h2>
                 <div className="login__preregistration">

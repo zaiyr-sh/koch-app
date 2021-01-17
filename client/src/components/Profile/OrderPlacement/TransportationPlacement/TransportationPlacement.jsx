@@ -52,7 +52,7 @@ class TransportationPlacement extends React.Component {
         let {weightError, volumeError} = this.state;
 
         return (
-            <section className="section-placement">
+            <section className="section__placement">
                 <div className="container">
                     <div className="placement__inner">
                         <p className="placement__title">Данные транспортного средства</p>

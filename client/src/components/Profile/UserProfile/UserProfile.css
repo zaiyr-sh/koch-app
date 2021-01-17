@@ -1,5 +1,5 @@
 /*Client Section*/
-.section-clientProfile {
+.section__client-profile {
     padding-top: 70px;
 }
 
@@ -13,14 +13,14 @@
 }
 
 .client__title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 26px;
 
     color: #000000;
 }
 
 .client__activation-title {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 14px;
 
     color: #000000;
@@ -31,7 +31,7 @@
 }
 
 .client__field {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     margin-top: 8px;
@@ -51,7 +51,7 @@
 }
 
 .client__saveButton {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 18px;
 
     color: #FFFFFF;

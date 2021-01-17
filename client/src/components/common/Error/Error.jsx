@@ -7,7 +7,7 @@ const Error = () => {
     return (
         <section className="section__error">
             <div className="container">
-                <div className="error-template">
+                <div className="error__template">
                     <h1>
                         Упс!</h1>
                     <h2>
@@ -15,7 +15,7 @@ const Error = () => {
                     <div className="error-details">
                         Извините, но данная Страница не найдена или не доступна!
                     </div>
-                    <div className="error-actions">
+                    <div className="error__actions">
                         <Link to="/" className="nav__link-placeAd">
                             Вернуться на главную</Link>
                     </div>

@@ -1,6 +1,6 @@
 /*Driver Section*/
 
-.section-driverProfile {
+.section__driver-profile {
     padding-top: 70px;
 }
 
@@ -14,14 +14,14 @@
 }
 
 .driver__title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 26px;
 
     color: #000000;
 }
 
 .driver__activation-title {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 14px;
 
     color: #000000;
@@ -37,7 +37,7 @@
 }
 
 .driver__transport-title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 16px;
 
     color: #000000;
@@ -50,7 +50,7 @@
 }
 
 .driver__transport-type-selection {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #909090;
@@ -79,7 +79,7 @@
 }
 
 .driver__transport-volume-selection {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #909090;
@@ -98,7 +98,7 @@
 }
 
 .driver__documents-title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 16px;
 
     color: #000000;
@@ -135,7 +135,7 @@
 }
 
 .image__upload {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 12px;
 
     color: #FFFFFF;
@@ -150,7 +150,7 @@
     width: 50%;
     text-align: center;
     padding-top: 20px;
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     color: #000000;
@@ -163,7 +163,7 @@
 }
 
 .driver__saveButton {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 18px;
 
     color: #FFFFFF;

@@ -1,5 +1,5 @@
 /*Order Placement*/
-.section-placement {
+.section__placement {
     margin: 0 auto;
     padding-top: 70px;
     padding-bottom: 150px;
@@ -7,7 +7,7 @@
 }
 
 .placement__title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 26px;
 
     color: #000000;
@@ -19,14 +19,14 @@
 }
 
 .direction__address {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #000000;
 }
 
 .placement__direction__title {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     padding-top: 20px;
@@ -40,7 +40,7 @@
 }
 
 .direction__selection {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #909090;
@@ -54,7 +54,7 @@
 }
 
 .direction__selection-date {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #909090;
@@ -75,7 +75,7 @@
 }
 
 .comment__sender, .comment__cargo {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
     color: #909090;
     background: #FFFFFF;
@@ -94,7 +94,7 @@
 }
 
 .placement__cargo__title, .placement__transport__title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 16px;
     padding-bottom: 20px;
     color: #000000;
@@ -111,7 +111,7 @@
 }
 
 .placement__cargo-selection, .placement__transport-selection {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #909090;
@@ -134,7 +134,7 @@
 }
 
 .placement__contacts-title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 16px;
 
     color: #000000;
@@ -147,7 +147,7 @@
 }
 
 .placement__payment-title {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 16px;
 
     color: #000000;
@@ -161,7 +161,7 @@
 }
 
 .placement__place-button {
-    font-family: "Gilroy-SemiBold";
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 18px;
 
     color: #FFFFFF;
@@ -174,7 +174,7 @@
 }
 
 .error__description-order {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     color: #ff0000;

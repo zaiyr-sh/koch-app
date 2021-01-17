@@ -39,14 +39,14 @@
 }
 
 .card__comment-title {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     color: #909090;
 }
 
 .card__comment-content {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #404040;
@@ -66,14 +66,14 @@
 }
 
 .card__fullname {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #000000;
 }
 
 .card__phone-numbers {
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #000000;

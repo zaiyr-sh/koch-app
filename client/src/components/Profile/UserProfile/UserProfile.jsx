@@ -40,7 +40,7 @@ class UserProfile extends React.Component {
         if (!userProfile) return <Preloader/>
 
         return (
-            <section className="section-clientProfile">
+            <section className="section__client-profile">
                 <div className="container">
                     <div className="client__data">
                         <div className="client__inner">

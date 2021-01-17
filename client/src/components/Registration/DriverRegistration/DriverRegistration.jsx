@@ -87,7 +87,7 @@ class DriverRegistration extends Component {
         }
 
         return (
-            <section className="section-driverProfile">
+            <section className="section__driver-profile">
                 <div className="container">
                     <div className="driver__data">
                         <div className="driver__inner">
@@ -110,19 +110,19 @@ class DriverRegistration extends Component {
                                         </div>
                                         <div className="driver__transport-form">
                                             <button
-                                                className={driver.vehicle_type === "1" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                className={driver.vehicle_type === "1" ? 'filter__kind-transport filter__active' : 'filter__kind-transport'}
                                                 onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
                                                 type="button"
                                                 name="1">Грузовик
                                             </button>
                                             <button
-                                                className={driver.vehicle_type === "2" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                className={driver.vehicle_type === "2" ? 'filter__kind-transport filter__active' : 'filter__kind-transport'}
                                                 onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
                                                 type="button"
                                                 name="2">Полуприцеп
                                             </button>
                                             <button
-                                                className={driver.vehicle_type === "3" ? 'filter-transport-kind filter-active' : 'filter-transport-kind'}
+                                                className={driver.vehicle_type === "3" ? 'filter__kind-transport filter__active' : 'filter__kind-transport'}
                                                 onClick={(e) => editRegistrationDriverFieldHandler("vehicle_type", e.target.name)}
                                                 type="button"
                                                 name="3">Сцепка

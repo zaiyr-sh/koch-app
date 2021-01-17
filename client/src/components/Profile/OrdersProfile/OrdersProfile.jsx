@@ -15,7 +15,7 @@ const OrdersProfile = ({userOrders, getNextOrders, onOpenCardModal}) => {
     }
 
     return (
-        <section className={userOrders.results.length !== 0 ? "section-card" : ""}>
+        <section className={userOrders.results.length !== 0 ? "section__card" : ""}>
             <div className="container">
 
                 <div className="card">

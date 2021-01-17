@@ -16,7 +16,7 @@ const CargoSection = ({cargoes, getNextCargoes, onOpenCardModal}) => {
     }
 
     return (
-        <section className="section-card">
+        <section className="section__card">
             <div className="container">
 
                 <div className="card">

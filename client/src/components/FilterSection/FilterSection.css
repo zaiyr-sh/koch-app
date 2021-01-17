@@ -1,17 +1,17 @@
 /*Main Menu*/
-.main-menu {
+.main__menu {
     padding-top: 40px;
 }
 
-.menu-name {
-    font-family: "Gilroy-SemiBold";
+.menu__name {
+    font-family: "Gilroy-SemiBold", serif;
     font-size: 28px;
 
     color: #000000;
 }
 
 /*Filtered Transport Section*/
-.section-filteredTransport {
+.section__filteredTransport {
     padding-top: 15px;
     padding-bottom: 50px;
 }
@@ -19,32 +19,32 @@
 .filter {
     width: 800px;
     background: #FFFFFF;
-    box-shadow: 0px 4px 10px rgba(144, 144, 144, 0.25);
+    box-shadow: 0 4px 10px rgba(144, 144, 144, 0.25);
     border-radius: 10px;
 }
 
-.filter-item {
+.filter__item {
     display: flex;
     flex-direction: column;
     padding: 28px 20px 30px;
 }
 
-.filter-chooser {
+.filter__chooser {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #000000;
 }
 
-.filter-searchFields {
+.filter__search-fields {
     padding-left: 12px;
 }
 
-.filter-goods, .filter-transport {
+.filter__goods, .filter__transport {
     color: #909090;
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
@@ -56,13 +56,13 @@
     cursor: pointer;
 }
 
-.filter-kind {
+.filter__kind {
     display: flex;
     justify-content: flex-end;
     padding-top: 39px;
 }
 
-.filter-transport-kind {
+.filter__kind-transport {
     width: 111px;
     color: #909090;
     background: #FFFFFF;
@@ -70,16 +70,14 @@
     box-sizing: border-box;
     border-radius: 4px 0 0 4px;
     text-decoration: none;
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
-
-    color: #909090;
 
     padding: 8px 10px;
     cursor: pointer;
 }
 
-.filter-active {
+.filter__active {
     color: #000000;
     background: #E5F2FF;
     border: 1px solid #007AFF;
@@ -88,29 +86,29 @@
 }
 
 /*Filter Direction*/
-.filter-direction {
+.filter__direction {
     padding-top: 30px;
 }
 
-.filter-title {
-    font-family: "Gilroy-Medium";
+.filter__title {
+    font-family: "Gilroy-Medium", serif;
     font-size: 12px;
 
     padding-top: 20px;
     color: #000000;
 }
 
-.filter-direction-from, .filter-direction-to {
+.filter__direction-from, .filter__direction-to {
     display: flex;
     padding-top: 4px;
 }
 
-.filter-direction-city {
+.filter__direction-city {
     padding-left: 12px;
 }
 
-.filter-direction-selection {
-    font-family: "Gilroy-Medium";
+.filter__direction-selection {
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #909090;
@@ -124,11 +122,11 @@
     border-radius: 4px;
 }
 
-.filter-date {
+.filter__date {
     display: flex;
     align-items: center;
 
-    font-family: "Gilroy-Medium";
+    font-family: "Gilroy-Medium", serif;
     font-size: 16px;
 
     color: #007AFF;
@@ -139,21 +137,21 @@
 }
 
 /*Filter Size*/
-.filter-size-information {
+.filter__size-information {
     display: flex;
     flex-direction: row;
 }
 
-.filter-volume, .filter-price, .filter-kind {
+.filter__volume, .filter__price, .filter__kind {
     padding-left: 12px;
 }
 
-.filter-size-from, .filter-size-to {
+.filter__size-from, .filter__size-to {
     display: flex;
     padding-top: 4px;
 }
 
-.filter-size-selection {
+.filter__size-selection {
     font-family: "Gilroy-Medium";
     font-size: 16px;
 
@@ -167,23 +165,23 @@
     border-radius: 4px 4px;
 }
 
-.filter-price-selection {
+.filter__price-selection {
     width: 145px;
 }
 
-.filter-price {
+.filter__price {
     display: flex;
     align-items: flex-end;
 }
 
 /*Filter Buttons*/
-.filter-buttons {
+.filter__buttons {
     display: flex;
     justify-content: space-between;
     padding-top: 33px;
 }
 
-.filter-reset-btn, .filter-show-btn {
+.filter__reset-btn, .filter__show-btn {
     font-family: "Gilroy-SemiBold";
     font-size: 16px;
 
@@ -193,13 +191,13 @@
     cursor: pointer;
 }
 
-.filter-reset-btn {
+.filter__reset-btn {
     background: #ff0000;
     border: 1px solid #ff0000;
     padding: 8px 55px
 }
 
-.filter-show-btn {
+.filter__show-btn {
     background: #007AFF;
     border: 1px solid #007AFF;
     padding: 8px 85px;
