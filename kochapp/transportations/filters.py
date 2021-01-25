@@ -9,7 +9,6 @@ class CargoFilter(filters.FilterSet):
         fields = {
             "price": ['range', 'exact'],
             "weight": ['range', 'exact'],
-            "volume": ['range', 'exact'],
             'from_city': ["exact"],
             'from_region': ["exact"],
             'to_city': ["exact"],
@@ -29,6 +28,4 @@ class TransportationFilter(filters.FilterSet):
             'from_region': ['exact'],
             'to_city': ['exact'],
             'to_region': ['exact'],
-            'weight': ['exact', 'range'],
-            'volume': ['exact', 'range'],
         }
