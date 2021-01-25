@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from users.models import User, Driver, CargoType, VehicleType
 from djoser.serializers import UserSerializer
+from firebase_admin import auth
 
 
 class CurrentUserSerializer(UserSerializer):
@@ -51,4 +52,13 @@ class VehicleTypeSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name'
+        ]
+
+
+class FireBaseSerializer(serializers.Serializer):
+    uid_token = serializers.CharField()
+
+    class Meta:
+        fields = [
+            'uid_token',
         ]
