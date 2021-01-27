@@ -17,9 +17,9 @@ services:
     env_file:
       - .env
     volumes:
-      - media:/usr/src/backend/media/
-      - static:/usr/src/backend/static/
-      - ./kochapp/:/usr/src/backend/
+      - media:/app/media/
+      - static:/app/static/
+      - ./kochapp/:/app/
     command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --no-input &&
       gunicorn -b 0.0.0.0:8000 -w 3 --log-level info kochapp.wsgi:application"
     depends_on:
