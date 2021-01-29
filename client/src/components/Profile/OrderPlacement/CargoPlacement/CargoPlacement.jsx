@@ -86,7 +86,6 @@ class CargoPlacement extends React.Component {
     render() {
         if (this.props.isPlaced) return <Redirect to="/"/>;
         let {editCargoPlacementHandler, cargo, cities, regions} = this.props;
-        console.log(cargo)
         let {
             nameError,
             surnameError,

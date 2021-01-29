@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.1d2fc237.chunk.css",
-    "main.js": "/static/js/main.f24bd488.chunk.js",
-    "main.js.map": "/static/js/main.f24bd488.chunk.js.map",
+    "main.css": "/static/css/main.14524428.chunk.css",
+    "main.js": "/static/js/main.6e2ca236.chunk.js",
+    "main.js.map": "/static/js/main.6e2ca236.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
     "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
     "static/js/2.9026c885.chunk.js": "/static/js/2.9026c885.chunk.js",
     "static/js/2.9026c885.chunk.js.map": "/static/js/2.9026c885.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.2c79d7a7a9cd865c142e886cf1dbc947.js": "/precache-manifest.2c79d7a7a9cd865c142e886cf1dbc947.js",
+    "precache-manifest.a81a714a76b0b2901c0386c4d2dec3f9.js": "/precache-manifest.a81a714a76b0b2901c0386c4d2dec3f9.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.1d2fc237.chunk.css.map": "/static/css/main.1d2fc237.chunk.css.map",
+    "static/css/main.14524428.chunk.css.map": "/static/css/main.14524428.chunk.css.map",
     "static/js/2.9026c885.chunk.js.LICENSE.txt": "/static/js/2.9026c885.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Gilroy-SemiBold.a5cf732b.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.09b85ec0.js",
     "static/js/2.9026c885.chunk.js",
-    "static/css/main.1d2fc237.chunk.css",
-    "static/js/main.f24bd488.chunk.js"
+    "static/css/main.14524428.chunk.css",
+    "static/js/main.6e2ca236.chunk.js"
   ]
 }
