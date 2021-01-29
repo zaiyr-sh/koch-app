@@ -36,7 +36,7 @@ server {
         root /www/data/kochapp;
         index index.html;
 
-        try_files $uri $uri/ /index.html;
+        try_files $uri /index.html;
     }
 
 }
