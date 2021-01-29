@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import firebase_admin
 from datetime import timedelta
 from pathlib import Path
 
@@ -164,3 +165,7 @@ DJOSER = {
         'current_user': 'users.serializers.CurrentUserSerializer'
     },
 }
+
+FIREBASE_SERVICE_ACCOUNT_KEY = str(BASE_DIR / config('FIREBASE_SERVICE_ACCOUNT_KEY'))
+firebase_credentials = firebase_admin.credentials.Certificate(FIREBASE_SERVICE_ACCOUNT_KEY)
+firebase = firebase_admin.initialize_app(firebase_credentials)

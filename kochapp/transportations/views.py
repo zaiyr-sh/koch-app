@@ -5,7 +5,7 @@ from users.permissions import IsRegisteredDriver, IsClient
 from .filters import CargoFilter, TransportationFilter
 from .models import Cargo, Transportation, Region, City
 from .serializers import CargoDetailSerializer, CargoListSerializer, TransportationSerializer, RegionSerializer, \
-    CitiesSerializer
+    CitySerializer
 
 
 class CargoListView(generics.ListCreateAPIView):
@@ -51,10 +51,3 @@ class RegionsView(generics.ListAPIView):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
 
-
-class CitiesView(generics.ListAPIView):
-    """
-    Listing cities
-    """
-    queryset = City.objects.all()
-    serializer_class = CitiesSerializer

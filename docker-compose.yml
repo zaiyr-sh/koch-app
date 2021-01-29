@@ -17,10 +17,10 @@ services:
     env_file:
       - .env
     volumes:
-      - media:/usr/src/backend/media/
-      - static:/usr/src/backend/static/
+      - media:/app/media/
+      - static:/app/static/
       # For local development only
-      - ./kochapp/:/usr/src/backend/
+      - ./kochapp/:/app/
     command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db

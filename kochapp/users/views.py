@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -7,7 +6,7 @@ from transportations.models import Cargo, Transportation
 from transportations.serializers import CargoListSerializer, TransportationSerializer
 from . import models
 from . import serializers
-from .models import User, CargoType, VehicleType
+from .models import CargoType, VehicleType
 
 
 class DriverCreateView(generics.GenericAPIView):
@@ -52,6 +51,13 @@ class PublishedAds(generics.ListAPIView):
             return Cargo.objects.filter(user=self.request.user)
         if self.request.user.user_type == 'driver':
             return Transportation.objects.filter(user=self.request.user)
+
+
+class SingUpView(generics.CreateAPIView):
+    """
+    Creating user with firebase token
+    """
+    serializer_class = serializers.FireBaseSerializer
 
 
 class CargoTypes(generics.ListAPIView):

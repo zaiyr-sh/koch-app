@@ -7,6 +7,7 @@ class Region(models.Model):
 
 
 class City(models.Model):
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='cities', null=True)
     name = models.CharField(max_length=150)
 
 
@@ -17,21 +18,18 @@ class Cargo(models.Model):
     from_region = models.ForeignKey(Region, on_delete=models.PROTECT, related_name='cargos_from_region')
     from_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='cargos_from_region')
     from_shipment_date = models.DateField()
+    from_place_comment = models.TextField(null=True, blank=True)
 
     to_shipment_date = models.DateField()
     to_region = models.ForeignKey(Region, on_delete=models.PROTECT, related_name='cargos_to_region')
     to_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name='cargos_to_city')
+    to_place_comment = models.TextField(null=True, blank=True)
 
     date_published = models.DateTimeField(auto_now_add=True)
-    place_comment = models.TextField(null=True, blank=True)
     cargo_comment = models.TextField(null=True, blank=True)
     name = models.CharField(max_length=150)
 
     weight = models.FloatField()
-    volume = models.FloatField()
-    length = models.FloatField()
-    width = models.FloatField()
-    height = models.FloatField()
     price = models.IntegerField()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cargos')
@@ -44,7 +42,7 @@ class Cargo(models.Model):
     telegram_number = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.date_published} {self.name} {self.volume}"
+        return f"{self.date_published} {self.name}"
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -73,7 +71,6 @@ class Transportation(models.Model):
     date_published = models.DateTimeField(auto_now_add=True)
     vehicle_comment = models.TextField(null=True, blank=True)
     weight = models.IntegerField()
-    volume = models.FloatField()
     price = models.IntegerField()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='vehicles')
