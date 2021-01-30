@@ -16,7 +16,8 @@ let initialState = {
         name: "",
         surname: "",
         phone_number: "",
-        password: ""
+        password: "",
+        isCodeVerified: false
     },
     driver: {
         carrying_capacity: "",
@@ -129,9 +130,6 @@ export const registrationThunkCreator = () => async (dispatch, getState) => {
     try {
         const response = await registrationAPI.register(name, surname, user_type, phone_number, password);
         if (response.status === 201) {
-            if(response.data.user_type === "driver"){
-                localStorage.setItem('user_id', JSON.stringify(response.data.id));
-            }
             dispatch(registrationSuccess());
             dispatch(resetRegistrationActionCreator());
         }

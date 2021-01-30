@@ -4,7 +4,7 @@ import {withAlert} from "react-alert";
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
 import UserRegistration from "./UserRegistration/UserRegistration";
-import {validatePassword, validatePersonName, validatePhoneNumber} from "../../helpers/validation-helper";
+import {validatePassword, validatePersonName, validatePhoneNumber, verificationCode} from "../../helpers/validation-helper";
 
 class Registration extends React.Component {
 
@@ -13,7 +13,8 @@ class Registration extends React.Component {
         nameError: "",
         surnameError: "",
         phoneNumberError: "",
-        passwordError: ""
+        passwordError: "",
+        codeVerificationError: ""
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -47,16 +48,17 @@ class Registration extends React.Component {
     }
 
     validate = () => {
-        let nameError, surnameError, phoneNumberError, passwordError;
-        let {name, surname, phone_number, password} = this.props.user;
+        let nameError, surnameError, phoneNumberError, passwordError, codeVerificationError;
+        let {name, surname, phone_number, password, isCodeVerified} = this.props.user;
 
         nameError = validatePersonName(name);
         surnameError = validatePersonName(surname);
         phoneNumberError = validatePhoneNumber(phone_number);
         passwordError = validatePassword(password);
+        codeVerificationError = verificationCode(isCodeVerified);
 
         if (phoneNumberError || nameError || surnameError || passwordError) {
-            this.setState({phoneNumberError, nameError, surnameError, passwordError});
+            this.setState({phoneNumberError, nameError, surnameError, passwordError, codeVerificationError});
             return false;
         }
         return true;
@@ -64,7 +66,7 @@ class Registration extends React.Component {
 
     render() {
         let {user, editRegistrationFieldHandler} = this.props;
-        let {isChose, nameError, surnameError, phoneNumberError, passwordError} = this.state;
+        let {isChose, nameError, surnameError, phoneNumberError, passwordError, codeVerificationError} = this.state;
 
         return isChose ? (
             <UserRegistration
@@ -76,6 +78,7 @@ class Registration extends React.Component {
                 surnameError={surnameError}
                 phoneNumberError={phoneNumberError}
                 passwordError={passwordError}
+                codeVerificationError={codeVerificationError}
             />
         ) : <Preregistration handleOpenRegistrationSection={this.handleOpenRegistrationSection}/>
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import firebase from "../../../firebase";
 
 const UserRegistration = (
     {
@@ -10,9 +11,47 @@ const UserRegistration = (
         nameError,
         surnameError,
         phoneNumberError,
-        passwordError
+        passwordError,
+        codeVerificationError
     }
 ) => {
+
+    function setUpRecaptcha(){
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha_container', {
+            'size': 'invisible',
+            'callback': (response) => {
+                // reCAPTCHA solved, allow signInWithPhoneNumber.
+                onSignInSubmit();
+            }
+        });
+    }
+
+    function onSignInSubmit(e){
+        e.preventDefault();
+        setUpRecaptcha();
+        const phoneNumber = "+996222203068";
+        const appVerifier = window.recaptchaVerifier;
+        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+                // SMS sent. Prompt user to type the code from the message, then sign the
+                // user in with confirmationResult.confirm(code).
+                window.confirmationResult = confirmationResult;
+                const code = window.prompt("Enter Code");
+                confirmationResult.confirm(code).then((result) => {
+                    // User signed in successfully.
+                    const user = result.user;
+                    console.log(Object.prototype.toString.call(user))
+                }).catch((error) => {
+                    user.isCodeVerified = false
+                    console.log(error)
+                });
+            }).catch((error) => {
+            // Error; SMS not sent
+            // ...
+            console.log(error)
+        });
+    }
+
     return (
         <section className="section__login">
             <div className="container">
@@ -21,7 +60,8 @@ const UserRegistration = (
                         <h2 className="login__title">Регистрация в Onoi.kg</h2>
                         <p className="login__description">Введите ваши данные и номер, на который
                             мы отправим код подтверждения</p>
-                        <form className="registration__form" onSubmit={onSubmit}>
+                        <form className="registration__form" onSubmit={onSignInSubmit}>
+                            <div id="recaptcha_container"/>
                             <div className="registration__name">
                                 <input
                                     placeholder="Имя"
@@ -75,7 +115,7 @@ const UserRegistration = (
                                     onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
                                 />
                                 <p className="error__description">
-                                    {passwordError}
+                                    {codeVerificationError || passwordError}
                                 </p>
                             </div>
                             {/*<div className="registration__addNumber">*/}
