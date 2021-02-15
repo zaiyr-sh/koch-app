@@ -16,22 +16,11 @@ const UserRegistration = (
     }
 ) => {
 
-    function setUpRecaptcha(){
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha_container', {
-            'size': 'invisible',
-            'callback': (response) => {
-                // reCAPTCHA solved, allow signInWithPhoneNumber.
-                onSignInSubmit();
-            }
-        });
-    }
-
     function onSignInSubmit(e){
         e.preventDefault();
-        setUpRecaptcha();
-        const phoneNumber = "+996222203068";
-        const appVerifier = window.recaptchaVerifier;
-        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+        let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field');
+        const phoneNumber = "+996555015678";
+        firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
             .then((confirmationResult) => {
                 // SMS sent. Prompt user to type the code from the message, then sign the
                 // user in with confirmationResult.confirm(code).
@@ -39,8 +28,9 @@ const UserRegistration = (
                 const code = window.prompt("Enter Code");
                 confirmationResult.confirm(code).then((result) => {
                     // User signed in successfully.
-                    const user = result.user;
-                    console.log(Object.prototype.toString.call(user))
+                    user.isCodeVerified = true
+                    const res = result.user;
+                    console.log(JSON.stringify(res))
                 }).catch((error) => {
                     user.isCodeVerified = false
                     console.log(error)
@@ -61,7 +51,6 @@ const UserRegistration = (
                         <p className="login__description">Введите ваши данные и номер, на который
                             мы отправим код подтверждения</p>
                         <form className="registration__form" onSubmit={onSignInSubmit}>
-                            <div id="recaptcha_container"/>
                             <div className="registration__name">
                                 <input
                                     placeholder="Имя"
@@ -118,6 +107,7 @@ const UserRegistration = (
                                     {codeVerificationError || passwordError}
                                 </p>
                             </div>
+                            <div id="recaptcha__field"/>
                             {/*<div className="registration__addNumber">*/}
                             {/*    <Link className="registration__button-addNumber" to="/reset" >Добавить номер</Link>*/}
                             {/*</div>*/}
