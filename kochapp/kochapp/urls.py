@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from users.views import SingUpView
 from .yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/cargo/', include('transportations.urls')),
+    path('api/auth/users/', SingUpView.as_view()),
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.jwt')),
     path('api/users/', include('users.urls'))

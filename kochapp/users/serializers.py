@@ -1,12 +1,10 @@
+from djoser.serializers import UserSerializer
 from rest_framework import serializers
 
 from users.models import User, Driver, CargoType, VehicleType
-from djoser.serializers import UserSerializer
-from firebase_admin import auth
 
 
 class CurrentUserSerializer(UserSerializer):
-
     class Meta(UserSerializer.Meta):
         fields = UserSerializer.Meta.fields + ('registered', 'checked')
         read_only_fields = ('registered',)
@@ -24,7 +22,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 
 class DriverSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Driver
         fields = [
@@ -57,6 +54,10 @@ class VehicleTypeSerializer(serializers.ModelSerializer):
 
 class FireBaseSerializer(serializers.Serializer):
     uid_token = serializers.CharField()
+    name = serializers.CharField()
+    surname = serializers.CharField()
+    phone_number = serializers.CharField()
+    user_type = serializers.CharField()
 
     class Meta:
         fields = [
