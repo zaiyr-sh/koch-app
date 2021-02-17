@@ -30,6 +30,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False, verbose_name='Is staff')
     is_active = models.BooleanField(default=True, verbose_name='Is active')
 
+    firebase_uid = models.CharField(max_length=255, default='')
+
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['name', "surname", 'user_type']
 
