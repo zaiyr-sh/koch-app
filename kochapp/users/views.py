@@ -84,9 +84,10 @@ class SingUpView(generics.CreateAPIView):
             user_data = serializer.data
             user_data.pop('uid_token')
             user_data['firebase_uid'] = firebase_uid
-            User.objects.create(**user_data)
+            password = request.data['password']
+            User.objects.create_user(password=password, **user_data)
 
-        return Response({'message': "User successfully created!"}, status=status.HTTP_201_CREATED)
+            return Response({'message': "User successfully created!"}, status=status.HTTP_201_CREATED)
 
     @staticmethod
     def get_tokens_for_user(user):
