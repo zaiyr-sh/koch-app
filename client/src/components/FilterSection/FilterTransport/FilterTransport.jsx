@@ -122,9 +122,37 @@ class FilterTransport extends React.Component {
                             </div>
                         </div>
 
+                        <div className="filter__price">
+                            <div className="filter__size-to">
+                                <div className="filter-direction-size">
+                                    <input className="filter__size-selection filter__price-selection"
+                                           name="from_price"
+                                           required={filteredTransportations.to_price !== "" && button === "show"}
+                                           type="number"
+                                           min="0"
+                                           value={filteredTransportations.from_price}
+                                           onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
+                                           placeholder="Цена от, сом"
+                                    />
+                                </div>
+                                <div className="filter-direction-size">
+                                    <input className="filter__size-selection filter__price-selection"
+                                           name="to_price"
+                                           required={filteredTransportations.from_price !== "" && button === "show"}
+                                           type="number"
+                                           min="0"
+                                           value={filteredTransportations.to_price}
+                                           onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
+                                           placeholder="До"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {/*Filter size*/}
+
+
 
                 <div className="filter__buttons">
                     <div className="filter-reset">

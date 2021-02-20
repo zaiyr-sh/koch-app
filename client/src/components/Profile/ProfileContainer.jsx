@@ -29,7 +29,7 @@ class ProfileContainer extends Component {
 
     render() {
         return <>
-            <UserNavbar logoutThunk={this.props.logoutThunk} isLoggedIn={this.props.isLoggedIn}/>;
+            <UserNavbar logoutThunk={this.props.logoutThunk} isLoggedIn={this.props.isLoggedIn}/>
             <Profile
                 userProfile={this.props.userProfile}
                 userOrders={this.props.userOrders}
@@ -38,7 +38,7 @@ class ProfileContainer extends Component {
                 getNextOrders={this.props.getNextOrders}
                 onOpenCardModal={this.props.onOpenCardModal}
             />
-        </>;
+        </>
     }
 }
 
