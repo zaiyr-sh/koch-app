@@ -11,6 +11,22 @@ import {
 
 const CardModal = ({card, closeCard}) => {
 
+    let placeComments = () => {
+        return (card.from_place_comment !== undefined && card.to_place_comment !== undefined) ? (
+            <>
+                <div className="card__comment">
+                    <p className="card__comment-title">Комментарий к месту отбытия</p>
+                    <p className="card__comment-content">{card.from_place_comment}</p>
+                </div>
+
+                <div className="card__comment">
+                    <p className="card__comment-title">Комментарий к месту достаки</p>
+                    <p className="card__comment-content">{card.to_place_comment}</p>
+                </div>
+            </>
+        ) : <></>
+    }
+
     if (Object.keys(card).length === 0) return <></>;
 
     return (
@@ -35,10 +51,7 @@ const CardModal = ({card, closeCard}) => {
 
                     <div className="card__line"></div>
 
-                    <div className="card__comment">
-                        <p className="card__comment-title">Комментарий к отправке</p>
-                        <p className="card__comment-content">{card.place_comment}</p>
-                    </div>
+                    {placeComments()}
 
                     <div className="card__comment">
                         <p className="card__comment-title">Комментарий к грузу</p>

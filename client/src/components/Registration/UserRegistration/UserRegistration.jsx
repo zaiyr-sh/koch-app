@@ -22,7 +22,7 @@ const UserRegistration = (
             size: "invisible",
 
         });
-        const phoneNumber = "+996222203068";
+        const phoneNumber = "+996770009096";
         firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
             .then((confirmationResult) => {
                 // SMS sent. Prompt user to type the code from the message, then sign the
@@ -31,6 +31,7 @@ const UserRegistration = (
                 const code = window.prompt("Enter Code");
                 confirmationResult.confirm(code).then((result) => {
                     // User signed in successfully.
+                    console.log(JSON.stringify(result.user))
                     editRegistrationFieldHandler("uid_token", result.user.za)
                     onSubmit(e)
                 }).catch((error) => {

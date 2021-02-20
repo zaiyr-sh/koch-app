@@ -138,6 +138,15 @@ class CargoPlacement extends React.Component {
                                                                             id="from_shipment_date"
                                                                             name="from_shipment_date"/></div>
                                 </div>
+                                <div className="placement__comment">
+                                <textarea
+                                    className="comment__sender"
+                                    placeholder="Комментарий к месту отбытия ..."
+                                    name="from_place_comment"
+                                    value={cargo.from_place_comment}
+                                    onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
+                                />
+                                </div>
 
                                 <p className="placement__direction__title">Куда</p>
                                 <div className="direction__to">
@@ -172,9 +181,9 @@ class CargoPlacement extends React.Component {
                                 <div className="placement__comment">
                                 <textarea
                                     className="comment__sender"
-                                    placeholder="Комментарий к отправке ..."
-                                    name="place_comment"
-                                    value={cargo.place_comment}
+                                    placeholder="Комментарий к месту доставки ..."
+                                    name="to_place_comment"
+                                    value={cargo.to_place_comment}
                                     onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
                                 />
                                 </div>
