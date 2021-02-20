@@ -12,14 +12,17 @@ const UserRegistration = (
         surnameError,
         phoneNumberError,
         passwordError,
-        codeVerificationError
+        uidTokenError
     }
 ) => {
 
     function onSignInSubmit(e){
         e.preventDefault();
-        let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field');
-        const phoneNumber = "+996555015678";
+        let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field', {
+            size: "invisible",
+
+        });
+        const phoneNumber = "+996222203068";
         firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
             .then((confirmationResult) => {
                 // SMS sent. Prompt user to type the code from the message, then sign the
@@ -28,20 +31,22 @@ const UserRegistration = (
                 const code = window.prompt("Enter Code");
                 confirmationResult.confirm(code).then((result) => {
                     // User signed in successfully.
-                    user.isCodeVerified = true
-                    const res = result.user;
-                    console.log(JSON.stringify(res))
+                    editRegistrationFieldHandler("uid_token", result.user.za)
+                    onSubmit(e)
                 }).catch((error) => {
-                    user.isCodeVerified = false
+                    editRegistrationFieldHandler("uid_token", "")
+                    onSubmit(e)
                     console.log(error)
                 });
             }).catch((error) => {
+            user.isCodeVerified = false
             // Error; SMS not sent
             // ...
             console.log(error)
         });
     }
 
+    console.log("USER: " + console.log(JSON.stringify(user)))
     return (
         <section className="section__login">
             <div className="container">
@@ -104,7 +109,7 @@ const UserRegistration = (
                                     onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
                                 />
                                 <p className="error__description">
-                                    {codeVerificationError || passwordError}
+                                    {uidTokenError || passwordError}
                                 </p>
                             </div>
                             <div id="recaptcha__field"/>

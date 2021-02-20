@@ -19,14 +19,21 @@ let initialState = {
         to_city: "",
         from_weight: "",
         to_weight: "",
-        from_volume: "",
-        to_volume: "",
         from_price: "",
-        to_price: "",
-        vehicle_type: ""
+        to_price: ""
     },
-    cities: "",
-    regions: ""
+    regions: {
+        count: 0,
+        next: "",
+        previous: "",
+        results: [
+            {
+                id: 0,
+                name: "",
+                cities: []
+            }
+        ]
+    }
 }
 
 const transportationReducer = (state = initialState, action) => {
@@ -60,7 +67,7 @@ const transportationReducer = (state = initialState, action) => {
                 ...state,
                 filteredTransportations: {
                     ...state.filteredTransportations,
-                    from_region: "", from_city: "", to_region: "", to_city: "", from_weight: "", to_weight: "", from_volume: "", to_volume: "", from_price: "", to_price: "", vehicle_type: ""
+                    from_region: "", from_city: "", to_region: "", to_city: "", from_weight: "", to_weight: "", from_price: "", to_price: ""
                 }
             }
         default:
@@ -80,15 +87,15 @@ export const resetFilterTransportationActionCreator = () => ({type: RESET_TRANSP
 export const editTransportationFilterActionCreator = (nameField, value) => ({type: SET_EDIT_TRANSPORTATION_FILTER, nameField, value });
 
 export const getNextTransportationsThunkCreator = (offset) => async (dispatch, getState) => {
-    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "", vehicle_type = "" } = getState().transportationPage.filteredTransportations;
-    const response = await cargoTransportationAPI.getNextCargoTransportations(offset,  from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price, vehicle_type );
+    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" } = getState().transportationPage.filteredTransportations;
+    const response = await cargoTransportationAPI.getNextCargoTransportations(offset,  from_region, from_city, to_region, to_city, from_weight, to_weight, from_price, to_price );
     dispatch(setNewCargoesActionCreator(response.data));
 }
 const setNewCargoesActionCreator = (transportations) => ({type: SET_NEW_TRANSPORTATIONS, transportations});
 
 export const getFilteredTransportationsThunkCreator = () => async (dispatch, getState) => {
-    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "", vehicle_type = "" } = getState().transportationPage.filteredTransportations;
-    const response = await cargoTransportationAPI.getFilteredCargoTransportations(from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price, vehicle_type );
+    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" } = getState().transportationPage.filteredTransportations;
+    const response = await cargoTransportationAPI.getFilteredCargoTransportations(from_region, from_city, to_region, to_city, from_weight, to_weight,  from_price, to_price );
     dispatch(setTransportationsActionCreator(response.data));
 }
 

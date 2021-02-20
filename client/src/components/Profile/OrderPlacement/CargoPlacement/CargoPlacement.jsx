@@ -85,7 +85,7 @@ class CargoPlacement extends React.Component {
 
     render() {
         if (this.props.isPlaced) return <Redirect to="/"/>;
-        let {editCargoPlacementHandler, cargo, cities, regions} = this.props;
+        let {editCargoPlacementHandler, cargo, regions} = this.props;
         let {
             nameError,
             surnameError,
@@ -124,8 +124,10 @@ class CargoPlacement extends React.Component {
                                                 value={cargo.from_city}
                                                 onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}>
                                             <option value="">Город, район</option>
-                                            {cities.results.map(city => (
-                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            {regions.results.filter(region => region.id === parseInt(cargo.from_region)).map(region => (
+                                                region.cities.map(city => (
+                                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                                ))
                                             ))}
                                         </select>
                                     </div>
@@ -154,8 +156,10 @@ class CargoPlacement extends React.Component {
                                                 value={cargo.to_city}
                                                 onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}>
                                             <option value="">Город, район</option>
-                                            {cities.results.map(city => (
-                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            {regions.results.filter(region => region.id === parseInt(cargo.to_region)).map(region => (
+                                                region.cities.map(city => (
+                                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                                ))
                                             ))}
                                         </select>
                                     </div>

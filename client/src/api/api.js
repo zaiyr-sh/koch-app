@@ -7,12 +7,6 @@ const axiosInstance = axios.create({
 
 // places endpoint
 export const placesAPI = {
-    getCities(){
-        return axiosInstance
-            .get(
-                `cargo/cities/`
-            )
-    },
     getRegions(){
         return axiosInstance
             .get(
@@ -29,22 +23,20 @@ export const cargoesAPI = {
                 `cargo/`
             )
     },
-    getNextCargoes(offset, from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+    getNextCargoes(offset, from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" ) {
         const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
         const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
-        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
         return axiosInstance
             .get(
-                `cargo?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+                `cargo?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}`
             )
     },
-    getFilteredCargoes( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" ) {
+    getFilteredCargoes( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" ) {
         const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
         const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
-        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
         return axiosInstance
             .get(
-                `cargo?from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+                `cargo?from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}`
             )
     }
 }
@@ -57,22 +49,20 @@ export const cargoTransportationAPI = {
                 `cargo/transportation/`
             )
     },
-    getNextCargoTransportations(offset, from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "", vehicle_type = "" ) {
+    getNextCargoTransportations(offset, from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" ) {
         const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
         const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
-        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
         return axiosInstance
             .get(
-                `cargo/transportation?limit=10&offset=${offset}&vehicle_type=${vehicle_type}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+                `cargo/transportation?limit=10&offset=${offset}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}`
             )
     },
-    getFilteredCargoTransportations( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "", vehicle_type = "" ) {
+    getFilteredCargoTransportations( from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" ) {
         const priceParam = to_price !== "" && from_price !== "" ? `&price__range=${from_price},${to_price}` : "";
         const weightParam = from_weight !== "" && to_weight !== "" ? `&weight__range=${from_weight},${to_weight}` : "";
-        const volumeParam = from_volume !== "" && to_volume !== "" ? `&volume__range=${from_volume},${to_volume}` : "";
         return axiosInstance
             .get(
-                `cargo/transportation?vehicle_type=${vehicle_type}&from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}${volumeParam}`
+                `cargo/transportation?from_region=${from_region}&from_city=${from_city}&to_region=${to_region}&to_city=${to_city}${priceParam}${weightParam}`
             )
     }
 }
@@ -113,10 +103,10 @@ export const authAPI = {
 
 // registration endpoint
 export const registrationAPI = {
-    register(name, surname, user_type, phone_number, password) {
+    register(name, surname, user_type, phone_number, password, uid_token) {
         return axiosInstance
             .post(
-                `auth/users/`, {name, surname, user_type, phone_number, password}
+                `auth/users/`, {name, surname, user_type, phone_number, password, uid_token}
             )
     },
     registerDriver(data) {
