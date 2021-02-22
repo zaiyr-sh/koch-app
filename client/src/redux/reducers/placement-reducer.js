@@ -15,8 +15,8 @@ let initialState = {
         from_city: "",
         to_region: "",
         to_city: "",
-        place_comment: "",
-        cargo_comment: "",
+        from_place_comment: "",
+        to_place_comment: "",
         name: "",
         weight: "",
         volume: "",
@@ -56,7 +56,8 @@ const placementReducer = (state = initialState, action) => {
                 ...state,
                 cargo: {
                     ...state.cargo,
-                    from_shipment_date: "", to_shipment_date: "", from_region: "", from_city: "", to_region: "", to_city: "", place_comment: "", cargo_comment: "", name: "", weight: "", volume: "", length: "", width: "", height: "", phone_number: "", price: "", sender_name: "", sender_surname: ""
+                    from_shipment_date: "", to_shipment_date: "", from_region: "", from_city: "", to_region: "", to_city: "", from_place_comment: "",
+                    to_place_comment: "", cargo_comment: "", name: "", weight: "", volume: "", length: "", width: "", height: "", phone_number: "", price: "", sender_name: "", sender_surname: ""
                 }
             }
         case SET_EDIT_TRANSPORTATION_PLACEMENT:

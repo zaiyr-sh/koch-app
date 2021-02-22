@@ -30,8 +30,7 @@ class FilterTransport extends React.Component {
 
     render() {
         let {
-            filteredTransportations, editTransportationFilterHandler,
-            cities, regions, editPlaceSelectionHandler
+            filteredTransportations, editTransportationFilterHandler, regions, editPlaceSelectionHandler
         } = this.props;
         let {button} = this.state;
 
@@ -55,8 +54,10 @@ class FilterTransport extends React.Component {
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
                                     className="filter__direction-selection" name="from_city">
                                 <option value="">Город, район</option>
-                                {cities.results.map(city => (
-                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                {regions.results.filter(region => region.id === parseInt(filteredTransportations.from_region)).map(region => (
+                                    region.cities.map(city => (
+                                        <option key={city.id} value={city.id}>{city.name}</option>
+                                    ))
                                 ))}
                             </select>
                         </div>
@@ -79,8 +80,10 @@ class FilterTransport extends React.Component {
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
                                     className="filter__direction-selection" name="to_city">
                                 <option value="">Город, район</option>
-                                {cities.results.map(city => (
-                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                {regions.results.filter(region => region.id === parseInt(filteredTransportations.to_region)).map(region => (
+                                    region.cities.map(city => (
+                                        <option key={city.id} value={city.id}>{city.name}</option>
+                                    ))
                                 ))}
                             </select>
                         </div>
@@ -119,58 +122,37 @@ class FilterTransport extends React.Component {
                             </div>
                         </div>
 
-                        <div className="filter__volume">
-                            <p className="filter__title">Объем груза, м³ </p>
+                        <div className="filter__price">
                             <div className="filter__size-to">
                                 <div className="filter-direction-size">
-                                    <input className="filter__size-selection"
+                                    <input className="filter__size-selection filter__price-selection"
+                                           name="from_price"
+                                           required={filteredTransportations.to_price !== "" && button === "show"}
                                            type="number"
-                                           required={filteredTransportations.to_volume !== "" && button === "show"}
                                            min="0"
-                                           name="from_volume"
-                                           placeholder="От"
-                                           value={filteredTransportations.from_volume}
+                                           value={filteredTransportations.from_price}
                                            onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
+                                           placeholder="Цена от, сом"
                                     />
                                 </div>
                                 <div className="filter-direction-size">
-                                    <input className="filter__size-selection"
+                                    <input className="filter__size-selection filter__price-selection"
+                                           name="to_price"
+                                           required={filteredTransportations.from_price !== "" && button === "show"}
                                            type="number"
-                                           required={filteredTransportations.from_volume !== "" && button === "show"}
                                            min="0"
-                                           name="to_volume"
-                                           placeholder="До"
-                                           value={filteredTransportations.to_volume}
+                                           value={filteredTransportations.to_price}
                                            onChange={(e) => editTransportationFilterHandler(e.target.name, e.target.value)}
+                                           placeholder="До"
                                     />
                                 </div>
                             </div>
                         </div>
-
-                        <div className="filter__kind">
-                            <button
-                                className={filteredTransportations.vehicle_type === "грузовик" ? 'filter__kind-transport filter__active' : 'filter__kind-transport'}
-                                onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)}
-                                type="button"
-                                name="грузовик">Грузовик
-                            </button>
-                            <button
-                                className={filteredTransportations.vehicle_type === "полуприцеп" ? 'filter__kind-transport filter__active' : 'filter__kind-transport'}
-                                onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)}
-                                type="button"
-                                name="полуприцеп">Полуприцеп
-                            </button>
-                            <button
-                                className={filteredTransportations.vehicle_type === "сцепка" ? 'filter__kind-transport filter__active' : 'filter__kind-transport'}
-                                onClick={(e) => editPlaceSelectionHandler("vehicle_type", e.target.name)}
-                                type="button"
-                                name="сцепка">Сцепка
-                            </button>
-                        </div>
-
                     </div>
                 </div>
                 {/*Filter size*/}
+
+
 
                 <div className="filter__buttons">
                     <div className="filter-reset">

@@ -72,7 +72,7 @@
     border: 1px solid #ff0000;
 }
 
-.login__password, .registration__surname, .registration__phoneNumber, .registration__password {
+.login__password, .registration__surname, .registration__phoneNumber, .registration__password, #recaptcha__field {
     padding-top: 8px;
 }
 

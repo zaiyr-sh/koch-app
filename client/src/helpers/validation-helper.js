@@ -21,3 +21,7 @@ export const validatePersonName = (name) => {
 export const validatePassword = (password) => {
     if (!(/[a-zA-Z]/g.test(password) && /\d/.test(password)) || (password.length <= 8)) return "Пароль должен быть от 8 символов длиной, содержать одну латинскую букву и число";
 }
+
+export const verificationCode = (isVerified) => {
+    if (!isVerified) return "Вы ввели неверный код";
+}

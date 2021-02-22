@@ -48,7 +48,7 @@ class TransportationPlacement extends React.Component {
 
     render() {
         if (this.props.isPlaced) return <Redirect to="/"/>;
-        let {editTransportationPlacementHandler, transportation, cities, regions} = this.props;
+        let {editTransportationPlacementHandler, transportation, regions} = this.props;
         let {weightError, volumeError} = this.state;
 
         return (
@@ -77,8 +77,10 @@ class TransportationPlacement extends React.Component {
                                                 value={transportation.from_city}
                                                 onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
                                             <option value="">Город, район</option>
-                                            {cities.results.map(city => (
-                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            {regions.results.filter(region => region.id === parseInt(transportation.from_region)).map(region => (
+                                                region.cities.map(city => (
+                                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                                ))
                                             ))}
                                         </select>
                                     </div>
@@ -108,8 +110,10 @@ class TransportationPlacement extends React.Component {
                                                 value={transportation.to_city}
                                                 onChange={(e) => editTransportationPlacementHandler(e.target.name, e.target.value)}>
                                             <option value="">Город, район</option>
-                                            {cities.results.map(city => (
-                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            {regions.results.filter(region => region.id === parseInt(transportation.to_region)).map(region => (
+                                                region.cities.map(city => (
+                                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                                ))
                                             ))}
                                         </select>
                                     </div>

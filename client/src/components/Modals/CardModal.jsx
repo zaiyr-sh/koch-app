@@ -11,6 +11,22 @@ import {
 
 const CardModal = ({card, closeCard}) => {
 
+    let placeComments = () => {
+        return (card.from_place_comment !== undefined && card.to_place_comment !== undefined) ? (
+            <>
+                <div className="card__comment">
+                    <p className="card__comment-title">Комментарий к месту отбытия</p>
+                    <p className="card__comment-content">{card.from_place_comment}</p>
+                </div>
+
+                <div className="card__comment">
+                    <p className="card__comment-title">Комментарий к месту достаки</p>
+                    <p className="card__comment-content">{card.to_place_comment}</p>
+                </div>
+            </>
+        ) : <></>
+    }
+
     if (Object.keys(card).length === 0) return <></>;
 
     return (
@@ -27,18 +43,15 @@ const CardModal = ({card, closeCard}) => {
                     </div>
                     <div className="card__main-information">
                         <div className="card__details">
+                            <p className="card__volume">{card.weight}т</p>
                             <p className="card__date">{hours_with_leading_zeros(new Date(card.from_shipment_date))}.{months_with_leading_zeros(new Date(card.from_shipment_date))}.{new Date(card.from_shipment_date).getFullYear()} - {dates_with_leading_zeros(new Date(card.to_shipment_date))}.{months_with_leading_zeros(new Date(card.to_shipment_date))}.{new Date(card.to_shipment_date).getFullYear()}</p>
-                            <p className="card__volume">{card.weight}т / {card.volume}м³</p>
                         </div>
                         <div className="card__price">{card.price}c</div>
                     </div>
 
                     <div className="card__line"></div>
 
-                    <div className="card__comment">
-                        <p className="card__comment-title">Комментарий к отправке</p>
-                        <p className="card__comment-content">{card.place_comment}</p>
-                    </div>
+                    {placeComments()}
 
                     <div className="card__comment">
                         <p className="card__comment-title">Комментарий к грузу</p>

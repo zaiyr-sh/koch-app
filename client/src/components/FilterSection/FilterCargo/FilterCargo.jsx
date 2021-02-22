@@ -30,7 +30,7 @@ class FilterCargo extends React.Component {
     render() {
         let {
             filteredCargoes, editCargoFilterHandler,
-            cities, regions, editPlaceSelectionHandler,
+            regions, editPlaceSelectionHandler,
         } = this.props;
         let {button} = this.state;
 
@@ -54,8 +54,10 @@ class FilterCargo extends React.Component {
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
                                     className="filter__direction-selection" name="from_city">
                                 <option value="">Город, район</option>
-                                {cities.results.map(city => (
-                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                {regions.results.filter(region => region.id === parseInt(filteredCargoes.from_region)).map(region => (
+                                    region.cities.map(city => (
+                                        <option key={city.id} value={city.id}>{city.name}</option>
+                                    ))
                                 ))}
                             </select>
                         </div>
@@ -78,8 +80,10 @@ class FilterCargo extends React.Component {
                                     onChange={(e) => editPlaceSelectionHandler(e.target.name, e.target.value)}
                                     className="filter__direction-selection" name="to_city">
                                 <option value="">Город, район</option>
-                                {cities.results.map(city => (
-                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                {regions.results.filter(region => region.id === parseInt(filteredCargoes.to_region)).map(region => (
+                                    region.cities.map(city => (
+                                        <option key={city.id} value={city.id}>{city.name}</option>
+                                    ))
                                 ))}
                             </select>
                         </div>
@@ -112,34 +116,6 @@ class FilterCargo extends React.Component {
                                            name="to_weight"
                                            placeholder="До"
                                            value={filteredCargoes.to_weight}
-                                           onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="filter__volume">
-                            <p className="filter__title">Объем груза, м³ </p>
-                            <div className="filter__size-to">
-                                <div className="filter-direction-size">
-                                    <input className="filter__size-selection"
-                                           type="number"
-                                           required={filteredCargoes.to_volume !== "" && button === "show"}
-                                           min="0"
-                                           name="from_volume"
-                                           placeholder="От"
-                                           value={filteredCargoes.from_volume}
-                                           onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
-                                    />
-                                </div>
-                                <div className="filter-direction-size">
-                                    <input className="filter__size-selection"
-                                           type="number"
-                                           required={filteredCargoes.from_volume !== "" && button === "show"}
-                                           min="0"
-                                           name="to_volume"
-                                           placeholder="До"
-                                           value={filteredCargoes.to_volume}
                                            onChange={(e) => editCargoFilterHandler(e.target.name, e.target.value)}
                                     />
                                 </div>

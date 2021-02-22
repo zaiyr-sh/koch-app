@@ -15,7 +15,6 @@ class FilterCargoContainer extends Component {
 
     render() {
         return <FilterCargo
-            cities={this.props.cities}
             regions={this.props.regions}
             filteredCargoes={this.props.filteredCargoes}
             editCargoFilterHandler={this.props.editCargoFilterHandler}
@@ -28,7 +27,6 @@ class FilterCargoContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    cities: state.cargoPage.cities,
     regions: state.cargoPage.regions,
     filteredCargoes: state.cargoPage.filteredCargoes
 })

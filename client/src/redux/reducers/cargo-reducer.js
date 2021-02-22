@@ -20,22 +20,20 @@ let initialState = {
         to_city: "",
         from_weight: "",
         to_weight: "",
-        from_volume: "",
-        to_volume: "",
         from_price: "",
         to_price: ""
-    },
-    cities: {
-        count: 0,
-        next: "",
-        previous: "",
-        results: []
     },
     regions: {
         count: 0,
         next: "",
         previous: "",
-        results: []
+        results: [
+            {
+                id: 0,
+                name: "",
+                cities: []
+            }
+        ]
     }
 }
 
@@ -68,7 +66,6 @@ const cargoReducer = (state = initialState, action) => {
         case SET_CARGO_PLACES:
             return {
                 ...state,
-                cities: action.cities,
                 regions: action.regions
             }
         case RESET_CARGO_FILTER:
@@ -76,7 +73,7 @@ const cargoReducer = (state = initialState, action) => {
                 ...state,
                 filteredCargoes: {
                     ...state.filteredCargoes,
-                    from_region: "", from_city: "", to_region: "", to_city: "", from_weight: "", to_weight: "", from_volume: "", to_volume: "", from_price: "", to_price: ""
+                    from_region: "", from_city: "", to_region: "", to_city: "", from_weight: "", to_weight: "", from_price: "", to_price: ""
                 }
             }
         default:
@@ -86,11 +83,10 @@ const cargoReducer = (state = initialState, action) => {
 }
 
 export const getPlacesThunkCreator = () => async (dispatch) => {
-    const citiesResponse = await placesAPI.getCities();
     const regionsResponse = await placesAPI.getRegions();
-    dispatch(setPlacesActionCreator(citiesResponse.data, regionsResponse.data));
+    dispatch(setPlacesActionCreator(regionsResponse.data));
 }
-const setPlacesActionCreator = (cities, regions) => ({type: SET_CARGO_PLACES, cities, regions});
+const setPlacesActionCreator = (regions) => ({type: SET_CARGO_PLACES, regions});
 export const editPlaceSelectionActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value });
 export const resetFilterCargoesActionCreator = () => ({type: RESET_CARGO_FILTER});
 
@@ -101,15 +97,15 @@ export const getCargoesThunkCreator = () => async (dispatch) => {
 const setCargoesActionCreator = (cargoes) => ({type: SET_CARGOES, cargoes});
 
 export const getNextCargoesThunkCreator = (offset) => async (dispatch, getState) => {
-    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
-    const response = await cargoesAPI.getNextCargoes(offset,  from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price );
+    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
+    const response = await cargoesAPI.getNextCargoes(offset,  from_region, from_city, to_region, to_city, from_weight, to_weight, from_price, to_price );
     dispatch(setNewCargoesActionCreator(response.data));
 }
 const setNewCargoesActionCreator = (cargoes) => ({type: SET_NEW_CARGOES, cargoes})
 
 export const getFilteredCargoesThunkCreator = () => async (dispatch, getState) => {
-    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_volume = "", to_volume = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
-    const response = await cargoesAPI.getFilteredCargoes(from_region, from_city, to_region, to_city, from_weight, to_weight, from_volume, to_volume, from_price, to_price );
+    let { from_region = "", from_city = "", to_region = "", to_city = "", from_weight = "", to_weight = "", from_price = "", to_price = "" } = getState().cargoPage.filteredCargoes;
+    const response = await cargoesAPI.getFilteredCargoes(from_region, from_city, to_region, to_city, from_weight, to_weight, from_price, to_price );
     dispatch(setCargoesActionCreator(response.data));
 }
 export const editCargoFilterActionCreator = (nameField, value) => ({type: SET_EDIT_CARGO_FILTER, nameField, value });

@@ -85,7 +85,7 @@ class CargoPlacement extends React.Component {
 
     render() {
         if (this.props.isPlaced) return <Redirect to="/"/>;
-        let {editCargoPlacementHandler, cargo, cities, regions} = this.props;
+        let {editCargoPlacementHandler, cargo, regions} = this.props;
         let {
             nameError,
             surnameError,
@@ -124,8 +124,10 @@ class CargoPlacement extends React.Component {
                                                 value={cargo.from_city}
                                                 onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}>
                                             <option value="">Город, район</option>
-                                            {cities.results.map(city => (
-                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            {regions.results.filter(region => region.id === parseInt(cargo.from_region)).map(region => (
+                                                region.cities.map(city => (
+                                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                                ))
                                             ))}
                                         </select>
                                     </div>
@@ -135,6 +137,15 @@ class CargoPlacement extends React.Component {
                                                                             type="date" lang="fr-CA"
                                                                             id="from_shipment_date"
                                                                             name="from_shipment_date"/></div>
+                                </div>
+                                <div className="placement__comment">
+                                <textarea
+                                    className="comment__sender"
+                                    placeholder="Комментарий к месту отбытия ..."
+                                    name="from_place_comment"
+                                    value={cargo.from_place_comment}
+                                    onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
+                                />
                                 </div>
 
                                 <p className="placement__direction__title">Куда</p>
@@ -154,8 +165,10 @@ class CargoPlacement extends React.Component {
                                                 value={cargo.to_city}
                                                 onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}>
                                             <option value="">Город, район</option>
-                                            {cities.results.map(city => (
-                                                <option key={city.id} value={city.id}>{city.name}</option>
+                                            {regions.results.filter(region => region.id === parseInt(cargo.to_region)).map(region => (
+                                                region.cities.map(city => (
+                                                    <option key={city.id} value={city.id}>{city.name}</option>
+                                                ))
                                             ))}
                                         </select>
                                     </div>
@@ -168,9 +181,9 @@ class CargoPlacement extends React.Component {
                                 <div className="placement__comment">
                                 <textarea
                                     className="comment__sender"
-                                    placeholder="Комментарий к отправке ..."
-                                    name="place_comment"
-                                    value={cargo.place_comment}
+                                    placeholder="Комментарий к месту доставки ..."
+                                    name="to_place_comment"
+                                    value={cargo.to_place_comment}
                                     onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
                                 />
                                 </div>

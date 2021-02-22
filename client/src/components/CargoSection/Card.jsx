@@ -21,8 +21,8 @@ const Card = ({card, onOpenCardModal}) => {
                 </div>
                 <div className="card__main-information">
                     <div className="card__details">
+                        <p className="card__volume">{card.weight}т</p>
                         <p className="card__date">{hours_with_leading_zeros(new Date(card.from_shipment_date))}.{months_with_leading_zeros(new Date(card.from_shipment_date))}.{new Date(card.from_shipment_date).getFullYear()} - {dates_with_leading_zeros(new Date(card.to_shipment_date))}.{months_with_leading_zeros(new Date(card.to_shipment_date))}.{new Date(card.to_shipment_date).getFullYear()}</p>
-                        <p className="card__volume">{card.weight}т / {card.volume}м³</p>
                     </div>
                     <div className="card__price">{card.price}c</div>
                 </div>

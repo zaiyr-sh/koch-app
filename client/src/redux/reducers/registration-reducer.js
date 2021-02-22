@@ -16,7 +16,8 @@ let initialState = {
         name: "",
         surname: "",
         phone_number: "",
-        password: ""
+        password: "",
+        uid_token: ""
     },
     driver: {
         carrying_capacity: "",
@@ -125,13 +126,10 @@ const registrationReducer = (state = initialState, action) => {
 
 export const editRegistrationFieldActionCreator = (nameField, value) => ({type: SET_EDIT_USER, nameField, value });
 export const registrationThunkCreator = () => async (dispatch, getState) => {
-    const {name, surname, user_type, phone_number, password} = getState().registrationPage.user;
+    const {name, surname, user_type, phone_number, password, uid_token} = getState().registrationPage.user;
     try {
-        const response = await registrationAPI.register(name, surname, user_type, phone_number, password);
+        const response = await registrationAPI.register(name, surname, user_type, phone_number, password, uid_token);
         if (response.status === 201) {
-            if(response.data.user_type === "driver"){
-                localStorage.setItem('user_id', JSON.stringify(response.data.id));
-            }
             dispatch(registrationSuccess());
             dispatch(resetRegistrationActionCreator());
         }
