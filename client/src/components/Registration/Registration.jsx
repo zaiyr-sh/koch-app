@@ -4,7 +4,7 @@ import {withAlert} from "react-alert";
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
 import UserRegistration from "./UserRegistration/UserRegistration";
-import {validatePassword, validatePersonName, validatePhoneNumber, validateNonEmptyLength} from "../../helpers/validation-helper";
+import {validatePassword, validatePersonName, validatePhoneNumber} from "../../helpers/validation-helper";
 
 class Registration extends React.Component {
 
@@ -75,6 +75,7 @@ class Registration extends React.Component {
                 phoneNumberError={phoneNumberError}
                 passwordError={passwordError}
                 validate={this.validate}
+                error={this.props.alert.error}
 
             />
         ) : <Preregistration handleOpenRegistrationSection={this.handleOpenRegistrationSection}/>

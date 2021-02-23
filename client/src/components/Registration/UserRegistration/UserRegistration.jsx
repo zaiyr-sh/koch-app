@@ -14,44 +14,31 @@ const UserRegistration = (
         phoneNumberError,
         passwordError,
         uidTokenError,
-        validate
+        validate,
+        error
     }
 ) => {
 
     function onSignInSubmit(e){
         e.preventDefault();
         if(validate()) {
-            let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field', {
-                size: "invisible",
-
-            });
+            let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field');
             const phoneNumber = user.phone_number;
             firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
                 .then((confirmationResult) => {
-                    // SMS sent. Prompt user to type the code from the message, then sign the
-                    // user in with confirmationResult.confirm(code).
-                    window.confirmationResult = confirmationResult;
-                    const code = window.prompt("Enter Code");
+                    const code = window.prompt("Введите код подтверждения:")
                     confirmationResult.confirm(code).then((result) => {
-                        // User signed in successfully.
-                        console.log(JSON.stringify(result.user))
                         editRegistrationFieldHandler("uid_token", result.user.za)
                         onSubmit(e)
-                    }).catch((error) => {
-                        editRegistrationFieldHandler("uid_token", "")
-                        onSubmit(e)
-                        console.log(error)
+                    }).catch((e) => {
+                        error('Неправильный код подтверждения!');
                     });
                 }).catch((error) => {
-                user.isCodeVerified = false
-                // Error; SMS not sent
-                // ...
-                console.log(error)
+                alert('Ошибка регистрации. Обновите страницу.');
             });
         }
     }
 
-    console.log("USER: " + console.log(JSON.stringify(user)))
     return (
         <section className="section__login">
             <div className="container">
