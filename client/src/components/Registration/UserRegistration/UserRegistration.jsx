@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import firebase from "../../../firebase";
+import NumberFormat from 'react-number-format';
 
 const UserRegistration = (
     {
@@ -10,7 +11,6 @@ const UserRegistration = (
         handleCloseRegistrationSection,
         nameError,
         surnameError,
-        phoneNumberError,
         passwordError,
         uidTokenError
     }
@@ -86,18 +86,16 @@ const UserRegistration = (
                                 </p>
                             </div>
                             <div className="registration__phoneNumber">
-                                <input
+                                <NumberFormat
+                                    format="+996#########"
                                     placeholder="Номер телефона"
-                                    className={`registration__field-phoneNumber ${phoneNumberError ? 'error__field' : ''}`}
+                                    className="registration__field-phoneNumber"
                                     required
                                     type="text"
                                     name="phone_number"
                                     value={user.phone_number}
                                     onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
                                 />
-                                <p className="error__description">
-                                    {phoneNumberError}
-                                </p>
                             </div>
                             <div className="registration__password">
                                 <input

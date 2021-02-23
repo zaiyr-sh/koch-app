@@ -6,16 +6,15 @@ import "../OrderPlacement.css";
 import {
     validateMaxLength,
     validateMinLength,
-    validatePersonName,
-    validatePhoneNumber
+    validatePersonName
 } from "../../../../helpers/validation-helper";
+import NumberFormat from "react-number-format";
 
 class CargoPlacement extends React.Component {
 
     state = {
         nameError: "",
         surnameError: "",
-        phoneNumberError: "",
         cargoNameError: "",
         weightError: "",
         volumeError: "",
@@ -31,7 +30,6 @@ class CargoPlacement extends React.Component {
             this.setState({
                 nameError: "",
                 surnameError: "",
-                phoneNumberError: "",
                 cargoNameError: "",
                 weightError: "",
                 volumeError: "",
@@ -52,13 +50,12 @@ class CargoPlacement extends React.Component {
     }
 
     validate = () => {
-        let nameError, surnameError, phoneNumberError, cargoNameError, weightError, volumeError, lengthError,
+        let nameError, surnameError, cargoNameError, weightError, volumeError, lengthError,
             widthError, heightError;
-        let {sender_name, sender_surname, phone_number, name, weight, volume, length, width, height} = this.props.cargo;
+        let {sender_name, sender_surname, name, weight, volume, length, width, height} = this.props.cargo;
 
         nameError = validatePersonName(sender_name);
         surnameError = validatePersonName(sender_surname);
-        phoneNumberError = validatePhoneNumber(phone_number);
         cargoNameError = validateMinLength(name, 2);
         weightError = validateMaxLength(weight, 4);
         volumeError = validateMaxLength(volume, 4);
@@ -66,11 +63,10 @@ class CargoPlacement extends React.Component {
         widthError = validateMaxLength(width, 4);
         heightError = validateMaxLength(height, 4);
 
-        if (phoneNumberError || nameError || surnameError || cargoNameError || weightError || volumeError || lengthError || widthError || heightError) {
+        if (nameError || surnameError || cargoNameError || weightError || volumeError || lengthError || widthError || heightError) {
             this.setState({
                 nameError,
                 surnameError,
-                phoneNumberError,
                 cargoNameError,
                 weightError,
                 volumeError,
@@ -89,7 +85,6 @@ class CargoPlacement extends React.Component {
         let {
             nameError,
             surnameError,
-            phoneNumberError,
             cargoNameError,
             weightError,
             volumeError,
@@ -326,19 +321,16 @@ class CargoPlacement extends React.Component {
                                     </p>
                                 </div>
                                 <div className="placement__cargo-fields">
-                                    <input
-                                        type="text"
-                                        className="placement__cargo-selection name-selection"
+                                    <NumberFormat
+                                        format="+996#########"
                                         placeholder="Номер телефона"
-                                        name="phone_number"
-                                        maxLength="10"
+                                        className="placement__cargo-selection name-selection"
                                         required
+                                        type="text"
+                                        name="phone_number"
                                         value={cargo.phone_number}
                                         onChange={(e) => editCargoPlacementHandler(e.target.name, e.target.value)}
                                     />
-                                    <p className="error__description-order">
-                                        {phoneNumberError}
-                                    </p>
                                 </div>
                             </div>
                             {/*Placement Contacts*/}

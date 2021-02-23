@@ -4,8 +4,7 @@ import {withAlert} from "react-alert";
 import "../Login/Login.css";
 import Preregistration from "./Preregistration";
 import UserRegistration from "./UserRegistration/UserRegistration";
-import {validatePassword, validatePersonName, validatePhoneNumber, verificationCode, validateNonEmptyLength} from "../../helpers/validation-helper";
-import firebase from "../../firebase";
+import {validatePassword, validatePersonName, validateNonEmptyLength} from "../../helpers/validation-helper";
 
 class Registration extends React.Component {
 
@@ -13,7 +12,6 @@ class Registration extends React.Component {
         isChose: false,
         nameError: "",
         surnameError: "",
-        phoneNumberError: "",
         passwordError: "",
         uidTokenError: ""
     }
@@ -25,7 +23,7 @@ class Registration extends React.Component {
         if (this.props.isRegister) {
             this.props.alert.success('Вы успешно зарегестрировались! Войдите в свой аккаунт.');
             this.props.resetRegistration();
-            this.setState({nameError: "", surnameError: "", phoneNumberError: "", passwordError: ""});
+            this.setState({nameError: "", surnameError: "", passwordError: ""});
         }
     }
 
@@ -48,17 +46,16 @@ class Registration extends React.Component {
     }
 
     validate = () => {
-        let nameError, surnameError, phoneNumberError, passwordError, uidTokenError;
-        let {name, surname, phone_number, password, uid_token} = this.props.user;
+        let nameError, surnameError, passwordError, uidTokenError;
+        let {name, surname, password, uid_token} = this.props.user;
 
         nameError = validatePersonName(name);
         surnameError = validatePersonName(surname);
-        // phoneNumberError = validatePhoneNumber(phone_number);
         passwordError = validatePassword(password);
         uidTokenError = validateNonEmptyLength(uid_token);
 
-        if (phoneNumberError || nameError || surnameError || passwordError || uidTokenError) {
-            this.setState({phoneNumberError, nameError, surnameError, passwordError, uidTokenError});
+        if (nameError || surnameError || passwordError || uidTokenError) {
+            this.setState({nameError, surnameError, passwordError, uidTokenError});
             return false;
         }
         return true;
@@ -66,7 +63,7 @@ class Registration extends React.Component {
 
     render() {
         let {user, editRegistrationFieldHandler} = this.props;
-        let {isChose, nameError, surnameError, phoneNumberError, passwordError, uidTokenError} = this.state;
+        let {isChose, nameError, surnameError, passwordError, uidTokenError} = this.state;
 
         return isChose ? (
             <UserRegistration
@@ -76,7 +73,6 @@ class Registration extends React.Component {
                 handleCloseRegistrationSection={this.handleCloseRegistrationSection}
                 nameError={nameError}
                 surnameError={surnameError}
-                phoneNumberError={phoneNumberError}
                 passwordError={passwordError}
                 uidTokenError={uidTokenError}
 
