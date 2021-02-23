@@ -10,6 +10,10 @@ export const validateMinLength = (field, size) => {
     if (field.length < size) return `Поле должно быть от ${size} и выше символов длиной`;
 }
 
+export const validatePhoneNumber = (phone_number) => {
+    if (phone_number.trim().length !== 13) return "Неправильно введенный формат номера телефона";
+}
+
 export const validatePersonName = (name) => {
     if (/\d/.test(name) || (name.length < 2)) return "Поле должно быть от 2 и выше символов длиной и не содержать чисел";
 }

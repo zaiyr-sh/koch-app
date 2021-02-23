@@ -11,40 +11,44 @@ const UserRegistration = (
         handleCloseRegistrationSection,
         nameError,
         surnameError,
+        phoneNumberError,
         passwordError,
-        uidTokenError
+        uidTokenError,
+        validate
     }
 ) => {
 
     function onSignInSubmit(e){
         e.preventDefault();
-        let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field', {
-            size: "invisible",
+        if(validate()) {
+            let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field', {
+                size: "invisible",
 
-        });
-        const phoneNumber = "+996770009096";
-        firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
-            .then((confirmationResult) => {
-                // SMS sent. Prompt user to type the code from the message, then sign the
-                // user in with confirmationResult.confirm(code).
-                window.confirmationResult = confirmationResult;
-                const code = window.prompt("Enter Code");
-                confirmationResult.confirm(code).then((result) => {
-                    // User signed in successfully.
-                    console.log(JSON.stringify(result.user))
-                    editRegistrationFieldHandler("uid_token", result.user.za)
-                    onSubmit(e)
+            });
+            const phoneNumber = user.phone_number;
+            firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
+                .then((confirmationResult) => {
+                    // SMS sent. Prompt user to type the code from the message, then sign the
+                    // user in with confirmationResult.confirm(code).
+                    window.confirmationResult = confirmationResult;
+                    const code = window.prompt("Enter Code");
+                    confirmationResult.confirm(code).then((result) => {
+                        // User signed in successfully.
+                        console.log(JSON.stringify(result.user))
+                        editRegistrationFieldHandler("uid_token", result.user.za)
+                        onSubmit(e)
+                    }).catch((error) => {
+                        editRegistrationFieldHandler("uid_token", "")
+                        onSubmit(e)
+                        console.log(error)
+                    });
                 }).catch((error) => {
-                    editRegistrationFieldHandler("uid_token", "")
-                    onSubmit(e)
-                    console.log(error)
-                });
-            }).catch((error) => {
-            user.isCodeVerified = false
-            // Error; SMS not sent
-            // ...
-            console.log(error)
-        });
+                user.isCodeVerified = false
+                // Error; SMS not sent
+                // ...
+                console.log(error)
+            });
+        }
     }
 
     console.log("USER: " + console.log(JSON.stringify(user)))
@@ -89,13 +93,16 @@ const UserRegistration = (
                                 <NumberFormat
                                     format="+996#########"
                                     placeholder="Номер телефона"
-                                    className="registration__field-phoneNumber"
+                                    className={`registration__field-phoneNumber ${phoneNumberError ? 'error__field' : ''}`}
                                     required
                                     type="text"
                                     name="phone_number"
                                     value={user.phone_number}
                                     onChange={(e) => editRegistrationFieldHandler(e.target.name, e.target.value)}
                                 />
+                                <p className="error__description">
+                                    {phoneNumberError}
+                                </p>
                             </div>
                             <div className="registration__password">
                                 <input
