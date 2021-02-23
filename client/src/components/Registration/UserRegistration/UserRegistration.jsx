@@ -18,16 +18,14 @@ const UserRegistration = (
 
     function onSignInSubmit(e){
         e.preventDefault();
-        let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field', {
-            size: "invisible",
-
-        });
-        const phoneNumber = "+996770009096";
+        let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha__field');
+        const phoneNumber = user.phone_number;
+        console.log(phoneNumber)
         firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
             .then((confirmationResult) => {
                 // SMS sent. Prompt user to type the code from the message, then sign the
                 // user in with confirmationResult.confirm(code).
-                window.confirmationResult = confirmationResult;
+                // window.confirmationResult = confirmationResult;
                 const code = window.prompt("Enter Code");
                 confirmationResult.confirm(code).then((result) => {
                     // User signed in successfully.

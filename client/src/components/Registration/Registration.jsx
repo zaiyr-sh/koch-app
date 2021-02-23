@@ -72,6 +72,7 @@ class Registration extends React.Component {
             <UserRegistration
                 user={user}
                 editRegistrationFieldHandler={editRegistrationFieldHandler}
+                // validate={this.validate}
                 onSubmit={this.onSubmit}
                 handleCloseRegistrationSection={this.handleCloseRegistrationSection}
                 nameError={nameError}
