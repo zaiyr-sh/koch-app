@@ -22,7 +22,7 @@ const Navbar = ({isLoggedIn}) => {
                         <nav className="nav">
                             {/*<Link className="nav__link-lang" to="/g">ru</Link>*/}
                             <Link className="nav__link-signIn"
-                                  to={isLoggedIn === true ? "/profile/my_orders" : "/login"}>Войти</Link>
+                                  to={isLoggedIn === true ? "/profile/my_orders" : "/login"}>{isLoggedIn === true ? "Кабинет" : "Войти"}</Link>
                             <Link className="nav__link-placeAd" to={isLoggedIn === true ? "/placement" : "/login"}><i
                                 className="fa fa-plus"/> Разместить</Link>
                         </nav>
