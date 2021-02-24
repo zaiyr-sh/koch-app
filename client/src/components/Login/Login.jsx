@@ -6,7 +6,7 @@ import "./Login.css";
 const Login = ({ editLoginHandler, isLoggedIn, user, loginError, loginHandler }) => {
 
     if(isLoggedIn) {
-        return <Redirect to="/profile/my_orders"/>
+        return <Redirect to="/"/>
     }
 
     const onSubmit = e => {
