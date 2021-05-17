@@ -1,1 +1,1 @@
-# Koch App :truck:
+# Koch App
