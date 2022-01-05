@@ -2,7 +2,7 @@ import * as axios from 'axios';
 import {authHeader} from "../helpers/auth-header";
 
 const axiosInstance = axios.create({
-    baseURL: "http://159.65.122.49/api/"
+    baseURL: "http://159.89.17.167/api/"
 })
 
 // places endpoint

@@ -1,14 +1,15 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCM0lXebMMB1jmTGnCVqKioBDZV1yh8IYY",
-    authDomain: "kochapp-ec21e.firebaseapp.com",
-    projectId: "kochapp-ec21e",
-    storageBucket: "kochapp-ec21e.appspot.com",
-    messagingSenderId: "85868020404",
-    appId: "1:85868020404:web:bd39f30d42171079ad0de1",
-    measurementId: "G-03FGQM3MBC"
+    apiKey: "AIzaSyDxE-PhgjO_5ZbP2_H2xQn5Ye5TEw8mrOc",
+    authDomain: "koch-app-466fd.firebaseapp.com",
+    projectId: "koch-app-466fd",
+    storageBucket: "koch-app-466fd.appspot.com",
+    messagingSenderId: "158377757573",
+    appId: "1:158377757573:web:70323d7907309e7e8c92ec",
+    measurementId: "G-L9YTNKDRWS"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
