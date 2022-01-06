@@ -6,8 +6,8 @@ const firebaseConfig = {
     projectId: "koch-app-466fd",
     storageBucket: "koch-app-466fd.appspot.com",
     messagingSenderId: "158377757573",
-    appId: "1:158377757573:web:70323d7907309e7e8c92ec",
-    measurementId: "G-L9YTNKDRWS"
+    appId: "1:158377757573:web:fa4f7c39cdbb32898c92ec",
+    measurementId: "G-CJQ7V49RKZ"
 };
 
 // Initialize Firebase

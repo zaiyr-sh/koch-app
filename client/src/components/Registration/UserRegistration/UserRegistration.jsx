@@ -28,13 +28,18 @@ const UserRegistration = (
                 .then((confirmationResult) => {
                     const code = window.prompt("Введите код подтверждения:")
                     confirmationResult.confirm(code).then((result) => {
-                        editRegistrationFieldHandler("uid_token", result.user.za)
+                        // console.log(result)
+                        // console.log(result.user.uid)
+                        // editRegistrationFieldHandler("uid_token", "MQijRAoo3bT1PzUV4vqyevUwUPs2")
+                        editRegistrationFieldHandler("uid_token", result.user.uid)
                         onSubmit(e)
                     }).catch((e) => {
+                        onSubmit(e)
                         error('Неправильный код подтверждения!');
                     });
                 }).catch((error) => {
                 alert('Ошибка регистрации. Обновите страницу.');
+                onSubmit(e)
             });
         }
     }
